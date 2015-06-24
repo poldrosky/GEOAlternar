@@ -56,113 +56,135 @@
                                 <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                             </h:inputText>
                         </p:panelGrid>
+                    
                         <p:commandButton value="prueba" actionListener="#{mBRMap.consultarDatosCoordenada()}"
                                          ajax="true" update="frmlatlon:panel"
                                          id="btAjax" style="visibility: hidden"/>
-                        <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 350px;" >
-                            
-                            <center>
-                                
-                                <table border="1">
-                                    <thead>
-                                        <tr>HISTORIAL EN PUNTO</tr>
-                                        <tr>
-                                            <th>MES</th>
-                                            <th>Radiación</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td>Enero </td><td>#{mBRMap.m1}</td></tr>
-                                        <tr><td>Febrero </td><td>#{mBRMap.m2}</td></tr>
-                                        <tr><td>Marzo </td><td>#{mBRMap.m3}</td></tr>
-                                        <tr><td>Abril </td><td>#{mBRMap.m4}</td></tr>
-                                        <tr><td>Mayo </td><td>#{mBRMap.m5}</td></tr>
-                                        <tr><td>Junio </td><td>#{mBRMap.m6}</td></tr>
-                                        <tr><td>Julio </td><td>#{mBRMap.m7}</td></tr>
-                                        <tr><td>Agosto </td><td>#{mBRMap.m8}</td></tr>
-                                        <tr><td>Septiembre </td><td>#{mBRMap.m9}</td></tr>
-                                        <tr><td>Octubre </td><td>#{mBRMap.m10}</td></tr>
-                                        <tr><td>Noviembre </td><td>#{mBRMap.m11}</td></tr>
-                                        <tr><td>Diciembre </td><td>#{mBRMap.m12}</td></tr>
-                                    </tbody>
-                                </table>
-                            </center>
-                            <h:outputText value="#{mBRMap.valorbd}" style="font-size: 16px;"/>
-                            <div id="container" style="min-width: 100%; height: 300px; margin: 0 auto"></div>
-                            <script>
-            $(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Radiacion Solar '
-        },
-        subtitle: {
-            text: 'Enero - Diciembre'
-        },
-        xAxis: {
-            type: 'datetime',
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'Radiacion solar (Mg/Ha)'
-            },
-            min: 0,
-            minorGridLineWidth: 0,
-            gridLineWidth: 0,
-            alternateGridColor: null,
-            plotBands: [{ // Light air
-                from: 0.3,
-                to: 1.5,
-                color: 'rgba(68, 170, 213, 0.1)',
-                label: {
-                    text: '->',
-                    style: {
-                        color: '#606060'
-                    }
-                }
-            }]
-        },
-        tooltip: {
-            valueSuffix: ' Mg/Ha'
-        },
-        plotOptions: {
-            spline: {
-                lineWidth: 4,
-                states: {
-                    hover: {
-                        lineWidth: 2
-                    }
-                },
-                marker: {
-                    enabled: false
-                },
-                pointInterval: 86400000, // one hour
-                pointStart: Date.UTC(2015, 12, 30, 1, 1, 12)
-            }
-        },
-        series: [{
-            name: 'Radiacion',
-            data: [ #{mBRMap.m1}, #{mBRMap.m2}, #{mBRMap.m3}, #{mBRMap.m4}, #{mBRMap.m5}, 
-                    #{mBRMap.m6}, #{mBRMap.m7}, #{mBRMap.m8}, #{mBRMap.m9}, #{mBRMap.m10}, 
-                    #{mBRMap.m11}, #{mBRMap.m12}
-                    ]
-
-        }],
-        navigation: {
-            menuItemStyle: {
-                fontSize: '8px'
-            }
-        }
-    });
-});
-        </script>
+                        <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 350px; text-align: center;" >
                             <a href="#{mBRMap.url}">DESCARAGAR MAPA</a>
-                        </p:panelGrid>
+                        <div id="container" style="width: 400px; height: 230px; margin: 0 auto"></div>
+                        <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
+                        <script>
+                        $(function () {
+                            $('#container').highcharts({
+                                chart: {
+                                    type: 'area',
+                                    spacingBottom: 10
+                                },
+                                title: {
+                                    text: 'Biomasa Mensual'
+                                },
+                                subtitle: {
+                                    text: '',//Variacion de Biomasa (#{mBRMap.latitude} , #{mBRMap.longitude})
+                                    floating: true,
+                                    align: 'left',
+                                    verticalAlign: 'bottom',
+                                    y: 15
+                                },
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'left',
+                                    verticalAlign: 'top',
+                                    x: 200,
+                                    y: 20,
+                                    floating: true,
+                                    borderWidth: 1,
+                                    backgroundColor:'#FFFFFF'
+                                },
+                                xAxis: {
+                                    categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                                                'Julio', 'Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'Escala Biomasa (Mg/Ha)'
+                                    },
+                                    labels: {
+                                        formatter: function () {
+                                            return this.value;
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    formatter: function () {
+                                        return '<b>' + this.series.name + '</b><br/>' +
+                                            this.x + ': ' + this.y;
+                                    }
+                                },
+                                plotOptions: {
+                                    area: {
+                                        fillOpacity: 0.2
+                                    }
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+                                series: [{
+                                    name: '(mg/ha)',align: 'top',
+                                    data: [#{mBRMap.m1}, #{mBRMap.m2},#{mBRMap.m3}, #{mBRMap.m4},#{mBRMap.m5}, #{mBRMap.m6},
+                                        #{mBRMap.m7}, #{mBRMap.m8},#{mBRMap.m9}, #{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12}]
+                                }]
+                            });
+                        });
+                        </script>
+                            <h:panelGrid columns="2">
+                                <h:panelGroup >
+                                <table border="1" align="center">
+                                            <thead>
+                                                <tr>Promedio Anual Biomasa</tr>
+                                                <tr>
+                                                    <th>Año</th>
+                                                    <th>Biomasa(mg/ha)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>2000 </td><td>#{mBRMap.m1}</td></tr>
+                                                <tr><td>2001 </td><td>#{mBRMap.m2}</td></tr>
+                                                <tr><td>2002 </td><td>#{mBRMap.m3}</td></tr>
+                                                <tr><td>2003 </td><td>#{mBRMap.m4}</td></tr>
+                                                <tr><td>2004 </td><td>#{mBRMap.m5}</td></tr>
+                                                <tr><td>2005 </td><td>#{mBRMap.m6}</td></tr>
+                                                <tr><td>2006 </td><td>#{mBRMap.m7}</td></tr>
+                                                <tr><td>2007 </td><td>#{mBRMap.m8}</td></tr>
+                                                <tr><td>2008 </td><td>#{mBRMap.m9}</td></tr>
+                                                <tr><td>2009 </td><td>#{mBRMap.m10}</td></tr>
+                                                <tr><td>2010 </td><td>#{mBRMap.m11}</td></tr>
+                                                <tr><td>2011 </td><td>#{mBRMap.m12}</td></tr>
+                                                <tr><td>2012 </td><td>#{mBRMap.m12}</td></tr>
+                                                <tr><td>2013 </td><td>#{mBRMap.m12}</td></tr>
+                                                <tr><td>2014 </td><td>#{mBRMap.m12}</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                <h:panelGroup style="margin-left:  50px;">
+                                        <table border="1" align="center" >
+                                                <thead>
+                                                    <tr>Promedio Memsual Biomasa</tr>
+                                                    <tr>
+                                                        <th>MES</th>
+                                                        <th>Biomasa(mg/ha)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td>Enero </td><td>#{mBRMap.m1}</td></tr>
+                                                    <tr><td>Febrero </td><td>#{mBRMap.m2}</td></tr>
+                                                    <tr><td>Marzo </td><td>#{mBRMap.m3}</td></tr>
+                                                    <tr><td>Abril </td><td>#{mBRMap.m4}</td></tr>
+                                                    <tr><td>Mayo </td><td>#{mBRMap.m5}</td></tr>
+                                                    <tr><td>Junio </td><td>#{mBRMap.m6}</td></tr>
+                                                    <tr><td>Julio </td><td>#{mBRMap.m7}</td></tr>
+                                                    <tr><td>Agosto </td><td>#{mBRMap.m8}</td></tr>
+                                                    <tr><td>Septiembre </td><td>#{mBRMap.m9}</td></tr>
+                                                    <tr><td>Octubre </td><td>#{mBRMap.m10}</td></tr>
+                                                    <tr><td>Noviembre </td><td>#{mBRMap.m11}</td></tr>
+                                                    <tr><td>Diciembre </td><td>#{mBRMap.m12}</td></tr>
+                                                </tbody>
+                                            </table>
+                                    </h:panelGroup>
+                                </h:panelGrid>
+                    </p:panelGrid>
+                            
+                        
                 </p:layoutUnit>
             </p:layout>
         </h:form>
