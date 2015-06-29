@@ -44,7 +44,7 @@
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
                     <div id="map" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="40%"  header="Información de Coordenada "  collapsible="true" id="rigth" >
+                <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  collapsible="true" id="rigth" >
                     <h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
@@ -58,9 +58,12 @@
                                      ajax="true" update="frmlatlon:panel"
                                      id="btAjax" style="visibility: hidden"/>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
-                        <a href="#{mBRMap.url}">DESCARAGAR MAPA</a>
-                        <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
-                        <div id="container" style="width: 100%; height: 400px; margin: 0 auto"></div>
+                        <h:panelGroup>
+                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">DESCARAGAR MAPA</a></p:graphicImage>
+                        </h:panelGroup>
+                            <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
+                        
+                        <div id="container" style="width: 100%; height: 350px; margin: 0 auto"></div>
                         
                         <script>
                         $(function () {
@@ -137,28 +140,33 @@
                         });
                         </script>
                         <h:outputText value="Promedio Bimasa Anual" />
-                        <table border="1" align="rigth">
+                        <table border="1" align="center">
                             <tbody>
                                 <tr>
-                                    <td>2000</td><td>2001</td><td>2003</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
-                                    <td>2008</td><td>2009</td><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td>
+                                    <td>Año</td><td>2000</td><td>2001</td><td>2003</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
                                 </tr>
                                 <tr>
-                                    <td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td>
-                                    <td>#{mBRMap.m6}</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td>
-                                    <td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td>
+                                    <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td>
+                                    <td>#{mBRMap.m6}</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td>
                                 </tr>
+                                <tr>
+                                    <td>Año</td><td>2008</td><td>2009</td><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td>
+                                </tr>
+                                <tr>
+                                    <td>Valor</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td><td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td>
+                                </tr>
+                                
                             </tbody>
                         </table>
                         <h:outputText value="Promedio Bimasa Mensual" />
-                        <table border="1" align="rigth">
+                        <table border="1" align="center">
                             <tbody>
                                 <tr>
-                                    <td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td><td>Jul</td><td>Ago</td>
+                                    <td>Mes</td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td><td>Jul</td><td>Ago</td>
                                     <td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td>
                                 </tr>
                                 <tr>
-                                    <td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td>
+                                    <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td>
                                     <td>#{mBRMap.m6}</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td>
                                     <td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td>
                                 </tr>
