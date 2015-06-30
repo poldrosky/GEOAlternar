@@ -20,9 +20,9 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendEmail {
     
-    static Properties mailServerProperties;
-    static Session getMailSession;
-    static MimeMessage generateMailMessage;
+    static Properties mailServerProperties,mailServerPropertiesP;
+    static Session getMailSession,getMailSessionP;
+    static MimeMessage generateMailMessage,generateMailMessageP;
         
     public static void sendEmailRegister(String emailDestination, String Password) throws AddressException, MessagingException {
  
@@ -49,27 +49,32 @@ public class SendEmail {
         transport.close();
              
 	}
-    public static void SendComment(String emailDestination, String Password) throws AddressException, MessagingException 
-    {
-        mailServerProperties = System.getProperties();
-        mailServerProperties.put("mail.smtp.port", "587");
-        mailServerProperties.put("mail.smtp.auth", "true");
-        mailServerProperties.put("mail.smtp.starttls.enable", "true");
+    
+    public static void sendEmailPassword(String emailDestination, String Password) throws AddressException, MessagingException {
+ 
+//Step1
+        mailServerPropertiesP = System.getProperties();
+        mailServerPropertiesP.put("mail.smtp.port", "587");
+        mailServerPropertiesP.put("mail.smtp.auth", "true");
+        mailServerPropertiesP.put("mail.smtp.starttls.enable", "true");
 //Step2
-        getMailSession = Session.getDefaultInstance(mailServerProperties, null);
-        generateMailMessage = new MimeMessage(getMailSession);
+        getMailSessionP = Session.getDefaultInstance(mailServerPropertiesP, null);
+        generateMailMessageP = new MimeMessage(getMailSessionP);
 
-        generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailDestination));
-        generateMailMessage.setSubject("Análisis de Oportunidades  Energéticas con Fuentes Alternativas en el Departamento de Nariño");
-        String emailBody = "Agradecemos su registro en nuestra Plataforma. Para acceder a su cuenta" 
+        generateMailMessageP.addRecipient(Message.RecipientType.TO, new InternetAddress(emailDestination));
+        generateMailMessageP.setSubject("Cambio Contraseña - Análisis de Oportunidades  Energéticas con Fuentes Alternativas en el Departamento de Nariño");
+        String emailBody = "Ha realizado una actualizacion en su Contraseña. Recargue la página para acceder a su cuenta" 
                             + "<br><br> Su Usuario es: "+emailDestination
-                            + "<br><br> Su Clave es: "+Password
-                            +"<br>Puede acceder ingresando a <a href='www.primefaces.org'>Mapas</a>";
-        generateMailMessage.setContent(emailBody, "text/html");
+                            + "<br><br> Su Nueva Clave es: "+Password
+                            +"<br><br><br>Gracias por usar Nuestros servicios"
+                            + "<br><br>Puede acceder ingresando a <a href='www.primefaces.org'>Mapas</a>";
+        generateMailMessageP.setContent(emailBody, "text/html");
 //Step3	
-        Transport transport = getMailSession.getTransport("smtp");
+        Transport transport = getMailSessionP.getTransport("smtp");
         transport.connect("smtp.gmail.com", "giieefae@gmail.com", "giiee2015");
-        transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+        transport.sendMessage(generateMailMessageP, generateMailMessageP.getAllRecipients());
         transport.close();
-    }
+             
+	}
+    
 }

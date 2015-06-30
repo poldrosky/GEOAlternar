@@ -76,6 +76,39 @@ public class MbRUsuario {
         
     }
     
+    //METODO RECUPERAR CONTASENIA
+    public void restablecerContrasenia()
+    {
+        try 
+        {
+            if(!this.usuario.getPassword().equals(this.txtContraseniaRepita))
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"ERROR","! Las contraseñas no coinciden ¡"));
+                return;
+            }
+            
+            String auxPass=this.txtContraseniaRepita;
+            
+            if(usersFacade.getByEmail(this.usuario.getEmail())==null)
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El usuario NO se encuentra registrado en el sistema"));
+
+                return;
+            }
+            
+            this.usuario.setPassword(Encrypt.sha512(this.usuario.getPassword()));
+            
+            usersFacade.cambioContrasenia(this.usuario.getEmail(),Encrypt.sha512(this.txtContraseniaRepita));
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"INFORMACION","! Cambio de Contraseña Exitoso ¡"));
+            SendEmail.sendEmailPassword(this.usuario.getEmail(), auxPass);
+            
+        } catch (Exception e) {
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR FATAL", "Por favor contactarse con el administrador del sistema, error: "+e.getMessage()));
+        }
+    }
+    
     public Users getUsuario() {
         return usuario;
     }

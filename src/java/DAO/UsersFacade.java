@@ -17,6 +17,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class UsersFacade extends AbstractFacade<Users> {
+
     @PersistenceContext(unitName = "GEOAPU")
     private EntityManager em;
 
@@ -28,25 +29,33 @@ public class UsersFacade extends AbstractFacade<Users> {
     public UsersFacade() {
         super(Users.class);
     }
-    
-    public Users getByEmail(String correo){
-        try
-        {
-            Query q=getEntityManager().createNamedQuery("Users.findByEmail");
+
+    public Users getByEmail(String correo) {
+        try {
+            Query q = getEntityManager().createNamedQuery("Users.findByEmail");
             q.setParameter("email", correo);
             return (Users) q.getSingleResult();
-        }catch(Exception e){
+        } catch (Exception e) {
         }
-       return null; 
+        return null;
     }
+
     public void register(Users usuario) {
-        try 
-        {
+        try {
             Query qu = getEntityManager().createNativeQuery("INSERT INTO users values('" + usuario.getName() + "','" + usuario.getLastname() + "','" + usuario.getOrganitation() + "','" + usuario.getEmail() + "','" + usuario.getPassword() + "')");
             qu.executeUpdate();
         } catch (Exception e) {
         }
-        
+
     }
 
+    public void cambioContrasenia(String email,String nuevaContrasenia) {
+        try {
+            Query qu = getEntityManager().createNativeQuery("UPDATE users SET password='"+nuevaContrasenia+"'  WHERE email='"+email+"'");
+            System.out.println(email+"||"+nuevaContrasenia);
+            qu.executeUpdate();
+        } catch (Exception e) {
+        }
+
+    }
 }
