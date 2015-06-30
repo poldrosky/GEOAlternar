@@ -174,7 +174,8 @@ public class MBRMap implements Serializable {
     }
     private double valuelat, valuelon;
     private int lat, lon;
-    private double m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, mlat, mlon;
+    private double m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12,m13,m14,m15, mlat, mlon;
+    private double y0,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14;
     private  String valorbd;
 
     public String getUrl() {
@@ -187,8 +188,8 @@ public class MBRMap implements Serializable {
     
     
 
-    public void consultarDatosCoordenada() {
-        Object[] valor, valor2;
+    public void consultarBiomasaCoordenada() {
+        Object[] valor, valormeses,valoranios;
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 900));
         valuelon = Double.parseDouble(this.longitude);
@@ -197,28 +198,42 @@ public class MBRMap implements Serializable {
         
         if (mesfuente[0].equals("MapBiomass")) {
             valor= daoMap.getByCoordenate(lon, lat, mesfuente[1], 2);
-            valorbd="Biomasa : \n"+valor[3].toString()+" Mg/Ha";
-            //////////consultar valor por mes
-            valor2 = daoMap.getHistory(lon, lat, mesfuente[1], 2);
+            valorbd="Biomasa en mapa seleccionado: "+valor[3].toString()+" Mg/Ha";
+            //////////consultar valor por MES O AÑO
+            System.out.println(lon+"||"+lat+"||"+ mesfuente[1]);
+            valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 2);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-            mlat = Double.parseDouble(valor2[0].toString());
-            mlon = Double.parseDouble(valor2[1].toString());
-            m1 = Double.parseDouble(valor2[2].toString());
-            m2 = Double.parseDouble(valor2[3].toString());
-            m3 = Double.parseDouble(valor2[4].toString());
-            m4 = Double.parseDouble(valor2[5].toString());
-            m5 = Double.parseDouble(valor2[6].toString());
-            m6 = Double.parseDouble(valor2[7].toString());
-            m7 = Double.parseDouble(valor2[8].toString());
-            m8 = Double.parseDouble(valor2[9].toString());
-            m9 = Double.parseDouble(valor2[10].toString());
-            m10 = Double.parseDouble(valor2[11].toString());
-            m11 = Double.parseDouble(valor2[12].toString());
-            m12 = Double.parseDouble(valor2[13].toString());
+            mlat = Double.parseDouble(valormeses[0].toString());
+            mlon = Double.parseDouble(valormeses[1].toString());
+            m1 = Double.parseDouble(valormeses[2].toString());
+            m2 = Double.parseDouble(valormeses[3].toString());
+            m3 = Double.parseDouble(valormeses[4].toString());
+            m4 = Double.parseDouble(valormeses[5].toString());
+            m5 = Double.parseDouble(valormeses[6].toString());
+            m6 = Double.parseDouble(valormeses[7].toString());
+            m7 = Double.parseDouble(valormeses[8].toString());
+            m8 = Double.parseDouble(valormeses[9].toString());
+            m9 = Double.parseDouble(valormeses[10].toString());
+            m10 = Double.parseDouble(valormeses[11].toString());
+            m11 = Double.parseDouble(valormeses[12].toString());
+            m12 = Double.parseDouble(valormeses[13].toString());
             
-            
-            
-            
+            valoranios=daoMap.getHistoryYears(lon, lat, mesfuente[1], 2);
+            y0 = Double.parseDouble(valoranios[2].toString());
+            y1 = Double.parseDouble(valoranios[3].toString());
+            y2 = Double.parseDouble(valoranios[4].toString());
+            y3 = Double.parseDouble(valoranios[5].toString());
+            y4 = Double.parseDouble(valoranios[6].toString());
+            y5 = Double.parseDouble(valoranios[7].toString());
+            y6 = Double.parseDouble(valoranios[8].toString());
+            y7 = Double.parseDouble(valoranios[9].toString());
+            y8 = Double.parseDouble(valoranios[10].toString());
+            y9 = Double.parseDouble(valoranios[11].toString());
+            y10 = Double.parseDouble(valoranios[12].toString());
+            y11 = Double.parseDouble(valoranios[13].toString());
+            y12 = Double.parseDouble(valoranios[14].toString());
+            y13 = Double.parseDouble(valoranios[15].toString());
+            y14 = Double.parseDouble(valoranios[16].toString());
         }
 
 
@@ -415,6 +430,30 @@ public class MBRMap implements Serializable {
         this.m12 = m12;
     }
 
+    public double getM13() {
+        return m13;
+    }
+
+    public void setM13(double m13) {
+        this.m13 = m13;
+    }
+
+    public double getM14() {
+        return m14;
+    }
+
+    public void setM14(double m14) {
+        this.m14 = m14;
+    }
+
+    public double getM15() {
+        return m15;
+    }
+
+    public void setM15(double m15) {
+        this.m15 = m15;
+    }
+
     public double getMlat() {
         return mlat;
     }
@@ -431,6 +470,124 @@ public class MBRMap implements Serializable {
         this.mlon = mlon;
     }
 
+    public double getY0() {
+        return y0;
+    }
 
+    public void setY0(double y0) {
+        this.y0 = y0;
+    }
+
+    public double getY1() {
+        return y1;
+    }
+
+    public void setY1(double y1) {
+        this.y1 = y1;
+    }
+
+    public double getY2() {
+        return y2;
+    }
+
+    public void setY2(double y2) {
+        this.y2 = y2;
+    }
+
+    public double getY3() {
+        return y3;
+    }
+
+    public void setY3(double y3) {
+        this.y3 = y3;
+    }
+
+    public double getY4() {
+        return y4;
+    }
+
+    public void setY4(double y4) {
+        this.y4 = y4;
+    }
+
+    public double getY5() {
+        return y5;
+    }
+
+    public void setY5(double y5) {
+        this.y5 = y5;
+    }
+
+    public double getY6() {
+        return y6;
+    }
+
+    public void setY6(double y6) {
+        this.y6 = y6;
+    }
+
+    public double getY7() {
+        return y7;
+    }
+
+    public void setY7(double y7) {
+        this.y7 = y7;
+    }
+
+    public double getY8() {
+        return y8;
+    }
+
+    public void setY8(double y8) {
+        this.y8 = y8;
+    }
+
+    public double getY9() {
+        return y9;
+    }
+
+    public void setY9(double y9) {
+        this.y9 = y9;
+    }
+
+    public double getY10() {
+        return y10;
+    }
+
+    public void setY10(double y10) {
+        this.y10 = y10;
+    }
+
+    public double getY11() {
+        return y11;
+    }
+
+    public void setY11(double y11) {
+        this.y11 = y11;
+    }
+
+    public double getY12() {
+        return y12;
+    }
+
+    public void setY12(double y12) {
+        this.y12 = y12;
+    }
+
+    public double getY13() {
+        return y13;
+    }
+
+    public void setY13(double y13) {
+        this.y13 = y13;
+    }
+
+    public double getY14() {
+        return y14;
+    }
+
+    public void setY14(double y14) {
+        this.y14 = y14;
+    }
     
 }

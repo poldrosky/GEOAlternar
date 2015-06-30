@@ -30,9 +30,9 @@ public class UsersFacade extends AbstractFacade<Users> {
     }
     
     public Users getByEmail(String correo){
-        try{
+        try
+        {
             Query q=getEntityManager().createNamedQuery("Users.findByEmail");
-           // "where l=? and w="
             q.setParameter("email", correo);
             return (Users) q.getSingleResult();
         }catch(Exception e){
@@ -40,8 +40,9 @@ public class UsersFacade extends AbstractFacade<Users> {
        return null; 
     }
     public void register(Users usuario) {
-        try {
-             Query qu = getEntityManager().createNativeQuery("INSERT INTO users values('"+usuario.getName()+"','"+usuario.getLastname()+"','"+usuario.getOrganitation()+"','"+usuario.getEmail()+"','"+usuario.getPassword()+"')");
+        try 
+        {
+            Query qu = getEntityManager().createNativeQuery("INSERT INTO users values('" + usuario.getName() + "','" + usuario.getLastname() + "','" + usuario.getOrganitation() + "','" + usuario.getEmail() + "','" + usuario.getPassword() + "')");
             qu.executeUpdate();
         } catch (Exception e) {
         }

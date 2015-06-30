@@ -54,7 +54,7 @@
                     <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                     </h:inputText>
-                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarDatosCoordenada()}"
+                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarBiomasaCoordenada()}"
                                      ajax="true" update="frmlatlon:panel"
                                      id="btAjax" style="visibility: hidden"/>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
@@ -133,8 +133,8 @@
                                         #{mBRMap.m7}, #{mBRMap.m8},#{mBRMap.m9}, #{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12}]
                                 },{
                                     name: '(mg/ha) Anual',align: 'rigth',
-                                    data: [#{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12},#{mBRMap.m1}, #{mBRMap.m2},#{mBRMap.m3}, #{mBRMap.m4},#{mBRMap.m5}, #{mBRMap.m6},
-                                        #{mBRMap.m7}, #{mBRMap.m8},#{mBRMap.m9}, #{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12}]
+                                    data: [#{mBRMap.y0},#{mBRMap.y1}, #{mBRMap.y2},#{mBRMap.y3}, #{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
+                                        #{mBRMap.y9}, #{mBRMap.y10},#{mBRMap.y11}, #{mBRMap.y12},#{mBRMap.y13}, #{mBRMap.y14}]
                                 }]
                             });
                         });
@@ -146,14 +146,14 @@
                                     <td>Año</td><td>2000</td><td>2001</td><td>2003</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
                                 </tr>
                                 <tr>
-                                    <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td>
-                                    <td>#{mBRMap.m6}</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td>
+                                    <td>Valor</td><td>#{mBRMap.y0}</td><td>#{mBRMap.y1}</td><td>#{mBRMap.y2}</td><td>#{mBRMap.y3}</td><td>#{mBRMap.y4}</td>
+                                    <td>#{mBRMap.y5}</td><td>#{mBRMap.y6}</td><td>#{mBRMap.y7}</td>
                                 </tr>
                                 <tr>
                                     <td>Año</td><td>2008</td><td>2009</td><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td>
                                 </tr>
                                 <tr>
-                                    <td>Valor</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td><td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td><td>#{mBRMap.m12}</td>
+                                    <td>Valor</td><td>#{mBRMap.y8}</td><td>#{mBRMap.y9}</td><td>#{mBRMap.y10}</td><td>#{mBRMap.y11}</td><td>#{mBRMap.y12}</td><td>#{mBRMap.y13}</td><td>#{mBRMap.y14}</td>
                                 </tr>
                                 
                             </tbody>

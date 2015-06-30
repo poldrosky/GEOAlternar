@@ -72,14 +72,14 @@ window.onload = function () {
         projection: new OpenLayers.Projection("EPSG:3857"),
         strategies: [new OpenLayers.Strategy.Fixed()],
         protocol: new OpenLayers.Protocol.HTTP({
-            url: "http://localhost:8080/GEOAlternar/faces/resources/json/test3.json",
+            url: "http://localhost:8080/GEOAlternar/faces/resources/json/narinoAdmin.json",
             format: new OpenLayers.Format.GeoJSON()
         }),
         styleMap: new OpenLayers.StyleMap({
             "default": new OpenLayers.Style({
                 pointRadius: 5,
                 fillOpacity: 0,
-                strokeColor: "#cc6633",
+                strokeColor: "#ffffff",
                 strokeWidth: 1,
                 strokeOpacity: 1}) //Text entspricht feature.attributes.name
         })
@@ -136,6 +136,25 @@ function seleccionCapa(obj) {
     });
     
     map.addLayers([band2]);
+    
+    
+    gml = new OpenLayers.Layer.Vector("narinoAdmin", {
+        projection: new OpenLayers.Projection("EPSG:3857"),
+        strategies: [new OpenLayers.Strategy.Fixed()],
+        protocol: new OpenLayers.Protocol.HTTP({
+            url: "http://localhost:8080/GEOAlternar/faces/resources/json/narinoAdmin.json",
+            format: new OpenLayers.Format.GeoJSON()
+        }),
+        styleMap: new OpenLayers.StyleMap({
+            "default": new OpenLayers.Style({
+                pointRadius: 5,
+                fillOpacity: 0,
+                strokeColor: "#cc6633",
+                strokeWidth: 1,
+                strokeOpacity: 1}) //Text entspricht feature.attributes.name
+        })
+
+    });
     map.addLayer(gml);
     //map.setLayerIndex(gml, 99);
 

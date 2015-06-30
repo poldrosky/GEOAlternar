@@ -8,6 +8,7 @@ package MB;
 
 import DAO.UsersFacade;
 import Entidad.Users;
+import clases.Encrypt;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -50,7 +51,7 @@ public class MbSLogin implements Serializable{
       
             if(usuario!=null)
             {
-                if(usuario.getPassword().equals(this.password));//Encrypt.sha512(this.password)))
+                if(usuario.getPassword().equals(Encrypt.sha512(this.password)))
                 {
                     HttpSession httpSession=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     httpSession.setAttribute("email", this.email);
@@ -63,18 +64,13 @@ public class MbSLogin implements Serializable{
             this.email=null;
             this.password=null;
             
-            return "index";
+            return "IniciarSesion";
            
         } 
         catch (Exception e) 
         {
-
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR FATAL", "Por favor contacte con su administrador"+e.getMessage()));
-            
             return null;
-        }
-        finally
-        {
         }
     }
     
