@@ -79,7 +79,7 @@ window.onload = function () {
             "default": new OpenLayers.Style({
                 pointRadius: 5,
                 fillOpacity: 0,
-                strokeColor: "#ffffff",
+                strokeColor: "#000000",
                 strokeWidth: 1,
                 strokeOpacity: 1}) //Text entspricht feature.attributes.name
         })
@@ -87,7 +87,7 @@ window.onload = function () {
     });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
     map.addLayers([ghyb,general,gml]);// 
-    map.setCenter(new OpenLayers.LonLat(-77.028, 1.609).transform(
+    map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()
             ), 8);
@@ -149,7 +149,7 @@ function seleccionCapa(obj) {
             "default": new OpenLayers.Style({
                 pointRadius: 5,
                 fillOpacity: 0,
-                strokeColor: "#cc6633",
+                strokeColor: "#000000",
                 strokeWidth: 1,
                 strokeOpacity: 1}) //Text entspricht feature.attributes.name
         })

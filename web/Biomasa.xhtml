@@ -21,7 +21,7 @@
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
-                <p:layoutUnit position="west" size="15%"  header="Mapas Promedio Biomasa"  collapsible="true" id="left1">
+                <p:layoutUnit position="west" size="16%"  header="Mapas Promedio Biomasa"  collapsible="true" id="left1">
                     <h:panelGrid >
                         <p:outputLabel value="Mapa de Promedio Anual en Biomasa" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
@@ -36,15 +36,12 @@
                             <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
-                        
-                        
-                        
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
                     <div id="map" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  collapsible="true" id="rigth" >
+                <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  id="rigth" >
                     <h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
@@ -61,46 +58,37 @@
                         <h:panelGroup>
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">DESCARAGAR MAPA</a></p:graphicImage>
                         </h:panelGroup>
-                            <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
-                        
-                        <div id="container" style="width: 100%; height: 350px; margin: 0 auto"></div>
-                        
+                        <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
+                        <div id="container" style="width: 100%; height: 320px; margin: 0 auto"></div>
                         <script>
                         $(function () {
                             $('#container').highcharts({
                                 chart: {
                                     type: 'area',
-                                    spacingBottom: 10
+                                    spacingBottom: 5
                                 },
                                 title: {
-                                    text: 'Biomasa Mensual'
+                                    text: 'Biomasa Mensual-Anual'
                                 },
                                 subtitle: {
-                                    text: '',//Variacion de Biomasa (#{mBRMap.latitude} , #{mBRMap.longitude})
+                                    text: '',
                                     floating: true,
                                     align: 'left',
                                     verticalAlign: 'bottom',
                                     y: 15
                                 },
-                                
                                 xAxis: 
                                     [{  categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago',
                                                     'Sep','Oct','Nov','Dic',"","",""],
-                                        reversed: false//,
-                                        //labels: {
-                                         //   step: 1
-                                        //}
-                                     }, { // mirror axis on right side
+                                        reversed: false
+                                     }, {
                                         opposite: true,
                                         reversed: false,
                                         categories: ['2000', '2001', '2002', '2003',
                                                      '2004', '2005', '2006', '2007', '2008',
                                                      '2009', '2010', '2011', '2012', '2013',
                                                      '2014'],
-                                        linkedTo: 0,
-                                        /*labels: {
-                                                step: 1
-                                                }*/
+                                        linkedTo: 0
                                     }],
                                 yAxis: {
                                     title: {
@@ -114,9 +102,7 @@
                                 },
                                 tooltip: {
                                     formatter: function () {
-                                        return '<b>' + this.series.name + '</b><br/>' 
-                                        //+this.x + ': '
-                                                + this.y;
+                                        return '<b>' + this.series.name + '</b><br/>' + this.y;
                                     }
                                 },
                                 plotOptions: {
@@ -143,7 +129,7 @@
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
-                                    <td>Año</td><td>2000</td><td>2001</td><td>2003</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
+                                    <td>Año</td><td>2000</td><td>2001</td><td>2002</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
                                 </tr>
                                 <tr>
                                     <td>Valor</td><td>#{mBRMap.y0}</td><td>#{mBRMap.y1}</td><td>#{mBRMap.y2}</td><td>#{mBRMap.y3}</td><td>#{mBRMap.y4}</td>
@@ -162,79 +148,23 @@
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
-                                    <td>Mes</td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td><td>Jul</td><td>Ago</td>
-                                    <td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td>
+                                    <td>Mes</td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td>
                                 </tr>
                                 <tr>
-                                    <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td>
-                                    <td>#{mBRMap.m6}</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td>
-                                    <td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td>
+                                    <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td><td>#{mBRMap.m6}</td>
+                                </tr>
+                                <tr>
+                                    <td>Mes</td><td>Jul</td><td>Ago</td><td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td>
+                                </tr>
+                                <tr>
+                                    <td>Valor</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td><td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td>
                                 </tr>
                             </tbody>
                         </table>
-                            <!--<h:panelGrid columns="2">
-                                <h:panelGroup >
-                                <table border="1" align="center">
-                                            <thead>
-                                                <tr>Promedio Anual Biomasa</tr>
-                                                <tr>
-                                                    <th>Año</th>
-                                                    <th>Biomasa(mg/ha)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td>2000 </td><td>#{mBRMap.m1}</td></tr>
-                                                <tr><td>2001 </td><td>#{mBRMap.m2}</td></tr>
-                                                <tr><td>2002 </td><td>#{mBRMap.m3}</td></tr>
-                                                <tr><td>2003 </td><td>#{mBRMap.m4}</td></tr>
-                                                <tr><td>2004 </td><td>#{mBRMap.m5}</td></tr>
-                                                <tr><td>2005 </td><td>#{mBRMap.m6}</td></tr>
-                                                <tr><td>2006 </td><td>#{mBRMap.m7}</td></tr>
-                                                <tr><td>2007 </td><td>#{mBRMap.m8}</td></tr>
-                                                <tr><td>2008 </td><td>#{mBRMap.m9}</td></tr>
-                                                <tr><td>2009 </td><td>#{mBRMap.m10}</td></tr>
-                                                <tr><td>2010 </td><td>#{mBRMap.m11}</td></tr>
-                                                <tr><td>2011 </td><td>#{mBRMap.m12}</td></tr>
-                                                <tr><td>2012 </td><td>#{mBRMap.m12}</td></tr>
-                                                <tr><td>2013 </td><td>#{mBRMap.m12}</td></tr>
-                                                <tr><td>2014 </td><td>#{mBRMap.m12}</td></tr>
-                                            </tbody>
-                                        </table>
-                                    </h:panelGroup>
-                                <h:panelGroup style="margin-left:  50px;">
-                                        <table border="1" align="center" >
-                                                <thead>
-                                                    <tr>Promedio Memsual Biomasa</tr>
-                                                    <tr>
-                                                        <th>MES</th>
-                                                        <th>Biomasa(mg/ha)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr><td>Enero </td><td>#{mBRMap.m1}</td></tr>
-                                                    <tr><td>Febrero </td><td>#{mBRMap.m2}</td></tr>
-                                                    <tr><td>Marzo </td><td>#{mBRMap.m3}</td></tr>
-                                                    <tr><td>Abril </td><td>#{mBRMap.m4}</td></tr>
-                                                    <tr><td>Mayo </td><td>#{mBRMap.m5}</td></tr>
-                                                    <tr><td>Junio </td><td>#{mBRMap.m6}</td></tr>
-                                                    <tr><td>Julio </td><td>#{mBRMap.m7}</td></tr>
-                                                    <tr><td>Agosto </td><td>#{mBRMap.m8}</td></tr>
-                                                    <tr><td>Septiembre </td><td>#{mBRMap.m9}</td></tr>
-                                                    <tr><td>Octubre </td><td>#{mBRMap.m10}</td></tr>
-                                                    <tr><td>Noviembre </td><td>#{mBRMap.m11}</td></tr>
-                                                    <tr><td>Diciembre </td><td>#{mBRMap.m12}</td></tr>
-                                                </tbody>
-                                            </table>
-                                    </h:panelGroup>
-                                </h:panelGrid> -->
                     </p:panelGrid>
-                            
-                        
                 </p:layoutUnit>
             </p:layout>
         </h:form>
-        
-            
     </h:body>
 </html>
 

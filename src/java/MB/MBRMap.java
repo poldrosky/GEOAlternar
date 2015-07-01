@@ -200,7 +200,6 @@ public class MBRMap implements Serializable {
             valor= daoMap.getByCoordenate(lon, lat, mesfuente[1], 2);
             valorbd="Biomasa en mapa seleccionado: "+valor[3].toString()+" Mg/Ha";
             //////////consultar valor por MES O AÑO
-            System.out.println(lon+"||"+lat+"||"+ mesfuente[1]);
             valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 2);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             mlat = Double.parseDouble(valormeses[0].toString());

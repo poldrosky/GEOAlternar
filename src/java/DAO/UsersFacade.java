@@ -52,7 +52,6 @@ public class UsersFacade extends AbstractFacade<Users> {
     public void cambioContrasenia(String email,String nuevaContrasenia) {
         try {
             Query qu = getEntityManager().createNativeQuery("UPDATE users SET password='"+nuevaContrasenia+"'  WHERE email='"+email+"'");
-            System.out.println(email+"||"+nuevaContrasenia);
             qu.executeUpdate();
         } catch (Exception e) {
         }
