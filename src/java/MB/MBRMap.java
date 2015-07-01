@@ -242,6 +242,10 @@ public class MBRMap implements Serializable {
     public void consultarSolarCoordenada() {
         
     }
+    
+    public void consultarVientoCoordenada() {
+        
+    }
 
     public void consultarBiomasaCoordenada() {
         Object[] valor, valormeses,valoranios;
