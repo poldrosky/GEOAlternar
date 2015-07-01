@@ -14,11 +14,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.CategoryAxis;
-import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
 
 /* @author giiee */
 @ManagedBean
@@ -170,6 +165,64 @@ public class MBRMap implements Serializable {
         this.capasBiomasaAnio.add(capa2013);
         this.capasBiomasaAnio.add(capa2014);
         //////////////////////////////////////////
+    //Solar
+        this.capasSolarMes = new ArrayList<Capamap>();
+        Capamap capa1s = new Capamap("Enero", "MapSun:January");
+        Capamap capa2s = new Capamap("Febrero", "MapSun:February");
+        Capamap capa3s = new Capamap("Marzo", "MapSun:March");
+        Capamap capa4s = new Capamap("Abril", "MapSun:April");
+        Capamap capa5s = new Capamap("Mayo", "MapSun:May");
+        Capamap capa6s = new Capamap("Junio", "MapSun:June");
+        Capamap capa7s = new Capamap("Julio", "MapSun:July");
+        Capamap capa8s = new Capamap("Agosto", "MapSun:August");
+        Capamap capa9s = new Capamap("sebtiembre", "MapSun:September");
+        Capamap capa10s = new Capamap("Octubre", "MapSun:October");
+        Capamap capa11s = new Capamap("Noviembre", "MapSun:November");
+        Capamap capa12s = new Capamap("Diciembre", "MapSun:December");
+        this.capasSolarMes.add(capa1s);
+        this.capasSolarMes.add(capa2s);
+        this.capasSolarMes.add(capa3s);
+        this.capasSolarMes.add(capa4s);
+        this.capasSolarMes.add(capa5s);
+        this.capasSolarMes.add(capa6s);
+        this.capasSolarMes.add(capa7s);
+        this.capasSolarMes.add(capa8s);
+        this.capasSolarMes.add(capa9s);
+        this.capasSolarMes.add(capa10s);
+        this.capasSolarMes.add(capa11s);
+        this.capasSolarMes.add(capa12s);
+        //Solar Anio
+        this.capasSolarAnio = new ArrayList<Capamap>();
+        Capamap capa2000s = new Capamap("2000", "MapSun:2000");
+        Capamap capa2001s = new Capamap("2001", "MapSun:2001");
+        Capamap capa2002s = new Capamap("2002", "MapSun:2002");
+        Capamap capa2003s = new Capamap("2003", "MapSun:2003");
+        Capamap capa2004s = new Capamap("2004", "MapSun:2004");
+        Capamap capa2005s = new Capamap("2005", "MapSun:2005");
+        Capamap capa2006s = new Capamap("2006", "MapSun:2006");
+        Capamap capa2007s = new Capamap("2007", "MapSun:2007");
+        Capamap capa2008s = new Capamap("2008", "MapSun:2008");
+        Capamap capa2009s = new Capamap("2009", "MapSun:2009");
+        Capamap capa2010s = new Capamap("2010", "MapSun:2010");
+        Capamap capa2011s = new Capamap("2011", "MapSun:2011");
+        Capamap capa2012s = new Capamap("2012", "MapSun:2012");
+        Capamap capa2013s = new Capamap("2013", "MapSun:2013");
+        Capamap capa2014s = new Capamap("2014", "MapSun:2014");
+        this.capasSolarAnio.add(capa2000s);
+        this.capasSolarAnio.add(capa2001s);
+        this.capasSolarAnio.add(capa2002s);
+        this.capasSolarAnio.add(capa2003s);
+        this.capasSolarAnio.add(capa2004s);
+        this.capasSolarAnio.add(capa2005s);
+        this.capasSolarAnio.add(capa2006s);
+        this.capasSolarAnio.add(capa2007s);
+        this.capasSolarAnio.add(capa2008s);
+        this.capasSolarAnio.add(capa2009s);
+        this.capasSolarAnio.add(capa2010s);
+        this.capasSolarAnio.add(capa2011s);
+        this.capasSolarAnio.add(capa2012s);
+        this.capasSolarAnio.add(capa2013s);
+        this.capasSolarAnio.add(capa2014s);
 
     }
     private double valuelat, valuelon;
@@ -186,7 +239,9 @@ public class MBRMap implements Serializable {
         this.url = url;
     }
     
-    
+    public void consultarSolarCoordenada() {
+        
+    }
 
     public void consultarBiomasaCoordenada() {
         Object[] valor, valormeses,valoranios;
@@ -234,9 +289,6 @@ public class MBRMap implements Serializable {
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
         }
-
-
-
     }
 
     public List<Capamap> getCapasBiomasaMes() {
@@ -253,6 +305,38 @@ public class MBRMap implements Serializable {
 
     public void setCapasBiomasaAnio(List<Capamap> capasBiomasaAnio) {
         this.capasBiomasaAnio = capasBiomasaAnio;
+    }
+
+    public List<Capamap> getCapasVientoMes() {
+        return capasVientoMes;
+    }
+
+    public void setCapasVientoMes(List<Capamap> capasVientoMes) {
+        this.capasVientoMes = capasVientoMes;
+    }
+
+    public List<Capamap> getCapasVientoAnio() {
+        return capasVientoAnio;
+    }
+
+    public void setCapasVientoAnio(List<Capamap> capasVientoAnio) {
+        this.capasVientoAnio = capasVientoAnio;
+    }
+
+    public List<Capamap> getCapasSolarMes() {
+        return capasSolarMes;
+    }
+
+    public void setCapasSolarMes(List<Capamap> capasSolarMes) {
+        this.capasSolarMes = capasSolarMes;
+    }
+
+    public List<Capamap> getCapasSolarAnio() {
+        return capasSolarAnio;
+    }
+
+    public void setCapasSolarAnio(List<Capamap> capasSolarAnio) {
+        this.capasSolarAnio = capasSolarAnio;
     }
 
     public String getLatitude() {
