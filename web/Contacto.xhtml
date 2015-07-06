@@ -18,24 +18,24 @@
                 <div id="divRegCuenta">
                     <center>    
                         <p:panel header="Comentarios y Preguntas" style=" width: 40%; margin-top: 50px;   margin-left: 10%; margin-right: 10%; alignment-adjust: auto;" >
-                            <h:form id="frmComentario">
+                            <h:form id="frmcomentario">
                                 <p:growl id="mensajeGeneral" showDetail="true" sticky="false"/>
                                 <h:panelGrid columns="3" cellpadding="15">
                                     <p:outputLabel value="Nombre " for="txtNombre"/>
-                                    <h:inputText  id="txtNombre" label="Nombre" >
+                                    <h:inputText  id="txtNombre" label="Nombre" value="#{mbRUsuario.usuario.name}">
                                         <f:validator validatorId="validatorVacio"/>
                                     </h:inputText>
                                     <h:panelGroup></h:panelGroup>
                                     <p:outputLabel value="Email " for="txtEmail"/>
-                                    <h:inputText  id="txtEmail" label="Email" >
+                                    <h:inputText  id="txtEmail" label="Email" value="#{mbRUsuario.usuario.email}">
                                         <f:validator validatorId="validatorVacio"/>
                                     </h:inputText>
                                     <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
                                     <p:outputLabel value="Pregunta o Comentario" for="txtComentario"/>
                                     <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:inputTextarea id="txtComentario" rows="10" cols="40" queryDelay="700" minQueryLength="4" />
+                                    <p:inputTextarea id="txtComentario" rows="10" cols="30" queryDelay="700" minQueryLength="4" value="#{mbRUsuario.commentApp}" />
                                     <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:commandButton value="Enviar Comentario" icon="ui-icon-disk" ajax="true" update="frmComentario"/>
+                                    <p:commandButton value="Enviar" action="#{mbRUsuario.enviarComentario()}" update="frmcomentario"/>
                                 </h:panelGrid>
                             </h:form>
                         </p:panel>

@@ -33,7 +33,7 @@ public class MbRUsuario {
     private Users usuario;
     private List<Users> listaUsuario;
     
-    private String txtContraseniaRepita;
+    private String txtContraseniaRepita, commentApp;
     
 
     public MbRUsuario() {
@@ -109,6 +109,21 @@ public class MbRUsuario {
         }
     }
     
+    public void enviarComentario()
+    {
+        try 
+        {
+            
+            SendEmail.sendComment(this.usuario.getName(), this.usuario.getEmail(),this.getCommentApp());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ENVIADO", "Las observaciones o Preguntas fueron enviadas !GRACIAS¡"));
+            
+        } catch (Exception e) {
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR ", "Sus Observaciones o Preguntas sobre la Aplicación no lograron ser enviadas Vuelva a intentar más tarde: "+e.getMessage()));
+        }
+    }
+    
+    
     public Users getUsuario() {
         return usuario;
     }
@@ -131,6 +146,14 @@ public class MbRUsuario {
 
     public void setTxtContraseniaRepita(String txtContraseniaRepita) {
         this.txtContraseniaRepita = txtContraseniaRepita;
+    }
+
+    public String getCommentApp() {
+        return commentApp;
+    }
+
+    public void setCommentApp(String commentApp) {
+        this.commentApp = commentApp;
     }
     
     

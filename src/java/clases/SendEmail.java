@@ -77,4 +77,29 @@ public class SendEmail {
              
 	}
     
+    public static void sendComment(String name,String emailComment, String comment) throws AddressException, MessagingException {
+ 
+//Step1
+        mailServerPropertiesP = System.getProperties();
+        mailServerPropertiesP.put("mail.smtp.port", "587");
+        mailServerPropertiesP.put("mail.smtp.auth", "true");
+        mailServerPropertiesP.put("mail.smtp.starttls.enable", "true");
+//Step2
+        getMailSessionP = Session.getDefaultInstance(mailServerPropertiesP, null);
+        generateMailMessageP = new MimeMessage(getMailSessionP);
+
+        generateMailMessageP.addRecipient(Message.RecipientType.TO, new InternetAddress("giieefae@gmail.com"));
+        generateMailMessageP.setSubject("Preguntas y Comentarios");
+        String emailBody = name+" realizó el siguiiente comentario sobre la plataforma: <br><br>" 
+                            + comment+"<br><br><br><br>"
+                            + "att: "+ name + " / "+ emailComment;
+        generateMailMessageP.setContent(emailBody, "text/html");
+//Step3	
+        Transport transport = getMailSessionP.getTransport("smtp");
+        transport.connect("smtp.gmail.com", "giieefae@gmail.com", "giiee2015");
+        transport.sendMessage(generateMailMessageP, generateMailMessageP.getAllRecipients());
+        transport.close();
+             
+	}
+    
 }
