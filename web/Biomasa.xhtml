@@ -36,18 +36,24 @@
                             <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
+                        <p:graphicImage value="./img/imgtable.png" style="height: 25px;width: 25px;" >
+                            <p:commandButton value="#{mBRMap.descaragaDatosBiomasa}" 
+                                                ajax="false">
+                                <p:fileDownload value="#{mBRMap.filecsv}" />
+                               </p:commandButton>
+                        </p:graphicImage>
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
                     <div id="map" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  id="rigth" >
+                <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  id="rigth" style="text-align: center;">
                     <h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
                                 immediate="true"/>
                     </h:inputText>
-                    <h:outputText value="Longitud:" />
+                    <h:outputText value="Longitud:" style="margin-left: 5px;" />
                     <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                     </h:inputText>
@@ -57,7 +63,7 @@
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">DESCARAGAR MAPA</a></p:graphicImage>
-                        </h:panelGroup>
+                        </h:panelGroup>                        
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
                         <div id="container" style="width: 100%; height: 320px; margin: 0 auto"></div>
                         <script>

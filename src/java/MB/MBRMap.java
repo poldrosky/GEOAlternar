@@ -6,14 +6,21 @@ package MB;
 
 import DAO.MapsFacade;
 import Entidad.Capamap;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /* @author giiee */
 @ManagedBean
@@ -39,7 +46,7 @@ public class MBRMap implements Serializable {
 
     private SelectOneMenu selectCapa;
     private SelectOneMenu selectMesCapa;
-    private  String url;
+    private  String url,urlcsv;
 
     public MBRMap() {
     }
@@ -231,14 +238,6 @@ public class MBRMap implements Serializable {
     private double y0,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14;
     private  String valorbd;
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-    
     public void consultarSolarCoordenada() {
         
     }
@@ -254,7 +253,6 @@ public class MBRMap implements Serializable {
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 900));
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
-        
         if (mesfuente[0].equals("MapBiomass")) {
             valor= daoMap.getByCoordenate(lon, lat, mesfuente[1], 2);
             valorbd="Biomasa en mapa seleccionado: "+valor[3].toString()+" Mg/Ha";
@@ -293,6 +291,21 @@ public class MBRMap implements Serializable {
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
         }
+    }
+   private StreamedContent filecsv;
+
+    public StreamedContent getFilecsv() {
+        return filecsv;
+    }
+
+    public void setFilecsv(StreamedContent filecsv) {
+        this.filecsv = filecsv;
+    }
+    
+    public void descaragaDatosBiomasa() {
+        InputStream stream = this.getClass().getResourceAsStream("/opt/maps/MapsCSV/BiomassEnero-Diciembre.csv");
+        filecsv = new DefaultStreamedContent(stream, "application/csv", "sessionlog.csv");
+        
     }
 
     public List<Capamap> getCapasBiomasaMes() {
@@ -676,5 +689,23 @@ public class MBRMap implements Serializable {
     public void setY14(double y14) {
         this.y14 = y14;
     }
+    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrlcsv() {
+        return urlcsv;
+    }
+
+    public void setUrlcsv(String urlcsv) {
+        this.urlcsv = urlcsv;
+    }
+    
+    
     
 }
