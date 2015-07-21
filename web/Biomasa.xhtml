@@ -37,7 +37,7 @@
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
                         <p:graphicImage value="./img/imgtable.png" style="height: 25px;width: 25px;" >
-                            <p:commandButton value="#{mBRMap.descaragaDatosBiomasa}" 
+                            <p:commandButton value="DOWNLOAD" 
                                                 ajax="false">
                                 <p:fileDownload value="#{mBRMap.filecsv}" />
                                </p:commandButton>

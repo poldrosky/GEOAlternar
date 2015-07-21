@@ -302,10 +302,10 @@ public class MBRMap implements Serializable {
         this.filecsv = filecsv;
     }
     
-    public void descaragaDatosBiomasa() {
+    public StreamedContent descaragaDatosBiomasa() {
         InputStream stream = this.getClass().getResourceAsStream("/opt/maps/MapsCSV/BiomassEnero-Diciembre.csv");
         filecsv = new DefaultStreamedContent(stream, "application/csv", "sessionlog.csv");
-        
+        return filecsv;
     }
 
     public List<Capamap> getCapasBiomasaMes() {

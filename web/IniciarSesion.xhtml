@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:body>
         <ui:composition template="./plantilla/menu.xhtml">
@@ -32,6 +33,17 @@
                     </center>
                 </p:dialog>
                 </h:form>
+                <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                    <f:facet name="start">
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value="Usuario Registrado" />
+                    </f:facet>
+                </p:ajaxStatus>
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                    <p:graphicImage value="img/process.gif" />
+                </p:dialog>
                 <center>
                 <p:panel style="margin-left: 20%; margin-top: 10%; margin-right: 20%;">
                     <h:panelGrid columns="3"  >
@@ -64,6 +76,17 @@
                                         </p:submenu>                                        
                                     </p:menu>
                             </h:form>
+                            <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                                <f:facet name="start">
+                                </f:facet>
+                                <f:facet name="complete">
+                                    
+                                </f:facet>
+                            </p:ajaxStatus>
+                            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                <p:graphicImage value="img/process.gif" />
+                            </p:dialog>
                         </h:panelGroup>
                     </h:panelGrid>
                 </p:panel>
