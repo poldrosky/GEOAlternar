@@ -37,10 +37,10 @@
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
                         <p:graphicImage value="./img/imgtable.png" style="height: 25px;width: 25px;" >
-                            <p:commandButton value="DOWNLOAD" 
+                            <p:commandButton value="DESCARGAR" 
                                                 ajax="false">
                                 <p:fileDownload value="#{mBRMap.filecsv}" />
-                               </p:commandButton>
+                            </p:commandButton>
                         </p:graphicImage>
                     </h:panelGrid>
                 </p:layoutUnit>

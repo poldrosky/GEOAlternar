@@ -1,7 +1,10 @@
 var map;
-var gml;
+var gml,urlpath;
 window.onload = function () {
 ///////////
+    var loc = window.location.href;
+    var fileNamePart = loc.split('/');
+    urlpath=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json';
     OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
         defaultHandlerOptions: {
             'single': true,
@@ -72,7 +75,7 @@ window.onload = function () {
         projection: new OpenLayers.Projection("EPSG:3857"),
         strategies: [new OpenLayers.Strategy.Fixed()],
         protocol: new OpenLayers.Protocol.HTTP({
-            url: "http://localhost:8080/GEOAlternar/faces/resources/json/narinoAdmin.json",
+            url: urlpath,
             format: new OpenLayers.Format.GeoJSON()
         }),
         styleMap: new OpenLayers.StyleMap({
@@ -121,7 +124,7 @@ function seleccionCapa(obj) {
         projection: map.displayProjection,
         strategies: [new OpenLayers.Strategy.Fixed()],
         protocol: new OpenLayers.Protocol.HTTP({
-            url: "http://localhost:8080/GEOA/faces/resources/json/narinoAdmin.json",
+            url: urlpath,
             format: new OpenLayers.Format.GeoJSON()
         }),
         styleMap: new OpenLayers.StyleMap({
@@ -142,7 +145,7 @@ function seleccionCapa(obj) {
         projection: new OpenLayers.Projection("EPSG:3857"),
         strategies: [new OpenLayers.Strategy.Fixed()],
         protocol: new OpenLayers.Protocol.HTTP({
-            url: "http://localhost:8080/GEOAlternar/faces/resources/json/narinoAdmin.json",
+            url: urlpath,
             format: new OpenLayers.Format.GeoJSON()
         }),
         styleMap: new OpenLayers.StyleMap({
