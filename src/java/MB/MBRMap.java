@@ -18,6 +18,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -292,22 +294,24 @@ public class MBRMap implements Serializable {
             y14 = Double.parseDouble(valoranios[16].toString());
         }
     }
-   private StreamedContent filecsv;
+/////////////////download csv
+    private DefaultStreamedContent download;
 
-    public StreamedContent getFilecsv() {
-        return filecsv;
-    }
-
-    public void setFilecsv(StreamedContent filecsv) {
-        this.filecsv = filecsv;
+    public void setDownload(DefaultStreamedContent download) {
+        this.download = download;
     }
     
-    public StreamedContent descaragaDatosBiomasa() {
-        InputStream stream = this.getClass().getResourceAsStream("/opt/maps/MapsCSV/BiomassEnero-Diciembre.csv");
-        filecsv = new DefaultStreamedContent(stream, "application/csv", "sessionlog.csv");
-        return filecsv;
+    public DefaultStreamedContent getDownload() throws Exception {
+        return download;
     }
-
+    
+    public void prepDownload(String filecsv) throws Exception {
+        File file = new File("/opt/maps/MapsCSV"+filecsv);
+        InputStream input = new FileInputStream(file);
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        setDownload(new DefaultStreamedContent(input, externalContext.getMimeType(file.getName()), file.getName()));
+    }
+ //////////////////////////
     public List<Capamap> getCapasBiomasaMes() {
         return capasBiomasaMes;
     }
