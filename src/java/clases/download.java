@@ -11,30 +11,74 @@ import org.primefaces.model.StreamedContent;
 @ManagedBean(name = "download")
  public class download {
      
-     private StreamedContent file,filemonth;  
+     private StreamedContent filebiomassyear,filebiomassmonth;
+     private StreamedContent filesunyear,filesunmonth;
+     private StreamedContent filewindyear,filewindmonth;  
      
      public download() throws FileNotFoundException {  
-         InputStream stream  = new FileInputStream("/opt/maps/MapsCSV/Biomass2000-2014.csv");   
-         file = new DefaultStreamedContent(stream, "application/csv", "Biomass2000-2014.csv");  
-         InputStream stream2  = new FileInputStream("/opt/maps/MapsCSV/BiomassEnero-Diciembre.csv");   
-         filemonth = new DefaultStreamedContent(stream, "application/csv", "BiomassEnero-Diciembre.csv");  
+         InputStream stream  = new FileInputStream("/opt/MapsCSV/Biomass2000-2014.csv");   
+         filebiomassyear = new DefaultStreamedContent(stream, "application/csv", "Biomass2000-2014.csv");  
+         InputStream stream2  = new FileInputStream("/opt/MapsCSV/BiomassEnero-Diciembre.csv");   
+         filebiomassmonth = new DefaultStreamedContent(stream2, "application/csv", "BiomassJanuary-December.csv");
+         InputStream stream3  = new FileInputStream("/opt/MapsCSV/Sun2000-2014.csv");   
+         filesunyear = new DefaultStreamedContent(stream3, "application/csv", "Sun2000-2014.csv");  
+         InputStream stream4  = new FileInputStream("/opt/MapsCSV/SunEnero-Diciembre.csv");   
+         filesunmonth = new DefaultStreamedContent(stream4, "application/csv", "SunJanuary-December.csv");
+         InputStream stream5  = new FileInputStream("/opt/MapsCSV/Wind2000-2014.csv");   
+         filewindyear = new DefaultStreamedContent(stream5, "application/csv", "Wind2000-2014.csv");  
+         InputStream stream6  = new FileInputStream("/opt/MapsCSV/WindEnero-Diciembre.csv");   
+         filewindmonth = new DefaultStreamedContent(stream6, "application/csv", "WindJanuary-December.csv");
     }  
+
+    public StreamedContent getFilebiomassyear() {
+        return filebiomassyear;
+    }
+
+    public void setFilebiomassyear(StreamedContent filebiomassyear) {
+        this.filebiomassyear = filebiomassyear;
+    }
+
+    public StreamedContent getFilebiomassmonth() {
+        return filebiomassmonth;
+    }
+
+    public void setFilebiomassmonth(StreamedContent filebiomassmonth) {
+        this.filebiomassmonth = filebiomassmonth;
+    }
+
+    public StreamedContent getFilesunyear() {
+        return filesunyear;
+    }
+
+    public void setFilesunyear(StreamedContent filesunyear) {
+        this.filesunyear = filesunyear;
+    }
+
+    public StreamedContent getFilesunmonth() {
+        return filesunmonth;
+    }
+
+    public void setFilesunmonth(StreamedContent filesunmonth) {
+        this.filesunmonth = filesunmonth;
+    }
+
+    public StreamedContent getFilewindyear() {
+        return filewindyear;
+    }
+
+    public void setFilewindyear(StreamedContent filewindyear) {
+        this.filewindyear = filewindyear;
+    }
+
+    public StreamedContent getFilewindmonth() {
+        return filewindmonth;
+    }
+
+    public void setFilewindmonth(StreamedContent filewindmonth) {
+        this.filewindmonth = filewindmonth;
+    }
       
-    public StreamedContent getFile() {  
-        return file;  
-    }  
-  
-    public void setFile(StreamedContent file) {  
-        this.file = file;  
-    }
-
-    public StreamedContent getFilemonth() {
-        return filemonth;
-    }
-
-    public void setFilemonth(StreamedContent filemonth) {
-        this.filemonth = filemonth;
-    }
+    
     
     
 }   

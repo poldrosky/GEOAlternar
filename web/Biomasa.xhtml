@@ -40,23 +40,21 @@
                             <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
-                        
                             <p:commandButton value="Datos Anuales" ajax="false"
                                 onclick="PrimeFaces.monitorDownload(start)"
                                 icon="fa fa-fw fa-download">
-                                <p:fileDownload value="#{download.file}" />
+                                <p:fileDownload value="#{download.filebiomassyear}" />
                              </p:commandButton>
                             <p:commandButton  value="Datos Mensuales" ajax="false"
                                 onclick="PrimeFaces.monitorDownload(start)"
                                 icon="fa fa-fw fa-download">
-                                <p:fileDownload value="#{download.filemonth}" />
+                                <p:fileDownload value="#{download.filebiomassmonth}" />
                              </p:commandButton>
                             <script type="text/javascript">  
                                 function start() {  
                                     alert("Descargando Datos de Biomasa");
                                 }  
                             </script>
-                        
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
