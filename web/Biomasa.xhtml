@@ -21,29 +21,30 @@
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
-                <p:layoutUnit position="west" size="18%"  header="Mapas Promedio Biomasa"  collapsible="true" id="left1">
+                <p:layoutUnit position="west" size="15%"  header="Biomasa Promedio en Nariño"  collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:outputLabel value="Promedio Mensual en Biomasa" />
+                        <p:outputLabel value="Mapa de Promedio Mensual" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
                                           binding="#{mBRMap.selectMesCapa}">
                             <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
                         <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" />
-                        <p:outputLabel value="Promedio Anual en Biomasa" />
+                        <p:outputLabel value="Mapa de Promedio Anual" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
                                           binding="#{mBRMap.selectCapa}">
                             <f:selectItems  value="#{mBRMap.capasBiomasaAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
                             <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
                         </p:selectOneMenu>
-                            <p:commandButton value="Datos Anuales" ajax="false"
+                        <p:fieldset legend="Descarga de Datos" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
+                            <p:commandButton value="Datos Anuales" ajax="false" 
                                 onclick="PrimeFaces.monitorDownload(start)"
-                                icon="fa fa-fw fa-download">
+                                icon="ui-icon-arrowthickstop-1-s">
                                 <p:fileDownload value="#{download.filebiomassyear}" />
                              </p:commandButton>
                             <p:commandButton  value="Datos Mensuales" ajax="false"
                                 onclick="PrimeFaces.monitorDownload(start)"
-                                icon="fa fa-fw fa-download">
+                                icon="ui-icon-arrowthickstop-1-s">
                                 <p:fileDownload value="#{download.filebiomassmonth}" />
                              </p:commandButton>
                             <script type="text/javascript">  
@@ -51,6 +52,7 @@
                                     alert("Descargando Datos de Biomasa");
                                 }  
                             </script>
+                        </p:fieldset>
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
@@ -140,42 +142,44 @@
                                 });
                             });
                         </script>
-                        <h:outputText value="Promedio Bimasa Anual" />
-                        <table border="1" align="center">
-                            <tbody>
-                                <tr>
-                                    <td>Año</td><td>2000</td><td>2001</td><td>2002</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.y0}</td><td>#{mBRMap.y1}</td><td>#{mBRMap.y2}</td><td>#{mBRMap.y3}</td><td>#{mBRMap.y4}</td>
-                                    <td>#{mBRMap.y5}</td><td>#{mBRMap.y6}</td><td>#{mBRMap.y7}</td>
-                                </tr>
-                                <tr>
-                                    <td>Año</td><td>2008</td><td>2009</td><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.y8}</td><td>#{mBRMap.y9}</td><td>#{mBRMap.y10}</td><td>#{mBRMap.y11}</td><td>#{mBRMap.y12}</td><td>#{mBRMap.y13}</td><td>#{mBRMap.y14}</td>
-                                </tr>
+                        <p:fieldset legend="Datos Promedio Anual de Biomasa" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
+                            <table border="1" align="center">
+                                <tbody>
+                                    <tr>
+                                        <td>Año</td><td>2000</td><td>2001</td><td>2002</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Valor</td><td>#{mBRMap.y0}</td><td>#{mBRMap.y1}</td><td>#{mBRMap.y2}</td><td>#{mBRMap.y3}</td><td>#{mBRMap.y4}</td>
+                                        <td>#{mBRMap.y5}</td><td>#{mBRMap.y6}</td><td>#{mBRMap.y7}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Año</td><td>2008</td><td>2009</td><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Valor</td><td>#{mBRMap.y8}</td><td>#{mBRMap.y9}</td><td>#{mBRMap.y10}</td><td>#{mBRMap.y11}</td><td>#{mBRMap.y12}</td><td>#{mBRMap.y13}</td><td>#{mBRMap.y14}</td>
+                                    </tr>
 
-                            </tbody>
-                        </table>
-                        <h:outputText value="Promedio Bimasa Mensual" />
-                        <table border="1" align="center">
-                            <tbody>
-                                <tr>
-                                    <td>Mes</td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td><td>#{mBRMap.m6}</td>
-                                </tr>
-                                <tr>
-                                    <td>Mes</td><td>Jul</td><td>Ago</td><td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td><td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </p:fieldset>
+                        <p:fieldset legend="Datos Promedio Mensual de Biomasa" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
+                            <table border="1" align="center">
+                                <tbody>
+                                    <tr>
+                                        <td>Mes</td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td><td>#{mBRMap.m6}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mes</td><td>Jul</td><td>Ago</td><td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Valor</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td><td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p:fieldset>
                     </p:panelGrid>
                 </p:layoutUnit>
             </p:layout>

@@ -18,36 +18,40 @@
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
-                <p:layoutUnit position="west" size="18%"  header="Mapas Promedio Radiacion"  collapsible="true" id="left1">
+                <p:layoutUnit position="west" size="15%"  header="Irradiación Promedio en Nariño"  collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:outputLabel value="Mapa de Promedio Mensual Radiación" />
+                        <p:outputLabel value="Mapa de Promedio Mensual" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
                                           binding="#{mBRMap.selectMesCapa}">
                             <f:selectItems  value="#{mBRMap.capasSolarMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
                         <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" />
-                        <p:outputLabel value="Mapa de Promedio Anual en Radiacion" />
+                        <p:outputLabel value="Mapa de Promedio Anual" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
                                           binding="#{mBRMap.selectCapa}">
                             <f:selectItems  value="#{mBRMap.capasSolarAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
                             <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
                         </p:selectOneMenu>
-                        <p:commandButton value="Datos Anuales" ajax="false"
-                                         onclick="PrimeFaces.monitorDownload(start)"
-                                         icon="fa fa-fw fa-download">
-                            <p:fileDownload value="#{download.filesunyear}" />
-                        </p:commandButton>
-                        <p:commandButton  value="Datos Mensuales" ajax="false"
-                                          onclick="PrimeFaces.monitorDownload(start)"
-                                          icon="fa fa-fw fa-download">
-                            <p:fileDownload value="#{download.filesunmonth}" />
-                        </p:commandButton>
-                        <script type="text/javascript">  
-                            function start() {  
-                                alert("Descargando Datos de Biomasa");
-                            }  
-                        </script>
+                        <p:fieldset legend="Descarga de Datos" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
+                            <p:commandButton value="Datos Anuales" ajax="false" 
+                                                 style=" width: 120px; font-size: 10px;"
+                                             onclick="PrimeFaces.monitorDownload(start)"
+                                             icon="ui-icon-arrowthickstop-1-s">
+                                <p:fileDownload value="#{download.filesunyear}" />
+                            </p:commandButton>
+                            <p:commandButton  value="Datos Mensuales" ajax="false" 
+                                                 style=" width: 120px; font-size: 10px;"
+                                              onclick="PrimeFaces.monitorDownload(start)"
+                                              icon="ui-icon-arrowthickstop-1-s">
+                                <p:fileDownload value="#{download.filesunmonth}" />
+                            </p:commandButton>
+                            <script type="text/javascript">  
+                                function start() {  
+                                    alert("Descargando Datos de Biomasa");
+                                }  
+                            </script>
+                        </p:fieldset>
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Radiación " >
@@ -137,7 +141,7 @@
                             });
                         });
                         </script>
-                        <h:outputText value="Promedio Radiación Anual" />
+                        <p:fieldset legend="Datos Promedio Anual de Irradiación" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
@@ -156,7 +160,8 @@
                                 
                             </tbody>
                         </table>
-                        <h:outputText value="Promedio Radiación Mensual" />
+                        </p:fieldset>
+                        <p:fieldset legend="Datos Promedio Anual de Irradiación" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
@@ -173,6 +178,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                            </p:fieldset>
                     </p:panelGrid>
                 </p:layoutUnit>
             </p:layout>
