@@ -20,22 +20,37 @@
             <p:layout>
                 <p:layoutUnit position="west" size="18%"  header="Mapas Promedio Viento"  collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:outputLabel value="Mapa de Promedio Anual en Viento" />
                         
-                        
-                        <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
-                                          binding="#{mBRMap.selectCapa}">
-                            <f:selectItems  value="#{mBRMap.capasVientoAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
-                            <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
-                        </p:selectOneMenu>
-                        
-                        <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" />
                         <p:outputLabel value="Mapa de Promedio Mensual en Viento" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
                                           binding="#{mBRMap.selectMesCapa}">
                             <f:selectItems  value="#{mBRMap.capasVientoMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
+                        
+                        <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" />
+                        <p:outputLabel value="Mapa de Promedio Anual en Viento" />
+                        <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
+                                          binding="#{mBRMap.selectCapa}">
+                            <f:selectItems  value="#{mBRMap.capasVientoAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
+                            <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
+                        </p:selectOneMenu>
+                        
+                        <p:commandButton value="Datos Anuales" ajax="false"
+                                         onclick="PrimeFaces.monitorDownload(start)"
+                                         icon="fa fa-fw fa-download">
+                            <p:fileDownload value="#{download.filewindyear}" />
+                        </p:commandButton>
+                        <p:commandButton  value="Datos Mensuales" ajax="false"
+                                          onclick="PrimeFaces.monitorDownload(start)"
+                                          icon="fa fa-fw fa-download">
+                            <p:fileDownload value="#{download.filewindmonth}" />
+                        </p:commandButton>
+                        <script type="text/javascript">  
+                            function start() {  
+                                alert("Descargando Datos de Biomasa");
+                            }  
+                        </script>
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Viento " >

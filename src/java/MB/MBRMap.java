@@ -8,12 +8,10 @@ import DAO.MapsFacade;
 import Entidad.Capamap;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.activation.MimetypesFileTypeMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -22,7 +20,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
 /* @author giiee */
 @ManagedBean
@@ -241,11 +238,98 @@ public class MBRMap implements Serializable {
     private  String valorbd;
 
     public void consultarSolarCoordenada() {
+        Object[] valor, valormeses,valoranios;
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
+        if (mesfuente[0].equals("MapSun")) {
+            valor= daoMap.getByCoordenate(lon, lat, mesfuente[1], 3);
+            valorbd="Irradiación : "+valor[3].toString()+" W/m²";
+            //////////consultar valor por MES O AÑO
+            valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 3);
+            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+            mlat = Double.parseDouble(valormeses[0].toString());
+            mlon = Double.parseDouble(valormeses[1].toString());
+            m1 = Double.parseDouble(valormeses[2].toString());
+            m2 = Double.parseDouble(valormeses[3].toString());
+            m3 = Double.parseDouble(valormeses[4].toString());
+            m4 = Double.parseDouble(valormeses[5].toString());
+            m5 = Double.parseDouble(valormeses[6].toString());
+            m6 = Double.parseDouble(valormeses[7].toString());
+            m7 = Double.parseDouble(valormeses[8].toString());
+            m8 = Double.parseDouble(valormeses[9].toString());
+            m9 = Double.parseDouble(valormeses[10].toString());
+            m10 = Double.parseDouble(valormeses[11].toString());
+            m11 = Double.parseDouble(valormeses[12].toString());
+            m12 = Double.parseDouble(valormeses[13].toString());
+            
+            valoranios=daoMap.getHistoryYears(lon, lat, mesfuente[1], 3);
+            y0 = Double.parseDouble(valoranios[2].toString());
+            y1 = Double.parseDouble(valoranios[3].toString());
+            y2 = Double.parseDouble(valoranios[4].toString());
+            y3 = Double.parseDouble(valoranios[5].toString());
+            y4 = Double.parseDouble(valoranios[6].toString());
+            y5 = Double.parseDouble(valoranios[7].toString());
+            y6 = Double.parseDouble(valoranios[8].toString());
+            y7 = Double.parseDouble(valoranios[9].toString());
+            y8 = Double.parseDouble(valoranios[10].toString());
+            y9 = Double.parseDouble(valoranios[11].toString());
+            y10 = Double.parseDouble(valoranios[12].toString());
+            y11 = Double.parseDouble(valoranios[13].toString());
+            y12 = Double.parseDouble(valoranios[14].toString());
+            y13 = Double.parseDouble(valoranios[15].toString());
+            y14 = Double.parseDouble(valoranios[16].toString());
+        }
         
     }
     
     public void consultarVientoCoordenada() {
-        
+        Object[] valor, valormeses,valoranios;
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
+        if (mesfuente[0].equals("MapWind")) {
+            valor= daoMap.getByCoordenate(lon, lat, mesfuente[1], 1);
+            valorbd="Irradiación : "+valor[3].toString()+" m/seg";
+            //////////consultar valor por MES O AÑO
+            valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 1);
+            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+            mlat = Double.parseDouble(valormeses[0].toString());
+            mlon = Double.parseDouble(valormeses[1].toString());
+            m1 = Double.parseDouble(valormeses[2].toString());
+            m2 = Double.parseDouble(valormeses[3].toString());
+            m3 = Double.parseDouble(valormeses[4].toString());
+            m4 = Double.parseDouble(valormeses[5].toString());
+            m5 = Double.parseDouble(valormeses[6].toString());
+            m6 = Double.parseDouble(valormeses[7].toString());
+            m7 = Double.parseDouble(valormeses[8].toString());
+            m8 = Double.parseDouble(valormeses[9].toString());
+            m9 = Double.parseDouble(valormeses[10].toString());
+            m10 = Double.parseDouble(valormeses[11].toString());
+            m11 = Double.parseDouble(valormeses[12].toString());
+            m12 = Double.parseDouble(valormeses[13].toString());
+            
+            valoranios=daoMap.getHistoryYears(lon, lat, mesfuente[1], 1);
+            y0 = Double.parseDouble(valoranios[2].toString());
+            y1 = Double.parseDouble(valoranios[3].toString());
+            y2 = Double.parseDouble(valoranios[4].toString());
+            y3 = Double.parseDouble(valoranios[5].toString());
+            y4 = Double.parseDouble(valoranios[6].toString());
+            y5 = Double.parseDouble(valoranios[7].toString());
+            y6 = Double.parseDouble(valoranios[8].toString());
+            y7 = Double.parseDouble(valoranios[9].toString());
+            y8 = Double.parseDouble(valoranios[10].toString());
+            y9 = Double.parseDouble(valoranios[11].toString());
+            y10 = Double.parseDouble(valoranios[12].toString());
+            y11 = Double.parseDouble(valoranios[13].toString());
+            y12 = Double.parseDouble(valoranios[14].toString());
+            y13 = Double.parseDouble(valoranios[15].toString());
+            y14 = Double.parseDouble(valoranios[16].toString());
+        }
     }
 
     public void consultarBiomasaCoordenada() {
@@ -292,6 +376,9 @@ public class MBRMap implements Serializable {
             y12 = Double.parseDouble(valoranios[14].toString());
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
+        }
+        else{
+            System.out.println("mapa general");
         }
     }
 /////////////////download csv

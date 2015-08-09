@@ -3,57 +3,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:body>
         <ui:composition template="./plantilla/menu.xhtml">
             <ui:define name="top">
-                
+
             </ui:define>
             <ui:define name="content">
                 <h:form id="form2">
+
                     <p:growl showDetail="true" sticky="false"/>
-                <p:dialog header="Actualizar Contraseña" widgetVar="dlg1" modal="true" showEffect="explode" hideEffect="bounce">
-                    <center>
-                        <p:panel style="width: 100%;">
-                            <p:outputLabel value="La Nueva contraseña  será Enviada a su correo, Por favor digite"/>
-                            <p:panelGrid columns="2">
-                                <p:outputLabel value="E-Mail"/>
-                                <h:inputText value="#{mbRUsuario.usuario.email}"/>
-                                <p:outputLabel value="Nueva Contaseña"/>
-                                <p:password value="#{mbRUsuario.usuario.password}"/>
-                                <p:outputLabel value="Repita Contaseña"/>
-                                <p:password value="#{mbRUsuario.txtContraseniaRepita}"/>
-                            </p:panelGrid>
-                            
-                            <p:commandButton 
-                                value="Actualizar" icon="ui-icon-disk" update=":form2" oncomplete="PF('dlg1').hide()" action="#{mbRUsuario.restablecerContrasenia()}"/>
-                        </p:panel>
-                    </center>
-                </p:dialog>
+                    <p:dialog header="Actualizar Contraseña" widgetVar="dlg1" modal="true" showEffect="explode" hideEffect="bounce">
+                        <center>
+                            <p:panel style="width: 100%;">
+                                <p:outputLabel value="La Nueva contraseña  será Enviada a su correo, Por favor digite"/>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="E-Mail"/>
+                                    <h:inputText value="#{mbRUsuario.usuario.email}"/>
+                                    <p:outputLabel value="Nueva Contaseña"/>
+                                    <p:password value="#{mbRUsuario.usuario.password}"/>
+                                    <p:outputLabel value="Repita Contaseña"/>
+                                    <p:password value="#{mbRUsuario.txtContraseniaRepita}"/>
+                                </p:panelGrid>
+
+                                <p:commandButton 
+                                    value="Actualizar" icon="ui-icon-disk" update=":form2" oncomplete="PF('dlg1').hide()" action="#{mbRUsuario.restablecerContrasenia()}"/>
+                            </p:panel>
+                        </center>
+                    </p:dialog>
                 </h:form>
                 <center>
-                <p:panel style="margin-left: 20%; margin-top: 10%; margin-right: 20%;">
-                    <h:panelGrid columns="3"  >
-                        <h:form >
-                            <p:graphicImage value="img/logo.png" style="width: 200px; height:  200px;"/>
-                        </h:form>
-                        <p:growl showDetail="true" sticky="false"/>
-                        <h:panelGroup>
-                            <h:form id="frmLogin" style="margin-left: 10%; margin-right: 20%;"><br/> 
-                                <p:growl id="mensajeGeneral" showDetail="true" sticky="false"/>
-                                <p:panel header="Inicio de Sesión" style="width: 450px; height: 250px; margin-bottom: 2%;"> 
-                                    <h:panelGrid id="loginPanel" columns="2"> 
-                                        <p:outputLabel value="E-mail: " for="txtEmail" /> 
-                                        <p:inputText id="txtEmail" value="#{mbSLogin.email}"/>
-                                        <p:spacer></p:spacer><p:spacer></p:spacer>
-                                        <p:outputLabel value="Contraseña: " for="txtPassword"/> 
-                                        <p:password id="txtPassword" value="#{mbSLogin.password}"/>
-                                        <p:spacer></p:spacer><p:spacer></p:spacer>
-                                        <h:panelGroup></h:panelGroup>
-                                        <p:commandButton  value="Ingresar" action="#{mbSLogin.login()}" update="frmLogin" />
-                                    </h:panelGrid> 
-                                </p:panel>
+                    <p:panel style="margin-left: 20%; margin-top: 10%; margin-right: 20%;">
+                        <h:panelGrid columns="3"  >
+                            <h:form >
+                                <p:graphicImage value="img/logo.png" style="width: 200px; height:  200px;"/>
+                            </h:form>
+                            <p:growl showDetail="true" sticky="false"/>
+                            <h:panelGroup>
+                                <h:form id="frmLogin" style="margin-left: 10%; margin-right: 20%;"><br/> 
+                                    <p:growl id="mensajeGeneral" showDetail="true" sticky="false"/>
+                                    <p:panel header="Inicio de Sesión" style="width: 450px; height: 250px; margin-bottom: 2%;"> 
+                                        <h:panelGrid id="loginPanel" columns="2"> 
+                                            <p:outputLabel value="E-mail: " for="txtEmail" /> 
+                                            <p:inputText id="txtEmail" value="#{mbSLogin.email}"/>
+                                            <p:spacer></p:spacer><p:spacer></p:spacer>
+                                            <p:outputLabel value="Contraseña: " for="txtPassword"/> 
+                                            <p:password id="txtPassword" value="#{mbSLogin.password}"/>
+                                            <p:spacer></p:spacer><p:spacer></p:spacer>
+                                            <h:panelGroup></h:panelGroup>
+                                            <p:commandButton  value="Ingresar" action="#{mbSLogin.login()}" update="frmLogin" />
+                                        </h:panelGrid> 
+                                    </p:panel>
                                     <hr/>
                                     <p:commandButton id="dynaButton" style="width: 25px; height: 25px;" type="button" icon="ui-icon-gear">
                                         <h:outputLabel value="¿Olvidó su Contraseña? " style="font-size: 20px; margin-right: 10px;" />
@@ -63,11 +65,17 @@
                                             <p:menuitem value="Establecer Nueva Contraseña" onclick="PF('dlg1').show()" ajax="true"  style="font-size: 14px;" />
                                         </p:submenu>                                        
                                     </p:menu>
-                            </h:form>
-                        </h:panelGroup>
-                    </h:panelGrid>
-                </p:panel>
-                    </center>
+                                </h:form>
+                            </h:panelGroup>
+                        </h:panelGrid>
+                        <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                        </p:ajaxStatus>
+                        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                            <p:graphicImage value="./img/process.gif" />
+                        </p:dialog>
+                    </p:panel>
+                </center>
             </ui:define>            
         </ui:composition>
     </h:body>

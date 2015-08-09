@@ -19,26 +19,22 @@
 
     </h:head>
     <h:body>
-        <p:dialog modal="true" widgetVar="statusDialog" header="Status"
-                  draggable="false" closable="false" resizable="false">
-            Mapa Descargado!!!
-        </p:dialog>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
                 <p:layoutUnit position="west" size="18%"  header="Mapas Promedio Biomasa"  collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:outputLabel value="Mapa de Promedio Anual en Biomasa" />
-                        <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
-                                          binding="#{mBRMap.selectCapa}">
-                            <f:selectItems  value="#{mBRMap.capasBiomasaAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
-                            <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
-                        </p:selectOneMenu>
-                        <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" />
-                        <p:outputLabel value="Mapa de Promedio Mensual en Biomasa" />
+                        <p:outputLabel value="Promedio Mensual en Biomasa" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
                                           binding="#{mBRMap.selectMesCapa}">
                             <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
+                        </p:selectOneMenu>
+                        <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" />
+                        <p:outputLabel value="Promedio Anual en Biomasa" />
+                        <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
+                                          binding="#{mBRMap.selectCapa}">
+                            <f:selectItems  value="#{mBRMap.capasBiomasaAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
+                            <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
                         </p:selectOneMenu>
                             <p:commandButton value="Datos Anuales" ajax="false"
                                 onclick="PrimeFaces.monitorDownload(start)"

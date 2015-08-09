@@ -18,15 +18,15 @@ import org.primefaces.model.StreamedContent;
      public download() throws FileNotFoundException {  
          InputStream stream  = new FileInputStream("/opt/MapsCSV/Biomass2000-2014.csv");   
          filebiomassyear = new DefaultStreamedContent(stream, "application/csv", "Biomass2000-2014.csv");  
-         InputStream stream2  = new FileInputStream("/opt/MapsCSV/BiomassEnero-Diciembre.csv");   
+         InputStream stream2  = new FileInputStream("/opt/MapsCSV/BiomassJanuary-December.csv");   
          filebiomassmonth = new DefaultStreamedContent(stream2, "application/csv", "BiomassJanuary-December.csv");
          InputStream stream3  = new FileInputStream("/opt/MapsCSV/Sun2000-2014.csv");   
          filesunyear = new DefaultStreamedContent(stream3, "application/csv", "Sun2000-2014.csv");  
-         InputStream stream4  = new FileInputStream("/opt/MapsCSV/SunEnero-Diciembre.csv");   
+         InputStream stream4  = new FileInputStream("/opt/MapsCSV/SunJanuary-December.csv");   
          filesunmonth = new DefaultStreamedContent(stream4, "application/csv", "SunJanuary-December.csv");
          InputStream stream5  = new FileInputStream("/opt/MapsCSV/Wind2000-2014.csv");   
          filewindyear = new DefaultStreamedContent(stream5, "application/csv", "Wind2000-2014.csv");  
-         InputStream stream6  = new FileInputStream("/opt/MapsCSV/WindEnero-Diciembre.csv");   
+         InputStream stream6  = new FileInputStream("/opt/MapsCSV/WindJanuary-December.csv");   
          filewindmonth = new DefaultStreamedContent(stream6, "application/csv", "WindJanuary-December.csv");
     }  
 
