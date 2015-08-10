@@ -26,7 +26,7 @@
                             <f:selectItems  value="#{mBRMap.capasSolarMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
-                        <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" />
+                        <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="120px"/>
                         <p:outputLabel value="Mapa de Promedio Anual" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
                                           binding="#{mBRMap.selectCapa}">

@@ -1,5 +1,5 @@
 var map;
-var gml,urlpath,estacion;
+var gml,urlpath,estacion,urlpathdrenajesencillo,urlpathdrenajedoble                                                                                                                                                                                                                                 ;
 window.onload = function () {
 ///////////
     var loc = window.location.href;
@@ -7,6 +7,7 @@ window.onload = function () {
     
     urlpath=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json'; 
     urlpathestacion=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/estaciones.json'; 
+    urlpathdrenajedoble=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/drenajeDoble.json'; 
     
     OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
         defaultHandlerOptions: {
@@ -91,7 +92,7 @@ window.onload = function () {
         })
 
     });
-    //////
+    //////ESTACIONES HIDRICAS
     estacion = new OpenLayers.Layer.Vector("Estaciones", {
         projection: new OpenLayers.Projection("EPSG:3857"),
         strategies: [new OpenLayers.Strategy.Fixed()],
@@ -109,6 +110,42 @@ window.onload = function () {
         })
 
     });
+    ///////////DRENAJE DOBLE
+//    capDrenajeDoble = new OpenLayers.Layer.Vector("DrenajeDoble", {
+//        projection: new OpenLayers.Projection("EPSG:3857"),
+//        strategies: [new OpenLayers.Strategy.Fixed()],
+//        protocol: new OpenLayers.Protocol.HTTP({
+//            url: urlpathdrenajedoble,
+//            format: new OpenLayers.Format.GeoJSON()
+//        }),
+//        styleMap: new OpenLayers.StyleMap({
+//            "default": new OpenLayers.Style({
+//                pointRadius: 5,
+//                fillOpacity: 5,
+//                strokeColor: "#0000FF",
+//                strokeWidth: 3,
+//                strokeOpacity: 1}) //Text entspricht feature.attributes.name
+//        })
+//
+//    });
+//    ///////////DRENAJE DOBLE
+//    capDrenajeSencillo = new OpenLayers.Layer.Vector("DrenajeSencillo", {
+//        projection: new OpenLayers.Projection("EPSG:3857"),
+//        strategies: [new OpenLayers.Strategy.Fixed()],
+//        protocol: new OpenLayers.Protocol.HTTP({
+//            url: urlpathdrenajesencillo,
+//            format: new OpenLayers.Format.GeoJSON()
+//        }),
+//        styleMap: new OpenLayers.StyleMap({
+//            "default": new OpenLayers.Style({
+//                pointRadius: 5,
+//                fillOpacity: 5,
+//                strokeColor: "#00FFFF",
+//                strokeWidth: 3,
+//                strokeOpacity: 1}) //Text entspricht feature.attributes.name
+//        })
+//
+//    });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
     map.addLayers([ghyb,general,gml,estacion]);// 
     map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(

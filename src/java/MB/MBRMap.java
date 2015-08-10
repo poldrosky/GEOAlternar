@@ -294,7 +294,7 @@ public class MBRMap implements Serializable {
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
         if (mesfuente[0].equals("MapWind")) {
             valor= daoMap.getByCoordenate(lon, lat, mesfuente[1], 1);
-            valorbd="Irradiación : "+valor[3].toString()+" m/seg";
+            valorbd="Velocidad : "+valor[3].toString()+" m/seg";
             //////////consultar valor por MES O AÑO
             valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 1);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
@@ -341,7 +341,7 @@ public class MBRMap implements Serializable {
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
         if (mesfuente[0].equals("MapBiomass")) {
             valor= daoMap.getByCoordenate(lon, lat, mesfuente[1], 2);
-            valorbd="Biomasa en mapa seleccionado: "+valor[3].toString()+" Mg/Ha";
+            valorbd="Biomasa : "+valor[3].toString()+" Mg/Ha";
             //////////consultar valor por MES O AÑO
             valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 2);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
@@ -377,28 +377,7 @@ public class MBRMap implements Serializable {
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
         }
-        else{
-            System.out.println("mapa general");
-        }
     }
-/////////////////download csv
-    private DefaultStreamedContent download;
-
-    public void setDownload(DefaultStreamedContent download) {
-        this.download = download;
-    }
-    
-    public DefaultStreamedContent getDownload() throws Exception {
-        return download;
-    }
-    
-    public void prepDownload(String filecsv) throws Exception {
-        File file = new File("/opt/maps/MapsCSV"+filecsv);
-        InputStream input = new FileInputStream(file);
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        setDownload(new DefaultStreamedContent(input, externalContext.getMimeType(file.getName()), file.getName()));
-    }
- //////////////////////////
     public List<Capamap> getCapasBiomasaMes() {
         return capasBiomasaMes;
     }

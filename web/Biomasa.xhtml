@@ -29,7 +29,7 @@
                             <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
-                        <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" />
+                        <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="80px"/>
                         <p:outputLabel value="Mapa de Promedio Anual" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
                                           binding="#{mBRMap.selectCapa}">
@@ -131,11 +131,11 @@
                                         enabled: false
                                     },
                                     series: [{
-                                            name: '(mg/ha) Mensual', align: 'rigth',
+                                            name: '(Mg/Ha) Mensual', align: 'rigth',
                                             data: [#{mBRMap.m1}, #{mBRMap.m2},#{mBRMap.m3}, #{mBRMap.m4},#{mBRMap.m5}, #{mBRMap.m6},
                             #{mBRMap.m7}, #{mBRMap.m8},#{mBRMap.m9}, #{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12}]
                                         }, {
-                                            name: '(mg/ha) Anual', align: 'rigth',
+                                            name: '(Mg/Ha) Anual', align: 'rigth',
                                             data: [#{mBRMap.y0},#{mBRMap.y1}, #{mBRMap.y2},#{mBRMap.y3}, #{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
                             #{mBRMap.y9}, #{mBRMap.y10},#{mBRMap.y11}, #{mBRMap.y12},#{mBRMap.y13}, #{mBRMap.y14}]
                                         }]

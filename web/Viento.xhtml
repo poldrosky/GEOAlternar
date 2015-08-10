@@ -28,7 +28,7 @@
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu>
                         
-                        <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" />
+                        <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" height="250px" width="120px"/>
                         <p:outputLabel value="Mapa de Promedio Anual en Viento" />
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
                                           binding="#{mBRMap.selectCapa}">
@@ -83,7 +83,7 @@
                             $('#container').highcharts({
                                 chart: {
                                     type: 'area',
-                                    spacingBottom: 5
+                                    spacingBottom:20
                                 },
                                 title: {
                                     text: 'Viento Mensual-Anual'
