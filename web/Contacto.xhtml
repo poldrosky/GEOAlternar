@@ -13,8 +13,9 @@
             </ui:define>
             <ui:define name="content">
                 <div id="divRegCuenta">
-                    <center>    
-                        <p:panel header="Comentarios y Preguntas" style=" width: 40%; margin-top: 50px;   margin-left: 10%; margin-right: 10%; alignment-adjust: auto;" >
+                    <center>
+                        <p:panelGrid columns="2" style=" width: 80%; margin-top: 50px;   margin-left: 5%; margin-right: 5%; alignment-adjust: auto;">
+                            <p:panel header="Comentarios y Preguntas"  >
                             <h:form id="frmcomentario">
                                 <p:growl id="mensajeGeneral" showDetail="true" sticky="false"/>
                                 <h:panelGrid columns="3" cellpadding="15">
@@ -36,6 +37,30 @@
                                 </h:panelGrid>
                             </h:form>
                         </p:panel>
+                        <p:panel header="Comentarios y Preguntas"  >
+                            <h:form >
+                                <p:growl  showDetail="true" sticky="false"/>
+                                <h:panelGrid columns="3" cellpadding="15">
+                                    <p:outputLabel value="Nombre " />
+                                    <h:inputText   label="Nombre" value="#{mbRUsuario.usuario.name}">
+                                        <f:validator validatorId="validatorVacio"/>
+                                    </h:inputText>
+                                    <h:panelGroup></h:panelGroup>
+                                    <p:outputLabel value="Email " />
+                                    <h:inputText  label="Email" value="#{mbRUsuario.usuario.email}">
+                                        <f:validator validatorId="validatorVacio"/>
+                                    </h:inputText>
+                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
+                                    <p:outputLabel value="Pregunta o Comentario" />
+                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
+                                    <p:inputTextarea rows="10" cols="30" queryDelay="700" minQueryLength="4" value="#{mbRUsuario.commentApp}" />
+                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
+                                    <p:commandButton value="Enviar" action="#{mbRUsuario.enviarComentario()}" />
+                                </h:panelGrid>
+                            </h:form>
+                        </p:panel>
+                        </p:panelGrid>
+                        
                     </center>
                 </div>
             </ui:define>
