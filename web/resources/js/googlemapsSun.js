@@ -25,8 +25,8 @@ window.onload = function () {
         trigger: function (e) {
             var lonlat = map.getLonLatFromPixel(e.xy);
 
-            document.getElementById('frmlatlon:latitudeCap').value = lonlat.lat;
-            document.getElementById('frmlatlon:longitudeCap').value = lonlat.lon;
+            document.getElementById('frmlatlon:latitudeCap').value = Math.round(lonlat.lat);
+            document.getElementById('frmlatlon:longitudeCap').value = Math.round(lonlat.lon);
 
             //////////Evento disparado al simular click sobre el el mapa
             var fireOnThis = document.getElementById("frmlatlon:btAjax");
@@ -56,7 +56,7 @@ window.onload = function () {
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
     );
     var general = new OpenLayers.Layer.WMS(
-            "Biomass", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
+            "Irradiacion General", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
             {
                 "LAYERS": "MapGeneral:Sun",
                 "STYLES": '',
@@ -71,7 +71,7 @@ window.onload = function () {
                 yx: {'EPSG:4326': false}
             }
     );
-   gml = new OpenLayers.Layer.Vector("narinoAdmin", {
+   gml = new OpenLayers.Layer.Vector("NarinoAdministrativo", {
         projection: new OpenLayers.Projection("EPSG:3857"),
         strategies: [new OpenLayers.Strategy.Fixed()],
         protocol: new OpenLayers.Protocol.HTTP({
@@ -104,10 +104,11 @@ window.onload = function () {
 
 //FUNCION PARA CARGAR LAS CAPAS SELECCIONADAS EN LA APLICACION
 function seleccionCapa(obj) {
+    var namemap=obj.value.split(":");
     var band2 = new OpenLayers.Layer.WMS(
-            "BANDA" + obj.value, "http://geoalternar.udenar.edu.co:8080/geoserver/MapSun/wms",
+            "Irradiacion -" + namemap[1], "http://geoalternar.udenar.edu.co:8080/geoserver/MapSun/wms",
             {
-                "LAYERS": obj.value,
+                "LAYERS": namemap[1],
                 "STYLES": '',
                 format: 'image/png',
                 transparent: true,
@@ -120,45 +121,7 @@ function seleccionCapa(obj) {
                 yx: {'EPSG:4326': false}
             }
     );
-    gml = new OpenLayers.Layer.Vector("narinoAdmin", {
-        projection: map.displayProjection,
-        strategies: [new OpenLayers.Strategy.Fixed()],
-        protocol: new OpenLayers.Protocol.HTTP({
-            url: urlpath,
-            format: new OpenLayers.Format.GeoJSON()
-        }),
-        styleMap: new OpenLayers.StyleMap({
-            "default": new OpenLayers.Style({
-                pointRadius: 5,
-                fillOpacity: 0,
-                strokeColor: "#000000",
-                strokeWidth: 1,
-                strokeOpacity: 1}) //Text entspricht feature.attributes.name
-        })
-
-    });
-    
     map.addLayers([band2]);
-    
-    
-    gml = new OpenLayers.Layer.Vector("narinoAdmin", {
-        projection: new OpenLayers.Projection("EPSG:3857"),
-        strategies: [new OpenLayers.Strategy.Fixed()],
-        protocol: new OpenLayers.Protocol.HTTP({
-            url: urlpath,
-            format: new OpenLayers.Format.GeoJSON()
-        }),
-        styleMap: new OpenLayers.StyleMap({
-            "default": new OpenLayers.Style({
-                pointRadius: 5,
-                fillOpacity: 0,
-                strokeColor: "#000000",
-                strokeWidth: 1,
-                strokeOpacity: 1}) //Text entspricht feature.attributes.name
-        })
-
-    });
-    map.addLayer(gml);
-    //map.setLayerIndex(gml, 99);
+    map.setLayerIndex(gml, 99);
 
 }

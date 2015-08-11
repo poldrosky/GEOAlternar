@@ -20,8 +20,12 @@
                 <p:layoutUnit position="west" size="16%"  header="Biomasa Promedio en Nariño"  collapsible="false" id="left1">
                     <h:panelGrid >
                         <p:fieldset legend="Mapa General de Biomasa" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
-                            <h:outputText value="Biomasa (Mg/Ha)" /><br></br>
-                            <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/>
+                            <h:outputText value="Biomasa (Mg/ha)" /><br></br>
+                            <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
+                            <p:commandButton  value="Descargar Datos" ajax="false"
+                                              icon="ui-icon-arrowthickstop-1-s">
+                                <p:fileDownload value="#{download.filebiomass}" />
+                            </p:commandButton>
                         </p:fieldset>
                         <p:fieldset legend="Mapa de Promedio Mensual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
                             Seleccione el mapa que desea visualizar<br></br><br></br>
@@ -30,8 +34,8 @@
                                 <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                                 <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                             </p:selectOneMenu><br></br><br></br>
-                            <h:outputText value="Biomasa (Mg/Ha)" /><br></br>
-                            <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/>
+                            <h:outputText value="Biomasa (Mg/ha)" /><br></br>
+                            <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
                             <p:commandButton value="Descargar Datos Mensuales" ajax="false" 
                                              icon="ui-icon-arrowthickstop-1-s">
                                 <p:fileDownload value="#{download.filebiomassmonth}" />
@@ -44,8 +48,8 @@
                                 <f:selectItems  value="#{mBRMap.capasBiomasaAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
                                 <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
                             </p:selectOneMenu><br></br><br></br>
-                            <h:outputText value="Biomasa (Mg/Ha)" /><br></br>
-                            <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55px" style="margin-left: 20px;"/>
+                            <h:outputText value="Biomasa (Mg/ha)" /><br></br>
+                            <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55px" style="margin-left: 20px;"/><br></br>
                             <p:commandButton  value="Descargar Datos Anuales" ajax="false"
                                               icon="ui-icon-arrowthickstop-1-s">
                                 <p:fileDownload value="#{download.filebiomassyear}" />
@@ -72,7 +76,7 @@
                                      id="btAjax" style="visibility: hidden"/>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
-                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">DESCARAGAR MAPA</a></p:graphicImage>
+                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Descargar Mapa Actual</a></p:graphicImage>
                         </h:panelGroup> 
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
                         <p:fieldset legend="Gráfico Promedio Mensual de Biomasa" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
@@ -111,7 +115,7 @@
                                                     }],
                                         yAxis: {
                                             title: {
-                                                text: 'Biomasa en Coordenada (Mg/Ha)'
+                                                text: 'Biomasa en Coordenada Mg/ha'
                                             },
                                             labels: {
                                                 formatter: function () {
@@ -122,7 +126,7 @@
                                         tooltip: {
                                             formatter: function () {
                                                 return '<b>' + this.series.name + '</b><br/>' +
-                                                    this.x + ': ' + this.y+' (Mg/Ha) ';
+                                                    this.x + ': ' + this.y+' Mg/ha ';
                                             }
                                         },
                                         plotOptions: {
@@ -182,7 +186,7 @@
                                                     }],
                                     yAxis: {
                                         title: {
-                                            text: 'Biomasa en Coordenada (Mg/Ha)'
+                                            text: 'Biomasa en Coordenada Mg/ha'
                                         },
                                         labels: {
                                             formatter: function () {
@@ -192,7 +196,8 @@
                                     },
                                     tooltip: {
                                         formatter: function () {
-                                            return '<b>' + this.series.name + '</b><br/>' + this.y;
+                                            return '<b>' + this.series.name + '</b><br/>' +
+                                                    this.x + ': ' + this.y+' Mg/ha ';
                                         }
                                     },
                                     plotOptions: {

@@ -29,8 +29,8 @@ window.onload = function () {
         trigger: function (e) {
             var lonlat = map.getLonLatFromPixel(e.xy);
 
-            document.getElementById('frmlatlon:latitudeCap').value = lonlat.lat;
-            document.getElementById('frmlatlon:longitudeCap').value = lonlat.lon;
+            document.getElementById('frmlatlon:latitudeCap').value = Math.round(lonlat.lat);
+            document.getElementById('frmlatlon:longitudeCap').value = Math.round(lonlat.lon);
 
             //////////Evento disparado al simular click sobre el el mapa
             var fireOnThis = document.getElementById("frmlatlon:btAjax");
@@ -60,7 +60,7 @@ window.onload = function () {
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
     );
     var general = new OpenLayers.Layer.WMS(
-            "Viento", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
+            "Irradiación Solar", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
             {
                 "LAYERS": "MapGeneral:Sun",
                 "STYLES": '',
@@ -75,7 +75,7 @@ window.onload = function () {
                 yx: {'EPSG:4326': false}
             }
     );
-   gml = new OpenLayers.Layer.Vector("narinoAdmin", {
+   gml = new OpenLayers.Layer.Vector("NarinoAdministrativo", {
         projection: new OpenLayers.Projection("EPSG:3857"),
         strategies: [new OpenLayers.Strategy.Fixed()],
         protocol: new OpenLayers.Protocol.HTTP({

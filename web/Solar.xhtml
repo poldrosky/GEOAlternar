@@ -12,52 +12,53 @@
         <script type="text/javascript" src="./resources/js/googlemapsSun.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-
     </h:head>
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
                 <p:layoutUnit position="west" size="16%"  header="Irradiación Promedio en Nariño"  collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:outputLabel value="Mapa de Promedio Mensual" />
+                        <p:fieldset legend="Mapa General de Irradiación" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
+                            <h:outputText value="Irradiación (W/m²)" /><br></br>
+                            <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
+                            <p:commandButton  value="Descargar Datos" ajax="false"
+                                              icon="ui-icon-arrowthickstop-1-s">
+                                <p:fileDownload value="#{download.filesun}" />
+                            </p:commandButton>
+                        </p:fieldset>
+                        <p:fieldset legend="Mapa de Promedio Mensual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
+                            Seleccione el mapa que desea visualizar<br></br><br></br>
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
                                           binding="#{mBRMap.selectMesCapa}">
                             <f:selectItems  value="#{mBRMap.capasSolarMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
-                        </p:selectOneMenu>
-                        <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="120px"/>
-                        <p:outputLabel value="Mapa de Promedio Anual" />
+                        </p:selectOneMenu><br></br><br></br>
+                        <h:outputText value="Irradiación (W/m²)" /><br></br>
+                        <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
+                        <p:commandButton value="Descargar Datos Mensuales" ajax="false" 
+                                             icon="ui-icon-arrowthickstop-1-s">
+                            <p:fileDownload value="#{download.filesunmonth}" />
+                            </p:commandButton>
+                        </p:fieldset>
+                        <p:fieldset legend="Mapa de Promedio Anual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
                         <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
                                           binding="#{mBRMap.selectCapa}">
                             <f:selectItems  value="#{mBRMap.capasSolarAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
                             <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
-                        </p:selectOneMenu>
-                        <p:fieldset legend="Descarga de Datos" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
-                            <p:commandButton value="Datos Anuales" ajax="false" 
-                                                 style=" width: 120px; font-size: 10px;"
-                                             onclick="PrimeFaces.monitorDownload(start)"
-                                             icon="ui-icon-arrowthickstop-1-s">
-                                <p:fileDownload value="#{download.filesunyear}" />
-                            </p:commandButton>
-                            <p:commandButton  value="Datos Mensuales" ajax="false" 
-                                                 style=" width: 120px; font-size: 10px;"
-                                              onclick="PrimeFaces.monitorDownload(start)"
-                                              icon="ui-icon-arrowthickstop-1-s">
-                                <p:fileDownload value="#{download.filesunmonth}" />
-                            </p:commandButton>
-                            <script type="text/javascript">  
-                                function start() {  
-                                    alert("Descargando Datos de Biomasa");
-                                }  
-                            </script>
+                        </p:selectOneMenu><br></br><br></br>
+                        <h:outputText value="Irradiación (W/m²)" /><br></br>
+                        <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
+                        <p:commandButton value="Descargar Datos Anuales" ajax="false" 
+                                         icon="ui-icon-arrowthickstop-1-s">
+                            <p:fileDownload value="#{download.filesunyear}" />
+                        </p:commandButton>
                         </p:fieldset>
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Radiación " >
                     <div id="map" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  id="rigth" >
+                <p:layoutUnit position="east" size="34%" collapsed="false" collapsible="true" header="Información de Irradiación en Coordenada "  id="rigth" style="text-align: center;">
                     <h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
@@ -72,113 +73,146 @@
                                      id="btAjax" style="visibility: hidden"/>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
-                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">DESCARAGAR MAPA</a></p:graphicImage>
-                        </h:panelGroup>
+                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Descargar Mapa Actual</a></p:graphicImage>
+                        </h:panelGroup> 
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
-                        <div id="container" style="width: 100%; height: 320px; margin: 0 auto"></div>
-                        <script>
-                        $(function () {
-                            $('#container').highcharts({
-                                chart: {
-                                    type: 'area',
-                                    spacingBottom: 5
-                                },
-                                title: {
-                                    text: 'Radiación Mensual-Anual'
-                                },
-                                subtitle: {
-                                    text: '',
-                                    floating: true,
-                                    align: 'left',
-                                    verticalAlign: 'bottom',
-                                    y: 15
-                                },
-                                xAxis: 
-                                    [{  categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago',
-                                                    'Sep','Oct','Nov','Dic',"","",""],
-                                        reversed: false
-                                     }, {
-                                        opposite: true,
-                                        reversed: false,
-                                        categories: ['2000', '2001', '2002', '2003',
-                                                     '2004', '2005', '2006', '2007', '2008',
-                                                     '2009', '2010', '2011', '2012', '2013',
-                                                     '2014'],
-                                        linkedTo: 0
-                                    }],
-                                yAxis: {
-                                    title: {
-                                        text: 'Escala Radiacion'
-                                    },
-                                    labels: {
-                                        formatter: function () {
-                                            return this.value;
-                                        }
-                                    }
-                                },
-                                tooltip: {
-                                    formatter: function () {
-                                        return '<b>' + this.series.name + '</b><br/>' + this.y;
-                                    }
-                                },
-                                plotOptions: {
-                                    area: {
-                                        fillOpacity: 0.2
-                                    }
-                                },
-                                credits: {
-                                    enabled: false
-                                },
-                                series: [{
-                                    name: 'Radiación Mensual',align: 'rigth',
-                                    data: [#{mBRMap.m1}, #{mBRMap.m2},#{mBRMap.m3}, #{mBRMap.m4},#{mBRMap.m5}, #{mBRMap.m6},
-                                        #{mBRMap.m7}, #{mBRMap.m8},#{mBRMap.m9}, #{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12}]
-                                },{
-                                    name: 'Radiación Anual',align: 'rigth',
-                                    data: [#{mBRMap.y0},#{mBRMap.y1}, #{mBRMap.y2},#{mBRMap.y3}, #{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
-                                        #{mBRMap.y9}, #{mBRMap.y10},#{mBRMap.y11}, #{mBRMap.y12},#{mBRMap.y13}, #{mBRMap.y14}]
-                                }]
-                            });
-                        });
-                        </script>
-                        <p:fieldset legend="Datos Promedio Anual de Irradiación" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
-                        <table border="1" align="center">
-                            <tbody>
-                                <tr>
-                                    <td>Año</td><td>2000</td><td>2001</td><td>2002</td><td>2003</td><td>2004</td><td>2005</td><td>2006</td><td>2007</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.y0}</td><td>#{mBRMap.y1}</td><td>#{mBRMap.y2}</td><td>#{mBRMap.y3}</td><td>#{mBRMap.y4}</td>
-                                    <td>#{mBRMap.y5}</td><td>#{mBRMap.y6}</td><td>#{mBRMap.y7}</td>
-                                </tr>
-                                <tr>
-                                    <td>Año</td><td>2008</td><td>2009</td><td>2010</td><td>2011</td><td>2012</td><td>2013</td><td>2014</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.y8}</td><td>#{mBRMap.y9}</td><td>#{mBRMap.y10}</td><td>#{mBRMap.y11}</td><td>#{mBRMap.y12}</td><td>#{mBRMap.y13}</td><td>#{mBRMap.y14}</td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                        <p:fieldset legend="Gráfico Promedio Mensual de Irradiación" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
+                            <div id="container" style="width: 450px; height: 300px; margin: 0 auto"></div>
+                            <script>
+                                $(function () {
+                                    $('#container').highcharts({
+                                        chart: {
+                                            type: 'area',
+                                            spacingBottom: 5
+                                        },
+                                        title: {
+                                            text: 'Promedio Irradiación Mensual'
+                                        },
+                                        subtitle: {
+                                            text: '',
+                                            floating: true,
+                                            align: 'left',
+                                            verticalAlign: 'bottom',
+                                            y: 15
+                                        },
+                                        legend: {
+                                            layout: 'vertical',
+                                            align: 'left',
+                                            verticalAlign: 'top',
+                                            x: 150,
+                                            y: 200,
+                                            floating: true,
+                                            borderWidth: 1,
+                                            backgroundColor: '#FFFFFF'
+                                        },
+                                        xAxis:
+                                                [{categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+                                                            'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                                        reversed: false
+                                                    }],
+                                        yAxis: {
+                                            title: {
+                                                text: 'Irradiación en Coordenada W/m²'
+                                            },
+                                            labels: {
+                                                formatter: function () {
+                                                    return this.value;
+                                                }
+                                            }
+                                        },
+                                        tooltip: {
+                                            formatter: function () {
+                                                return '<b>' + this.series.name + '</b><br/>' +
+                                                    this.x + ': ' + this.y+' W/m² ';
+                                            }
+                                        },
+                                        plotOptions: {
+                                            area: {
+                                                fillOpacity: 0.2
+                                            }
+                                        },
+                                        credits: {
+                                            enabled: false
+                                        },
+                                        series: [{name: 'Promedio Mensual Irradiación ', align: 'rigth',
+                                                data: [#{mBRMap.m1}, #{mBRMap.m2},#{mBRMap.m3}, #{mBRMap.m4},#{mBRMap.m5}, #{mBRMap.m6},
+                                #{mBRMap.m7}, #{mBRMap.m8},#{mBRMap.m9}, #{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12}]
+                                            }]
+                                    });
+                                });
+                            </script>
                         </p:fieldset>
-                        <p:fieldset legend="Datos Promedio Anual de Irradiación" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 120px; font-size: 10px;">
-                        <table border="1" align="center">
-                            <tbody>
-                                <tr>
-                                    <td>Mes</td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.m1}</td><td>#{mBRMap.m2}</td><td>#{mBRMap.m3}</td><td>#{mBRMap.m4}</td><td>#{mBRMap.m5}</td><td>#{mBRMap.m6}</td>
-                                </tr>
-                                <tr>
-                                    <td>Mes</td><td>Jul</td><td>Ago</td><td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td>
-                                </tr>
-                                <tr>
-                                    <td>Valor</td><td>#{mBRMap.m7}</td><td>#{mBRMap.m8}</td><td>#{mBRMap.m9}</td><td>#{mBRMap.m10}</td><td>#{mBRMap.m11}</td><td>#{mBRMap.m12}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                            </p:fieldset>
+                        <p:fieldset legend="Gráfico Promedio Anual de Irradiación" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
+                            <div id="containeranios" style="width: 450px; height: 300px; margin: 0 auto"></div>
+                            <script>
+                            $(function () {
+                                $('#containeranios').highcharts({
+                                    chart: {
+                                        type: 'area',
+                                        spacingBottom: 5
+                                    },
+                                    title: {
+                                        text: 'Promedio Irradiación Anual'
+                                    },
+                                    subtitle: {
+                                        text: 'Variacion de Irradiación en cordenada',
+                                        floating: true,
+                                        align: 'rigth',
+                                        verticalAlign: 'bottom',
+                                        y: 15
+                                    },
+                                    ///
+                                    legend: {
+                                            layout: 'vertical',
+                                            align: 'left',
+                                            verticalAlign: 'top',
+                                            x: 150,
+                                            y: 200,
+                                            floating: true,
+                                            borderWidth: 1,
+                                            backgroundColor: '#FFFFFF'
+                                        }
+                                    // 
+                                    ,
+                                    xAxis:
+                                            [{categories: ['2000', '2001', '2002', '2003',
+                                                         '2004', '2005', '2006', '2007', '2008',
+                                                         '2009', '2010', '2011', '2012', '2013',
+                                                         '2014'],
+                                                        reversed: false
+                                                    }],
+                                    yAxis: {
+                                        title: {
+                                            text: 'Irradiación en Coordenada W/m²'
+                                        },
+                                        labels: {
+                                            formatter: function () {
+                                                return this.value;
+                                            }
+                                        }
+                                    },
+                                    tooltip: {
+                                        formatter: function () {
+                                            return '<b>' + this.series.name + '</b><br/>' + this.y+' W/m² ';
+                                        }
+                                    },
+                                    plotOptions: {
+                                        area: {
+                                            fillOpacity: 0.2
+                                        }
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    series: [{
+                                        name: 'Promedio Anual Irradiación',align: 'rigth',
+                                        data: [#{mBRMap.y0},#{mBRMap.y1}, #{mBRMap.y2},#{mBRMap.y3}, #{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
+                                            #{mBRMap.y9}, #{mBRMap.y10},#{mBRMap.y11}, #{mBRMap.y12},#{mBRMap.y13}, #{mBRMap.y14}]
+                                    }]
+                                });
+                            });
+                            </script>
+                        </p:fieldset>
                     </p:panelGrid>
                 </p:layoutUnit>
             </p:layout>
