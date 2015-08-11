@@ -88,7 +88,7 @@ public class SendEmail {
         getMailSessionP = Session.getDefaultInstance(mailServerPropertiesP, null);
         generateMailMessageP = new MimeMessage(getMailSessionP);
 
-        generateMailMessageP.addRecipient(Message.RecipientType.TO, new InternetAddress("giieefae@gmail.com"));
+        generateMailMessageP.addRecipient(Message.RecipientType.TO, new InternetAddress("edixred@gmail.com"));
         generateMailMessageP.setSubject("Preguntas y Comentarios");
         String emailBody = name+" realizó el siguiiente comentario sobre la plataforma: <br><br>" 
                             + comment+"<br><br><br><br>"

@@ -5,67 +5,68 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
     <body>
-
         <ui:composition template="./plantilla/menu.xhtml">
             <ui:define name="top">
             </ui:define>
             <ui:define name="content">
                 <div id="divRegCuenta">
                     <center>
-                        <p:panelGrid columns="2" style=" width: 80%; margin-top: 50px;   margin-left: 5%; margin-right: 5%; alignment-adjust: auto;">
+                        <p:panelGrid columns="2" style=" width: 70%; margin-top: 50px;   margin-left: 5%; margin-right: 5%; alignment-adjust: auto;">
+                            <p:panel header="Colaboradores Investigación"  style="width: 500px;">
+
+
+
+
+
+
+
+
+
+
+                            </p:panel>
                             <p:panel header="Comentarios y Preguntas"  >
-                            <h:form id="frmcomentario">
-                                <p:growl id="mensajeGeneral" showDetail="true" sticky="false"/>
-                                <h:panelGrid columns="3" cellpadding="15">
-                                    <p:outputLabel value="Nombre " for="txtNombre"/>
-                                    <h:inputText  id="txtNombre" label="Nombre" value="#{mbRUsuario.usuario.name}">
-                                        <f:validator validatorId="validatorVacio"/>
-                                    </h:inputText>
-                                    <h:panelGroup></h:panelGroup>
-                                    <p:outputLabel value="Email " for="txtEmail"/>
-                                    <h:inputText  id="txtEmail" label="Email" value="#{mbRUsuario.usuario.email}">
-                                        <f:validator validatorId="validatorVacio"/>
-                                    </h:inputText>
-                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:outputLabel value="Pregunta o Comentario" for="txtComentario"/>
-                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:inputTextarea id="txtComentario" rows="10" cols="30" queryDelay="700" minQueryLength="4" value="#{mbRUsuario.commentApp}" />
-                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:commandButton value="Enviar" action="#{mbRUsuario.enviarComentario()}" update="frmcomentario"/>
-                                </h:panelGrid>
-                            </h:form>
-                        </p:panel>
-                        <p:panel header="Comentarios y Preguntas"  >
-                            <h:form >
-                                <p:growl  showDetail="true" sticky="false"/>
-                                <h:panelGrid columns="3" cellpadding="15">
-                                    <p:outputLabel value="Nombre " />
-                                    <h:inputText   label="Nombre" value="#{mbRUsuario.usuario.name}">
-                                        <f:validator validatorId="validatorVacio"/>
-                                    </h:inputText>
-                                    <h:panelGroup></h:panelGroup>
-                                    <p:outputLabel value="Email " />
-                                    <h:inputText  label="Email" value="#{mbRUsuario.usuario.email}">
-                                        <f:validator validatorId="validatorVacio"/>
-                                    </h:inputText>
-                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:outputLabel value="Pregunta o Comentario" />
-                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:inputTextarea rows="10" cols="30" queryDelay="700" minQueryLength="4" value="#{mbRUsuario.commentApp}" />
-                                    <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                    <p:commandButton value="Enviar" action="#{mbRUsuario.enviarComentario()}" />
-                                </h:panelGrid>
-                            </h:form>
-                        </p:panel>
+                                <h:form id="frmcomment">
+                                    <p:growl  showDetail="true" sticky="false"/><br></br>
+                                    <div style="margin-left: 10%; margin-right: 10%; text-align: justify;">
+                                        <p:outputLabel style="font-size: 15px;">
+                                            A través de este formulario podrás contactar con los colaboradores de la investigación y poder solicitar aclaración de información, realizar  sugerencias, enviar tus comentarios y observaciones. 
+                                        </p:outputLabel>
+
+                                        <br></br>
+                                        <h:panelGrid columns="3" cellpadding="15">
+                                            <p:outputLabel value="Nombre " />
+                                            <h:inputText   label="Nombre" value="#{mbRUsuario.usuario.name}">
+                                                <f:validator validatorId="validatorVacio"/>
+                                            </h:inputText>
+                                            <h:panelGroup></h:panelGroup>
+                                            <p:outputLabel value="Email " />
+                                            <h:inputText  label="Email" value="#{mbRUsuario.usuario.email}">
+                                                <f:validator validatorId="validatorVacio"/>
+                                            </h:inputText>
+                                            <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
+                                            <p:outputLabel value="Preguntas o Comentarios" />
+                                        </h:panelGrid>
+                                        <p:inputTextarea rows="10" cols="40" queryDelay="1000" minQueryLength="4" value="#{mbRUsuario.commentApp}" />
+                                        <h:panelGroup></h:panelGroup>
+                                        <p:commandButton value="Enviar" icon="ui-icon-disk" ajax="true" actionListener="#{mbRUsuario.enviarComentario()}" update="frmcomment"/>
+                                        <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                                        <f:facet name="complete">
+                                            <h:outputText value="! GRACIAS POR TUS PREGUNTAS Y APORTES ¡"  style="font-size: 12px;"/>
+                                        </f:facet>
+                                        </p:ajaxStatus>
+                                        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                                        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                            <p:graphicImage value="./img/process.gif" />
+                                        </p:dialog>
+                                    </div>
+                                </h:form>
+                                 
+                            </p:panel>
                         </p:panelGrid>
-                        
                     </center>
                 </div>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

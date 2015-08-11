@@ -71,6 +71,15 @@
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarSolarCoordenada()}"
                                      ajax="true" update="frmlatlon:panel"
                                      id="btAjax" style="visibility: hidden"/>
+                    <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                    <f:facet name="complete">
+                    </f:facet>
+                    </p:ajaxStatus>
+                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                        <p:graphicImage value="./img/process.gif" /><br></br>
+                        <h:outputText value="GRACIAS POR ESPERAR" />
+                    </p:dialog>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Descargar Mapa Actual</a></p:graphicImage>
