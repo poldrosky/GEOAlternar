@@ -56,7 +56,7 @@ window.onload = function () {
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
     );
     var general = new OpenLayers.Layer.WMS(
-            "Biomass", "http://190.254.4.128:8080/geoserver/MapGeneral/wms",
+            "Biomass", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
             {
                 "LAYERS": "MapGeneral:Sun",
                 "STYLES": '',
@@ -105,7 +105,7 @@ window.onload = function () {
 //FUNCION PARA CARGAR LAS CAPAS SELECCIONADAS EN LA APLICACION
 function seleccionCapa(obj) {
     var band2 = new OpenLayers.Layer.WMS(
-            "BANDA" + obj.value, "http://190.254.4.128:8080/geoserver/MapSun/wms",
+            "BANDA" + obj.value, "http://geoalternar.udenar.edu.co:8080/geoserver/MapSun/wms",
             {
                 "LAYERS": obj.value,
                 "STYLES": '',

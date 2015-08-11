@@ -60,7 +60,7 @@ window.onload = function () {
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
     );
     var general = new OpenLayers.Layer.WMS(
-            "Viento", "http://190.254.4.128:8080/geoserver/MapGeneral/wms",
+            "Viento", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
             {
                 "LAYERS": "MapGeneral:Sun",
                 "STYLES": '',

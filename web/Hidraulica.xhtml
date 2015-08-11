@@ -20,15 +20,16 @@
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
-                <p:layoutUnit position="west" size="18%"  header="Mapas Caudal"  collapsible="true" id="left1">
+                <p:layoutUnit position="west" size="20%"  header="Mapas Caudal"  collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:outputLabel value="Caudal Mensual en Estacion" />
+                        <p:outputLabel value="EN CONSTRUCCIÓN" style="font-size: 35px"/>
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
                     <div id="map" ></div>
                 </p:layoutUnit>
                 <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  id="rigth" >
+                    <p:outputLabel value="EN CONSTRUCCIÓN" style="font-size: 60px"/><br></br>
                     <h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
