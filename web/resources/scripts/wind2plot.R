@@ -1,0 +1,45 @@
+require("RPostgreSQL")
+require('bReeze')
+
+table_name <- 'windinterpolation50'
+height = 50
+
+driver <- dbDriver("PostgreSQL", max.con = 250)
+connection <- dbConnect(driver, dbname="wind", user= "glassfish", password="V3Mu02GR", host="190.254.4.128")
+
+args <- commandArgs(TRUE)
+
+latitude = args[1]
+longitude = args[2]
+
+path <- '/tmp/'
+
+bins1 = c(4,8,12,18,25)
+bins2 = c(1,2,3,4)
+
+select <- "SELECT timewind AS timestamp, speed, direction"
+from <- paste("FROM", table_name)
+where <- "WHERE"
+coordinates <- paste('latitude=',latitude,' AND longitude=',longitude, sep='')
+time_constraint <- "AND timewind < '2015-01-01'"
+order_by <- "ORDER BY timewind"
+sql <- paste(select, from, where, coordinates, time_constraint, order_by)
+print(sql)
+timeserie <- dbGetQuery(connection, sql)
+set050 <- set(height=height,  v.avg=timeserie$speed, dir.avg=timeserie$direction)
+ts <- as.POSIXlt(timeserie$timestamp, "America/Bogota")
+metmast <- mast(timestamp=ts, set050=set050)
+if (max(timeserie$speed) > 4){
+  bins = bins1
+} else {
+  bins = bins2
+}
+freq <- frequency(mast=metmast, v.set=1, bins=bins, print=F)
+png(filename=paste0(path,'wr_',longitude,'_',latitude,'.png'))
+plot(freq)
+dev.off()
+
+wb <- weibull(mast=metmast, v.set=1, print=F)
+png(filename=paste0(path,'wb_',longitude,'_',latitude,'.png'))
+plot(wb, show.ak=T)
+dev.off()

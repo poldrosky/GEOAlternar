@@ -8,6 +8,7 @@ import DAO.MapsFacade;
 import Entidad.Capamap;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.model.DefaultStreamedContent;
 
@@ -286,7 +288,7 @@ public class MBRMap implements Serializable {
         
     }
     
-    public void consultarVientoCoordenada() {
+    public void consultarVientoCoordenada() throws IOException {
         Object[] valor, valormeses,valoranios;
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
@@ -331,6 +333,21 @@ public class MBRMap implements Serializable {
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
         }
+        runRscript(lat,lon);
+    }
+    
+    public void runRscript(int lat,int lon) throws IOException
+    {
+        String glat=Integer.toString(lat);
+        String glon=Integer.toString(lon);
+        Process p;
+        ProcessBuilder pb = new ProcessBuilder();
+        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        String directory = ctx.getRealPath("/") + "resources/scripts/";
+         pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
+         p = pb.start();
+
+        System.out.println(glat+"||"+glon);
     }
 
     public void consultarBiomasaCoordenada() {
