@@ -1,4 +1,4 @@
-var map;
+var map, markers;
 var gml,urlpath,estacion,urlpathdrenajesencillo,urlpathdrenajedoble                                                                                                                                                                                                                                 ;
 window.onload = function () {
 ///////////
@@ -37,11 +37,14 @@ window.onload = function () {
             var evObj = document.createEvent('Event');
             evObj.initEvent('click', true, true);
             fireOnThis.dispatchEvent(evObj);
-
+            
+             ////point
+            markers=new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);
+            markers.addMarker(new OpenLayers.Marker(lonlat));
         }
 
-    });
-////////////    
+    });  
     var bounds = new OpenLayers.Bounds(
             -80.80241888771431, 0.5124091384021122,
             -78.63857187459485, 2.3940265905821643
@@ -54,7 +57,9 @@ window.onload = function () {
     };
     map = new OpenLayers.Map('map', options);
     map.addControl(new OpenLayers.Control.LayerSwitcher());
-
+    /////////////////////////
+    
+    
     var ghyb = new OpenLayers.Layer.Google(
             "Google Hybrid",
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
@@ -110,42 +115,6 @@ window.onload = function () {
         })
 
     });
-    ///////////DRENAJE DOBLE
-//    capDrenajeDoble = new OpenLayers.Layer.Vector("DrenajeDoble", {
-//        projection: new OpenLayers.Projection("EPSG:3857"),
-//        strategies: [new OpenLayers.Strategy.Fixed()],
-//        protocol: new OpenLayers.Protocol.HTTP({
-//            url: urlpathdrenajedoble,
-//            format: new OpenLayers.Format.GeoJSON()
-//        }),
-//        styleMap: new OpenLayers.StyleMap({
-//            "default": new OpenLayers.Style({
-//                pointRadius: 5,
-//                fillOpacity: 5,
-//                strokeColor: "#0000FF",
-//                strokeWidth: 3,
-//                strokeOpacity: 1}) //Text entspricht feature.attributes.name
-//        })
-//
-//    });
-//    ///////////DRENAJE DOBLE
-//    capDrenajeSencillo = new OpenLayers.Layer.Vector("DrenajeSencillo", {
-//        projection: new OpenLayers.Projection("EPSG:3857"),
-//        strategies: [new OpenLayers.Strategy.Fixed()],
-//        protocol: new OpenLayers.Protocol.HTTP({
-//            url: urlpathdrenajesencillo,
-//            format: new OpenLayers.Format.GeoJSON()
-//        }),
-//        styleMap: new OpenLayers.StyleMap({
-//            "default": new OpenLayers.Style({
-//                pointRadius: 5,
-//                fillOpacity: 5,
-//                strokeColor: "#00FFFF",
-//                strokeWidth: 3,
-//                strokeOpacity: 1}) //Text entspricht feature.attributes.name
-//        })
-//
-//    });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
     map.addLayers([ghyb,general,gml,estacion]);// 
     map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
@@ -156,8 +125,7 @@ window.onload = function () {
     var click = new OpenLayers.Control.Click();
     map.addControl(click);
     click.activate();
+    
 
     
 }
-
-//FUNCION PARA CARGAR LAS CAPAS SELECCIONADAS EN LA APLICACION

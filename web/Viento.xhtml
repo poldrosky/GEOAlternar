@@ -60,27 +60,16 @@
                     <div id="map" ></div>
                 </p:layoutUnit>
                 <p:layoutUnit position="east" size="35%" collapsed="false" collapsible="true" header="Información de Velocidad de Viento en Coordenada "  id="rigth"  style="text-align: center;">
-                    <h:outputText value="Latitud:" />
+                    <br></br><h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
                                 immediate="true"/>
                     </h:inputText>
-                    <h:outputText value="Longitud:" />
+                    <h:outputText value="Longitud:" style="margin-left: 30px;"/>
                     <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
-                    </h:inputText>
-                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"
-                                     ajax="true" update="frmlatlon:panel"
-                                     id="btAjax" style="visibility: hidden"/>
-                    <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
-                    <f:facet name="complete">
-                    </f:facet>
-                    </p:ajaxStatus>
-                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                        <p:graphicImage value="./img/process.gif" /><br></br>
-                        <h:outputText value="GRACIAS POR ESPERAR" />
-                    </p:dialog>
+                    </h:inputText><br></br><br></br>
+                    
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">DESCARAGAR MAPA</a></p:graphicImage>
@@ -228,6 +217,18 @@
                                     
                         </p:fieldset>
                     </p:panelGrid>
+                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"
+                                     ajax="true" update="frmlatlon:panel"
+                                     id="btAjax" style="visibility: hidden"/>
+                    <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                    <f:facet name="complete">
+                    </f:facet>
+                    </p:ajaxStatus>
+                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                        <p:graphicImage value="./img/process.gif" /><br></br>
+                        <h:outputText value="GRACIAS POR ESPERAR" />
+                    </p:dialog>
                 </p:layoutUnit>
             </p:layout>
         </h:form>

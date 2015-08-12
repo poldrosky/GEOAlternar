@@ -1,4 +1,4 @@
-var map;
+var map,markers;
 var gml,urlpath;
 window.onload = function () {
 ///////////
@@ -23,6 +23,7 @@ window.onload = function () {
                     );
         },
         trigger: function (e) {
+            
             var lonlat = map.getLonLatFromPixel(e.xy);
             
             document.getElementById('frmlatlon:latitudeCap').value = Math.round(lonlat.lat);
@@ -33,6 +34,10 @@ window.onload = function () {
             var evObj = document.createEvent('Event');
             evObj.initEvent('click', true, true);
             fireOnThis.dispatchEvent(evObj);
+            ////point
+            markers=new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);
+            markers.addMarker(new OpenLayers.Marker(lonlat));
 
         }
 
