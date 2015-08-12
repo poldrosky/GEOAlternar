@@ -19,7 +19,7 @@
             <p:layout>
                 <p:layoutUnit position="west" size="16%"  header="Biomasa Promedio en Nariño"  collapsible="false" id="left1">
                     <h:panelGrid >
-                        <p:fieldset legend="Mapa General de Biomasa" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
+                        <p:fieldset legend="Mapa General de Biomasa" toggleable="true" toggleSpeed="300" collapsed="false" style=" width: 90%; font-size: 10px;">
                             <h:outputText value="Biomasa (Mg/ha)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
                             <p:commandButton  value="Descargar Datos" ajax="false"
@@ -75,7 +75,7 @@
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Descargar Mapa Actual</a></p:graphicImage>
                         </h:panelGroup> 
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
-                        <p:fieldset legend="Gráfico Promedio Mensual de Biomasa" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
+                        <p:fieldset legend="Gráfico Promedio Mensual de Biomasa" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 80%; font-size: 10px;">
                             <div id="container" style="width: 450px; height: 300px; margin: 0 auto"></div>
                             <script>
                                 $(function () {

@@ -244,9 +244,10 @@ public class MBRMap implements Serializable {
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
+        valor= daoMap.getByCoordenate(lon, lat, "General", 3);
+        valorbd="Promedio General en Irradiación Solar : "+valor[3].toString()+" W/m²";
         if (mesfuente[0].equals("MapSun")) {
-            valor= daoMap.getByCoordenate(lon, lat, "General", 3);
-            valorbd="Promedio General en Irradiación Solar : "+valor[3].toString()+" W/m²";
+            
             //////////consultar valor por MES O AÑO
             valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 3);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
@@ -292,9 +293,9 @@ public class MBRMap implements Serializable {
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
+        valor= daoMap.getByCoordenate(lon, lat, "General", 1);
+        valorbd="Promedio General en Velocidad de Viento : "+valor[3].toString()+" m/seg";
         if (mesfuente[0].equals("MapWind")) {
-            valor= daoMap.getByCoordenate(lon, lat, "General", 1);
-            valorbd="Promedio General en Velocidad de Viento : "+valor[3].toString()+" m/seg";
             //////////consultar valor por MES O AÑO
             valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 1);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
@@ -339,9 +340,9 @@ public class MBRMap implements Serializable {
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 900));
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
+        valor= daoMap.getByCoordenate(lon, lat, "General", 2);
+        valorbd="Promedio General en Biomasa : "+valor[3].toString()+" Mg/Ha";
         if (mesfuente[0].equals("MapBiomass")) {
-            valor= daoMap.getByCoordenate(lon, lat, "General", 2);
-            valorbd="Promedio General en Biomasa : "+valor[3].toString()+" Mg/Ha";
             //////////consultar valor por MES O AÑO
             valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 2);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
