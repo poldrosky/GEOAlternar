@@ -1,5 +1,6 @@
 var map, markers;
-var gml,urlpath,estacion,urlpathdrenajesencillo,urlpathdrenajedoble                                                                                                                                                                                                                                 ;
+var gml,urlpath,estacion,urlpathdrenajesencillo,urlpathdrenajedoble;
+var arrMarkers = [];
 window.onload = function () {
 ///////////
     var loc = window.location.href;
@@ -8,6 +9,10 @@ window.onload = function () {
     urlpath=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json'; 
     urlpathestacion=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/estaciones.json'; 
     urlpathdrenajedoble=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/drenajeDoble.json'; 
+
+    var markers = new OpenLayers.Layer.Markers("Markers");
+    
+    
     
     OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
         defaultHandlerOptions: {
@@ -27,6 +32,8 @@ window.onload = function () {
                     );
         },
         trigger: function (e) {
+            
+            
             var lonlat = map.getLonLatFromPixel(e.xy);
 
             document.getElementById('frmlatlon:latitudeCap').value = Math.round(lonlat.lat);
@@ -39,9 +46,12 @@ window.onload = function () {
             fireOnThis.dispatchEvent(evObj);
             
              ////point
-            markers=new OpenLayers.Layer.Markers( "Markers" );
+             RemovePlaneMarker();
             map.addLayer(markers);
-            markers.addMarker(new OpenLayers.Marker(lonlat));
+            var marker = new OpenLayers.Marker(lonlat);
+            markers.addMarker(marker);
+            //arrMarkers.push(marker);
+            
         }
 
     });  
@@ -126,6 +136,16 @@ window.onload = function () {
     map.addControl(click);
     click.activate();
     
-
-    
 }
+
+function RemovePlaneMarker()
+        {
+            alert(arrMarkers.length);
+            //markers.clearMarkers();
+            for(var x in arrMarkers.length)
+            {
+                    markers.removeMarker(arrMarkers[x]); 
+                    
+                    return;
+            }
+        } 
