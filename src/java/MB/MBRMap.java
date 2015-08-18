@@ -240,13 +240,12 @@ public class MBRMap implements Serializable {
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
-        String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
+        System.out.println(lat+" || "+lon);
         valor= daoMap.getByCoordenate(lon, lat, "General", 3);
         valorbd="Promedio General en Irradiación Solar : "+valor[3].toString()+" W/m²";
-        if (mesfuente[0].equals("MapSun")) {
-            
             //////////consultar valor por MES O AÑO
-            valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 3);
+        
+            valormeses = daoMap.getHistoryMonths(lon, lat, 3);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             mlat = Double.parseDouble(valormeses[0].toString());
             mlon = Double.parseDouble(valormeses[1].toString());
@@ -263,7 +262,7 @@ public class MBRMap implements Serializable {
             m11 = Double.parseDouble(valormeses[12].toString());
             m12 = Double.parseDouble(valormeses[13].toString());
             
-            valoranios=daoMap.getHistoryYears(lon, lat, mesfuente[1], 3);
+            valoranios=daoMap.getHistoryYears(lon, lat, 3);
             y0 = Double.parseDouble(valoranios[2].toString());
             y1 = Double.parseDouble(valoranios[3].toString());
             y2 = Double.parseDouble(valoranios[4].toString());
@@ -279,7 +278,6 @@ public class MBRMap implements Serializable {
             y12 = Double.parseDouble(valoranios[14].toString());
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
-        }
         
     }
     
@@ -289,12 +287,11 @@ public class MBRMap implements Serializable {
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
-        String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
+        runRscript(lat,lon);
         valor= daoMap.getByCoordenate(lon, lat, "General", 1);
         valorbd="Promedio General en Velocidad de Viento : "+valor[3].toString()+" m/seg";
-        if (mesfuente[0].equals("MapWind")) {
             //////////consultar valor por MES O AÑO
-            valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 1);
+            valormeses = daoMap.getHistoryMonths(lon, lat,  1);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             mlat = Double.parseDouble(valormeses[0].toString());
             mlon = Double.parseDouble(valormeses[1].toString());
@@ -311,7 +308,7 @@ public class MBRMap implements Serializable {
             m11 = Double.parseDouble(valormeses[12].toString());
             m12 = Double.parseDouble(valormeses[13].toString());
             
-            valoranios=daoMap.getHistoryYears(lon, lat, mesfuente[1], 1);
+            valoranios=daoMap.getHistoryYears(lon, lat, 1);
             y0 = Double.parseDouble(valoranios[2].toString());
             y1 = Double.parseDouble(valoranios[3].toString());
             y2 = Double.parseDouble(valoranios[4].toString());
@@ -327,10 +324,7 @@ public class MBRMap implements Serializable {
             y12 = Double.parseDouble(valoranios[14].toString());
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
-        }
-        System.out.println("INI");
-        runRscript(lat,lon);
-        System.out.println("END");
+        
     }
     
     public void runRscript(int lat,int lon) throws IOException
@@ -343,9 +337,6 @@ public class MBRMap implements Serializable {
         String directory = ctx.getRealPath("/") + "resources/scripts/";
         pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
         p = pb.start();
-         
-        String graphicRose="wr.png";
-        String graphicsWeibull="wb.png";
     }
     
 
@@ -355,12 +346,10 @@ public class MBRMap implements Serializable {
         lat = (int) (valuelat - (valuelat % 900));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 900));
-        String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
         valor= daoMap.getByCoordenate(lon, lat, "General", 2);
         valorbd="Promedio General en Biomasa : "+valor[3].toString()+" Mg/Ha";
-        if (mesfuente[0].equals("MapBiomass")) {
             //////////consultar valor por MES O AÑO
-            valormeses = daoMap.getHistoryMonths(lon, lat, mesfuente[1], 2);
+            valormeses = daoMap.getHistoryMonths(lon, lat,  2);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             mlat = Double.parseDouble(valormeses[0].toString());
             mlon = Double.parseDouble(valormeses[1].toString());
@@ -377,7 +366,7 @@ public class MBRMap implements Serializable {
             m11 = Double.parseDouble(valormeses[12].toString());
             m12 = Double.parseDouble(valormeses[13].toString());
             
-            valoranios=daoMap.getHistoryYears(lon, lat, mesfuente[1], 2);
+            valoranios=daoMap.getHistoryYears(lon, lat, 2);
             y0 = Double.parseDouble(valoranios[2].toString());
             y1 = Double.parseDouble(valoranios[3].toString());
             y2 = Double.parseDouble(valoranios[4].toString());
@@ -393,7 +382,6 @@ public class MBRMap implements Serializable {
             y12 = Double.parseDouble(valoranios[14].toString());
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
-        }
     }
     public List<Capamap> getCapasBiomasaMes() {
         return capasBiomasaMes;
@@ -487,13 +475,13 @@ public class MBRMap implements Serializable {
     public void actualizarCapa() {
         capa = selectCapa.getValue().toString();
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
-        url="http://190.254.4.128:8080/geoserver/"+mesfuente[0]+"/wms?service=WMS&version=1.1.0&request=GetMap&layers="+capa+"&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
+        url="http://geoalternar.udenar.edu.co:8080/geoserver/"+mesfuente[0]+"/wms?service=WMS&version=1.1.0&request=GetMap&layers="+capa+"&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
     }
 
     public void actualizarCapaMes() {
         capa = selectMesCapa.getValue().toString();
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
-        url="http://190.254.4.128:8080/geoserver/"+mesfuente[0]+"/wms?service=WMS&version=1.1.0&request=GetMap&layers="+capa+"&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
+        url="http://geoalternar.udenar.edu.co:8080/geoserver/"+mesfuente[0]+"/wms?service=WMS&version=1.1.0&request=GetMap&layers="+capa+"&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
         
     }
 

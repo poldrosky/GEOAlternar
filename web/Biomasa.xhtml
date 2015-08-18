@@ -29,10 +29,10 @@
                         </p:fieldset>
                         <p:fieldset legend="Mapa de Promedio Mensual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
                             Seleccione el mapa que desea visualizar<br></br><br></br>
-                            <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
+                            <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" 
                                               binding="#{mBRMap.selectMesCapa}">
                                 <f:selectItems  value="#{mBRMap.capasBiomasaMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
-                                <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
+                                <p:ajax event="change"  update="frmlatlon:panel" />
                             </p:selectOneMenu><br></br><br></br>
                             <h:outputText value="Biomasa (Mg/ha)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
@@ -46,7 +46,7 @@
                            <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
                                               binding="#{mBRMap.selectCapa}">
                                 <f:selectItems  value="#{mBRMap.capasBiomasaAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
-                                <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
+                                <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
                             </p:selectOneMenu><br></br><br></br>
                             <h:outputText value="Biomasa (Mg/ha)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleBiomass.png" styleClass="content" height="260px" width="55px" style="margin-left: 20px;"/><br></br>
@@ -60,7 +60,7 @@
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
                     <div id="map" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit header="Información de Biomasa en Coordenada" position="east" size="35%" collapsed="false" collapsible="true" id="rigth" style="text-align: center;">
+                <p:layoutUnit header="Información de Biomasa en Coordenada (EPSG:3857)" position="east" size="35%" collapsed="false" collapsible="true" id="rigth" style="text-align: center;">
                     <br></br><h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
@@ -69,7 +69,11 @@
                     <h:outputText value="Longitud:" style="margin-left: 30px;" />
                     <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
-                    </h:inputText><br></br><br></br>
+                    </h:inputText>
+                    <p:commandButton value=" " actionListener="#{mBRMap.consultarBiomasaCoordenada()}"
+                                     ajax="true" update="frmlatlon:panel" icon="ui-icon-search"
+                                     id="biomasa" style="height: 15px; margin-left: 5px;"/>
+                    <br></br><br></br>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Descargar Mapa Actual</a></p:graphicImage>

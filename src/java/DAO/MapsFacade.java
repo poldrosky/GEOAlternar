@@ -39,7 +39,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
         return (Object[]) q.getSingleResult();
     }
 
-    public Object[] getHistoryMonths(int latitude, int longitude, String map, int type) {
+    public Object[] getHistoryMonths(int latitude, int longitude, int type) {
 
             Query qmonths = getEntityManager().createNativeQuery("SELECT "
                     + "m.* "
@@ -119,7 +119,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qmonths.setParameter(36, type);
             return (Object[]) qmonths.getSingleResult();
     }
-    public Object[] getHistoryYears(int latitude, int longitude, String map, int type) {
+    public Object[] getHistoryYears(int latitude, int longitude, int type) {
         
             Query qyears = getEntityManager().createNativeQuery("SELECT "
                     + "m.* "

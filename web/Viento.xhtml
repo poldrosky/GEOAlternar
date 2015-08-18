@@ -18,7 +18,7 @@
             <p:layout>
                 <p:layoutUnit position="west" size="16%"  header="Velocidad de Viento en Nariño"  collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:fieldset legend="Mapa General Velocidad de Viento" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
+                        <p:fieldset legend="Mapa General Velocidad de Viento" toggleable="true" toggleSpeed="300" collapsed="false" style=" width: 90%; font-size: 10px;">
                             <h:outputText value="Velocidad del Viento (m/s)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" height="250px" width="45x" style="margin-left: 30px;"/><br></br>
                             <p:commandButton  value="Descargar Datos" ajax="false"
@@ -59,23 +59,27 @@
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Viento " >
                     <div id="map" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="35%" collapsed="false" collapsible="true" header="Información de Velocidad de Viento en Coordenada "  id="rigth"  style="text-align: center;">
+                <p:layoutUnit position="east" size="35%" collapsed="false" collapsible="true" header="Información de Velocidad de Viento en Coordenada (EPSG:3857)"  id="rigth"  style="text-align: center;">
                     <br></br><h:outputText value="Latitud:" />
                     <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel"
                                 immediate="true"/>
                     </h:inputText>
-                    <h:outputText value="Longitud:" style="margin-left: 30px;"/>
+                    <h:outputText value="Longitud:" style="margin-left: 30px;" />
                     <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
-                    </h:inputText><br></br><br></br>
+                    </h:inputText>
+                    <p:commandButton value=" " actionListener="#{mBRMap.consultarVientoCoordenada()}"
+                                     ajax="true" update="frmlatlon:panel" icon="ui-icon-search"
+                                     id="biomasa" style="height: 15px; margin-left: 5px;"/>
+                    <br></br><br></br>
                     
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">DESCARAGAR MAPA</a></p:graphicImage>
                         </h:panelGroup> 
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
-                        <p:fieldset legend="Gráfico Promedio Mensual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
+                        <p:fieldset legend="Gráfico Promedio Mensual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 80%; font-size: 10px;">
                             <div id="container" style="width: 450px; height: 300px; margin: 0 auto"></div>
                             <script>
                                 $(function () {
@@ -216,7 +220,6 @@
                         <p:fieldset id="panelgrafico" legend="Gráficos WindRose-Weibull" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;" >
                             <p:commandButton id="imageBtn" value="Rose" type="button" update="frmlatlon:imagePanel" actionListener="#{mBRMap.loadImages()}"/>
                             <p:overlayPanel id="imagePanel" for="imageBtn" hideEffect="fade">
-                                <p:graphicImage value="#{download.filerose}" width="150"/>
                             </p:overlayPanel>
                             
                         </p:fieldset>
