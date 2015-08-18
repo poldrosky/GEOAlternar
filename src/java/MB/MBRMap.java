@@ -6,6 +6,8 @@ package MB;
 
 import DAO.MapsFacade;
 import Entidad.Capamap;
+import clases.windImages;
+import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,15 +15,21 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /* @author giiee */
 @ManagedBean
@@ -344,11 +352,47 @@ public class MBRMap implements Serializable {
         ProcessBuilder pb = new ProcessBuilder();
         ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String directory = ctx.getRealPath("/") + "resources/scripts/";
-         pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
-         p = pb.start();
-
-        System.out.println(glat+"||"+glon);
+        pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
+        p = pb.start();
+         
+        String graphicRose="wr.png";
+        String graphicsWeibull="wb.png";
+//         Timer timer;
+//    timer = new Timer();
+//
+//    TimerTask task = new TimerTask() {
+//        int tic=0;
+//
+//        @Override
+//        public void run()
+//        { }
+//        };
+//        // Empezamos dentro de 10ms y luego lanzamos la tarea cada 1000ms
+//    timer.schedule(task, 5000, 3000);
+        loadImages(graphicRose, graphicsWeibull);
+    
     }
+    
+    private StreamedContent filerose;
+    public  void loadImages(String graphicRose, String graphicWeibull) throws IOException
+    {
+        InputStream streamrose  = new FileInputStream("/tmp/wr.png");   
+         filerose = new DefaultStreamedContent(streamrose, "image/png", "wr.png");
+    }
+
+    public StreamedContent getFilerose() {
+        return filerose;
+    }
+
+    public void setFilerose(StreamedContent filerose) {
+        this.filerose = filerose;
+    }
+
+    
+
+    
+    
+    
 
     public void consultarBiomasaCoordenada() {
         Object[] valor, valormeses,valoranios;

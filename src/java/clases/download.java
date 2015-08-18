@@ -15,6 +15,7 @@ import org.primefaces.model.StreamedContent;
      private StreamedContent filesunyear,filesunmonth;
      private StreamedContent filewindyear,filewindmonth;  
      private StreamedContent filebiomass,filewind,filesun;  
+     private StreamedContent filerose,fileweibull;
      
      public download() throws FileNotFoundException {  
          InputStream stream  = new FileInputStream("/opt/maps/MapsCSV/Biomass2000-2014.csv");   
@@ -35,8 +36,30 @@ import org.primefaces.model.StreamedContent;
          filesun = new DefaultStreamedContent(stream8, "application/csv", "IrradiacionPromedioNarino.csv");
          InputStream stream9  = new FileInputStream("/opt/maps/MapsCSV/BiomasaPromedioNarino.csv");   
          filebiomass = new DefaultStreamedContent(stream9, "application/csv", "BiomasaPromedioNarino.csv");
+         InputStream streamrose  = new FileInputStream("/tmp/wr.png");   
+         filerose = new DefaultStreamedContent(streamrose, "image/png", "wr.png");
+         InputStream streamweibull  = new FileInputStream("/tmp/wb.png");   
+         fileweibull = new DefaultStreamedContent(streamweibull, "image/png", "wb.png");
     }  
 
+    public StreamedContent getFilerose() {
+        return filerose;
+    }
+
+    public void setFilerose(StreamedContent filerose) {
+        this.filerose = filerose;
+    }
+
+    public StreamedContent getFileweibull() {
+        return fileweibull;
+    }
+
+    public void setFileweibull(StreamedContent fileweibull) {
+        this.fileweibull = fileweibull;
+    }
+
+     
+     
     public StreamedContent getFilebiomassyear() {
         return filebiomassyear;
     }
@@ -108,8 +131,5 @@ import org.primefaces.model.StreamedContent;
     public void setFilesun(StreamedContent filesun) {
         this.filesun = filesun;
     }
-      
-    
-    
     
 }   
