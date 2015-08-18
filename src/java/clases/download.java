@@ -5,10 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 @ManagedBean(name = "download")
+//@ViewScoped
  public class download {
      
      private StreamedContent filebiomassyear,filebiomassmonth;
@@ -56,6 +58,15 @@ import org.primefaces.model.StreamedContent;
 
     public void setFileweibull(StreamedContent fileweibull) {
         this.fileweibull = fileweibull;
+    }
+    private int number;
+ 
+    public int getNumber() {
+        return number;
+    }
+ 
+    public void increment() {
+        number++;
     }
 
      

@@ -35,11 +35,11 @@ if (max(timeserie$speed) > 4){
   bins = bins2
 }
 freq <- frequency(mast=metmast, v.set=1, bins=bins, print=F)
-png(filename=paste0(path,'wr.png'))
+png(filename=paste0(path,'wr_',longitude,'_',latitude,'.png'))
 plot(freq)
 dev.off()
 
 wb <- weibull(mast=metmast, v.set=1, print=F)
-png(filename=paste0(path,'wb.png'))
+png(filename=paste0(path,'wb_',longitude,'_',latitude,'.png'))
 plot(wb, show.ak=T)
 dev.off()

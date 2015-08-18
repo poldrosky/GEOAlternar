@@ -214,13 +214,15 @@
                             </script>
                         </p:fieldset>
                         <p:fieldset id="panelgrafico" legend="Gráficos WindRose-Weibull" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;" >
-                            <p:graphicImage value="#{download.filerose}" style="height: 300px; width: 300px;"/>
-                            <p:graphicImage value="#{download.fileweibull}" style="height: 300px; width: 300px;" />
+                            <p:commandButton id="imageBtn" value="Rose" type="button" update="frmlatlon:imagePanel" actionListener="#{mBRMap.loadImages()}"/>
+                            <p:overlayPanel id="imagePanel" for="imageBtn" hideEffect="fade">
+                                <p:graphicImage value="#{download.filerose}" width="150"/>
+                            </p:overlayPanel>
+                            
                         </p:fieldset>
                     </p:panelGrid>
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"
-                                     ajax="true" update="frmlatlon:panel"
-                                     id="btAjax" style="visibility: hidden"/>
+                                     ajax="true" id="btAjax" style="visibility: hidden"  update="frmlatlon:panel"/>
                     <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
                     <f:facet name="complete">
                     </f:facet>
