@@ -217,11 +217,24 @@
                                 });
                             </script>
                         </p:fieldset>
+                        <p:commandButton value="GRAF" ajax="true" update="frmlatlon:gra" action="#{download}">
+                        <f:ajax render="gra" />
+                        </p:commandButton>
                         <p:fieldset id="panelgrafico" legend="Gráficos WindRose-Weibull" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;" >
-                            <p:commandButton id="imageBtn" value="Rose" type="button" update="frmlatlon:imagePanel" actionListener="#{mBRMap.loadImages()}"/>
-                            <p:overlayPanel id="imagePanel" for="imageBtn" hideEffect="fade">
-                            </p:overlayPanel>
-                            
+                            <h:form id="gra">
+                                <p:tabView style="width: 100%; height: 100%;">
+                                    <p:tab title="Godfather Part I">
+                                         <p:tab title="Rosa de los vientos" >
+                                            <iframe src="graficos.xhtml" >
+                                            </iframe>
+                                        </p:tab>
+                                    </p:tab>
+                                    <p:tab title="Rosa de los vientos" >
+                                        <iframe src="graficos.xhtml" >
+                                        </iframe>
+                                    </p:tab>
+                                </p:tabView>
+                            </h:form>
                         </p:fieldset>
                     </p:panelGrid>
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"

@@ -6,6 +6,7 @@ package MB;
 
 import DAO.MapsFacade;
 import Entidad.Capamap;
+import clases.download;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -324,7 +325,10 @@ public class MBRMap implements Serializable {
             y12 = Double.parseDouble(valoranios[14].toString());
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
-        
+//        String rose="wb_"+lat+"_"+lon+".png";
+//        String weibull="wr_"+lat+"_"+lon+".png";
+//        new download().loadImages(rose, weibull);
+//        System.out.println(rose+"||"+weibull);
     }
     
     public void runRscript(int lat,int lon) throws IOException
