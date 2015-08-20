@@ -7,7 +7,10 @@ package MB;
 import DAO.MapsFacade;
 import Entidad.Capamap;
 import clases.download;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /* @author giiee */
 @ManagedBean
@@ -325,10 +330,6 @@ public class MBRMap implements Serializable {
             y12 = Double.parseDouble(valoranios[14].toString());
             y13 = Double.parseDouble(valoranios[15].toString());
             y14 = Double.parseDouble(valoranios[16].toString());
-//        String rose="wb_"+lat+"_"+lon+".png";
-//        String weibull="wr_"+lat+"_"+lon+".png";
-//        new download().loadImages(rose, weibull);
-//        System.out.println(rose+"||"+weibull);
     }
     
     public void runRscript(int lat,int lon) throws IOException
@@ -341,7 +342,30 @@ public class MBRMap implements Serializable {
         String directory = ctx.getRealPath("/") + "resources/scripts/";
         pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
         p = pb.start();
+        while(p.isAlive())
+        {
+            System.out.println("vivo");
+        }
+        System.out.println("MUERTO");
+        loadImages();
     }
+    private StreamedContent filerose,fileweibull;
+    public void loadImages() throws FileNotFoundException
+    {
+        InputStream streamrose  = new FileInputStream("/tmp/wr.png");   
+        filerose = new DefaultStreamedContent(streamrose, "image/png", "wr.png");
+        InputStream streamweibull  = new FileInputStream("/tmp/wb.png");   
+        fileweibull = new DefaultStreamedContent(streamweibull, "image/png", "wb.png");
+    }
+
+    public StreamedContent getFilerose() {
+        return filerose;
+    }
+
+    public StreamedContent getFileweibull() {
+        return fileweibull;
+    }
+    
     
 
     public void consultarBiomasaCoordenada() {

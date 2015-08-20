@@ -217,25 +217,16 @@
                                 });
                             </script>
                         </p:fieldset>
-                        <p:commandButton value="GRAF" ajax="true" update="frmlatlon:gra" action="#{download}">
-                        <f:ajax render="gra" />
-                        </p:commandButton>
-                        <p:fieldset id="panelgrafico" legend="Gráficos WindRose-Weibull" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;" >
-                            <h:form id="gra">
-                                <p:tabView style="width: 100%; height: 100%;">
-                                    <p:tab title="Godfather Part I">
-                                         <p:tab title="Rosa de los vientos" >
-                                            <iframe src="graficos.xhtml" >
-                                            </iframe>
-                                        </p:tab>
-                                    </p:tab>
-                                    <p:tab title="Rosa de los vientos" >
-                                        <iframe src="graficos.xhtml" >
-                                        </iframe>
-                                    </p:tab>
-                                </p:tabView>
-                            </h:form>
-                        </p:fieldset>
+                        
+                            <p:commandButton id="rosebtn" value="Rosa de los vientos" type="button" />
+                            <p:overlayPanel id="imagePanel1" for="rosebtn" hideEffect="fade">
+                                <p:graphicImage value="#{mBRMap.filerose}" width="300" />
+                            </p:overlayPanel>
+                            <p:commandButton id="weibullbtn" value="Variacion de Viento" type="button" />
+                            <p:overlayPanel id="imagePanel2" for="weibullbtn" hideEffect="fade">
+                                <p:graphicImage value="#{mBRMap.fileweibull}" width="300" />
+                            </p:overlayPanel>
+                        
                     </p:panelGrid>
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"
                                      ajax="true" id="btAjax" style="visibility: hidden"  update="frmlatlon:panel"/>

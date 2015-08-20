@@ -1,11 +1,14 @@
 var map,markers;
 var gml,urlpath;
+var arrMarkers = [];
 window.onload = function () {
 ///////////
 
     var loc = window.location.href;
     var fileNamePart = loc.split('/');
     urlpath=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json';
+    
+    var markers = new OpenLayers.Layer.Markers("Punto");
 
     OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
         defaultHandlerOptions: {
@@ -36,10 +39,12 @@ window.onload = function () {
             evObj.initEvent('click', true, true);
             fireOnThis.dispatchEvent(evObj);
             
-            ////point
-            markers=new OpenLayers.Layer.Markers( "Markers" );
+             ////point
+             RemovePlaneMarker();
             map.addLayer(markers);
-            markers.addMarker(new OpenLayers.Marker(lonlat));
+            var marker = new OpenLayers.Marker(lonlat);
+            markers.addMarker(marker);
+            //arrMarkers.push(1);
 
         }
 
@@ -133,3 +138,15 @@ function seleccionCapa(obj) {
     map.setLayerIndex(gml, 99);
 
 }
+
+function RemovePlaneMarker()
+        {
+            //alert(arrMarkers.length);
+            //markers.clearMarkers();
+            for(var x in arrMarkers.length)
+            {
+                    markers.removeMarker(arrMarkers[x]); 
+                    
+                    return;
+            }
+        } 

@@ -10,7 +10,7 @@ window.onload = function () {
     urlpathestacion=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/estaciones.json'; 
     urlpathdrenajedoble=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/drenajeDoble.json'; 
 
-    var markers = new OpenLayers.Layer.Markers("Markers");
+    var markers = new OpenLayers.Layer.Markers("Punto");
     
     
     
@@ -50,7 +50,7 @@ window.onload = function () {
             map.addLayer(markers);
             var marker = new OpenLayers.Marker(lonlat);
             markers.addMarker(marker);
-            //arrMarkers.push(marker);
+            //arrMarkers.push(1);
             
         }
 
@@ -140,12 +140,5 @@ window.onload = function () {
 
 function RemovePlaneMarker()
         {
-            alert(arrMarkers.length);
             //markers.clearMarkers();
-            for(var x in arrMarkers.length)
-            {
-                    markers.removeMarker(arrMarkers[x]); 
-                    
-                    return;
-            }
         } 
