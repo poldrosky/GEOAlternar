@@ -1,7 +1,7 @@
 require("RPostgreSQL")
 require('bReeze')
 
-table_name <- 'windinterpolation50'
+table_name <- 'windinterpolation50_2014'
 height = 50
 
 driver <- dbDriver("PostgreSQL", max.con = 250)

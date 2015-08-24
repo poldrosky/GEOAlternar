@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import Entidad.Maps;
@@ -11,10 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author edixred
- */
 @Stateless
 public class MapsFacade extends AbstractFacade<Maps> {
 
@@ -36,7 +28,15 @@ public class MapsFacade extends AbstractFacade<Maps> {
         q.setParameter(2, longitude);
         q.setParameter(3, map);
         q.setParameter(4, type);
-        return (Object[]) q.getSingleResult();
+        if(q.getSingleResult()==null)
+        {
+            return null;
+        }
+        else
+        {
+            return (Object[]) q.getSingleResult();
+        }
+        
     }
 
     public Object[] getHistoryMonths(int latitude, int longitude, int type) {

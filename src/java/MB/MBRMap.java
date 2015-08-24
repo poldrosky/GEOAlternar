@@ -71,7 +71,7 @@ public class MBRMap implements Serializable {
         Capamap capa6v = new Capamap("Junio", "MapWind:June");
         Capamap capa7v = new Capamap("Julio", "MapWind:July");
         Capamap capa8v = new Capamap("Agosto", "MapWind:August");
-        Capamap capa9v = new Capamap("sebtiembre", "MapWind:September");
+        Capamap capa9v = new Capamap("septiembre", "MapWind:September");
         Capamap capa10v = new Capamap("Octubre", "MapWind:October");
         Capamap capa11v = new Capamap("Noviembre", "MapWind:November");
         Capamap capa12v = new Capamap("Diciembre", "MapWind:December");
@@ -129,7 +129,7 @@ public class MBRMap implements Serializable {
         Capamap capa6 = new Capamap("Junio", "MapBiomass:June");
         Capamap capa7 = new Capamap("Julio", "MapBiomass:July");
         Capamap capa8 = new Capamap("Agosto", "MapBiomass:August");
-        Capamap capa9 = new Capamap("sebtiembre", "MapBiomass:September");
+        Capamap capa9 = new Capamap("septiembre", "MapBiomass:September");
         Capamap capa10 = new Capamap("Octubre", "MapBiomass:October");
         Capamap capa11 = new Capamap("Noviembre", "MapBiomass:November");
         Capamap capa12 = new Capamap("Diciembre", "MapBiomass:December");
@@ -188,7 +188,7 @@ public class MBRMap implements Serializable {
         Capamap capa6s = new Capamap("Junio", "MapSun:June");
         Capamap capa7s = new Capamap("Julio", "MapSun:July");
         Capamap capa8s = new Capamap("Agosto", "MapSun:August");
-        Capamap capa9s = new Capamap("sebtiembre", "MapSun:September");
+        Capamap capa9s = new Capamap("septiembre", "MapSun:September");
         Capamap capa10s = new Capamap("Octubre", "MapSun:October");
         Capamap capa11s = new Capamap("Noviembre", "MapSun:November");
         Capamap capa12s = new Capamap("Diciembre", "MapSun:December");
@@ -252,10 +252,12 @@ public class MBRMap implements Serializable {
         lon = (int) (valuelon - (valuelon % 450));
         System.out.println(lat+" || "+lon);
         valor= daoMap.getByCoordenate(lon, lat, "General", 3);
+        if(valor==null){
+            System.out.println("valor bd: "+valor);
+        }
+        
         valorbd="Promedio General en Irradiación Solar : "+valor[3].toString()+" W/m²";
             //////////consultar valor por MES O AÑO
-        
-        
             valormeses = daoMap.getHistoryMonths(lon, lat, 3);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             mlat = Double.parseDouble(valormeses[0].toString());
@@ -288,8 +290,7 @@ public class MBRMap implements Serializable {
             y11 = Double.parseDouble(valoranios[13].toString());
             y12 = Double.parseDouble(valoranios[14].toString());
             y13 = Double.parseDouble(valoranios[15].toString());
-            y14 = Double.parseDouble(valoranios[16].toString());
-        
+            y14 = Double.parseDouble(valoranios[16].toString());   
     }
     
     public void consultarVientoCoordenada() throws IOException {

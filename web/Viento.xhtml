@@ -145,7 +145,7 @@
                                 });
                             </script>
                         </p:fieldset>
-                        <p:fieldset legend="Gráfico Promedio Anual de Biomasa" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
+                        <p:fieldset legend="Gráfico Promedio Anual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
                             <div id="containeranios" style="width: 450px; height: 300px; margin: 0 auto"></div>
                             <script>
                                 $(function () {
@@ -217,12 +217,18 @@
                                 });
                             </script>
                         </p:fieldset>
-                                    
-                        
-                            <p:graphicImage value="#{windImages.filerose}" width="500" id="img"
-                            cache="false"
-                            rendered="#{windImages.filerose!=null}"></p:graphicImage>
-                        
+                        <p:tabView>
+                            <p:tab title="Rosa de Vientos">
+                                <p:graphicImage value="#{windImages.filerose}" width="350" id="img"
+                                                cache="false"
+                                                rendered="#{windImages.filerose!=null}"></p:graphicImage>
+                            </p:tab>
+                            <p:tab title="Variación de Vientos">
+                                <p:graphicImage value="#{windImages.fileweibull}" width="350" id="img2"
+                                                cache="false"
+                                                rendered="#{windImages.fileweibull!=null}"></p:graphicImage>
+                            </p:tab>
+                        </p:tabView>
                     </p:panelGrid>
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"
                                      ajax="true" id="btAjax" style="visibility: hidden"  update="frmlatlon:panel"/>

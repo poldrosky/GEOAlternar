@@ -5,13 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
     <body>
-
         <ui:composition template="./plantilla/menu.xhtml">
-
             <ui:define name="top"></ui:define>
-
             <ui:define name="content">
                 <!-- FORMULARIO DE REGISTRO DE DATOS PERSONALES-->
                 <div id="divRegCuenta">
@@ -60,32 +56,23 @@
                                     <br></br>
                                     <p:commandButton value="Registrar" icon="ui-icon-disk" ajax="true" actionListener="#{mbRUsuario.resgister()}" update="frmRegistrarUsuario"/>
                                 </h:panelGrid>
-                                
-                                
                                 <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
-
                                     <f:facet name="start">
                                         <p:graphicImage value="./img/process.gif" styleClass="content" />
                                     </f:facet>
-
                                     <f:facet name="complete">
                                         <h:outputText value="Usuario Registrado" />
                                     </f:facet>
                                 </p:ajaxStatus>
-
                                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-
                                 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
                                     <p:graphicImage value="./img/process.gif" />
                                 </p:dialog>
-                                
                             </h:form>
                         </p:panel>
                     </center>
                 </div>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

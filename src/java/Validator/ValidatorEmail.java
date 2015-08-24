@@ -35,7 +35,7 @@ public class ValidatorEmail implements Validator{
         {
             label=htmlInputText.getLabel();
         }
-        Pattern pattern= Pattern.compile("([a-zA-Z0-9\\.\\/-_]+\\@[a-zA-Z-]+\\.[a-zA-Z]+)*");
+        Pattern pattern= Pattern.compile("^[_A-Za-z0-9-]+(\\." +"[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*" + "(\\.[A-Za-z]{2,})$");
         Matcher match=pattern.matcher((CharSequence)value);
         
         if(!match.matches()  )
