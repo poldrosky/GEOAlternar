@@ -217,15 +217,11 @@
                                 });
                             </script>
                         </p:fieldset>
+                                    
                         
-                            <p:commandButton id="rosebtn" value="Rosa de los vientos" type="button" />
-                            <p:overlayPanel id="imagePanel1" for="rosebtn" hideEffect="fade">
-                                <p:graphicImage value="#{mBRMap.filerose}" width="300" />
-                            </p:overlayPanel>
-                            <p:commandButton id="weibullbtn" value="Variacion de Viento" type="button" />
-                            <p:overlayPanel id="imagePanel2" for="weibullbtn" hideEffect="fade">
-                                <p:graphicImage value="#{mBRMap.fileweibull}" width="300" />
-                            </p:overlayPanel>
+                            <p:graphicImage value="#{windImages.filerose}" width="500" id="img"
+                            cache="false"
+                            rendered="#{windImages.filerose!=null}"></p:graphicImage>
                         
                     </p:panelGrid>
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"

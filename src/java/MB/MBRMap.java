@@ -7,13 +7,17 @@ package MB;
 import DAO.MapsFacade;
 import Entidad.Capamap;
 import clases.download;
+import clases.windImages;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -251,6 +255,7 @@ public class MBRMap implements Serializable {
         valorbd="Promedio General en Irradiación Solar : "+valor[3].toString()+" W/m²";
             //////////consultar valor por MES O AÑO
         
+        
             valormeses = daoMap.getHistoryMonths(lon, lat, 3);
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             mlat = Double.parseDouble(valormeses[0].toString());
@@ -332,7 +337,7 @@ public class MBRMap implements Serializable {
             y14 = Double.parseDouble(valoranios[16].toString());
     }
     
-    public void runRscript(int lat,int lon) throws IOException
+    public void runRscript(int lat,int lon) 
     {
         String glat=Integer.toString(lat);
         String glon=Integer.toString(lon);
@@ -340,34 +345,30 @@ public class MBRMap implements Serializable {
         ProcessBuilder pb = new ProcessBuilder();
         ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String directory = ctx.getRealPath("/") + "resources/scripts/";
-        pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
-        p = pb.start();
-        while(p.isAlive())
-        {
-            System.out.println("vivo");
-        }
-        System.out.println("MUERTO");
-        loadImages();
-    }
-    private StreamedContent filerose,fileweibull;
-    public void loadImages() throws FileNotFoundException
-    {
-        InputStream streamrose  = new FileInputStream("/tmp/wr.png");   
-        filerose = new DefaultStreamedContent(streamrose, "image/png", "wr.png");
-        InputStream streamweibull  = new FileInputStream("/tmp/wb.png");   
-        fileweibull = new DefaultStreamedContent(streamweibull, "image/png", "wb.png");
-    }
-
-    public StreamedContent getFilerose() {
-        return filerose;
-    }
-
-    public StreamedContent getFileweibull() {
-        return fileweibull;
+       
+        windImages wind = (windImages) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("windImages");
+        try {
+            pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
+            p = pb.start();
+            InputStream is = p.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException ex) {
+            wind.iniciar();
+            System.out.println("ERROr");
+        }   
+        
+        String n1="wr_"+lat+"_"+lon+".png";
+        String n2="wb_"+lat+"_"+lon+".png";
+        System.out.println(n1);
+        wind.generar(n1, n2);
+        
     }
     
-    
-
     public void consultarBiomasaCoordenada() {
         Object[] valor, valormeses,valoranios;
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD

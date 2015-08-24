@@ -26,20 +26,23 @@ order_by <- "ORDER BY timewind"
 sql <- paste(select, from, where, coordinates, time_constraint, order_by)
 print(sql)
 timeserie <- dbGetQuery(connection, sql)
-set050 <- set(height=height,  v.avg=timeserie$speed, dir.avg=timeserie$direction)
-ts <- as.POSIXlt(timeserie$timestamp, "America/Bogota")
-metmast <- mast(timestamp=ts, set050=set050)
-if (max(timeserie$speed) > 4){
-  bins = bins1
-} else {
-  bins = bins2
-}
-freq <- frequency(mast=metmast, v.set=1, bins=bins, print=F)
-png(filename=paste0(path,'wr.png'))
-plot(freq)
-dev.off()
 
-wb <- weibull(mast=metmast, v.set=1, print=F)
-png(filename=paste0(path,'wb.png'))
-plot(wb, show.ak=T)
-dev.off()
+if(dim(timeserie)[1]!=0){
+  set050 <- set(height=height,  v.avg=timeserie$speed, dir.avg=timeserie$direction)
+  ts <- as.POSIXlt(timeserie$timestamp, "America/Bogota")
+  metmast <- mast(timestamp=ts, set050=set050)
+  if (max(timeserie$speed) > 4){
+    bins = bins1
+  } else {
+    bins = bins2
+  }
+  freq <- frequency(mast=metmast, v.set=1, bins=bins, print=F)
+  png(filename=paste0(path,'wr_',longitude,'_',latitude,'.png'))
+  plot(freq)
+  dev.off()
+  
+  wb <- weibull(mast=metmast, v.set=1, print=F)
+  png(filename=paste0(path,'wb_',longitude,'_',latitude,'.png'))
+  plot(wb, show.ak=T)
+  dev.off()}
+print('done')
