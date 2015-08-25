@@ -11,12 +11,13 @@
         <script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
         <script type="text/javascript" src="./resources/js/OpenLayers-2.12/OpenLayers.js"></script>
         <script type="text/javascript" src="./resources/js/googlemaps.js"></script>
+        <script type="text/javascript" src="./resources/js/proj4.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </h:head>
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
-            <p:layout>
+            <p:layout style="height: 800px">
                 <p:layoutUnit position="west" size="16%"  header="Biomasa Promedio en Nariño"  collapsible="false" id="left1">
                     <h:panelGrid >
                         <p:fieldset legend="Mapa General de Biomasa" toggleable="true" toggleSpeed="300" collapsed="false" style=" width: 90%; font-size: 10px;">
@@ -61,18 +62,22 @@
                     <div id="map" ></div>
                 </p:layoutUnit>
                 <p:layoutUnit header="Información de Biomasa en Coordenada (EPSG:3857)" position="east" size="35%" collapsed="false" collapsible="true" id="rigth" style="text-align: center;">
-                    <br></br><h:outputText value="Latitud:" />
-                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
+                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" 
+                                 >
                         <p:ajax event="change"  update="frmlatlon:panel"
                                 immediate="true"/>
                     </h:inputText>
-                    <h:outputText value="Longitud:" style="margin-left: 30px;" />
-                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
+                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" 
+                                 >
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                     </h:inputText>
-                    <p:commandButton value=" " actionListener="#{mBRMap.consultarBiomasaCoordenada()}"
+                    <br></br><h:outputText value="Lat:" />
+                    <h:inputText id="lon4326" size="10" />
+                    <h:outputText value="Lon:" style="margin-left: 20px;" />
+                    <h:inputText id="lat4326" size="10" />
+                    <p:commandButton value=" " 
                                      ajax="true" update="frmlatlon:panel" icon="ui-icon-search"
-                                     id="biomasa" style="height: 15px; margin-left: 5px;"/>
+                                     id="biomasa" style="height: 15px; margin-left: 5px;" onclick="reproject3857();"/>
                     <br></br><br></br>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>

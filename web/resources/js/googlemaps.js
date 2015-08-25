@@ -25,12 +25,15 @@ window.onload = function () {
                     );
         },
         trigger: function (e) {
-            
             var lonlat = map.getLonLatFromPixel(e.xy);
-            
             document.getElementById('frmlatlon:latitudeCap').value = Math.round(lonlat.lat);
             document.getElementById('frmlatlon:longitudeCap').value = Math.round(lonlat.lon);
-
+            ////////REPOYECCION
+            var firstProjection = 'EPSG:3857';
+            var secondProjection = 'EPSG:4326';
+            var result=proj4(firstProjection,secondProjection,[lonlat.lon,lonlat.lat]);
+            document.getElementById('frmlatlon:lon4326').value = result[0].toFixed(5);
+            document.getElementById('frmlatlon:lat4326').value = result[1].toFixed(5);
             //////////Evento disparado al simular click sobre el el mapa
             var fireOnThis = document.getElementById("frmlatlon:btAjax");
             var evObj = document.createEvent('Event');
@@ -40,7 +43,6 @@ window.onload = function () {
             map.addLayer(markers);
             var marker = new OpenLayers.Marker(lonlat);
             markers.addMarker(marker);
-            //arrMarkers.push(marker);
         }
 
     });
@@ -131,6 +133,20 @@ function seleccionCapa(obj) {
     );
     map.addLayers([band2]);
     map.setLayerIndex(gml, 99);
-    
-
+}
+function reproject3857() {
+    //alert(document.getElementById('frmlatlon:lon4326').value);
+    var lat=document.getElementById('frmlatlon:lat4326').value;
+    var lon=document.getElementById('frmlatlon:lon4326').value;
+    ////////REPOYECCION
+    var firstProjection = 'EPSG:4326';
+    var secondProjection = 'EPSG:3857';
+    var result = proj4(firstProjection, secondProjection, [lon,lat]);
+    document.getElementById('frmlatlon:latitudeCap').value = result[0];
+    document.getElementById('frmlatlon:longitudeCap').value = result[1];
+    alert(result);
+    //point
+            map.addLayer(markers);
+            var marker = new OpenLayers.Marker(result);
+            markers.addMarker(marker);
 }
