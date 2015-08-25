@@ -35,10 +35,7 @@ window.onload = function () {
             var evObj = document.createEvent('Event');
             evObj.initEvent('click', true, true);
             fireOnThis.dispatchEvent(evObj);
-            
-              ////point
-             RemovePlaneMarker();
-            map.addLayer(markers);
+            //point
             var marker = new OpenLayers.Marker(lonlat);
             markers.addMarker(marker);
             //arrMarkers.push(marker);
@@ -98,7 +95,7 @@ window.onload = function () {
 
     });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
-    map.addLayers([ghyb,general,gml]);// 
+    map.addLayers([ghyb,general,gml,markers]);// 
     map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()
@@ -132,17 +129,6 @@ function seleccionCapa(obj) {
     );
     map.addLayers([band2]);
     map.setLayerIndex(gml, 99);
+    this.map.setLayerIndex(markers, this.map.getNumLayers());
 
 }
-
-function RemovePlaneMarker()
-        {
-            //alert(arrMarkers.length);
-            //markers.clearMarkers();
-            for(var x in arrMarkers.length)
-            {
-                    markers.removeMarker(arrMarkers[x]); 
-                    
-                    return;
-            }
-        } 
