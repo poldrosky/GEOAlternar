@@ -142,8 +142,8 @@ function reproject3857() {
     var firstProjection = 'EPSG:4326';
     var secondProjection = 'EPSG:3857';
     var result = proj4(firstProjection, secondProjection, [lon,lat]);
-    document.getElementById('frmlatlon:latitudeCap').value = result[0];
-    document.getElementById('frmlatlon:longitudeCap').value = result[1];
+    document.getElementById('frmlatlon:latitudeCap').value = Math.round(result[1]);
+    document.getElementById('frmlatlon:longitudeCap').value = Math.round(result[0]);
     alert(result);
     //point
             map.addLayer(markers);
