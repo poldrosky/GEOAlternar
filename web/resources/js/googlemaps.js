@@ -6,7 +6,7 @@ window.onload = function () {
     var loc = window.location.href;
     var fileNamePart = loc.split('/');
     urlpath=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json';
-    var markers = new OpenLayers.Layer.Markers("Punto");
+    markers = new OpenLayers.Layer.Markers("Punto");
     OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
         defaultHandlerOptions: {
             'single': true,
@@ -132,21 +132,20 @@ function seleccionCapa(obj) {
             }
     );
     map.addLayers([band2]);
+    map.setLayerIndex(markers, 98);
     map.setLayerIndex(gml, 99);
 }
 function reproject3857() {
-    //alert(document.getElementById('frmlatlon:lon4326').value);
     var lat=document.getElementById('frmlatlon:lat4326').value;
     var lon=document.getElementById('frmlatlon:lon4326').value;
     ////////REPOYECCION
     var firstProjection = 'EPSG:4326';
     var secondProjection = 'EPSG:3857';
     var result = proj4(firstProjection, secondProjection, [lon,lat]);
-    document.getElementById('frmlatlon:latitudeCap').value = Math.round(result[1]);
-    document.getElementById('frmlatlon:longitudeCap').value = Math.round(result[0]);
-    alert(result);
+    document.getElementById('frmlatlon:latitudeCap').value = Math.round(result[1],1);
+    document.getElementById('frmlatlon:longitudeCap').value = Math.round(result[0],1);
     //point
-            map.addLayer(markers);
-            var marker = new OpenLayers.Marker(result);
-            markers.addMarker(marker);
+    map.addLayer(markers);
+    var marker = new OpenLayers.Marker(result[0], result[1]);
+    markers.addMarker(marker);
 }

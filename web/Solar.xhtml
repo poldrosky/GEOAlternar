@@ -60,20 +60,22 @@
                     <div id="map" ></div>
                 </p:layoutUnit>
                 <p:layoutUnit position="east" size="35%" collapsed="false" collapsible="true" header="Información de Irradiación en Coordenada (EPSG:3857)"  id="rigth" style="text-align: center;">
-                    <br></br><h:outputText value="Latitud:" />
-                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
+                        <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" 
+                                 >
                         <p:ajax event="change"  update="frmlatlon:panel"
                                 immediate="true"/>
                     </h:inputText>
-                    <h:outputText value="Longitud:" style="margin-left: 30px;" />
                     <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                     </h:inputText>
+                    <br></br><h:outputText value="Lat:" />
+                    <h:inputText id="lon4326" size="10" />
+                    <h:outputText value="Lon:" style="margin-left: 20px;" />
+                    <h:inputText id="lat4326" size="10" />
                     <p:commandButton value=" " actionListener="#{mBRMap.consultarSolarCoordenada()}"
                                      ajax="true" update="frmlatlon:panel" icon="ui-icon-search"
-                                     id="biomasa" style="height: 15px; margin-left: 5px;"/>
+                                     id="biomasa" style="height: 15px; margin-left: 5px;" onclick="reproject3857();"/>
                     <br></br><br></br>
-                    
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Descargar Mapa Actual</a></p:graphicImage>
