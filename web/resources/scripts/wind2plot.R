@@ -1,7 +1,7 @@
 require("RPostgreSQL")
 require('bReeze')
 
-table_name <- 'windinterpolation50'
+table_name <- 'windinterpolation50_2010_2014'
 height = 50
 
 driver <- dbDriver("PostgreSQL", max.con = 250)
@@ -22,8 +22,7 @@ from <- paste("FROM", table_name)
 where <- "WHERE"
 coordinates <- paste('latitude=',latitude,' AND longitude=',longitude, sep='')
 time_constraint <- "AND timewind < '2015-01-01'"
-order_by <- "ORDER BY timewind"
-sql <- paste(select, from, where, coordinates, time_constraint, order_by)
+sql <- paste(select, from, where, coordinates, time_constraint)
 print(sql)
 timeserie <- dbGetQuery(connection, sql)
 
