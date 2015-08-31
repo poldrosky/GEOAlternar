@@ -59,26 +59,24 @@
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Radiación " >
                     <div id="map" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="35%" collapsed="false" collapsible="true" header="Información de Irradiación en Coordenada (EPSG:3857)"  id="rigth" style="text-align: center;">
-                        <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" 
-                                 >
-                        <p:ajax event="change"  update="frmlatlon:panel"
-                                immediate="true"/>
+                <p:layoutUnit position="east" size="35%" collapsed="false" collapsible="true" header="Inf. Irradiación en Coordenada (EPSG:4326)"  id="rigth" style="text-align: center;">
+                   <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
+                        <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
                     </h:inputText>
-                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
+                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" style="visibility: hidden;">
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
-                    </h:inputText>
-                    <br></br><h:outputText value="Lat:" />
-                    <h:inputText id="lon4326" size="10" />
-                    <h:outputText value="Lon:" style="margin-left: 20px;" />
-                    <h:inputText id="lat4326" size="10" />
-                    <p:commandButton value=" " actionListener="#{mBRMap.consultarSolarCoordenada()}"
-                                     ajax="true" update="frmlatlon:panel" icon="ui-icon-search"
-                                     id="biomasa" style="height: 15px; margin-left: 5px;" onclick="reproject3857();"/>
+                    </h:inputText><br></br>
+                    <h:outputText value="Latitud: " style="font-size: 10px;"/>
+                    <h:inputText id="lon4326" size="15" />
+                    <h:outputText value="Longitud:" style="font-size: 10px; margin-left: 10px;" />
+                    <h:inputText id="lat4326" size="15" />
+                    <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarSolarCoordenada()}"
+                                     ajax="true" icon="ui-icon-search" update="frmlatlon:panel"
+                                     id="solar" style="height: 15px; margin-left: 5px;" />
                     <br></br><br></br>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <h:panelGroup>
-                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Descargar Mapa Actual</a></p:graphicImage>
+                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Elegir mapa para descargar</a></p:graphicImage>
                         </h:panelGroup> 
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
                         <p:fieldset legend="Gráfico Promedio Mensual de Irradiación" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 80%; font-size: 10px;">

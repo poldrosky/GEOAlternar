@@ -1,4 +1,4 @@
-var map,markers;
+var map,markers,marker;
 var gml,urlpath;
 var arrMarkers = [];
 window.onload = function () {
@@ -44,7 +44,7 @@ window.onload = function () {
             fireOnThis.dispatchEvent(evObj);
             //point
             map.addLayer(markers);
-            var marker = new OpenLayers.Marker(lonlat);
+            marker = new OpenLayers.Marker(lonlat);
             markers.addMarker(marker);
 
         }
@@ -63,6 +63,10 @@ window.onload = function () {
     };
     map = new OpenLayers.Map('map', options);
     map.addControl(new OpenLayers.Control.LayerSwitcher());
+    var gmap = new OpenLayers.Layer.Google(
+        "Google Streets", // the default
+        {numZoomLevels: 20}
+    );
 
     var ghyb = new OpenLayers.Layer.Google(
             "Google Hybrid",
@@ -102,7 +106,7 @@ window.onload = function () {
 
     });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
-    map.addLayers([ghyb,general,gml]);// 
+    map.addLayers([ghyb,general,gmap,gml]);// 
     map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()
@@ -136,11 +140,10 @@ function seleccionCapa(obj) {
     );
     
     map.addLayers([band2]);
-    map.setLayerIndex(markers, 98);
-    map.setLayerIndex(gml, 99);
+    map.setLayerIndex(markers, 99);
+    map.setLayerIndex(gml, 98);
 }
 function reproject3857() {
-    //alert(document.getElementById('frmlatlon:lon4326').value);
     var lat=document.getElementById('frmlatlon:lat4326').value;
     var lon=document.getElementById('frmlatlon:lon4326').value;
     ////////REPOYECCION
@@ -149,8 +152,8 @@ function reproject3857() {
     var result = proj4(firstProjection, secondProjection, [lon,lat]);
     document.getElementById('frmlatlon:latitudeCap').value = Math.round(result[1],1);
     document.getElementById('frmlatlon:longitudeCap').value = Math.round(result[0],1);
-    //point
-            map.addLayer(markers);
-            var marker = new OpenLayers.Marker(result[0],result[1]);
-            markers.addMarker(marker);
+//    //point
+//    map.addLayer(markers);
+//    marker = new OpenLayers.Marker(result[0], result[1]);
+//    markers.addMarker(marker);
 }

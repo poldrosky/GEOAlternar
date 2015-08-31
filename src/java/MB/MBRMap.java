@@ -6,27 +6,22 @@ package MB;
 
 import DAO.MapsFacade;
 import Entidad.Capamap;
-import clases.download;
 import clases.windImages;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
 /* @author giiee */
 @ManagedBean
@@ -52,12 +47,10 @@ public class MBRMap implements Serializable {
 
     private SelectOneMenu selectCapa;
     private SelectOneMenu selectMesCapa;
-    private  String url,urlcsv;
+    private String url, urlcsv;
 
     public MBRMap() {
     }
-
-    
 
     @PostConstruct
     public void iniciar() {
@@ -178,7 +171,7 @@ public class MBRMap implements Serializable {
         this.capasBiomasaAnio.add(capa2013);
         this.capasBiomasaAnio.add(capa2014);
         //////////////////////////////////////////
-    //Solar
+        //Solar
         this.capasSolarMes = new ArrayList<Capamap>();
         Capamap capa1s = new Capamap("Enero", "MapSun:January");
         Capamap capa2s = new Capamap("Febrero", "MapSun:February");
@@ -240,116 +233,137 @@ public class MBRMap implements Serializable {
     }
     private double valuelat, valuelon;
     private int lat, lon;
-    private double m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12,m13,m14,m15, mlat, mlon;
-    private double y0,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14;
-    private  String valorbd;
+    private double m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, mlat, mlon;
+    private double y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14;
+    private String valorbd;
 
     public void consultarSolarCoordenada() {
-        Object[] valor, valormeses,valoranios;
+        mlat = 0;mlon = 0;m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
+        y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
+        Object[] valor, valormeses, valoranios;
+        valorbd = "Promedio General en Irradiación Solar : 0 W/m²";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
-        System.out.println(lat+" || "+lon);
-        valor= daoMap.getByCoordenate(lon, lat, "General", 3);
-        if(valor==null){
-            System.out.println("valor bd: "+valor);
+        System.out.println(lat + " || " + lon);
+        valor = daoMap.getByCoordenate(lon, lat, "General", 3);
+        if (valor != null) {
+            valorbd = "Promedio General en Irradiación Solar : " + valor[3].toString() + " W/m²";
+        }
+        //////////consultar valor por MES O AÑO
+        valormeses = daoMap.getHistoryMonths(lon, lat, 3);
+        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+        //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        mlat = Double.parseDouble(valormeses[0].toString());
+        mlon = Double.parseDouble(valormeses[1].toString());
+        m1 = Double.parseDouble(valormeses[2].toString());
+        m2 = Double.parseDouble(valormeses[3].toString());
+        m3 = Double.parseDouble(valormeses[4].toString());
+        m4 = Double.parseDouble(valormeses[5].toString());
+        m5 = Double.parseDouble(valormeses[6].toString());
+        m6 = Double.parseDouble(valormeses[7].toString());
+        m7 = Double.parseDouble(valormeses[8].toString());
+        m8 = Double.parseDouble(valormeses[9].toString());
+        m9 = Double.parseDouble(valormeses[10].toString());
+        m10 = Double.parseDouble(valormeses[11].toString());
+        m11 = Double.parseDouble(valormeses[12].toString());
+        m12 = Double.parseDouble(valormeses[13].toString());
+        }
+        valoranios = daoMap.getHistoryYears(lon, lat, 3);
+        if (valormeses == null)
+        {
+            return;
+        }
+        y0 = Double.parseDouble(valoranios[2].toString());
+        y1 = Double.parseDouble(valoranios[3].toString());
+        y2 = Double.parseDouble(valoranios[4].toString());
+        y3 = Double.parseDouble(valoranios[5].toString());
+        y4 = Double.parseDouble(valoranios[6].toString());
+        y5 = Double.parseDouble(valoranios[7].toString());
+        y6 = Double.parseDouble(valoranios[8].toString());
+        y7 = Double.parseDouble(valoranios[9].toString());
+        y8 = Double.parseDouble(valoranios[10].toString());
+        y9 = Double.parseDouble(valoranios[11].toString());
+        y10 = Double.parseDouble(valoranios[12].toString());
+        y11 = Double.parseDouble(valoranios[13].toString());
+        y12 = Double.parseDouble(valoranios[14].toString());
+        y13 = Double.parseDouble(valoranios[15].toString());
+        y14 = Double.parseDouble(valoranios[16].toString());
+    }
+
+    public void consultarVientoCoordenada() throws IOException {
+        valorbd = "Promedio General en Velocidad de Viento : 0 m/seg";
+        mlat = 0;mlon = 0;m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
+        y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
+        Object[] valor, valormeses, valoranios;
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        runRscript(lat, lon);
+        valor = daoMap.getByCoordenate(lon, lat, "General", 1);
+       
+        if (valor != null) {
+            valorbd = "Promedio General en Velocidad de Viento : " + valor[3].toString() + " m/seg";
+        }
+
+        //////////consultar valor por MES O AÑO
+        valormeses = daoMap.getHistoryMonths(lon, lat, 1);
+        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            mlat = Double.parseDouble(valormeses[0].toString());
+            mlon = Double.parseDouble(valormeses[1].toString());
+            m1 = Double.parseDouble(valormeses[2].toString());
+            m2 = Double.parseDouble(valormeses[3].toString());
+            m3 = Double.parseDouble(valormeses[4].toString());
+            m4 = Double.parseDouble(valormeses[5].toString());
+            m5 = Double.parseDouble(valormeses[6].toString());
+            m6 = Double.parseDouble(valormeses[7].toString());
+            m7 = Double.parseDouble(valormeses[8].toString());
+            m8 = Double.parseDouble(valormeses[9].toString());
+            m9 = Double.parseDouble(valormeses[10].toString());
+            m10 = Double.parseDouble(valormeses[11].toString());
+            m11 = Double.parseDouble(valormeses[12].toString());
+            m12 = Double.parseDouble(valormeses[13].toString());
         }
         
-        valorbd="Promedio General en Irradiación Solar : "+valor[3].toString()+" W/m²";
-            //////////consultar valor por MES O AÑO
-            valormeses = daoMap.getHistoryMonths(lon, lat, 3);
-            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-            mlat = Double.parseDouble(valormeses[0].toString());
-            mlon = Double.parseDouble(valormeses[1].toString());
-            m1 = Double.parseDouble(valormeses[2].toString());
-            m2 = Double.parseDouble(valormeses[3].toString());
-            m3 = Double.parseDouble(valormeses[4].toString());
-            m4 = Double.parseDouble(valormeses[5].toString());
-            m5 = Double.parseDouble(valormeses[6].toString());
-            m6 = Double.parseDouble(valormeses[7].toString());
-            m7 = Double.parseDouble(valormeses[8].toString());
-            m8 = Double.parseDouble(valormeses[9].toString());
-            m9 = Double.parseDouble(valormeses[10].toString());
-            m10 = Double.parseDouble(valormeses[11].toString());
-            m11 = Double.parseDouble(valormeses[12].toString());
-            m12 = Double.parseDouble(valormeses[13].toString());
-            
-            valoranios=daoMap.getHistoryYears(lon, lat, 3);
-            y0 = Double.parseDouble(valoranios[2].toString());
-            y1 = Double.parseDouble(valoranios[3].toString());
-            y2 = Double.parseDouble(valoranios[4].toString());
-            y3 = Double.parseDouble(valoranios[5].toString());
-            y4 = Double.parseDouble(valoranios[6].toString());
-            y5 = Double.parseDouble(valoranios[7].toString());
-            y6 = Double.parseDouble(valoranios[8].toString());
-            y7 = Double.parseDouble(valoranios[9].toString());
-            y8 = Double.parseDouble(valoranios[10].toString());
-            y9 = Double.parseDouble(valoranios[11].toString());
-            y10 = Double.parseDouble(valoranios[12].toString());
-            y11 = Double.parseDouble(valoranios[13].toString());
-            y12 = Double.parseDouble(valoranios[14].toString());
-            y13 = Double.parseDouble(valoranios[15].toString());
-            y14 = Double.parseDouble(valoranios[16].toString());   
+
+        valoranios = daoMap.getHistoryYears(lon, lat, 1);
+        if (valormeses == null)
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No hay estudios sobre la Zona", "¡¡"));
+            return;
+        }
+        y0 = Double.parseDouble(valoranios[2].toString());
+        y1 = Double.parseDouble(valoranios[3].toString());
+        y2 = Double.parseDouble(valoranios[4].toString());
+        y3 = Double.parseDouble(valoranios[5].toString());
+        y4 = Double.parseDouble(valoranios[6].toString());
+        y5 = Double.parseDouble(valoranios[7].toString());
+        y6 = Double.parseDouble(valoranios[8].toString());
+        y7 = Double.parseDouble(valoranios[9].toString());
+        y8 = Double.parseDouble(valoranios[10].toString());
+        y9 = Double.parseDouble(valoranios[11].toString());
+        y10 = Double.parseDouble(valoranios[12].toString());
+        y11 = Double.parseDouble(valoranios[13].toString());
+        y12 = Double.parseDouble(valoranios[14].toString());
+        y13 = Double.parseDouble(valoranios[15].toString());
+        y14 = Double.parseDouble(valoranios[16].toString());
     }
-    
-    public void consultarVientoCoordenada() throws IOException {
-        Object[] valor, valormeses,valoranios;
-        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
-        lat = (int) (valuelat - (valuelat % 450));
-        valuelon = Double.parseDouble(this.longitude);
-        lon = (int) (valuelon - (valuelon % 450));
-        runRscript(lat,lon);
-        valor= daoMap.getByCoordenate(lon, lat, "General", 1);
-        valorbd="Promedio General en Velocidad de Viento : "+valor[3].toString()+" m/seg";
-            //////////consultar valor por MES O AÑO
-            valormeses = daoMap.getHistoryMonths(lon, lat,  1);
-            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-            mlat = Double.parseDouble(valormeses[0].toString());
-            mlon = Double.parseDouble(valormeses[1].toString());
-            m1 = Double.parseDouble(valormeses[2].toString());
-            m2 = Double.parseDouble(valormeses[3].toString());
-            m3 = Double.parseDouble(valormeses[4].toString());
-            m4 = Double.parseDouble(valormeses[5].toString());
-            m5 = Double.parseDouble(valormeses[6].toString());
-            m6 = Double.parseDouble(valormeses[7].toString());
-            m7 = Double.parseDouble(valormeses[8].toString());
-            m8 = Double.parseDouble(valormeses[9].toString());
-            m9 = Double.parseDouble(valormeses[10].toString());
-            m10 = Double.parseDouble(valormeses[11].toString());
-            m11 = Double.parseDouble(valormeses[12].toString());
-            m12 = Double.parseDouble(valormeses[13].toString());
-            
-            valoranios=daoMap.getHistoryYears(lon, lat, 1);
-            y0 = Double.parseDouble(valoranios[2].toString());
-            y1 = Double.parseDouble(valoranios[3].toString());
-            y2 = Double.parseDouble(valoranios[4].toString());
-            y3 = Double.parseDouble(valoranios[5].toString());
-            y4 = Double.parseDouble(valoranios[6].toString());
-            y5 = Double.parseDouble(valoranios[7].toString());
-            y6 = Double.parseDouble(valoranios[8].toString());
-            y7 = Double.parseDouble(valoranios[9].toString());
-            y8 = Double.parseDouble(valoranios[10].toString());
-            y9 = Double.parseDouble(valoranios[11].toString());
-            y10 = Double.parseDouble(valoranios[12].toString());
-            y11 = Double.parseDouble(valoranios[13].toString());
-            y12 = Double.parseDouble(valoranios[14].toString());
-            y13 = Double.parseDouble(valoranios[15].toString());
-            y14 = Double.parseDouble(valoranios[16].toString());
-    }
-    
-    public void runRscript(int lat,int lon) 
-    {
-        String glat=Integer.toString(lat);
-        String glon=Integer.toString(lon);
+
+    public void runRscript(int lat, int lon) {
+        String glat = Integer.toString(lat);
+        String glon = Integer.toString(lon);
         Process p;
         ProcessBuilder pb = new ProcessBuilder();
         ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String directory = ctx.getRealPath("/") + "resources/scripts/";
-       
+
         windImages wind = (windImages) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("windImages");
         try {
-            pb = new ProcessBuilder("Rscript",directory + "wind2plot.R",glon,glat);
+            pb = new ProcessBuilder("Rscript", directory + "wind2plot.R", glon, glat);
             p = pb.start();
             InputStream is = p.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
@@ -361,25 +375,29 @@ public class MBRMap implements Serializable {
         } catch (IOException ex) {
             wind.iniciar();
             System.out.println("ERROr");
-        }   
-        
-        String n1="wr_"+lat+"_"+lon+".png";
-        String n2="wb_"+lat+"_"+lon+".png";
+        }
+
+        String n1 = "wr_" + lat + "_" + lon + ".png";
+        String n2 = "wb_" + lat + "_" + lon + ".png";
         System.out.println(n1);
         wind.generar(n1, n2);
-        
+
     }
-    
+
     public void consultarBiomasaCoordenada() {
-        Object[] valor, valormeses,valoranios;
+        Object[] valor, valormeses, valoranios;
+        valorbd = "Promedio General en Biomasa : 0 Mg/Ha";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 900));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 900));
-        valor= daoMap.getByCoordenate(lon, lat, "General", 2);
-        valorbd="Promedio General en Biomasa : "+valor[3].toString()+" Mg/Ha";
-            //////////consultar valor por MES O AÑO
-            valormeses = daoMap.getHistoryMonths(lon, lat,  2);
+        valor = daoMap.getByCoordenate(lon, lat, "General", 2);
+         if (valor != null) {
+            valorbd = "Promedio General en Biomasa : " + valor[3].toString() + " Mg/Ha";
+        }
+        valormeses = daoMap.getHistoryMonths(lon, lat, 2);
+        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             mlat = Double.parseDouble(valormeses[0].toString());
             mlon = Double.parseDouble(valormeses[1].toString());
@@ -395,24 +413,30 @@ public class MBRMap implements Serializable {
             m10 = Double.parseDouble(valormeses[11].toString());
             m11 = Double.parseDouble(valormeses[12].toString());
             m12 = Double.parseDouble(valormeses[13].toString());
-            
-            valoranios=daoMap.getHistoryYears(lon, lat, 2);
-            y0 = Double.parseDouble(valoranios[2].toString());
-            y1 = Double.parseDouble(valoranios[3].toString());
-            y2 = Double.parseDouble(valoranios[4].toString());
-            y3 = Double.parseDouble(valoranios[5].toString());
-            y4 = Double.parseDouble(valoranios[6].toString());
-            y5 = Double.parseDouble(valoranios[7].toString());
-            y6 = Double.parseDouble(valoranios[8].toString());
-            y7 = Double.parseDouble(valoranios[9].toString());
-            y8 = Double.parseDouble(valoranios[10].toString());
-            y9 = Double.parseDouble(valoranios[11].toString());
-            y10 = Double.parseDouble(valoranios[12].toString());
-            y11 = Double.parseDouble(valoranios[13].toString());
-            y12 = Double.parseDouble(valoranios[14].toString());
-            y13 = Double.parseDouble(valoranios[15].toString());
-            y14 = Double.parseDouble(valoranios[16].toString());
+        }
+
+        valoranios = daoMap.getHistoryYears(lon, lat, 2);
+        if (valormeses == null)
+        {
+            return;
+        }
+        y0 = Double.parseDouble(valoranios[2].toString());
+        y1 = Double.parseDouble(valoranios[3].toString());
+        y2 = Double.parseDouble(valoranios[4].toString());
+        y3 = Double.parseDouble(valoranios[5].toString());
+        y4 = Double.parseDouble(valoranios[6].toString());
+        y5 = Double.parseDouble(valoranios[7].toString());
+        y6 = Double.parseDouble(valoranios[8].toString());
+        y7 = Double.parseDouble(valoranios[9].toString());
+        y8 = Double.parseDouble(valoranios[10].toString());
+        y9 = Double.parseDouble(valoranios[11].toString());
+        y10 = Double.parseDouble(valoranios[12].toString());
+        y11 = Double.parseDouble(valoranios[13].toString());
+        y12 = Double.parseDouble(valoranios[14].toString());
+        y13 = Double.parseDouble(valoranios[15].toString());
+        y14 = Double.parseDouble(valoranios[16].toString());
     }
+
     public List<Capamap> getCapasBiomasaMes() {
         return capasBiomasaMes;
     }
@@ -493,7 +517,6 @@ public class MBRMap implements Serializable {
         this.typetime = typetime;
     }
 
-    
     public String getValorbd() {
         return valorbd;
     }
@@ -501,18 +524,18 @@ public class MBRMap implements Serializable {
     public void setValorbd(String valorbd) {
         this.valorbd = valorbd;
     }
-    
+
     public void actualizarCapa() {
         capa = selectCapa.getValue().toString();
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
-        url="http://geoalternar.udenar.edu.co:8080/geoserver/"+mesfuente[0]+"/wms?service=WMS&version=1.1.0&request=GetMap&layers="+capa+"&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
+        url = "http://geoalternar.udenar.edu.co:8080/geoserver/" + mesfuente[0] + "/wms?service=WMS&version=1.1.0&request=GetMap&layers=" + capa + "&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
     }
 
     public void actualizarCapaMes() {
         capa = selectMesCapa.getValue().toString();
         String[] mesfuente = capa.split(":");//DEFINIR EL MAPA ACTUAL Y LA FUENTE DE ENERGIA
-        url="http://geoalternar.udenar.edu.co:8080/geoserver/"+mesfuente[0]+"/wms?service=WMS&version=1.1.0&request=GetMap&layers="+capa+"&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
-        
+        url = "http://geoalternar.udenar.edu.co:8080/geoserver/" + mesfuente[0] + "/wms?service=WMS&version=1.1.0&request=GetMap&layers=" + capa + "&styles=&bbox=-8797736.0588021,36507.00740467082,-8548436.0588021,301557.007404671&width=481&height=512&srs=EPSG:3857&format=image%2Fgeotiff";
+
     }
 
     public String getCapaSelecionada() {
@@ -794,7 +817,7 @@ public class MBRMap implements Serializable {
     public void setY14(double y14) {
         this.y14 = y14;
     }
-    
+
     public String getUrl() {
         return url;
     }
@@ -810,7 +833,5 @@ public class MBRMap implements Serializable {
     public void setUrlcsv(String urlcsv) {
         this.urlcsv = urlcsv;
     }
-    
-    
-    
+
 }

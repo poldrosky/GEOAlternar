@@ -23,24 +23,23 @@ public class MapsFacade extends AbstractFacade<Maps> {
     }
 
     public Object[] getByCoordenate(int latitude, int longitude, String map, int type) {
+        try{
         Query q = getEntityManager().createNativeQuery("Select m.* from maps as m where latitude=? and longitude=? and tag_time=? and tag_type=?");
         q.setParameter(1, latitude);
         q.setParameter(2, longitude);
         q.setParameter(3, map);
         q.setParameter(4, type);
-        if(q.getSingleResult()==null)
-        {
+        
+        return (Object[]) q.getSingleResult();
+        }catch(Exception e){
             return null;
         }
-        else
-        {
-            return (Object[]) q.getSingleResult();
-        }
+        
         
     }
 
     public Object[] getHistoryMonths(int latitude, int longitude, int type) {
-
+        try{
             Query qmonths = getEntityManager().createNativeQuery("SELECT "
                     + "m.* "
                     + "FROM ("
@@ -118,9 +117,12 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qmonths.setParameter(35, longitude);
             qmonths.setParameter(36, type);
             return (Object[]) qmonths.getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
     }
     public Object[] getHistoryYears(int latitude, int longitude, int type) {
-        
+        try{
             Query qyears = getEntityManager().createNativeQuery("SELECT "
                     + "m.* "
                     + "FROM ("
@@ -216,6 +218,8 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qyears.setParameter(44, longitude);
             qyears.setParameter(45, type);
             return (Object[]) qyears.getSingleResult();
-        
+        }catch(Exception e){
+            return null;
+        }
     }
 }
