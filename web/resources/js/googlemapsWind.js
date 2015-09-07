@@ -3,13 +3,10 @@ var gml,urlpath;
 var arrMarkers = [];
 window.onload = function () {
 ///////////
-
     var loc = window.location.href;
     var fileNamePart = loc.split('/');
     urlpath=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json';
-    
     markers = new OpenLayers.Layer.Markers("Punto");
-
     OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
         defaultHandlerOptions: {
             'single': true,
@@ -73,7 +70,7 @@ window.onload = function () {
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
     );
     var general = new OpenLayers.Layer.WMS(
-            "Velocidad de Viento General", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
+            "Irradiacion General", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
             {
                 "LAYERS": "MapGeneral:Wind",
                 "STYLES": '',
@@ -106,7 +103,7 @@ window.onload = function () {
 
     });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
-    map.addLayers([ghyb,general,gmap,gml]);// 
+    map.addLayers([ghyb,general,gmap,gml,markers]);// 
     map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()
@@ -123,7 +120,7 @@ window.onload = function () {
 function seleccionCapa(obj) {
     var namemap=obj.value.split(":");
     var band2 = new OpenLayers.Layer.WMS(
-            "Velocida de Viento -" + namemap[1], "http://geoalternar.udenar.edu.co:8080/geoserver/MapWind/wms",
+            "Viento-" + namemap[1], "http://geoalternar.udenar.edu.co:8080/geoserver/MapWind/wms",
             {
                 "LAYERS": namemap[1],
                 "STYLES": '',
@@ -138,10 +135,9 @@ function seleccionCapa(obj) {
                 yx: {'EPSG:4326': false}
             }
     );
-    
     map.addLayers([band2]);
-    map.setLayerIndex(markers, 99);
     map.setLayerIndex(gml, 98);
+    map.setLayerIndex(markers, 99);
 }
 function reproject3857() {
     var lat=document.getElementById('frmlatlon:lat4326').value;
@@ -153,6 +149,7 @@ function reproject3857() {
     document.getElementById('frmlatlon:latitudeCap').value = Math.round(result[1],1);
     document.getElementById('frmlatlon:longitudeCap').value = Math.round(result[0],1);
 //    //point
+//    markers = new OpenLayers.Layer.Markers("Punto");
 //    map.addLayer(markers);
 //    marker = new OpenLayers.Marker(result[0], result[1]);
 //    markers.addMarker(marker);

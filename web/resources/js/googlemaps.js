@@ -1,4 +1,4 @@
-var map,markers, marker;
+var map,markers,marker;
 var gml,urlpath;
 var arrMarkers = [];
 window.onload = function () {
@@ -43,6 +43,7 @@ window.onload = function () {
             map.addLayer(markers);
             marker = new OpenLayers.Marker(lonlat);
             markers.addMarker(marker);
+
         }
 
     });
@@ -59,17 +60,17 @@ window.onload = function () {
     };
     map = new OpenLayers.Map('map', options);
     map.addControl(new OpenLayers.Control.LayerSwitcher());
-
     var gmap = new OpenLayers.Layer.Google(
-            "Google Streets", // the default
-            {numZoomLevels: 20}
+        "Google Streets", // the default
+        {numZoomLevels: 20}
     );
+
     var ghyb = new OpenLayers.Layer.Google(
             "Google Hybrid",
             {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
     );
     var general = new OpenLayers.Layer.WMS(
-            "Biomasa- General", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
+            "Irradiacion General", "http://geoalternar.udenar.edu.co:8080/geoserver/MapGeneral/wms",
             {
                 "LAYERS": "MapGeneral:Biomass",
                 "STYLES": '',
@@ -84,7 +85,6 @@ window.onload = function () {
                 yx: {'EPSG:4326': false}
             }
     );
-    
    gml = new OpenLayers.Layer.Vector("NarinoAdministrativo", {
         projection: new OpenLayers.Projection("EPSG:3857"),
         strategies: [new OpenLayers.Strategy.Fixed()],
@@ -103,7 +103,7 @@ window.onload = function () {
 
     });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
-    map.addLayers([ghyb,gmap,general,gml]);// 
+    map.addLayers([ghyb,general,gmap,gml,markers]);// 
     map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()
