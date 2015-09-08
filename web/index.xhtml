@@ -18,45 +18,371 @@
                         <p:graphicImage value="./img/gal/#{image}" styleClass="content" /><!-- <div class="caption">#{image}</div>-->
                     </p:contentFlow>
                     <h:form id="form" style="width: 80%; margin-left: 20%; margin-right: 20%; width: 1000px; text-align: justify;">
-                        
-                        
-                        
-                        
-                        <h4>Anślisis de fuentes alternativas de Energía</h4>
-                        <p:accordionPanel >
-                            <p:ajax event="tabChange" listener="#{messages.onTabChange}" />
-                            <p:ajax event="tabClose" listener="#{messages.onTabClose}" />
-                            <p:tab title="Fase 1:">
-                                <h:panelGrid columns="2" cellpadding="15">
-                                    <p:graphicImage value="./img/logolista.png" width="35px" height="35px"/>
-                                    <p:outputLabel value="
-                                               Pretende contribuir a la mejora de cobertura energética de las zonas rurales 
-                                               mediante gestión moderna de redes y generación con fuentes
-                                               alternativas."/>
-                                </h:panelGrid>
+                        <h3>Anślisis de fuentes alternativas de Energía - Investigación de Fuentes Energéticas</h3>
+                        <h4>Metodología Aplicada</h4>
+                        <p:tabView style="font-size: 14px; text-align: left;">
+                            <p:tab title=" Identificación Irradiación Solar ">   
+                                <p:accordionPanel >
+                                    <p:tab title="Objetivo">
+                                        <h:panelGrid cellpadding="15">
+                                            <p:outputLabel value="
+                                                           Calcular modelos de regresión de potencial solar a partir de la reflectancia en las bandas de imágenes satelitales Landsat para la generación de mapas de potencial solar en el Departamento de Nariño."/>
+                                        </h:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="Obtener un banco de imágenes satelitales del área de estudio desde los repositorios de libre acceso de Landsat">
+                                        <table >
+                                            <thead>
+                                                <tr>
+                                                    <th>Información General Landsat 7</th>
+                                                    <th>Imágen Satelital</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 500px;">
+                                                        <p:outputLabel>
+                                                            • Disponible desde Abril de 1999.<br></br>
+                                                            • Intervalo de repetición cada 16 días.<br></br>
+                                                            • Una banda pancromática con resolución espacial de 15m.<br></br>
+                                                            • Tres bandas visibles para el azul, verde, rojo a 30m.<br></br>
+                                                            • Tres bandas infrarojas a 30m.<br></br>
+                                                            • Una banda térmica a 60m.<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/l7.png" width="360px" height="200px">
+                                                            <p:outputLabel>
+                                                                Imágenes Disponibles en: <a href="http://earthexplorer.usgs.gov/">earthexplorer.usgs.gov</a>
+                                                            </p:outputLabel>
+                                                        </p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Reproyección-Corte Imágenes Landsat">
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 500px;">
+                                                        <p:outputLabel>
+                                                            • Cambio del sistema de referencia espacial de las imágenes Satelitales a EPSG:3857<br></br><br></br>
+                                                            • Recorte de imágenes según el territorio departamental.<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/clipper.png" width="360px" height="170px"></p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Selección muestras de Irradiación">
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 350px;">
+                                                        • 482 Muestras seleccionadas manualmente de 3tier separadas con una distancia de 6 km.
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/sample.png" width="350px" height="300px"></p:graphicImage><br></br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/3tier.png" width="600px" height="350px"></p:graphicImage>
+                                                    </td>
+                                                    
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Seleccionar las técnicas de regresión y parámetros más apropiados">
+                                        <table >
+                                            <tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Selección del conjunto de datos</th>
+                                                        <th>Base de datos</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td style="width: 400px;">
+                                                        <p:outputLabel>
+                                                            • 1321 imágenes procesadas.<br></br>
+                                                            • 15 años (2000 – 2014).
+                                                            • 51'076.512 puntos disponibles.<br></br>
+                                                            • 4'071.185 puntos con mediciones válidas (no nublados).<br></br>
+                                                            • 421 puntos con al menos 4 mediciones disponibles que se pueden asociar a un valor nominal de irradiación solar.<br></br>
+                                                            • Cálcular Reflectancia a bandas 1-7 de landsat.<br></br>
+                                                            • Aplicar filtro para nubes,rios,datos nulos,etc.<br></br>
+                                                            • Almacenamiento de datos correctos.<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/bd.png" width="450px" height="220px"></p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <hr></hr>
+                                        <table >
+                                            <tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Modelos de Regresión Aplicados</th>
+                                                        <th>Comparación de Resultados de Modelos Aplicados</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td style="width: 400px;">
+                                                        <p:outputLabel>
+                                                            • ctree – conditional inference tree<br></br>
+                                                            • rpart – decision tree<br></br>
+                                                            • kknn – k-nearest neighbor<br></br>
+                                                            • mlp – multilayer perceptron with one hidden layer<br></br>
+                                                            • mlpe – multilayer perceptron ensemble<br></br>
+                                                            • ksvm – support vector machine<br></br>
+                                                            • randomForest – random forest algorithm<br></br>
+                                                            • mr – multiple regression<br></br>
+                                                            • mars – multivariate adaptive regression splines<br></br>
+                                                            • cubist – M5 rule-based model<br></br>
+                                                            • pcr – principal component regression<br></br>
+                                                            • plsr – partial least squares regression<br></br>
+                                                            • cppls – canonical powered partial least squares<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/reg.png" width="450px" height="220px"></p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Implementación y visualización de resultados">
+                                        <table >
+                                            <thead>
+                                                <tr>
+                                                    <th>Implementación del modelo</th>
+                                                    <th>Visualización Mapas Irradiación</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 400px;">
+                                                        <p:outputLabel>
+                                                            1. Aplicar el modelo obtenido a los puntos disponibles.<br></br><br></br>
+                                                            2. Seleccionar una muestra representativa (5000 muestras).<br></br><br></br>
+                                                            3. Aplicar técnicas de interpolación espacial (kriging), se utilizó una resolución espacial de 450m aunque resoluciones más finas son posibles<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:tabView >
+                                                            <p:tab title="General">
+                                                                <p:graphicImage value="./img/inimg/sun/mapg.png" width="400px" height="380px"></p:graphicImage>
+                                                            </p:tab>
+                                                            <p:tab title=" Mensuales">
+                                                                <p:graphicImage value="./img/inimg/sun/mapm.png" width="400px" height="310px"></p:graphicImage>
+                                                            </p:tab>
+                                                            <p:tab title=" Anuales">
+                                                                <p:graphicImage value="./img/inimg/sun/mapa.png" width="450px" height="300px"></p:graphicImage>
+                                                            </p:tab>
+                                                        </p:tabView>
+
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                </p:accordionPanel>
                             </p:tab>
-                            <p:tab title="Fase 2:">
-                                <h:panelGrid columns="2" cellpadding="30">
-                                    <p:graphicImage value="./img/logolista.png" width="35px" height="35px"/>
-                                    <p:outputLabel value="
-                                                   Incluye estudios de prefactibilidad y diseños técnicos
-                                                   detallados de una solución para una zona elegida por sus capacidades energéticas alternativas caracterizadas por una
-                                                    metodología apoyada por mediciones reales."/>
-                                </h:panelGrid>
+                            <p:tab title="Identificación Indices de Biomasa ">
+                                <p:accordionPanel >
+                                    <p:tab title="Objetivo">
+                                        <h:panelGrid cellpadding="15">
+                                            <p:outputLabel value="
+                                                Calcular modelos de regresión de biomasa a partir de bandas de imágenes
+                                                satelitales Landsat para la generación de mapas de biomasa en el
+                                                departamento de Nariño."/>
+                                        </h:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="Obtener un banco de imágenes satelitales del área de estudio desde los repositorios de libre acceso de Landsat">
+                                        <table >
+                                            <thead>
+                                                <tr>
+                                                    <th>Información General Landsat 7</th>
+                                                    <th>Imágen Satelital</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 500px;">
+                                                        <p:outputLabel>
+                                                            • Disponible desde Abril de 1999.<br></br>
+                                                            • Intervalo de repetición cada 16 días.<br></br>
+                                                            • Una banda pancromática con resolución espacial de 15m.<br></br>
+                                                            • Tres bandas visibles para el azul, verde, rojo a 30m.<br></br>
+                                                            • Tres bandas infrarojas a 30m.<br></br>
+                                                            • Una banda térmica a 60m.<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/l7.png" width="360px" height="200px">
+                                                            <p:outputLabel>
+                                                                Imágenes Disponibles en: <a href="http://earthexplorer.usgs.gov/">earthexplorer.usgs.gov</a>
+                                                            </p:outputLabel>
+                                                        </p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Reproyección-Corte Imágenes Landsat">
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 500px;">
+                                                        <p:outputLabel>
+                                                            • Cambio del sistema de referencia espacial de las imágenes Satelitales a EPSG:3857<br></br><br></br>
+                                                            • Recorte de imágenes según el territorio departamental.<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/sun/clipper.png" width="360px" height="170px"></p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Selección muestras de estudios de Biomasa">
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 350px;">
+                                                        • 482 Muestras seleccionadas manualmente cada 6 km. de The Woods Hole Research Center.
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/biomass/Colombia.png" width="250px" height="350px"></p:graphicImage><br></br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/biomass/WHRC.png" width="600px" height="350px"></p:graphicImage>
+                                                    </td>
+                                                    
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Seleccionar las técnicas de regresión y parámetros más apropiados">
+                                        <table >
+                                            <tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Selección del conjunto de datos</th>
+                                                        <th>Base de datos</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td style="width: 400px;">
+                                                        <p:outputLabel>
+                                                            • 1321 imágenes procesadas.<br></br>
+                                                            • 15 años (2000 – 2014).
+                                                            • 51'076.512 puntos disponibles.<br></br>
+                                                            • 4'071.185 puntos con mediciones válidas (no nublados).<br></br>
+                                                            • 421 puntos con al menos 4 mediciones disponibles que se pueden asociar a un valor nominal de irradiación solar.<br></br>
+                                                            • Cálcular Reflectancia a bandas 1-7 de landsat.<br></br>
+                                                            • Aplicar filtro para nubes,rios,datos nulos,etc.<br></br>
+                                                            • Almacenamiento de datos correctos.<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/biomass/bd.png" width="480px" height="200px"></p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <hr></hr>
+                                        <table >
+                                            <tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Modelos de Regresión Aplicados</th>
+                                                        <th>Comparación de Resultados de Modelos Aplicados</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td style="width: 400px;">
+                                                        <p:outputLabel>
+                                                            • ctree – conditional inference tree<br></br>
+                                                            • rpart – decision tree<br></br>
+                                                            • kknn – k-nearest neighbor<br></br>
+                                                            • mlp – multilayer perceptron with one hidden layer<br></br>
+                                                            • mlpe – multilayer perceptron ensemble<br></br>
+                                                            • ksvm – support vector machine<br></br>
+                                                            • randomForest – random forest algorithm<br></br>
+                                                            • mr – multiple regression<br></br>
+                                                            • mars – multivariate adaptive regression splines<br></br>
+                                                            • cubist – M5 rule-based model<br></br>
+                                                            • pcr – principal component regression<br></br>
+                                                            • plsr – partial least squares regression<br></br>
+                                                            • cppls – canonical powered partial least squares<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/biomass/reg.png" width="450px" height="220px"></p:graphicImage>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Implementación y visualización de resultados">
+                                        <table >
+                                            <thead>
+                                                <tr>
+                                                    <th>Implementación del modelo</th>
+                                                    <th>Visualización Mapas Irradiación</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 400px;">
+                                                        <p:outputLabel>
+                                                            1. Aplicar el modelo obtenido a los puntos disponibles.<br></br><br></br>
+                                                            2. Seleccionar una muestra representativa (5000 muestras).<br></br><br></br>
+                                                            3. Aplicar técnicas de interpolación espacial (kriging), se utilizó una resolución espacial de 450m aunque resoluciones más finas son posibles<br></br>
+                                                        </p:outputLabel>
+                                                    </td>
+                                                    <td>
+                                                        <p:tabView >
+                                                            <p:tab title="General">
+                                                                <p:graphicImage value="./img/inimg/biomass/mapbg.png" width="400px" height="380px"></p:graphicImage>
+                                                            </p:tab>
+                                                            <p:tab title=" Mensuales">
+                                                                <p:graphicImage value="./img/inimg/biomass/mapbm.png" width="400px" height="320px"></p:graphicImage>
+                                                            </p:tab>
+                                                            <p:tab title=" Anuales">
+                                                                <p:graphicImage value="./img/inimg/biomass/mapby.png" width="430px" height="300px"></p:graphicImage>
+                                                            </p:tab>
+                                                        </p:tabView>
+
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                </p:accordionPanel>
                             </p:tab>
-                            <p:tab title="Fase 3:">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <p:graphicImage value="./img/logolista.png" width="35px" height="35px"/>
-                                    <p:outputLabel value="Incluye los estudios de factibilidad "/>
-                                </h:panelGrid>
+                            <p:tab title="Identificación Velocidad de Viento">                                
                             </p:tab>
-                            <p:tab title="Fase 4:">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <p:graphicImage value="./img/logolista.png" width="35px" height="35px"/>
-                                    <p:outputLabel value=" Comprende la implementación de las soluciones diseñadas. "/>
-                                </h:panelGrid>
-                            </p:tab>
-                        </p:accordionPanel>
+                        </p:tabView>
+
                     </h:form>
                 </h:panelGrid>
             </ui:define>
