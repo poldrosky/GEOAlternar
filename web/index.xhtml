@@ -18,15 +18,14 @@
                         <p:graphicImage value="./img/gal/#{image}" styleClass="content" /><!-- <div class="caption">#{image}</div>-->
                     </p:contentFlow>
                     <h:form id="form" style="width: 80%; margin-left: 20%; margin-right: 20%; width: 1000px; text-align: justify;">
-                        <h3>Anślisis de fuentes alternativas de Energía - Investigación de Fuentes Energéticas</h3>
+                        <h3>Análisis de fuentes alternativas de Energía - Investigación de Fuentes Energéticas</h3>
                         <h4>Metodología Aplicada</h4>
                         <p:tabView style="font-size: 14px; text-align: left;">
                             <p:tab title=" Identificación Irradiación Solar ">   
                                 <p:accordionPanel >
                                     <p:tab title="Objetivo">
                                         <h:panelGrid cellpadding="15">
-                                            <p:outputLabel value="
-                                                           Calcular modelos de regresión de potencial solar a partir de la reflectancia en las bandas de imágenes satelitales Landsat para la generación de mapas de potencial solar en el Departamento de Nariño."/>
+                                            <p:outputLabel value="Calcular modelos de regresión de potencial solar a partir de la reflectancia en las bandas de imágenes satelitales Landsat para la generación de mapas de potencial solar en el Departamento de Nariño."/>
                                         </h:panelGrid>
                                     </p:tab>
                                     <p:tab title="Obtener un banco de imágenes satelitales del área de estudio desde los repositorios de libre acceso de Landsat">
@@ -82,7 +81,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="width: 350px;">
-                                                        • 482 Muestras seleccionadas manualmente de 3tier separadas con una distancia de 6 km.
+                                                        • 482 Muestras de 3tier a 6 km.
                                                     </td>
                                                     <td>
                                                         <p:graphicImage value="./img/inimg/sun/sample.png" width="350px" height="300px"></p:graphicImage><br></br>
@@ -93,9 +92,7 @@
                                                     <td>
                                                         <p:graphicImage value="./img/inimg/sun/3tier.png" width="600px" height="350px"></p:graphicImage>
                                                     </td>
-                                                    
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </p:tab>
@@ -273,9 +270,7 @@
                                                     <td>
                                                         <p:graphicImage value="./img/inimg/biomass/WHRC.png" width="600px" height="350px"></p:graphicImage>
                                                     </td>
-                                                    
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </p:tab>
@@ -379,8 +374,38 @@
                                     </p:tab>
                                 </p:accordionPanel>
                             </p:tab>
-                            <p:tab title="Identificación Velocidad de Viento">                                
+                            <p:tab title="Identificación Comportamiento Eólico"> 
+                                <p:accordionPanel >
+                                    <p:tab title="Objetivo">
+                                        <h:panelGrid cellpadding="15">
+                                            <p:outputLabel value="Generación de mapas de Viento en eldepartamento de Nariño."/>
+                                        </h:panelGrid>
+                                    </p:tab>
+                                    <p:tab title="Obtención de datos" >
+                                        <table >
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width: 500px; text-align: justify;">
+                                                        Se identificó y exploró las fuentes de datos disponibles.
+                                                        Se utilizó las bases de datos eólicas de un proveedor
+                                                        externo (Vaisala Inc) y se seleccionó 480 series de tiempo regularmente
+                                                        espaciados en el departamento de Nariño, con la cual se
+                                                        espera construir los mapas de potencial eólico necesarios a
+                                                        50 y 120 metros de altura.    
+                                                    </td>
+                                                    <td>
+                                                        <p:graphicImage value="./img/inimg/wind/sample.png" width="350px" height="300px"></p:graphicImage><br></br>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p:tab>
+                                    <p:tab title="Procesamiento de datos">
+                                        
+                                    </p:tab>
+                                </p:accordionPanel>
                             </p:tab>
+                            
                         </p:tabView>
 
                     </h:form>
