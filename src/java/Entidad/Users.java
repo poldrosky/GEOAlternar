@@ -7,6 +7,7 @@ package Entidad;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author edixred
  */
 @Entity
+@Cacheable(false)
 @Table(name = "users", catalog = "landsat", schema = "public")
 @XmlRootElement
 @NamedQueries({

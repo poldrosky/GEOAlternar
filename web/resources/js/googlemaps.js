@@ -148,9 +148,4 @@ function reproject3857() {
     var result = proj4(firstProjection, secondProjection, [lon,lat]);
     document.getElementById('frmlatlon:latitudeCap').value = Math.round(result[1],1);
     document.getElementById('frmlatlon:longitudeCap').value = Math.round(result[0],1);
-//    //point
-//    markers = new OpenLayers.Layer.Markers("Punto");
-//    map.addLayer(markers);
-//    marker = new OpenLayers.Marker(result[0], result[1]);
-//    markers.addMarker(marker);
 }

@@ -40,6 +40,7 @@ public class MbRUsuario {
         this.usuario=new Users();
         
     }
+   
     
 ////METODO PARA REGISTRAR USUARIO
     public void resgister()
@@ -88,15 +89,18 @@ public class MbRUsuario {
             }
             
             String auxPass=this.txtContraseniaRepita;
+            Users userBd=usersFacade.find(this.usuario.getEmail());
             
-            if(usersFacade.getByEmail(this.usuario.getEmail())==null)
+            if(userBd==null)
             {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El usuario NO se encuentra registrado en el sistema"));
 
                 return;
             }
+           // userBd.setPassword(auxPass);
+            usuario.setPassword(Encrypt.sha512(this.usuario.getPassword()));
+            //usersFacade.edit(userBd);
             
-            this.usuario.setPassword(Encrypt.sha512(this.usuario.getPassword()));
             
             usersFacade.cambioContrasenia(this.usuario.getEmail(),Encrypt.sha512(this.txtContraseniaRepita));
             

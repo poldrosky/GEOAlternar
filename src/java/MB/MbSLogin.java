@@ -15,7 +15,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 
@@ -23,8 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author edixred
  */
-@Named(value="mbSLogin")
-@ManagedBean
+@ManagedBean(name ="mbSLogin" )
 @SessionScoped
 public class MbSLogin implements Serializable{
 
@@ -47,7 +45,10 @@ public class MbSLogin implements Serializable{
         try
         {
           
-            Users usuario=daoUsers.getByEmail(this.email);
+            Users usuario=daoUsers.find(this.email);
+            
+            System.out.println("clave actual:"+usuario.getPassword());
+            System.out.println("clave digitada:"+Encrypt.sha512(this.password));
       
             if(usuario!=null)
             {
@@ -69,6 +70,7 @@ public class MbSLogin implements Serializable{
         } 
         catch (Exception e) 
         {
+            System.out.println("error"+e.toString());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR FATAL", "Por favor contacte con su administrador"+e.getMessage()));
             return null;
         }
