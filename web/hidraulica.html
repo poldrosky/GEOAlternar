@@ -6,14 +6,9 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="http://openlayers.org/en/master/css/ol.css" type="text/css">
     <style type="text/css">
-    body {
-      width: 960px;
-      height: 500px;
-      position: relative;
-    }
     #map {
-      width: 100%;
-      height: 100%;
+      width: 600px;
+      height: 600px;
     }
     div.fill {
       width: 100%;
@@ -30,26 +25,33 @@
     </div>
     <script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
     <script type="text/javascript">
-    var gmap = new google.maps.Map(document.getElementById('gmap'), {
-      disableDefaultUI: true,
-      keyboardShortcuts: false,
+    var loc = window.location.href;
+    var fileNamePart = loc.split('/');
+    var urllimits=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json';
+     var gmap = new google.maps.Map(document.getElementById('gmap'), {
+      disableDefaultUI: false,
+      keyboardShortcuts: true,
       draggable: true,
-      disableDoubleClickZoom: true,
+      disableDoubleClickZoom: false,
       scrollwheel: true,
-      streetViewControl: true
+      streetViewControl: true,
+      mapTypeId: google.maps.MapTypeId.HYBRID
     });
-    var view = new ol.View({
-      // make sure the view doesn't go beyond the 22 zoom levels of Google Maps
-      maxZoom: 21
-    });
-    view.on('change:center', function() {
-      var center = ol.proj.transform([-78.028, 1.409], 'EPSG:3857', 'EPSG:4326');
-      gmap.setCenter(new google.maps.LatLng(center[1], center[0]));
-    });
-    view.on('change:resolution', function() {
-      gmap.setZoom(view.getZoom());
-    });
-    
+     var topoJson = new ol.layer.Vector({
+                source: new ol.source.TopoJSON({
+                    projection: 'EPSG:3857',
+                    url: urllimits
+                })
+            });
+    var map = new ol.Map({
+                target: 'map',  // The DOM element that will contains the map
+                renderer: 'canvas', // Force the renderer to be used
+                layers: [topoJson]
+            });
+
+    var view = new ol.View({maxZoom: 21});
+    view.on('change:center', function() {gmap.setCenter(new google.maps.LatLng(1.799,-78.028));});
+    view.on('change:resolution', function() {gmap.setZoom(view.getZoom());});
     view.setCenter([-78.028, 1.409]);
     view.setZoom(8);
     
