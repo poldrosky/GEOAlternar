@@ -1,18 +1,22 @@
+var wmsparams = [
+"REQUEST=GetMap",
+"SERVICE=WMS",
+"VERSION=1.1.1",
+"BGCOLOR=0xFFFFFF",
+"TRANSPARENT=TRUE",
+"SRS=EPSG:3857",
+"WIDTH=255",
+"HEIGHT=255",
+"format=image/png"
+];
 
-var map = new ol.Map({ 
-   layers: [ 
-     new ol.layer.Tile({ 
-        source: new ol.source.OSM() 
-     }) 
-   ], 
-   renderer: 'canvas',
-   target: 'map', 
-   view: new ol.View({ 
-     center: [0, 0], 
-     zoom: 2 
-   }) 
-}); 
+var mapOptions = {
+    zoom: 4,
+    center: new google.maps.LatLng(37.609066626725,-97.423977848479),
+    mapTypeControl:false,
+    draggableCursor: 'crosshair',
+    mapTypeId:'roadmap',
+    backgroundColor: "#badbff"
+}
 
-//Añadimos un control de zoom 
-
-map.addControl(new ol.control.ZoomSlider()); 
+map = new google.maps.Map(document.getElementById("map"),mapOptions);
