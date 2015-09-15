@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author edixred
  */
 @Entity
-@Table(name = "maps", catalog = "landsat", schema = "public")
+@Table(name = "maps", catalog = "geoalternar", schema = "public")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Maps.findAll", query = "SELECT m FROM Maps m"),

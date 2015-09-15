@@ -247,50 +247,50 @@ public class MBRMap implements Serializable {
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
         System.out.println(lat + " || " + lon);
-        valor = daoMap.getByCoordenate(lon, lat, "General", 3);
+        valor = daoMap.getByCoordenate(lon, lat, "General");
         if (valor != null) {
-            valorbd = "Promedio General en Irradiación Solar : " + valor[3].toString() + " W/m²";
+            valorbd = "Promedio General en Irradiación Solar : " + valor[2].toString() + " W/m²";
         }
-        //////////consultar valor por MES O AÑO
-        valormeses = daoMap.getHistoryMonths(lon, lat, 3);
-        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-        {
-        //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-        mlat = Double.parseDouble(valormeses[0].toString());
-        mlon = Double.parseDouble(valormeses[1].toString());
-        m1 = Double.parseDouble(valormeses[2].toString());
-        m2 = Double.parseDouble(valormeses[3].toString());
-        m3 = Double.parseDouble(valormeses[4].toString());
-        m4 = Double.parseDouble(valormeses[5].toString());
-        m5 = Double.parseDouble(valormeses[6].toString());
-        m6 = Double.parseDouble(valormeses[7].toString());
-        m7 = Double.parseDouble(valormeses[8].toString());
-        m8 = Double.parseDouble(valormeses[9].toString());
-        m9 = Double.parseDouble(valormeses[10].toString());
-        m10 = Double.parseDouble(valormeses[11].toString());
-        m11 = Double.parseDouble(valormeses[12].toString());
-        m12 = Double.parseDouble(valormeses[13].toString());
-        }
-        valoranios = daoMap.getHistoryYears(lon, lat, 3);
-        if (valormeses == null)
-        {
-            return;
-        }
-        y0 = Double.parseDouble(valoranios[2].toString());
-        y1 = Double.parseDouble(valoranios[3].toString());
-        y2 = Double.parseDouble(valoranios[4].toString());
-        y3 = Double.parseDouble(valoranios[5].toString());
-        y4 = Double.parseDouble(valoranios[6].toString());
-        y5 = Double.parseDouble(valoranios[7].toString());
-        y6 = Double.parseDouble(valoranios[8].toString());
-        y7 = Double.parseDouble(valoranios[9].toString());
-        y8 = Double.parseDouble(valoranios[10].toString());
-        y9 = Double.parseDouble(valoranios[11].toString());
-        y10 = Double.parseDouble(valoranios[12].toString());
-        y11 = Double.parseDouble(valoranios[13].toString());
-        y12 = Double.parseDouble(valoranios[14].toString());
-        y13 = Double.parseDouble(valoranios[15].toString());
-        y14 = Double.parseDouble(valoranios[16].toString());
+//        //////////consultar valor por MES O AÑO
+//        valormeses = daoMap.getHistoryMonths(lon, lat, 3);
+//        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+//        {
+//        //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+//        mlat = Double.parseDouble(valormeses[0].toString());
+//        mlon = Double.parseDouble(valormeses[1].toString());
+//        m1 = Double.parseDouble(valormeses[2].toString());
+//        m2 = Double.parseDouble(valormeses[3].toString());
+//        m3 = Double.parseDouble(valormeses[4].toString());
+//        m4 = Double.parseDouble(valormeses[5].toString());
+//        m5 = Double.parseDouble(valormeses[6].toString());
+//        m6 = Double.parseDouble(valormeses[7].toString());
+//        m7 = Double.parseDouble(valormeses[8].toString());
+//        m8 = Double.parseDouble(valormeses[9].toString());
+//        m9 = Double.parseDouble(valormeses[10].toString());
+//        m10 = Double.parseDouble(valormeses[11].toString());
+//        m11 = Double.parseDouble(valormeses[12].toString());
+//        m12 = Double.parseDouble(valormeses[13].toString());
+//        }
+//        valoranios = daoMap.getHistoryYears(lon, lat, 3);
+//        if (valormeses == null)
+//        {
+//            return;
+//        }
+//        y0 = Double.parseDouble(valoranios[2].toString());
+//        y1 = Double.parseDouble(valoranios[3].toString());
+//        y2 = Double.parseDouble(valoranios[4].toString());
+//        y3 = Double.parseDouble(valoranios[5].toString());
+//        y4 = Double.parseDouble(valoranios[6].toString());
+//        y5 = Double.parseDouble(valoranios[7].toString());
+//        y6 = Double.parseDouble(valoranios[8].toString());
+//        y7 = Double.parseDouble(valoranios[9].toString());
+//        y8 = Double.parseDouble(valoranios[10].toString());
+//        y9 = Double.parseDouble(valoranios[11].toString());
+//        y10 = Double.parseDouble(valoranios[12].toString());
+//        y11 = Double.parseDouble(valoranios[13].toString());
+//        y12 = Double.parseDouble(valoranios[14].toString());
+//        y13 = Double.parseDouble(valoranios[15].toString());
+//        y14 = Double.parseDouble(valoranios[16].toString());
     }
 
     public void consultarVientoCoordenada() throws IOException {
@@ -303,54 +303,54 @@ public class MBRMap implements Serializable {
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
         runRscript(lat, lon);
-        valor = daoMap.getByCoordenate(lon, lat, "General", 1);
+        valor = daoMap.getByCoordenate(lon, lat, "General");
        
         if (valor != null) {
-            valorbd = "Promedio General en Velocidad de Viento : " + valor[3].toString() + " m/seg";
+            valorbd = "Promedio General en Velocidad de Viento : " + valor[2].toString() + " m/seg";
         }
 
-        //////////consultar valor por MES O AÑO
-        valormeses = daoMap.getHistoryMonths(lon, lat, 1);
-        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-        {
-            mlat = Double.parseDouble(valormeses[0].toString());
-            mlon = Double.parseDouble(valormeses[1].toString());
-            m1 = Double.parseDouble(valormeses[2].toString());
-            m2 = Double.parseDouble(valormeses[3].toString());
-            m3 = Double.parseDouble(valormeses[4].toString());
-            m4 = Double.parseDouble(valormeses[5].toString());
-            m5 = Double.parseDouble(valormeses[6].toString());
-            m6 = Double.parseDouble(valormeses[7].toString());
-            m7 = Double.parseDouble(valormeses[8].toString());
-            m8 = Double.parseDouble(valormeses[9].toString());
-            m9 = Double.parseDouble(valormeses[10].toString());
-            m10 = Double.parseDouble(valormeses[11].toString());
-            m11 = Double.parseDouble(valormeses[12].toString());
-            m12 = Double.parseDouble(valormeses[13].toString());
-        }
-        
-
-        valoranios = daoMap.getHistoryYears(lon, lat, 1);
-        if (valormeses == null)
-        {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No hay estudios sobre la Zona", "¡¡"));
-            return;
-        }
-        y0 = Double.parseDouble(valoranios[2].toString());
-        y1 = Double.parseDouble(valoranios[3].toString());
-        y2 = Double.parseDouble(valoranios[4].toString());
-        y3 = Double.parseDouble(valoranios[5].toString());
-        y4 = Double.parseDouble(valoranios[6].toString());
-        y5 = Double.parseDouble(valoranios[7].toString());
-        y6 = Double.parseDouble(valoranios[8].toString());
-        y7 = Double.parseDouble(valoranios[9].toString());
-        y8 = Double.parseDouble(valoranios[10].toString());
-        y9 = Double.parseDouble(valoranios[11].toString());
-        y10 = Double.parseDouble(valoranios[12].toString());
-        y11 = Double.parseDouble(valoranios[13].toString());
-        y12 = Double.parseDouble(valoranios[14].toString());
-        y13 = Double.parseDouble(valoranios[15].toString());
-        y14 = Double.parseDouble(valoranios[16].toString());
+//        //////////consultar valor por MES O AÑO
+//        valormeses = daoMap.getHistoryMonths(lon, lat, 1);
+//        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+//        {
+//            mlat = Double.parseDouble(valormeses[0].toString());
+//            mlon = Double.parseDouble(valormeses[1].toString());
+//            m1 = Double.parseDouble(valormeses[2].toString());
+//            m2 = Double.parseDouble(valormeses[3].toString());
+//            m3 = Double.parseDouble(valormeses[4].toString());
+//            m4 = Double.parseDouble(valormeses[5].toString());
+//            m5 = Double.parseDouble(valormeses[6].toString());
+//            m6 = Double.parseDouble(valormeses[7].toString());
+//            m7 = Double.parseDouble(valormeses[8].toString());
+//            m8 = Double.parseDouble(valormeses[9].toString());
+//            m9 = Double.parseDouble(valormeses[10].toString());
+//            m10 = Double.parseDouble(valormeses[11].toString());
+//            m11 = Double.parseDouble(valormeses[12].toString());
+//            m12 = Double.parseDouble(valormeses[13].toString());
+//        }
+//        
+//
+//        valoranios = daoMap.getHistoryYears(lon, lat, 1);
+//        if (valormeses == null)
+//        {
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No hay estudios sobre la Zona", "¡¡"));
+//            return;
+//        }
+//        y0 = Double.parseDouble(valoranios[2].toString());
+//        y1 = Double.parseDouble(valoranios[3].toString());
+//        y2 = Double.parseDouble(valoranios[4].toString());
+//        y3 = Double.parseDouble(valoranios[5].toString());
+//        y4 = Double.parseDouble(valoranios[6].toString());
+//        y5 = Double.parseDouble(valoranios[7].toString());
+//        y6 = Double.parseDouble(valoranios[8].toString());
+//        y7 = Double.parseDouble(valoranios[9].toString());
+//        y8 = Double.parseDouble(valoranios[10].toString());
+//        y9 = Double.parseDouble(valoranios[11].toString());
+//        y10 = Double.parseDouble(valoranios[12].toString());
+//        y11 = Double.parseDouble(valoranios[13].toString());
+//        y12 = Double.parseDouble(valoranios[14].toString());
+//        y13 = Double.parseDouble(valoranios[15].toString());
+//        y14 = Double.parseDouble(valoranios[16].toString());
     }
 
     public void runRscript(int lat, int lon) {
@@ -391,50 +391,50 @@ public class MBRMap implements Serializable {
         lat = (int) (valuelat - (valuelat % 900));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 900));
-        valor = daoMap.getByCoordenate(lon, lat, "General", 2);
+        valor = daoMap.getByCoordenate(lon, lat, "General");
          if (valor != null) {
-            valorbd = "Promedio General en Biomasa : " + valor[3].toString() + " Mg/Ha";
+            valorbd = "Promedio General en Biomasa : " + valor[2].toString() + " Mg/Ha";
         }
-        valormeses = daoMap.getHistoryMonths(lon, lat, 2);
-        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-        {
-            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
-            mlat = Double.parseDouble(valormeses[0].toString());
-            mlon = Double.parseDouble(valormeses[1].toString());
-            m1 = Double.parseDouble(valormeses[2].toString());
-            m2 = Double.parseDouble(valormeses[3].toString());
-            m3 = Double.parseDouble(valormeses[4].toString());
-            m4 = Double.parseDouble(valormeses[5].toString());
-            m5 = Double.parseDouble(valormeses[6].toString());
-            m6 = Double.parseDouble(valormeses[7].toString());
-            m7 = Double.parseDouble(valormeses[8].toString());
-            m8 = Double.parseDouble(valormeses[9].toString());
-            m9 = Double.parseDouble(valormeses[10].toString());
-            m10 = Double.parseDouble(valormeses[11].toString());
-            m11 = Double.parseDouble(valormeses[12].toString());
-            m12 = Double.parseDouble(valormeses[13].toString());
-        }
-
-        valoranios = daoMap.getHistoryYears(lon, lat, 2);
-        if (valormeses == null)
-        {
-            return;
-        }
-        y0 = Double.parseDouble(valoranios[2].toString());
-        y1 = Double.parseDouble(valoranios[3].toString());
-        y2 = Double.parseDouble(valoranios[4].toString());
-        y3 = Double.parseDouble(valoranios[5].toString());
-        y4 = Double.parseDouble(valoranios[6].toString());
-        y5 = Double.parseDouble(valoranios[7].toString());
-        y6 = Double.parseDouble(valoranios[8].toString());
-        y7 = Double.parseDouble(valoranios[9].toString());
-        y8 = Double.parseDouble(valoranios[10].toString());
-        y9 = Double.parseDouble(valoranios[11].toString());
-        y10 = Double.parseDouble(valoranios[12].toString());
-        y11 = Double.parseDouble(valoranios[13].toString());
-        y12 = Double.parseDouble(valoranios[14].toString());
-        y13 = Double.parseDouble(valoranios[15].toString());
-        y14 = Double.parseDouble(valoranios[16].toString());
+//        valormeses = daoMap.getHistoryMonths(lon, lat, 2);
+//        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+//        {
+//            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+//            mlat = Double.parseDouble(valormeses[0].toString());
+//            mlon = Double.parseDouble(valormeses[1].toString());
+//            m1 = Double.parseDouble(valormeses[2].toString());
+//            m2 = Double.parseDouble(valormeses[3].toString());
+//            m3 = Double.parseDouble(valormeses[4].toString());
+//            m4 = Double.parseDouble(valormeses[5].toString());
+//            m5 = Double.parseDouble(valormeses[6].toString());
+//            m6 = Double.parseDouble(valormeses[7].toString());
+//            m7 = Double.parseDouble(valormeses[8].toString());
+//            m8 = Double.parseDouble(valormeses[9].toString());
+//            m9 = Double.parseDouble(valormeses[10].toString());
+//            m10 = Double.parseDouble(valormeses[11].toString());
+//            m11 = Double.parseDouble(valormeses[12].toString());
+//            m12 = Double.parseDouble(valormeses[13].toString());
+//        }
+//
+//        valoranios = daoMap.getHistoryYears(lon, lat, 2);
+//        if (valormeses == null)
+//        {
+//            return;
+//        }
+//        y0 = Double.parseDouble(valoranios[2].toString());
+//        y1 = Double.parseDouble(valoranios[3].toString());
+//        y2 = Double.parseDouble(valoranios[4].toString());
+//        y3 = Double.parseDouble(valoranios[5].toString());
+//        y4 = Double.parseDouble(valoranios[6].toString());
+//        y5 = Double.parseDouble(valoranios[7].toString());
+//        y6 = Double.parseDouble(valoranios[8].toString());
+//        y7 = Double.parseDouble(valoranios[9].toString());
+//        y8 = Double.parseDouble(valoranios[10].toString());
+//        y9 = Double.parseDouble(valoranios[11].toString());
+//        y10 = Double.parseDouble(valoranios[12].toString());
+//        y11 = Double.parseDouble(valoranios[13].toString());
+//        y12 = Double.parseDouble(valoranios[14].toString());
+//        y13 = Double.parseDouble(valoranios[15].toString());
+//        y14 = Double.parseDouble(valoranios[16].toString());
     }
 
     public List<Capamap> getCapasBiomasaMes() {

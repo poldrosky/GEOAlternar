@@ -22,20 +22,16 @@ public class MapsFacade extends AbstractFacade<Maps> {
         super(Maps.class);
     }
 
-    public Object[] getByCoordenate(int latitude, int longitude, String map, int type) {
+     public Object[] getByCoordenate(int latitude, int longitude, String map) {
         try{
-        Query q = getEntityManager().createNativeQuery("Select m.* from maps as m where latitude=? and longitude=? and tag_time=? and tag_type=?");
+        Query q = getEntityManager().createNativeQuery("Select m.latitude_3857, m.longitude_3857,m.value_point from (grid_450 natural join maps_biomass) m where m.latitude_3857=? and m.longitude_3857=? and m.tag_time=?");
         q.setParameter(1, latitude);
         q.setParameter(2, longitude);
         q.setParameter(3, map);
-        q.setParameter(4, type);
-        
         return (Object[]) q.getSingleResult();
         }catch(Exception e){
             return null;
         }
-        
-        
     }
 
     public Object[] getHistoryMonths(int latitude, int longitude, int type) {
