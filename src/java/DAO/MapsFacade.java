@@ -36,45 +36,90 @@ public class MapsFacade extends AbstractFacade<Maps> {
 
     public Object[] getHistoryMonths(int latitude, int longitude, int type) {
         try{
-            Query qmonths = getEntityManager().createNativeQuery("SELECT "
-                    + "m.* "
-                    + "FROM ("
-                    + "(SELECT latitude, longitude, VALUE AS january FROM maps WHERE latitude=? and longitude=? and tag_time='January' and tag_type=?) AS a1 "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS february FROM maps WHERE latitude=? and longitude=? and tag_time='February' and tag_type=?) AS a2 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS march FROM maps WHERE latitude=? and longitude=? and tag_time='March' and tag_type=?) AS a3 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS april FROM maps WHERE latitude=? and longitude=? and tag_time='April' and tag_type=?) AS a4 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS may FROM maps WHERE latitude=? and longitude=? and tag_time='May' and tag_type=?) AS a5 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS june FROM maps WHERE latitude=? and longitude=? and tag_time='June' and tag_type=?) AS a6 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS july FROM maps WHERE latitude=? and longitude=? and tag_time='July' and tag_type=?) AS a7 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS august FROM maps WHERE latitude=? and longitude=? and tag_time='August' and tag_type=?) AS a8 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS september FROM maps WHERE latitude=? and longitude=? and tag_time='September' and tag_type=?) AS a9 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS october FROM maps WHERE latitude=? and longitude=? and tag_time='October' and tag_type=?) AS a10 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS november FROM maps WHERE latitude=? and longitude=? and tag_time='November' and tag_type=?) AS a11 "
-                    + "USING(latitude, longitude) "
-                    + "JOIN "
-                    + "(SELECT latitude, longitude, VALUE AS december FROM maps WHERE latitude=? and longitude=? and tag_time='December' and tag_type=?) AS a12 "
-                    + "USING(latitude, longitude) "
-                    + ")as m"
-            );
+            Query qmonths = getEntityManager().createNativeQuery("SELECT m.* FROM" +
+"(SELECT " +
+"	grid450_id,value_point AS january " +
+"FROM " +
+"	(grid_450 natural join maps_biomass) where latitude_3857=? and longitude_3857=? and tag_time='January') a1 " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS february " +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='February') a2 " +
+"using " +
+"	(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS march " +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='March') a3 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS april " +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='April') a4 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS May " +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='May') a5 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS June" +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='June') a6 " +
+"using" +
+"(grid450_id)" +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS July" +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='July') a7 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT  " +
+"	grid450_id,value_point AS August" +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='August') a8 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS September " +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='September') a9 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS october " +
+"FROM  " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='October') a10 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS november " +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='November') a11 " +
+"using " +
+"(grid450_id) " +
+"JOIN " +
+"(SELECT " +
+"	grid450_id,value_point AS december " +
+"FROM " +
+"	(grid_450 natural join maps_biomass)where latitude_3857=? and longitude_3857=? and tag_time='December') a12 " +
+"using " +
+"(grid450_id) " +
+") m"
+);
 
             qmonths.setParameter(1, latitude);
             qmonths.setParameter(2, longitude);
