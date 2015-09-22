@@ -11,7 +11,19 @@ window.onload = function () {
         coordinateFormat: ol.coordinate.createStringXY(5),
         undefinedHTML: '&nbsp;'
       });
-      //
+      ////Cabeceras municipales
+      var cabeceras = new ol.layer.Image({
+        source: new ol.source.ImageWMS({
+          ratio: 1,
+          url: 'http://geoalternar.udenar.edu.co:8080/geoserver/MapRiver/wms',
+          params: {'FORMAT': format,
+                   'VERSION': '1.1.1',  
+                STYLES: '',
+                LAYERS: 'MapRiver:cabeceras3857',
+          }
+        })
+      });
+      //Limites municipales 
       var limitesminicipales = new ol.layer.Image({
         source: new ol.source.ImageWMS({
           ratio: 1,
@@ -72,7 +84,7 @@ window.onload = function () {
         target: 'map',
         layers: [new ol.layer.Tile({
                     source: new ol.source.OSM()
-                    }),limitesminicipales,untiled,tiled,drenajedoble],
+                    }),limitesminicipales,untiled,tiled,drenajedoble,cabeceras],
         view: new ol.View({
            projection: projection
         })
@@ -99,8 +111,11 @@ window.onload = function () {
         var viewResolution = view.getResolution();
         var source = untiled.get('visible') ? untiled.getSource() : tiled.getSource();
         var url = source.getGetFeatureInfoUrl(
-          evt.coordinate, viewResolution, view.getProjection(),
-          {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50});
+            evt.coordinate, viewResolution, view.getProjection(),
+            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+        );
+        //alert(evt.coordinate);
+        
         if (url) {
           document.getElementById('nodelist').innerHTML = '<iframe seamless src="' + url + '"></iframe>';
         }
