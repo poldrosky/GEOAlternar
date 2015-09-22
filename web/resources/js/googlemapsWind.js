@@ -1,11 +1,12 @@
 var map,markers,marker;
-var gml,urlpath;
+var gml,cabecerasMunicipales,urlpath,urlpathCabeceras;
 var arrMarkers = [];
 window.onload = function () {
 ///////////
     var loc = window.location.href;
     var fileNamePart = loc.split('/');
     urlpath=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/narinoAdmin.json';
+    urlpathCabeceras=fileNamePart[0]+'/'+fileNamePart[1]+'/'+fileNamePart[2]+'/'+fileNamePart[3]+'/'+'resources/js/json/cabecerasMunicipales.json';
     markers = new OpenLayers.Layer.Markers("Punto");
     OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
         defaultHandlerOptions: {
@@ -102,8 +103,26 @@ window.onload = function () {
         })
 
     });
+    //CABECERAS MUNICIPALES
+    cabecerasMunicipales = new OpenLayers.Layer.Vector("Cabeceras Municipales", {
+        projection: new OpenLayers.Projection("EPSG:3857"),
+        strategies: [new OpenLayers.Strategy.Fixed()],
+        protocol: new OpenLayers.Protocol.HTTP({
+            url: urlpathCabeceras,
+            format: new OpenLayers.Format.GeoJSON()
+        }),
+        styleMap: new OpenLayers.StyleMap({
+            "default": new OpenLayers.Style({
+                pointRadius: 5,
+                fillOpacity: 2,
+                strokeColor: "#0AFF00",
+                strokeWidth: 2,
+                strokeOpacity: 0.5}) //Text entspricht feature.attributes.name
+        })
+
+    });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
-    map.addLayers([ghyb,general,gmap,gml,markers]);// 
+    map.addLayers([ghyb,general,gmap,gml,cabecerasMunicipales,markers]);// 
     map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()

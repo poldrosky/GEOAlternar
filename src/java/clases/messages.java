@@ -26,7 +26,7 @@ public class messages {
     public void init() {
         images = new ArrayList<String>();
         for (int i = 1; i <= 7; i++) {
-            images.add("ea" + i + ".jpg");
+            images.add("ea" + i + ".png");
         }
     }
  
