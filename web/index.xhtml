@@ -5,57 +5,147 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <head>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script type="text/javascript" src="js/jquery.plugin.js"></script> 
-        <script type="text/javascript" src="js/jquery.imagecube.js"></script>
     </head>
     <body>
-
+        
         <ui:composition template="./plantilla/menu.xhtml">
-
             <ui:define name="top">
-            </ui:define>
+                <table style="width: 100%;" >
+                    <thead>
+                        <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: 80%;margin-left: 10%;">
+                                <a href="http://alternar.udenar.edu.co">
+                                    <img id="imgalternar" src="img/gal/logogealternar.png" alt="Alternar" />
+                                </a>
+                            </td>
+                            <td style="width: 70px; height: 20px; margin-right: 5%;">
+                                <script type="text/javascript" src="http://counter9.freecounterstat.ovh/private/countertab.js?c=451cccea0f6dcd017d12dccdfb3e1f08"></script>
+                                <div style=" margin-left: 20%; font-size: 9px;">
+                                    <br/>N° Visitas
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
+                
+            </ui:define>
             <ui:define name="content">
-                <!--<div id="defaultCube" style="width: 200px; height: 150px;"> 
-                    <img src="img/gal/ea1.png" alt="ea1" title="ea1"/> 
-                    <img src="img/gal/ea2.png" alt="ea2" title="ea2"/> 
-                    <img src="img/gal/ea3.png" alt="ea3" title="ea3"/> 
-                    <img src="img/gal/ea4.png" alt="ea4" title="ea4"/> 
-                    <img src="img/gal/ea5.png" alt="ea5" title="ea5"/> 
-                    <img src="img/gal/ea6.png" alt="ea6" title="ea6"/> 
-                    <img src="img/gal/ea7.png" alt="ea7" title="ea7"/> 
-                    <img src="img/gal/ea8.png" alt="ea8" title="ea8"/> 
+                <style>
+                #imgalternar{
+                    height:40%;
+                    width:20%;
+                    margin: 20px auto;
+                    position:relative;
+                    margin-left: 10%;
+                }
+                #slider {
+                    height:250px;
+                    width:80%;
+                    margin: 10px auto;
+                    position:relative;
+                }
+                #image {
+                    height:100%;
+                    width:100%;
+                    position:absolute;
+                }
+                .left_hold {
+                    height: 100%;
+                    width: 20%;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                }
+                .right_hold {
+                    height: 100%;
+                    width: 20%;
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                }
+                .left {
+                    height:50px;
+                    width:50px;
+                    position:absolute;
+                    top:40%;
+                }
+                .right {
+                    height:50px;
+                    width:50px;
+                    position:absolute;
+                    top:40%;
+                    right:20px;
+                }
+                
+                </style>
+                <div id="slider">
+                    <img src="img/gal/ea1.png" id="image" />
+                    <div class="left_hold"><img onClick="photo(-1)" class="left" src="img/gal/arrow_left.png" /></div>
+                    <div class="right_hold"><img onClick="photo(1)" class="right" src="img/gal/arrow_right.png" /></div>
+                </div>
+                <div style="width: 70%; margin-left: 15%; margin-right: 15%; font: oblique 130% cursive; text-align: justify;">
+                GEOAlternar es una plataforma que permite visualizar el resultado de la Investigación para el estudio de fuentes 
+                alternativas existentes en el departamento de Nariño, realizada en apoyo a la primera fase del 
+                proyecto “Análisis de Oportunidades Energéticas con Fuentes 
+                Alternativas en el Departamento de Nariño –<a href="http://alternar.udenar.edu.co">ALTERNAR</a>–”. GEOAlternar
+                permite visualizar mapas energéticos y obtener datos sobre las 
+                variacion en el tiempo de fuentes de energia solar, eolica, biomasa e hidraulica.
+                <img src="img/gal/general.png" alt="" style="margin-top: 5%;margin-left: 10%;margin-right: 10%; height:40%;width: 80%;"/>
+                <div style="font: oblique 80% cursive; text-align: center; margin-bottom: 10%;">
+                    Para visualizar los mapas energéticos realize el registro.
+                </div>
+                </div>
+                <div style="margin-left: 20%; margin-left: 20%; margin-bottom: 5%;">
+                    <a title="Regalias" href="https://www.sgr.gov.co/" target="_blank">
+                        <img src="img/gal/SGR.png" alt="Regalias" width="126" height="60"/>
+                    </a>
+                    <a title="UDENAR" href="http://www.udenar.edu.co/" target="_blank">
+                        <img src="img/gal/hoja.png" alt="Udenar" width="92" height="77"/>
+                    </a>
+                        <a title="Electrónica" href="http://electronica.udenar.edu.co/" target="_blank">
+                            <img src="img/gal/ELECTRONICA.png" alt="" width="90" height="73"/>
+                        </a>
+                    <a title="GIIEE" href="http://giiee.udenar.edu.co/" target="_blank">
+                        <img src="img/gal/giiee.png" alt="" width="72" height="73"/>
+                    </a>
+                        <a title="UNIANDES" href="http://www.uniandes.edu.co/" target="_blank">
+                            <img src="img/gal/UNIANDES.png" alt="Uniandes" width="167" height="50"/>
+                        </a>
+                    <a title="ASC" href="http://www.ascingenieriasaesp.com/" target="_blank">
+                        <img src="img/gal/ASC.png" alt="ASC" width="90" height="69"/>
+                    </a>
+                </div>
+                <div style="font: small-caps 100%/150% serif; text-align: center; margin-bottom: 2%; width: 100%; border: 1px #000 dotted; background-color: ghostwhite;">
+                    Universidad de Nariño<br/>
+Ingeniería Electrónica<br/>
+Alternar, 2015<br/>
                 </div>
                 <script>
-                    $(selector).imagecube();
-                    $(selector).imagecube({speed: 1000});
-                    $('#defaultCube').imagecube(); 
-                    $('#stopCube').toggle(function() { 
-                            $(this).text('Start'); 
-                            $('#defaultCube').imagecube('stop'); 
-                        }, function() { 
-                            $(this).text('Stop'); 
-                            $('#defaultCube').imagecube('start'); 
-                        } 
-                    ); 
-                    $('#removeCube').toggle(function() { 
-                            $(this).text('Re-attach'); 
-                            $('#defaultCube').imagecube('destroy'); 
-                        }, 
-                        function() { 
-                            $(this).text('Remove'); 
-                            $('#defaultCube').imagecube(); 
-                        } 
-                    );
+                    var imageCount = 1;
+                    var total = 12;
+
+                    function photo(x) {
+                            var image = document.getElementById('image');
+                            imageCount = imageCount + x;
+                            if(imageCount > total){imageCount = 1;}
+                            if(1>imageCount){imageCount = total;}	
+                            image.src = "img/gal/ea"+ imageCount +".png";
+                            }
+
+                    window.setInterval(function photoA() {
+                            var image = document.getElementById('image');
+                            imageCount = imageCount + 1;
+                            if(imageCount > total){imageCount = 1;}
+                            if(1>imageCount){imageCount = total;}	
+                            image.src = "img/gal/ea"+ imageCount +".png";
+                            },5000);
                 </script>
                     
-                   --> 
-                <h:panelGrid style="margin-top: 1%;" >
-                    <p:contentFlow value="#{messages.images}" var="image" style="margin-left: 20%; margin-right: 20%; width: 1000px; height: 300px;">
-                        <p:graphicImage value="./img/gal/#{image}" styleClass="content" />
-                    </p:contentFlow>
-                </h:panelGrid>
                 
             </ui:define>
 
