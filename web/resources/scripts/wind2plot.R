@@ -5,7 +5,7 @@ table_name <- 'windinterpolation50_2010_2014'
 height = 50
 
 driver <- dbDriver("PostgreSQL", max.con = 250)
-connection <- dbConnect(driver, dbname="geoalternar", user= "glassfish", password="V3Mu02GR", host="190.254.4.128")
+connection <- dbConnect(driver, dbname="wind", user= "glassfish", password="V3Mu02GR", host="190.254.4.128")
 
 args <- commandArgs(TRUE)
 
@@ -18,9 +18,9 @@ bins1 = c(4,8,12,18,25)
 bins2 = c(1,2,3,4)
 
 select <- "SELECT timewind AS timestamp, speed, direction"
-from <- paste("FROM", table_name, "NATURAL JOIN grid_450")
+from <- paste("FROM", table_name)
 where <- "WHERE"
-coordinates <- paste('latitude_3857=',latitude,' AND longitude_3857=',longitude, sep='')
+coordinates <- paste('latitude=',latitude,' AND longitude=',longitude, sep='')
 time_constraint <- "AND timewind < '2015-01-01'"
 sql <- paste(select, from, where, coordinates, time_constraint)
 print(sql)

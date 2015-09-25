@@ -301,6 +301,7 @@ public class MBRMap implements Serializable {
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
+        System.out.println(lat+" "+lon);
         runRscript(lat, lon);
         valor = daoMap.getByCoordenate(lon, lat, "General", 1);
 
