@@ -19,29 +19,45 @@
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
                 <p:layoutUnit position="west" size="18%"  header="Mapas Caudal"  collapsible="true" id="left1">
-                    <h:panelGrid >
-                        <p:outputLabel value="Informacion Drenaje Doble" />
-                        
-                    </h:panelGrid>
+                    <h4 style="margin-left: 15%;">
+                        Informacion Hidrológica
+                    </h4>
+                    <table style="margin-left: 5%;">
+                        <tbody>
+                            <tr>
+                                <td><p:graphicImage value="./img/hidro/cm.png"/></td>
+                                <td><p:outputLabel value="Cabeceras Municipales"/></td>
+                            </tr>
+                            <tr>
+                                <td><p:graphicImage value="./img/hidro/ei.png"/></td>
+                                <td><p:outputLabel value="Estaciones IDEAM"/></td>
+                            </tr>
+                            <tr>
+                                <td><p:graphicImage value="./img/hidro/r.png"/></td>
+                                <td><p:outputLabel value="Drenaje Doble"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
-                    <div id="map"></div>
+                    <div id="map" style="height: 450px; width: 99%;" ></div>
                     <div id="location"></div>
                 </p:layoutUnit>
                 <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  id="rigth" >
-                    <h:outputText value="Latitud:" />
-                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}" size="15" immediate="true" >
-                        <p:ajax event="change"  update="frmlatlon:panel"
-                                immediate="true"/>
+                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
+                        <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
                     </h:inputText>
-                    <h:outputText value="Longitud:" />
-                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}" size="15" immediate="true" >
+                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" style="visibility: hidden;">
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
-                    </h:inputText>
-                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarBiomasaCoordenada()}"
-                                     ajax="true" update="frmlatlon:panel"
-                                     id="btAjax" style="visibility: hidden"/>
-                    <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
+                    </h:inputText><br></br>
+                    <h:outputText value="Latitud: " style="font-size: 10px;"/>
+                    <h:inputText id="lon4326" size="15" />
+                    <h:outputText value="Longitud:" style="font-size: 10px; margin-left: 10px;" />
+                    <h:inputText id="lat4326" size="15" />
+                    <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarBiomasaCoordenada()}"
+                                     ajax="true" icon="ui-icon-search" update="frmlatlon:panel"
+                                     id="biomasa" style="height: 18px; margin-left: 5px;" />
+                    <br></br><br></br>                   <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
                         <div id="wrapper">
                             <div id="scale"></div>
                             <div id="nodelist"></div>

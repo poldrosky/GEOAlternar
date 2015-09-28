@@ -113,17 +113,17 @@ window.onload = function () {
         }),
         styleMap: new OpenLayers.StyleMap({
             "default": new OpenLayers.Style({
-                pointRadius: 5,
+                pointRadius: 3,
                 fillOpacity: 2,
-                strokeColor: "#0AFF00",
-                strokeWidth: 2,
+                strokeColor: "#FF4000",
+                strokeWidth: 3,
                 strokeOpacity: 0.5}) //Text entspricht feature.attributes.name
         })
 
     });
     // Google.v3 uses EPSG:900913 as projection, so we have to // transform our coordinates
     map.addLayers([ghyb,general,gmap,gml,cabecerasMunicipales,markers]);// 
-    map.setCenter(new OpenLayers.LonLat(-78.028, 1.409).transform(
+    map.setCenter(new OpenLayers.LonLat(-77.868, 1.409).transform(
             new OpenLayers.Projection("EPSG:4326"),
             map.getProjectionObject()
             ), 8);

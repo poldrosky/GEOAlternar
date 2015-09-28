@@ -46,10 +46,6 @@ public class MbSLogin implements Serializable{
         {
           
             Users usuario=daoUsers.find(this.email);
-            
-            System.out.println("clave actual:"+usuario.getPassword());
-            System.out.println("clave digitada:"+Encrypt.sha512(this.password));
-      
             if(usuario!=null)
             {
                 if(usuario.getPassword().equals(Encrypt.sha512(this.password)))
@@ -60,13 +56,15 @@ public class MbSLogin implements Serializable{
                     return "Energia";
                 }
             }
+            else{
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Acceso", "Usuario o Contraseña Incorrecto"));
             this.email=null;
             this.password=null;
             
             return "IniciarSesion";
-           
+            }
+           return "IniciarSesion";
         } 
         catch (Exception e) 
         {

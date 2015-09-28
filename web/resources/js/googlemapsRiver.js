@@ -84,7 +84,7 @@ window.onload = function () {
         target: 'map',
         layers: [new ol.layer.Tile({
                     source: new ol.source.OSM()
-                    }),limitesminicipales,untiled,tiled,drenajedoble,cabeceras],
+                    }),drenajedoble,untiled,tiled,cabeceras],
         view: new ol.View({
            projection: projection
         })

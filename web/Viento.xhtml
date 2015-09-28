@@ -58,13 +58,13 @@
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Viento " >
-                    <div id="map" ></div>
+                    <div id="map" style="height: 550px; width: 99%;" ></div>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="40%" collapsed="false" collapsible="true" header="Inf. Velocidad de Viento en Coordenada (EPSG:4326)"  id="rigth"  style="text-align: center;">
-                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" >
+                <p:layoutUnit position="east" size="43%" collapsed="false" collapsible="true" header="Inf. Velocidad de Viento en Coordenada (EPSG:4326)"  id="rigth"  style="text-align: center;">
+                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
                     </h:inputText>
-                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" >
+                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" style="visibility: hidden;">
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                     </h:inputText><br></br>
                     <h:outputText value="Latitud: " style="font-size: 10px;"/>
