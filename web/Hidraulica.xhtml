@@ -39,32 +39,21 @@
                         </tbody>
                     </table>
                 </p:layoutUnit>
-                <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " >
-                    <div id="map" style="height: 450px; width: 99%;" ></div>
+                <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " size="50">
+                    <div id="map" style="height: 500px; width: 99%;" ></div>
                     <div id="location"></div>
-                </p:layoutUnit>
-                <p:layoutUnit position="east" size="39%"  header="Información de Coordenada "  id="rigth" >
-                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
-                        <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
-                    </h:inputText>
-                    <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" style="visibility: hidden;">
-                        <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
-                    </h:inputText><br></br>
-                    <h:outputText value="Latitud: " style="font-size: 10px;"/>
-                    <h:inputText id="lon4326" size="15" />
-                    <h:outputText value="Longitud:" style="font-size: 10px; margin-left: 10px;" />
-                    <h:inputText id="lat4326" size="15" />
-                    <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarBiomasaCoordenada()}"
-                                     ajax="true" icon="ui-icon-search" update="frmlatlon:panel"
-                                     id="biomasa" style="height: 18px; margin-left: 5px;" />
-                    <br></br><br></br>                   <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
-                        <div id="wrapper">
-                            <div id="scale"></div>
-                            <div id="nodelist"></div>
-                            <div id="nodelistestacion"></div>
+                    <div id="wrapper">
+                        <div id="nodelist" style="width: 100%;"></div>
                             
                         </div>
-                    </p:panelGrid>
+                </p:layoutUnit>
+                <p:layoutUnit position="east" size="20%"  header="Información de Coordenada "  id="rigth" >
+                    
+                    <h:outputText value="Latitud: " style="font-size: 12px;margin-left: 10px;" />
+                    <h:inputText id="lon4326" size="15" disabled="true"/><br/>
+                    <h:outputText value="Longitud:" style="font-size: 12px; margin-left: 10px;" />
+                    <h:inputText id="lat4326" size="15" disabled="true"/>
+                    
                 </p:layoutUnit>
             </p:layout>
         </h:form>
