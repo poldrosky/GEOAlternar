@@ -35,22 +35,22 @@
                     </p:dialog>
                 </h:form>
                 <center>
-                    <p:panel style="margin-left: 20%; margin-top: 10%; margin-right: 20%;">
+                    <p:panel style="margin-left: 15%; margin-top: 10%; margin-right: 15%;">
                         <h:panelGrid columns="3"  >
                             <h:form >
-                                <p:graphicImage value="img/logo.png" style="width: 200px; height:  200px;"/>
+                                <p:graphicImage value="img/logo.png" style="width: 250px; height:  250px;"/>
                             </h:form>
                             <p:growl showDetail="true" sticky="false"/>
                             <h:panelGroup>
-                                <h:form id="frmLogin" style="margin-left: 10%; margin-right: 20%;"><br/> 
+                                <h:form id="frmLogin" style="margin-left: 10%; margin-right: 5%;"><br/> 
                                     <p:growl id="mensajeGeneral" showDetail="true" sticky="false"/>
-                                    <p:panel header="Inicio de Sesión" style="width: 450px; height: 250px; margin-bottom: 2%;"> 
+                                    <p:panel header="Inicio de Sesión" style="width: 130%; height: 250px; margin-bottom: 2%;"> 
                                         <h:panelGrid id="loginPanel" columns="2"> 
                                             <p:outputLabel value="E-mail: " for="txtEmail" /> 
-                                            <p:inputText id="txtEmail" value="#{mbSLogin.email}"/>
+                                            <p:inputText id="txtEmail" value="#{mbSLogin.email}" size="25"/>
                                             <p:spacer></p:spacer><p:spacer></p:spacer>
                                             <p:outputLabel value="Contraseña: " for="txtPassword"/> 
-                                            <p:password id="txtPassword" value="#{mbSLogin.password}"/>
+                                            <p:password id="txtPassword" value="#{mbSLogin.password}" size="25"/>
                                             <p:spacer></p:spacer><p:spacer></p:spacer>
                                             <h:panelGroup></h:panelGroup>
                                             <p:commandButton  value="Ingresar" action="#{mbSLogin.login}" update="frmLogin" />
