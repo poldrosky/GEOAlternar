@@ -115,8 +115,13 @@ window.onload = function () {
             {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
         );
         //alert(evt.coordinate);
-        document.getElementById('frmlatlon:lon4326').value = evt.coordinate[0];
-        document.getElementById('frmlatlon:lat4326').value = evt.coordinate[1];
+        var firstProjection = 'EPSG:3857';
+            var secondProjection = 'EPSG:4326';
+            var result=proj4(firstProjection,secondProjection,[evt.coordinate[0],evt.coordinate[1]]);
+            //document.getElementById('frmlatlon:lon4326').value = result[0].toFixed(5);
+            //document.getElementById('frmlatlon:lat4326').value = result[1].toFixed(5);
+        document.getElementById('frmlatlon:lat4326').value = result[0].toFixed(6);
+        document.getElementById('frmlatlon:lon4326').value = result[1].toFixed(6);
         
         if (url) {
           //document.getElementById('nodelist').innerHTML = '<iframe seamless  style="width: 99%;" src="' + url + '"></iframe>';
