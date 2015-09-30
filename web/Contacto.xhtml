@@ -36,10 +36,9 @@
                                                 <p:outputLabel value="Comentarios" />
                                             </h:panelGrid>
                                             <p:inputTextarea style="width: 100%;" rows="10" queryDelay="1000" minQueryLength="4" value="#{mbRUsuario.commentApp}" /><br/>
-                                            <!---<p:commandButton value="Enviar" icon="ui-icon-disk" ajax="true" actionListener="#{mbRUsuario.enviarComentario()}" update="frmcomment"/>-->
+                                            <p:commandButton value="Enviar" icon="ui-icon-disk" ajax="true" actionListener="#{mbRUsuario.enviarComentario}" update="frmcomment"/>
                                             <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
                                                 <f:facet name="complete">
-                                                    <h:outputText value="! GRACIAS POR TUS PREGUNTAS Y APORTES ¡"  style="font-size: 12px;"/>
                                                 </f:facet>
                                             </p:ajaxStatus>
                                             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
@@ -58,10 +57,10 @@
                                         <ul>
                                             <li>Andres Oswaldo Calderon</li>
                                             <li>Omar Ernesto Cabrera</li>
-                                            <li>Bayro Antonio Champutiz</li>
+                                            <li>Bayron Antonio Champutiz</li>
                                         </ul>
                                         
-                                        <img src="img/test.png" style="width: 500px;height: 280px;"/>
+                                        <img src="img/grupogeoalternar.jpg" style="width: 500px;height: 320px;"/>
                                         
                                     </p:outputLabel>
                                 </div>
@@ -70,64 +69,6 @@
                     </tbody>
                 </table>
 
-
-
-                <!-- <div id="divRegCuenta">
-                     <center>
-                         <p:panelGrid columns="2" style=" width: 70%; margin-top: 50px;   margin-left: 5%; margin-right: 5%; alignment-adjust: auto;">
-                             <p:panel header="Personal de Investigación"  style="width: 500px;">
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-                             </p:panel>
-                             <p:panel header="Comentarios y Preguntas"  >
-                                 <h:form id="frmcomment">
-                                     <p:growl  showDetail="true" sticky="false"/><br></br>
-                                     <div style="margin-left: 10%; margin-right: 10%; text-align: justify;">
-                                         <p:outputLabel style="font-size: 15px;">
-                                             A través de este formulario podrás contactar con los colaboradores de la investigación y poder solicitar aclaración de información, realizar  sugerencias, enviar tus comentarios y observaciones. 
-                                         </p:outputLabel>
- 
-                                         <br></br>
-                                         <h:panelGrid columns="3" cellpadding="15">
-                                             <p:outputLabel value="Nombre " />
-                                             <h:inputText   label="Nombre" value="#{mbRUsuario.usuario.name}">
-                                                 <f:validator validatorId="validatorVacio"/>
-                                             </h:inputText>
-                                             <h:panelGroup></h:panelGroup>
-                                             <p:outputLabel value="Email " />
-                                             <h:inputText  label="Email" value="#{mbRUsuario.usuario.email}">
-                                                 <f:validator validatorId="validatorVacio"/>
-                                             </h:inputText>
-                                             <h:panelGroup></h:panelGroup><h:panelGroup></h:panelGroup>
-                                             <p:outputLabel value="Preguntas o Comentarios" />
-                                         </h:panelGrid>
-                                         <p:inputTextarea rows="10" cols="40" queryDelay="1000" minQueryLength="4" value="#{mbRUsuario.commentApp}" />
-                                         <h:panelGroup></h:panelGroup>
-                                         <p:commandButton value="Enviar" icon="ui-icon-disk" ajax="true" actionListener="#{mbRUsuario.enviarComentario()}" update="frmcomment"/>
-                                         <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
-                                         <f:facet name="complete">
-                                             <h:outputText value="! GRACIAS POR TUS PREGUNTAS Y APORTES ¡"  style="font-size: 12px;"/>
-                                         </f:facet>
-                                         </p:ajaxStatus>
-                                         <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-                                         <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                                             <p:graphicImage value="./img/process.gif" />
-                                         </p:dialog>
-                                     </div>
-                                 </h:form>
-                                  
-                             </p:panel>
-                         </p:panelGrid>
-                     </center>
-                 </div>-->
             </ui:define>
         </ui:composition>
     </body>

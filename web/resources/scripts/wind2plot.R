@@ -5,7 +5,7 @@ table_name <- 'grid_450'
 height = 50
 
 driver <- dbDriver("PostgreSQL", max.con = 250)
-connection <- dbConnect(driver, dbname="geoalternar", user= "glassfish", password="V3Mu02GR", host="190.254.4.128")
+connection <- dbConnect(driver, dbname="geoalternar", user= "glassfish", password="V3Mu02GR", host="localhost")
 
 args <- commandArgs(TRUE)
 

@@ -119,7 +119,6 @@ public class MbRUsuario {
         {
             
             SendEmail.sendComment(this.usuario.getName(), this.usuario.getEmail(),this.getCommentApp());
-            System.out.println("COMENTARIO OK");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"ENVIADO", "Las observaciones o Preguntas fueron enviadas !GRACIAS¡"));
             
         } catch (Exception e) {
