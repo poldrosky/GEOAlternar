@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>epsg4326_epsg3857</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="reprojectar.js"></script>
+        <script type="text/javascript" src="proj4.js"></script>
+    </head>
+    <body>
+        <div style="width: 300px;">
+            <input id="latepsg4326" type="text"/>
+            <input id="lonepsg4326" type="text"/><br/>
+            <input value="CONVERT" type="button" onclick="reproject3857();"/>
+            <hr/>
+            <input id="latepsg3857" type="text"/>
+            <input id="lonepsg3857" type="text"/>
+        </div>
+    </body>
+</html>
