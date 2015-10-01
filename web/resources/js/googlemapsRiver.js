@@ -47,7 +47,30 @@ window.onload = function () {
           }
         })
       });
-      
+      //CUENCAS
+      var cuenca = new ol.layer.Image({
+        source: new ol.source.ImageWMS({
+          ratio: 1,
+          url: 'http://geoalternar.udenar.edu.co:8080/geoserver/MapRiver/wms',
+          params: {'FORMAT': format,
+                   'VERSION': '1.1.1',  
+                STYLES: '',
+                LAYERS: 'MapRiver:cuencas3857',
+          }
+        })
+      });
+      var cuenca2 = new ol.layer.Tile({
+        visible: false,
+        source: new ol.source.TileWMS({
+          url: 'http://geoalternar.udenar.edu.co:8080/geoserver/MapRiver/wms',
+          params: {'FORMAT': format, 
+                   'VERSION': '1.1.1',
+                   tiled: true,
+                STYLES: '',
+                LAYERS: 'MapRiver:cuencas3857',
+          }
+        })
+      });
       //estaciones
       var untiled = new ol.layer.Image({
         source: new ol.source.ImageWMS({
@@ -84,7 +107,7 @@ window.onload = function () {
         target: 'map',
         layers: [new ol.layer.Tile({
                     source: new ol.source.OSM()
-                    }),drenajedoble,untiled,tiled,cabeceras],
+                    }),cuenca,drenajedoble,untiled,tiled,cabeceras],
         view: new ol.View({
            projection: projection
         })

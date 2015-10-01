@@ -17,7 +17,7 @@
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout>
-                <p:layoutUnit position="west" size="18%"  header="Mapas Caudal"  collapsible="true" id="left1">
+                <p:layoutUnit position="west" size="30%"  header="Mapas Caudal"  collapsible="true" id="left1">
                     <h4 style="margin-left: 15%;">
                         Informacion Hidrológica
                     </h4>
@@ -37,28 +37,27 @@
                             </tr>
                         </tbody>
                     </table>
+                    <hr/>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><h:outputText value="Longitud: " style="font-size: 12px;margin-left: 10px;" /></td>
+                                <td><h:inputText id="lon4326" size="12" disabled="true"/><br/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputText value="Latitud:" style="font-size: 12px; margin-left: 10px;" /></td>
+                                <td><h:inputText id="lat4326" size="12" disabled="true"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </p:layoutUnit>
-                <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " size="50">
+                <p:layoutUnit position="center" id="panelmap" header="Mapa de Biomasa " size="60">
                     <div id="map" style="height: 450px; width: 99%;" ></div>
                     <div id="location"></div>
                     <div id="wrapper">
                         <div id="nodelist" ></div>
                             
                         </div>
-                </p:layoutUnit>
-                <p:layoutUnit position="east" size="20%"  header="Información de Coordenada "  id="rigth" >
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><h:outputText value="Latitud: " style="font-size: 12px;margin-left: 10px;" /></td>
-                                <td><h:inputText id="lon4326" size="12" disabled="true"/><br/></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputText value="Longitud:" style="font-size: 12px; margin-left: 10px;" /></td>
-                                <td><h:inputText id="lat4326" size="12" disabled="true"/></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </p:layoutUnit>
             </p:layout>
         </h:form>
