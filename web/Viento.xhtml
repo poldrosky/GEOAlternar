@@ -79,8 +79,8 @@
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Elegir mapa para descargar</a></p:graphicImage>
                         </h:panelGroup> 
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
-                        <p:fieldset legend="Gráfico Promedio Mensual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 80%; font-size: 10px;">
-                            <div id="container" style="width: 450px; height: 300px; margin: 0 auto"></div>
+                        <p:fieldset legend="Gráfico Promedio Mensual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 95%; font-size: 10px;">
+                            <div id="container" style="width: 100%; height: 350px; margin: 0 auto"></div>
                             <script>
                                 $(function () {
                                     $('#container').highcharts({
@@ -131,7 +131,13 @@
                                         },
                                         plotOptions: {
                                             area: {
-                                                fillOpacity: 0.2
+                                                fillOpacity: 0.2,
+                                                dataLabels: {
+                                                    enabled: true,rotation: -35,align: 'lefth',
+                                                    style: {
+                                                        fontSize: '10px',fontFamily: 'Times'
+                                                    }
+                                                }
                                             }
                                         },
                                         credits: {
@@ -145,8 +151,8 @@
                                 });
                             </script>
                         </p:fieldset>
-                        <p:fieldset legend="Gráfico Promedio Anual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 80%; font-size: 10px;">
-                            <div id="containeranios" style="width: 450px; height: 300px; margin: 0 auto"></div>
+                        <p:fieldset legend="Gráfico Promedio Anual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 95%; font-size: 10px;">
+                            <div id="containeranios" style="width: 100%; height: 350px; margin: 0 auto"></div>
                             <script>
                                 $(function () {
                                     $('#containeranios').highcharts({
@@ -202,7 +208,13 @@
                                         },
                                         plotOptions: {
                                             area: {
-                                                fillOpacity: 0.2
+                                                fillOpacity: 0.2,
+                                                dataLabels: {
+                                                    enabled: true,rotation: -35,align: 'lefth',
+                                                    style: {
+                                                        fontSize: '10px',fontFamily: 'Times'
+                                                    }
+                                                }
                                             }
                                         },
                                         credits: {
