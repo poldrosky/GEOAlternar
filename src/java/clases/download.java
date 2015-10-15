@@ -13,8 +13,9 @@ import org.primefaces.model.StreamedContent;
      
      private StreamedContent filebiomassyear,filebiomassmonth;
      private StreamedContent filesunyear,filesunmonth;
+     private StreamedContent filesunyearModis,filesunmonthModis;
      private StreamedContent filewindyear,filewindmonth;  
-     private StreamedContent filebiomass,filewind,filesun;  
+     private StreamedContent filebiomass,filewind,filesun,filesunModis;  
      private StreamedContent filerose,fileweibull;
      
      public download() throws FileNotFoundException {  
@@ -36,8 +37,37 @@ import org.primefaces.model.StreamedContent;
          filesun = new DefaultStreamedContent(stream8, "application/csv", "IrradiacionPromedioNarino.csv");
          InputStream stream9  = new FileInputStream("/opt/maps/MapsCSV/BiomasaPromedioNarino.csv");   
          filebiomass = new DefaultStreamedContent(stream9, "application/csv", "BiomasaPromedioNarino.csv");
-         
+         InputStream stream10  = new FileInputStream("/opt/maps/MapsCSV/SunMODIS2000-2014.csv");   
+         filesunyearModis = new DefaultStreamedContent(stream10, "application/csv", "SunMODIS2000-2014.csv");  
+         InputStream stream11  = new FileInputStream("/opt/maps/MapsCSV/SunMODISJanuary-December.csv");   
+         filesunmonthModis = new DefaultStreamedContent(stream11, "application/csv", "SunMODISJanuary-December.csv");
+         InputStream stream12  = new FileInputStream("/opt/maps/MapsCSV/IrradiacionPromedioNarinoMODIS.csv");   
+         filesunModis = new DefaultStreamedContent(stream12, "application/csv", "IrradiacionPromedioNarinoMODIS.csv");
     }  
+
+    public StreamedContent getFilesunyearModis() {
+        return filesunyearModis;
+    }
+
+    public void setFilesunyearModis(StreamedContent filesunyearModis) {
+        this.filesunyearModis = filesunyearModis;
+    }
+
+    public StreamedContent getFilesunmonthModis() {
+        return filesunmonthModis;
+    }
+
+    public void setFilesunmonthModis(StreamedContent filesunmonthModis) {
+        this.filesunmonthModis = filesunmonthModis;
+    }
+
+    public StreamedContent getFilesunModis() {
+        return filesunModis;
+    }
+
+    public void setFilesunModis(StreamedContent filesunModis) {
+        this.filesunModis = filesunModis;
+    }
 
      
     public StreamedContent getFilebiomassyear() {

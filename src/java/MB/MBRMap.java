@@ -37,6 +37,8 @@ public class MBRMap implements Serializable {
     private List<Capamap> capasBiomasaAnio;
     private List<Capamap> capasSolarMes;
     private List<Capamap> capasSolarAnio;
+    private List<Capamap>capasSolarAnioModis;
+    private List<Capamap>capasSolarMesModis;
 
     private String latitude, longitude;
     private int typeenergy;//1 w,2 b,3 s
@@ -229,6 +231,56 @@ public class MBRMap implements Serializable {
         this.capasSolarAnio.add(capa2012s);
         this.capasSolarAnio.add(capa2013s);
         this.capasSolarAnio.add(capa2014s);
+        //SOLAR MODIS
+        this.capasSolarMesModis = new ArrayList<Capamap>();
+        Capamap capa1sm = new Capamap("Enero", "MapSunMODIS:January");
+        Capamap capa2sm = new Capamap("Febrero", "MapSunMODIS:February");
+        Capamap capa3sm = new Capamap("Marzo", "MapSunMODIS:March");
+        Capamap capa4sm = new Capamap("Abril", "MapSunMODIS:April");
+        Capamap capa5sm = new Capamap("Mayo", "MapSunMODIS:May");
+        Capamap capa6sm = new Capamap("Junio", "MapSunMODIS:June");
+        Capamap capa7sm = new Capamap("Julio", "MapSunMODIS:July");
+        Capamap capa8sm = new Capamap("Agosto", "MapSunMODIS:August");
+        Capamap capa9sm = new Capamap("septiembre", "MapSunMODIS:September");
+        Capamap capa10sm = new Capamap("Octubre", "MapSunMODIS:October");
+        Capamap capa11sm = new Capamap("Noviembre", "MapSunMODIS:November");
+        Capamap capa12sm = new Capamap("Diciembre", "MapSunMODIS:December");
+        this.capasSolarMesModis.add(capa1sm);
+        this.capasSolarMesModis.add(capa2sm);
+        this.capasSolarMesModis.add(capa3sm);
+        this.capasSolarMesModis.add(capa4sm);
+        this.capasSolarMesModis.add(capa5sm);
+        this.capasSolarMesModis.add(capa6sm);
+        this.capasSolarMesModis.add(capa7sm);
+        this.capasSolarMesModis.add(capa8sm);
+        this.capasSolarMesModis.add(capa9sm);
+        this.capasSolarMesModis.add(capa10sm);
+        this.capasSolarMesModis.add(capa11sm);
+        this.capasSolarMesModis.add(capa12sm);
+        //Solar Anio
+        this.capasSolarAnioModis = new ArrayList<Capamap>();
+        Capamap capa2005sm = new Capamap("2005", "MapSunMODIS:2005");
+        Capamap capa2006sm = new Capamap("2006", "MapSunMODIS:2006");
+        Capamap capa2007sm = new Capamap("2007", "MapSunMODIS:2007");
+        Capamap capa2008sm = new Capamap("2008", "MapSunMODIS:2008");
+        Capamap capa2009sm = new Capamap("2009", "MapSunMODIS:2009");
+        Capamap capa2010sm = new Capamap("2010", "MapSunMODIS:2010");
+        Capamap capa2011sm = new Capamap("2011", "MapSunMODIS:2011");
+        Capamap capa2012sm = new Capamap("2012", "MapSunMODIS:2012");
+        Capamap capa2013sm = new Capamap("2013", "MapSunMODIS:2013");
+        Capamap capa2014sm = new Capamap("2014", "MapSunMODIS:2014");
+        Capamap capa2015sm = new Capamap("2015", "MapSunMODIS:2015");
+        this.capasSolarAnioModis.add(capa2005sm);
+        this.capasSolarAnioModis.add(capa2006sm);
+        this.capasSolarAnioModis.add(capa2007sm);
+        this.capasSolarAnioModis.add(capa2008sm);
+        this.capasSolarAnioModis.add(capa2009sm);
+        this.capasSolarAnioModis.add(capa2010sm);
+        this.capasSolarAnioModis.add(capa2011sm);
+        this.capasSolarAnioModis.add(capa2012sm);
+        this.capasSolarAnioModis.add(capa2013sm);
+        this.capasSolarAnioModis.add(capa2014sm);
+        this.capasSolarAnioModis.add(capa2015sm);
     }
     private double valuelat, valuelon;
     private int lat, lon;
@@ -483,6 +535,24 @@ public class MBRMap implements Serializable {
     public void setCapasSolarAnio(List<Capamap> capasSolarAnio) {
         this.capasSolarAnio = capasSolarAnio;
     }
+
+    public List<Capamap> getCapasSolarAnioModis() {
+        return capasSolarAnioModis;
+    }
+
+    public void setCapasSolarAnioModis(List<Capamap> capasSolarAnioModis) {
+        this.capasSolarAnioModis = capasSolarAnioModis;
+    }
+
+    public List<Capamap> getCapasSolarMesModis() {
+        return capasSolarMesModis;
+    }
+
+    public void setCapasSolarMesModis(List<Capamap> capasSolarMesModis) {
+        this.capasSolarMesModis = capasSolarMesModis;
+    }
+    
+    
 
     public String getLatitude() {
         return latitude;
