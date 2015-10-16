@@ -4,8 +4,8 @@ function reproject3857() {
     ////////REPOYECCION
     //var firstProjection = 'EPSG:4326';
     //var secondProjection = 'EPSG:3857';
-    var firstProjection = 'EPSG:4326';
-    var secondProjection = 'EPSG:3857';
+    var firstProjection = 'EPSG:3857';
+    var secondProjection = 'EPSG:4326';
     var result = proj4(firstProjection, secondProjection, [lon,lat]);
     alert(result);
     document.getElementById('latepsg3857').value = result[1];
