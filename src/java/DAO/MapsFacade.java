@@ -194,4 +194,238 @@ public class MapsFacade extends AbstractFacade<Maps> {
             return null;
         }
     }
+    public Object[] getHistoryHours(int latitude, int longitude, int type) {
+        String typemap = "";
+        if (type == 1) {
+            typemap = "maps_wind";
+        }
+        if (type == 2) {
+            typemap = "maps_biomass";
+        }
+        if (type == 3) {
+            typemap = "maps_solar";
+        }
+        try {
+            Query qyears = getEntityManager().createNativeQuery("SELECT m.* FROM(" +
+            "	(SELECT "
+                    + "	latitude_3857,longitude_3857,grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='0') h0"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='1') h1"
+                    + "	using"
+                    + "		(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='2') h2"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='3') h3"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='4') h4"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='5') h5"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='6') h6"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='7') h7"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='8') h8"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='9') h9"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='10') h10"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='11') h11"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='12') h12"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='13') h13"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='14') h14"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='15') h15"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='16') h16"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='17') h17"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='18') h18"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='19') h19"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='20') h20"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='21') h21"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='22') h22"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + "	JOIN"
+                    + "	(SELECT "
+                    + "		grid450_id,windspeed  "
+                    + "	FROM "
+                    + "		(grid_450 natural join avghourwindspped) where latitude_3857=? and longitude_3857=? and hourday='23') h23"
+                    + "	using"
+                    + "	(grid450_id)"
+                    + ") m"
+            );
+
+            qyears.setParameter(1, latitude);
+            qyears.setParameter(2, longitude);
+            qyears.setParameter(3, latitude);
+            qyears.setParameter(4, longitude);
+            qyears.setParameter(5, latitude);
+            qyears.setParameter(6, longitude);
+            qyears.setParameter(7, latitude);
+            qyears.setParameter(8, longitude);
+            qyears.setParameter(9, latitude);
+            qyears.setParameter(10, longitude);
+            qyears.setParameter(11, latitude);
+            qyears.setParameter(12, longitude);
+            qyears.setParameter(13, latitude);
+            qyears.setParameter(14, longitude);
+            qyears.setParameter(15, latitude);
+            qyears.setParameter(16, longitude);
+            qyears.setParameter(17, latitude);
+            qyears.setParameter(18, longitude);
+            qyears.setParameter(19, latitude);
+            qyears.setParameter(20, longitude);
+            qyears.setParameter(21, latitude);
+            qyears.setParameter(22, longitude);
+            qyears.setParameter(23, latitude);
+            qyears.setParameter(24, longitude);
+            qyears.setParameter(25, latitude);
+            qyears.setParameter(26, longitude);
+            qyears.setParameter(27, latitude);
+            qyears.setParameter(28, longitude);
+            qyears.setParameter(29, latitude);
+            qyears.setParameter(30, longitude);
+            qyears.setParameter(31, longitude);
+            qyears.setParameter(32, longitude);
+            qyears.setParameter(33, latitude);
+            qyears.setParameter(34, longitude);
+            qyears.setParameter(35, latitude);
+            qyears.setParameter(36, longitude);
+            qyears.setParameter(37, latitude);
+            qyears.setParameter(38, longitude);
+            qyears.setParameter(39, latitude);
+            qyears.setParameter(40, longitude);
+            qyears.setParameter(41, latitude);
+            qyears.setParameter(42, longitude);
+            qyears.setParameter(43, latitude);
+            qyears.setParameter(44, longitude);
+            qyears.setParameter(45, latitude);
+            qyears.setParameter(46, longitude);
+            qyears.setParameter(47, latitude);
+            qyears.setParameter(48, longitude);
+            return (Object[]) qyears.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
