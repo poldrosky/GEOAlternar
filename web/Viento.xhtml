@@ -22,10 +22,7 @@
                         <p:fieldset legend="Mapa General Velocidad de Viento" toggleable="true" toggleSpeed="300" collapsed="false" style=" width: 90%; font-size: 10px;">
                             <h:outputText value="Velocidad del Viento (m/s)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" height="250px" width="45x" style="margin-left: 30px;"/><br></br>
-                            <p:commandButton  value="Descargar Datos" ajax="false"
-                                              icon="ui-icon-arrowthickstop-1-s">
-                                <p:fileDownload value="#{download.filewind}" />
-                            </p:commandButton>
+                            <p:commandButton value="Descargar Datos"  onclick="window.open('http://localhost:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
                         <p:fieldset legend="Mapa de Promedio Mensual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
                             Seleccione el mapa que desea visualizar<br></br><br></br>
@@ -36,10 +33,7 @@
                             </p:selectOneMenu><br></br><br></br>
                             <h:outputText value="Velocidad del Viento (m/s)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" height="250px" width="45x" style="margin-left: 30px;"/><br></br>
-                            <p:commandButton value="Descargar Datos Mensauales" ajax="false" 
-                                             icon="ui-icon-arrowthickstop-1-s">
-                                <p:fileDownload value="#{download.filewindmonth}" />
-                            </p:commandButton>
+                            <p:commandButton value="Descargar Datos"  onclick="window.open('http://localhost:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
                         <p:fieldset legend="Mapa de Promedio Mensual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
                             Seleccione el mapa que desea visualizar<br></br><br></br>
@@ -50,10 +44,7 @@
                             </p:selectOneMenu><br></br><br></br>
                             <h:outputText value="Velocidad del Viento (m/s)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleWind.png" styleClass="content" height="250px" width="45x" style="margin-left: 30px;"/><br></br>
-                            <p:commandButton  value="Descargar Datos Anuales" ajax="false" 
-                                              icon="ui-icon-arrowthickstop-1-s">
-                                <p:fileDownload value="#{download.filewindyear}" />
-                            </p:commandButton>
+                            <p:commandButton value="Descargar Datos"  onclick="window.open('http://localhost:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
                     </h:panelGrid>
                 </p:layoutUnit>

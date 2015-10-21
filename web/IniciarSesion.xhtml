@@ -12,8 +12,12 @@
 
             </ui:define>
             <ui:define name="content">
+                <div style="width: 60%; margin-left: 20%;margin-top: 2%; margin-right: 20%; font: oblique 110% cursive; text-align: justify;">
+                    Para poder realizar la descarga de los datos relacionados con indices de Biomasa, Irradiacion Solar y Viento
+                    el usuario debe estar registrado en el sistema, posteriormente iniciar sesion con su usuario y contraseña correspondiente.
+                    <a href="http://geoalternar.udenar.edu.co:8080/GEOAlternar/faces/RegistrarUsuario.xhtml">Registrarse ahora</a>
+                </div>
                 <h:form id="form2">
-
                     <p:growl showDetail="true" sticky="false"/>
                     <p:dialog header="Actualizar Contraseña" widgetVar="dlg1" modal="true" showEffect="explode" hideEffect="bounce">
                         <center>
@@ -27,7 +31,6 @@
                                     <p:outputLabel value="Repita Contaseña"/>
                                     <p:password value="#{mbRUsuario.txtContraseniaRepita}"/>
                                 </p:panelGrid>
-
                                 <p:commandButton 
                                     value="Actualizar" icon="ui-icon-disk" update=":form2" oncomplete="PF('dlg1').hide()" action="#{mbRUsuario.restablecerContrasenia()}"/>
                             </p:panel>
@@ -35,7 +38,7 @@
                     </p:dialog>
                 </h:form>
                 <center>
-                    <p:panel style="margin-left: 15%; margin-top: 10%; margin-right: 15%;">
+                    <p:panel style="margin-left: 15%; margin-top: 5%; margin-right: 15%;">
                         <h:panelGrid columns="3"  >
                             <h:form >
                                 <p:graphicImage value="img/logo.png" style="width: 250px; height:  250px;"/>

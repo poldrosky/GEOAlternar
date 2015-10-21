@@ -53,7 +53,7 @@ public class MbSLogin implements Serializable{
                     HttpSession httpSession=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     httpSession.setAttribute("email", this.email);
                     
-                    return "Energia";
+                    return "DescargarDatos";
                 }
             }
             else{
@@ -64,7 +64,7 @@ public class MbSLogin implements Serializable{
             
             return "IniciarSesion";
             }
-           return "IniciarSesion";
+           return "index";
         } 
         catch (Exception e) 
         {
