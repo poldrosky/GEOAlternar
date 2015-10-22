@@ -286,6 +286,7 @@ public class MBRMap implements Serializable {
     private int lat, lon;
     private double m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, mlat, mlon;
     private double y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14;
+    private double h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23;
     private String valorbd;
 
     public void consultarSolarCoordenada() {
@@ -342,13 +343,13 @@ public class MBRMap implements Serializable {
         y13 = Double.parseDouble(valoranios[14].toString());
         y14 = Double.parseDouble(valoranios[15].toString());
     }
-
     public void consultarVientoCoordenada() throws IOException {
+        h0=0;h1=0;h2=0;h3=0;h4=0;h5=0;h6=0;h7=0;h8=0;h9=0;h10=0;
         valorbd = "Promedio General en Velocidad de Viento : 0 m/seg";
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        Object[] valor, valormeses, valoranios;
+        Object[] valor, valormeses, valoranios,valorhoras;
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
@@ -360,7 +361,6 @@ public class MBRMap implements Serializable {
         if (valor != null) {
             valorbd = "Promedio General en Velocidad de Viento : " + valor[2].toString() + " m/seg";
         }
-
         //////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 1);
         if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
@@ -378,8 +378,36 @@ public class MBRMap implements Serializable {
             m11 = Double.parseDouble(valormeses[11].toString());
             m12 = Double.parseDouble(valormeses[12].toString());
         }
-        
-
+        valorhoras = daoMap.getHistoryHours(lon, lat);
+        System.out.println(valorhoras[3].toString());
+        //System.out.println(valorhoras[26].toString());
+        if (valorhoras != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            h0 = Double.parseDouble(valorhoras[3].toString());
+            h1 = Double.parseDouble(valorhoras[4].toString());
+            h2 = Double.parseDouble(valorhoras[5].toString());
+            h3 = Double.parseDouble(valorhoras[6].toString());
+            h4 = Double.parseDouble(valorhoras[7].toString());
+            h5 = Double.parseDouble(valorhoras[8].toString());
+            h6 = Double.parseDouble(valorhoras[9].toString());
+            h7 = Double.parseDouble(valorhoras[10].toString());
+            h8 = Double.parseDouble(valorhoras[11].toString());
+            h9 = Double.parseDouble(valorhoras[12].toString());
+            h10 = Double.parseDouble(valorhoras[13].toString());
+            h11 = Double.parseDouble(valorhoras[14].toString());
+            h12 = Double.parseDouble(valorhoras[15].toString());
+            h13 = Double.parseDouble(valorhoras[16].toString());
+            h14 = Double.parseDouble(valorhoras[17].toString());
+            h15 = Double.parseDouble(valorhoras[18].toString());
+            h16 = Double.parseDouble(valorhoras[19].toString());
+            h17 = Double.parseDouble(valorhoras[20].toString());
+            h18 = Double.parseDouble(valorhoras[21].toString());
+            h19 = Double.parseDouble(valorhoras[22].toString());
+            h20 = Double.parseDouble(valorhoras[23].toString());
+            h21 = Double.parseDouble(valorhoras[24].toString());
+            h22 = Double.parseDouble(valorhoras[25].toString());
+            h23 = Double.parseDouble(valorhoras[26].toString());
+        }//horas
         valoranios = daoMap.getHistoryYears(lon, lat, 1);
         if (valormeses == null)
         {
@@ -903,4 +931,198 @@ public class MBRMap implements Serializable {
         this.urlcsv = urlcsv;
     }
 
+    public double getH0() {
+        return h0;
+    }
+
+    public void setH0(double h0) {
+        this.h0 = h0;
+    }
+
+    public double getH1() {
+        return h1;
+    }
+
+    public void setH1(double h1) {
+        this.h1 = h1;
+    }
+
+    public double getH2() {
+        return h2;
+    }
+
+    public void setH2(double h2) {
+        this.h2 = h2;
+    }
+
+    public double getH3() {
+        return h3;
+    }
+
+    public void setH3(double h3) {
+        this.h3 = h3;
+    }
+
+    public double getH4() {
+        return h4;
+    }
+
+    public void setH4(double h4) {
+        this.h4 = h4;
+    }
+
+    public double getH5() {
+        return h5;
+    }
+
+    public void setH5(double h5) {
+        this.h5 = h5;
+    }
+
+    public double getH6() {
+        return h6;
+    }
+
+    public void setH6(double h6) {
+        this.h6 = h6;
+    }
+
+    public double getH7() {
+        return h7;
+    }
+
+    public void setH7(double h7) {
+        this.h7 = h7;
+    }
+
+    public double getH8() {
+        return h8;
+    }
+
+    public void setH8(double h8) {
+        this.h8 = h8;
+    }
+
+    public double getH9() {
+        return h9;
+    }
+
+    public void setH9(double h9) {
+        this.h9 = h9;
+    }
+
+    public double getH10() {
+        return h10;
+    }
+
+    public void setH10(double h10) {
+        this.h10 = h10;
+    }
+
+    public double getH11() {
+        return h11;
+    }
+
+    public void setH11(double h11) {
+        this.h11 = h11;
+    }
+
+    public double getH12() {
+        return h12;
+    }
+
+    public void setH12(double h12) {
+        this.h12 = h12;
+    }
+
+    public double getH13() {
+        return h13;
+    }
+
+    public void setH13(double h13) {
+        this.h13 = h13;
+    }
+
+    public double getH14() {
+        return h14;
+    }
+
+    public void setH14(double h14) {
+        this.h14 = h14;
+    }
+
+    public double getH15() {
+        return h15;
+    }
+
+    public void setH15(double h15) {
+        this.h15 = h15;
+    }
+
+    public double getH16() {
+        return h16;
+    }
+
+    public void setH16(double h16) {
+        this.h16 = h16;
+    }
+
+    public double getH17() {
+        return h17;
+    }
+
+    public void setH17(double h17) {
+        this.h17 = h17;
+    }
+
+    public double getH18() {
+        return h18;
+    }
+
+    public void setH18(double h18) {
+        this.h18 = h18;
+    }
+
+    public double getH19() {
+        return h19;
+    }
+
+    public void setH19(double h19) {
+        this.h19 = h19;
+    }
+
+    public double getH20() {
+        return h20;
+    }
+
+    public void setH20(double h20) {
+        this.h20 = h20;
+    }
+
+    public double getH21() {
+        return h21;
+    }
+
+    public void setH21(double h21) {
+        this.h21 = h21;
+    }
+
+    public double getH22() {
+        return h22;
+    }
+
+    public void setH22(double h22) {
+        this.h22 = h22;
+    }
+
+    public double getH23() {
+        return h23;
+    }
+
+    public void setH23(double h23) {
+        this.h23 = h23;
+    }
+
+
+    
 }

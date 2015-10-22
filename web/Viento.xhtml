@@ -142,8 +142,86 @@
                                 });
                             </script>
                         </p:fieldset>
+                        <p:fieldset legend="Gráfico Promedio Hora Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 95%; font-size: 10px;">
+                            <div id="containerhora" style="width: 100%; height: 350px; margin: 0 auto"></div>
+                            <script>
+                                $(function () {
+                                    $('#containerhora').highcharts({
+                                        chart: {
+                                            type: 'area',
+                                            spacingBottom: 5
+                                        },
+                                        title: {
+                                            text: 'Promedio Velocidad del Viento Hora'
+                                        },
+                                        subtitle: {
+                                            text: 'Variacion de Velocidad del Viento en cordenada',
+                                            floating: true,
+                                            align: 'rigth',
+                                            verticalAlign: 'bottom',
+                                            y: 15
+                                        },
+                                        ///
+                                        legend: {
+                                            layout: 'vertical',
+                                            align: 'left',
+                                            verticalAlign: 'top',
+                                            x: 100,
+                                            y: 270,
+                                            floating: true,
+                                            borderWidth: 1,
+                                            backgroundColor: '#FFFFFF'
+                                        }
+                                        // 
+                                        ,
+                                        xAxis:
+                                                [{categories: ['0', '1', '2', '3','4', '5', '6', '7', '8',
+                                                            '9', '10', '11', '12', '13','14','16','17',
+                                                            '18','19','20','21','22','23'],
+                                                        reversed: false
+                                                    }],
+                                        yAxis: {
+                                            title: {
+                                                text: 'Velocidad del Viento en Coordenada (m/s)'
+                                            },
+                                            labels: {
+                                                formatter: function () {
+                                                    return this.value;
+                                                }
+                                            }
+                                        },
+                                        tooltip: {
+                                            formatter: function () {
+                                                return '<b>' + this.series.name + '</b><br/>' +
+                                                        this.x + ': ' + this.y + ' m/s ';
+                                            }
+                                        },
+                                        plotOptions: {
+                                            area: {
+                                                fillOpacity: 0.2,
+                                                dataLabels: {
+                                                    enabled: true,rotation: -35,align: 'lefth',
+                                                    style: {
+                                                        fontSize: '10px',fontFamily: 'Times'
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        credits: {
+                                            enabled: false
+                                        },
+                                        series: [{
+                                                name: 'Promedio Hora Velocidad del Viento', align: 'rigth',
+                                                data: [#{mBRMap.h0},#{mBRMap.h1}, #{mBRMap.h2},#{mBRMap.h3}, #{mBRMap.h4},#{mBRMap.h5}, #{mBRMap.h6},#{mBRMap.h7}, #{mBRMap.h8},
+                                #{mBRMap.h9}, #{mBRMap.h10},#{mBRMap.h11}, #{mBRMap.h12},#{mBRMap.h13}, #{mBRMap.h14}, #{mBRMap.h15}, #{mBRMap.h16}
+                                        , #{mBRMap.h17}, #{mBRMap.h18}, #{mBRMap.h19}, #{mBRMap.h20}, #{mBRMap.h21}, #{mBRMap.h22}, #{mBRMap.h23}]
+                                            }]
+                                    });
+                                });
+                            </script>
+                        </p:fieldset>
                         <p:fieldset legend="Gráfico Promedio Anual Velocidad del Viento" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 95%; font-size: 10px;">
-                            <div id="containeranios" style="width: 100%; height: 350px; margin: 0 auto"></div>
+                        <div id="containeranios" style="width: 100%; height: 350px; margin: 0 auto"></div>
                             <script>
                                 $(function () {
                                     $('#containeranios').highcharts({
