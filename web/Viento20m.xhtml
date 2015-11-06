@@ -9,7 +9,7 @@
         <h:outputStylesheet library="css" name="style.css" />
         <script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
         <script type="text/javascript" src="./resources/js/OpenLayers-2.12/OpenLayers.js"></script>
-        <script type="text/javascript" src="./resources/js/googlemapsWind.js"></script>
+        <script type="text/javascript" src="./resources/js/googlemapsWind20.js"></script>
         <script type="text/javascript" src="./resources/js/proj4.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -28,7 +28,7 @@
                             Seleccione el mapa que desea visualizar<br></br><br></br>
                             <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
                                               binding="#{mBRMap.selectMesCapa}">
-                                <f:selectItems  value="#{mBRMap.capasVientoMes}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
+                                <f:selectItems  value="#{mBRMap.capasVientoMes20}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                                 <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                             </p:selectOneMenu><br></br><br></br>
                             <h:outputText value="Velocidad del Viento (m/s)" /><br></br>
@@ -39,7 +39,7 @@
                             Seleccione el mapa que desea visualizar<br></br><br></br>
                             <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
                                               binding="#{mBRMap.selectCapa}">
-                                <f:selectItems  value="#{mBRMap.capasVientoAnio}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
+                                <f:selectItems  value="#{mBRMap.capasVientoAnio20}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
                                 <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
                             </p:selectOneMenu><br></br><br></br>
                             <h:outputText value="Velocidad del Viento (m/s)" /><br></br>

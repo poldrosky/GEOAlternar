@@ -31,8 +31,8 @@ public class MBRMap implements Serializable {
     private String capaSelecionada;
     private String capa;
 
-    private List<Capamap> capasVientoMes;
-    private List<Capamap> capasVientoAnio;
+    private List<Capamap> capasVientoMes20,capasVientoMes,capasVientoMes120;
+    private List<Capamap> capasVientoAnio20,capasVientoAnio,capasVientoAnio120;
     private List<Capamap> capasBiomasaMes;
     private List<Capamap> capasBiomasaAnio;
     private List<Capamap> capasSolarMes;
@@ -114,64 +114,64 @@ public class MBRMap implements Serializable {
         this.capasVientoAnio.add(capa2012v);
         this.capasVientoAnio.add(capa2013v);
         this.capasVientoAnio.add(capa2014v);
-//Viento50mta
-//        this.capasVientoMes = new ArrayList<Capamap>();
-//        Capamap capa1v = new Capamap("Enero", "MapWind:January");
-//        Capamap capa2v = new Capamap("Febrero", "MapWind:February");
-//        Capamap capa3v = new Capamap("Marzo", "MapWind:March");
-//        Capamap capa4v = new Capamap("Abril", "MapWind:April");
-//        Capamap capa5v = new Capamap("Mayo", "MapWind:May");
-//        Capamap capa6v = new Capamap("Junio", "MapWind:June");
-//        Capamap capa7v = new Capamap("Julio", "MapWind:July");
-//        Capamap capa8v = new Capamap("Agosto", "MapWind:August");
-//        Capamap capa9v = new Capamap("septiembre", "MapWind:September");
-//        Capamap capa10v = new Capamap("Octubre", "MapWind:October");
-//        Capamap capa11v = new Capamap("Noviembre", "MapWind:November");
-//        Capamap capa12v = new Capamap("Diciembre", "MapWind:December");
-//        this.capasVientoMes.add(capa1v);
-//        this.capasVientoMes.add(capa2v);
-//        this.capasVientoMes.add(capa3v);
-//        this.capasVientoMes.add(capa4v);
-//        this.capasVientoMes.add(capa5v);
-//        this.capasVientoMes.add(capa6v);
-//        this.capasVientoMes.add(capa7v);
-//        this.capasVientoMes.add(capa8v);
-//        this.capasVientoMes.add(capa9v);
-//        this.capasVientoMes.add(capa10v);
-//        this.capasVientoMes.add(capa11v);
-//        this.capasVientoMes.add(capa12v);
+//Viento20mta
+        this.capasVientoMes20 = new ArrayList<Capamap>();
+        Capamap capa1v20 = new Capamap("Enero", "MapWind20:January");
+        Capamap capa2v20 = new Capamap("Febrero", "MapWind20:February");
+        Capamap capa3v20 = new Capamap("Marzo", "MapWind20:March");
+        Capamap capa4v20 = new Capamap("Abril", "MapWind20:April");
+        Capamap capa5v20 = new Capamap("Mayo", "MapWind20:May");
+        Capamap capa6v20 = new Capamap("Junio", "MapWind20:June");
+        Capamap capa7v20 = new Capamap("Julio", "MapWind20:July");
+        Capamap capa8v20 = new Capamap("Agosto", "MapWind20:August");
+        Capamap capa9v20 = new Capamap("septiembre", "MapWind20:September");
+        Capamap capa10v20 = new Capamap("Octubre", "MapWind20:October");
+        Capamap capa11v20 = new Capamap("Noviembre", "MapWind20:November");
+        Capamap capa12v20 = new Capamap("Diciembre", "MapWind20:December");
+        this.capasVientoMes20.add(capa1v20);
+        this.capasVientoMes20.add(capa2v20);
+        this.capasVientoMes20.add(capa3v20);
+        this.capasVientoMes20.add(capa4v20);
+        this.capasVientoMes20.add(capa5v20);
+        this.capasVientoMes20.add(capa6v20);
+        this.capasVientoMes20.add(capa7v20);
+        this.capasVientoMes20.add(capa8v20);
+        this.capasVientoMes20.add(capa9v20);
+        this.capasVientoMes20.add(capa10v20);
+        this.capasVientoMes20.add(capa11v20);
+        this.capasVientoMes20.add(capa12v20);
 //        //Viento Anio 50mts
-//        this.capasVientoAnio = new ArrayList<Capamap>();
-//        Capamap capa2000v = new Capamap("2000", "MapWind:2000");
-//        Capamap capa2001v = new Capamap("2001", "MapWind:2001");
-//        Capamap capa2002v = new Capamap("2002", "MapWind:2002");
-//        Capamap capa2003v = new Capamap("2003", "MapWind:2003");
-//        Capamap capa2004v = new Capamap("2004", "MapWind:2004");
-//        Capamap capa2005v = new Capamap("2005", "MapWind:2005");
-//        Capamap capa2006v = new Capamap("2006", "MapWind:2006");
-//        Capamap capa2007v = new Capamap("2007", "MapWind:2007");
-//        Capamap capa2008v = new Capamap("2008", "MapWind:2008");
-//        Capamap capa2009v = new Capamap("2009", "MapWind:2009");
-//        Capamap capa2010v = new Capamap("2010", "MapWind:2010");
-//        Capamap capa2011v = new Capamap("2011", "MapWind:2011");
-//        Capamap capa2012v = new Capamap("2012", "MapWind:2012");
-//        Capamap capa2013v = new Capamap("2013", "MapWind:2013");
-//        Capamap capa2014v = new Capamap("2014", "MapWind:2014");
-//        this.capasVientoAnio.add(capa2000v);
-//        this.capasVientoAnio.add(capa2001v);
-//        this.capasVientoAnio.add(capa2002v);
-//        this.capasVientoAnio.add(capa2003v);
-//        this.capasVientoAnio.add(capa2004v);
-//        this.capasVientoAnio.add(capa2005v);
-//        this.capasVientoAnio.add(capa2006v);
-//        this.capasVientoAnio.add(capa2007v);
-//        this.capasVientoAnio.add(capa2008v);
-//        this.capasVientoAnio.add(capa2009v);
-//        this.capasVientoAnio.add(capa2010v);
-//        this.capasVientoAnio.add(capa2011v);
-//        this.capasVientoAnio.add(capa2012v);
-//        this.capasVientoAnio.add(capa2013v);
-//        this.capasVientoAnio.add(capa2014v);
+        this.capasVientoAnio20 = new ArrayList<Capamap>();
+        Capamap capa2000v20 = new Capamap("2000", "MapWind20:2000");
+        Capamap capa2001v20 = new Capamap("2001", "MapWind20:2001");
+        Capamap capa2002v20 = new Capamap("2002", "MapWind20:2002");
+        Capamap capa2003v20 = new Capamap("2003", "MapWind20:2003");
+        Capamap capa2004v20 = new Capamap("2004", "MapWind20:2004");
+        Capamap capa2005v20 = new Capamap("2005", "MapWind20:2005");
+        Capamap capa2006v20 = new Capamap("2006", "MapWind20:2006");
+        Capamap capa2007v20 = new Capamap("2007", "MapWind20:2007");
+        Capamap capa2008v20 = new Capamap("2008", "MapWind20:2008");
+        Capamap capa2009v20 = new Capamap("2009", "MapWind20:2009");
+        Capamap capa2010v20 = new Capamap("2010", "MapWind20:2010");
+        Capamap capa2011v20 = new Capamap("2011", "MapWind20:2011");
+        Capamap capa2012v20 = new Capamap("2012", "MapWind20:2012");
+        Capamap capa2013v20 = new Capamap("2013", "MapWind20:2013");
+        Capamap capa2014v20 = new Capamap("2014", "MapWind20:2014");
+        this.capasVientoAnio20.add(capa2000v20);
+        this.capasVientoAnio20.add(capa2001v20);
+        this.capasVientoAnio20.add(capa2002v20);
+        this.capasVientoAnio20.add(capa2003v20);
+        this.capasVientoAnio20.add(capa2004v20);
+        this.capasVientoAnio20.add(capa2005v20);
+        this.capasVientoAnio20.add(capa2006v20);
+        this.capasVientoAnio20.add(capa2007v20);
+        this.capasVientoAnio20.add(capa2008v20);
+        this.capasVientoAnio20.add(capa2009v20);
+        this.capasVientoAnio20.add(capa2010v20);
+        this.capasVientoAnio20.add(capa2011v20);
+        this.capasVientoAnio20.add(capa2012v20);
+        this.capasVientoAnio20.add(capa2013v20);
+        this.capasVientoAnio20.add(capa2014v20);
 //Biomasa
         this.capasBiomasaMes = new ArrayList<Capamap>();
         Capamap capa1 = new Capamap("Enero", "MapBiomass:January");
@@ -1181,6 +1181,38 @@ public class MBRMap implements Serializable {
         this.h23 = h23;
     }
 
+    public List<Capamap> getCapasVientoMes20() {
+        return capasVientoMes20;
+    }
 
+    public void setCapasVientoMes20(List<Capamap> capasVientoMes20) {
+        this.capasVientoMes20 = capasVientoMes20;
+    }
+
+    public List<Capamap> getCapasVientoMes120() {
+        return capasVientoMes120;
+    }
+
+    public void setCapasVientoMes120(List<Capamap> capasVientoMes120) {
+        this.capasVientoMes120 = capasVientoMes120;
+    }
+
+    public List<Capamap> getCapasVientoAnio20() {
+        return capasVientoAnio20;
+    }
+
+    public void setCapasVientoAnio20(List<Capamap> capasVientoAnio20) {
+        this.capasVientoAnio20 = capasVientoAnio20;
+    }
+
+    public List<Capamap> getCapasVientoAnio120() {
+        return capasVientoAnio120;
+    }
+
+    public void setCapasVientoAnio120(List<Capamap> capasVientoAnio120) {
+        this.capasVientoAnio120 = capasVientoAnio120;
+    }
+
+    
     
 }
