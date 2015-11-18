@@ -158,6 +158,7 @@ function seleccionCapa(obj) {
             }
     );
     map.addLayers([band2]);
+    map.setLayerIndex(cabecerasMunicipales, 97);
     map.setLayerIndex(gml, 98);
     map.setLayerIndex(markers, 99);
 }

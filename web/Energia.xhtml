@@ -4,17 +4,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <body >
-        <ui:composition template="./plantilla/menu.xhtml" rendered="#{mbSLogin.bandSesion==false}">
+        <ui:composition template="./plantilla/menu.xhtml" >
 
             <ui:define name="top">
                 <h:form>
-                    <div id="divSesionUsuario">
-                        <span>
-                            <b>Bienvenido: </b>
-                            <p:outputLabel value="#{mbSLogin.email==null ? 'Anónimo' : mbSLogin.email}"/>
-                        </span>
-                        <p:commandButton value="Cerrar Sesión" action="#{mbSLogin.cerrarSesion()}" />
-                    </div>
                     <div id="divmenu" style="font-size: 10px;">
                         <p:tabView dynamic="true" cache="true" style="border-left: 0px;border-radius: 0px;border-right: 0;border-top: 0px;border-spacing: 0px;border-width: 0px;padding: 0px;">
                             <p:tab title="Biomasa" >
@@ -32,15 +25,11 @@
                                         <iframe src="Viento120m.xhtml" style="width: 99%;height:700px;" scrolling="auto"></iframe>
                                     </p:tab>
                                 </p:tabView>
-                                
                             </p:tab>
-                            <p:tab title="Irradiación Solar(LANDSAT)">
-                                <iframe src="Solar.xhtml" style="width: 99%;height:700px;" scrolling="auto"></iframe>
-                            </p:tab>
-                            <p:tab title="Irradiación Solar MODIS">
+                            <p:tab title="Solar(MODIS)">
                                 <iframe src="SolarModis.xhtml" style="width: 99%;height:700px;" scrolling="auto"></iframe>
                             </p:tab>
-                            <p:tab title="Reporte Estaciones IDEAM">
+                            <p:tab title="Estaciones IDEAM">
                                 <iframe src="http://geoalternar.udenar.edu.co:8080/stationideam/" style="width: 99%;height:700px;" scrolling="auto"></iframe>
                             </p:tab>
                             <p:tab title="Potencial Hidráulico">

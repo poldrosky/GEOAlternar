@@ -42,7 +42,7 @@ public class windImages {
         filerose=null;
         try {
             streamrose = new FileInputStream("/tmp/"+n1);
-             System.out.println("entro");
+             System.out.println("entro: "+n1);
              filerose = new DefaultStreamedContent(streamrose, "image/png", n1);
         } catch (Exception ex) {
             System.out.println("err aqui");
@@ -53,7 +53,7 @@ public class windImages {
          InputStream streamweibull = null;   
         try {
             streamweibull = new FileInputStream("/tmp/"+n2);
-            System.out.println("entro1");
+            System.out.println("entro1: "+n2);
             fileweibull = new DefaultStreamedContent(streamweibull, "image/png", n2);
         } catch (Exception ex) {
             System.out.println(":err aqui 2");

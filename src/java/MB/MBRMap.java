@@ -404,7 +404,10 @@ public class MBRMap implements Serializable {
     private double y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14;
     private double h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23;
     private String valorbd;
-
+    
+/////////////////////////////////////////////////////////////////////
+////////////////////////SOLAR////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
     public void consultarSolarCoordenada() {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
@@ -420,7 +423,7 @@ public class MBRMap implements Serializable {
         if (valor != null) {
             valorbd = "Promedio General en Irradiación Solar : " + valor[2].toString() + " W/m²";
         }
-        //////////consultar valor por MES O AÑO
+////////////////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 3);
         if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
         {
@@ -459,9 +462,13 @@ public class MBRMap implements Serializable {
         y13 = Double.parseDouble(valoranios[14].toString());
         y14 = Double.parseDouble(valoranios[15].toString());
     }
+    
+////////////////////////////////////////////////////////////////////////////////
+////////////////////VIENTO//////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
     public void consultarVientoCoordenada() throws IOException {
         h0=0;h1=0;h2=0;h3=0;h4=0;h5=0;h6=0;h7=0;h8=0;h9=0;h10=0;
-        valorbd = "Promedio General en Velocidad de Viento : 0 m/seg";
+        valorbd = "Promedio Velocidad de Viento 50m. : 0 m/seg";
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
@@ -471,14 +478,14 @@ public class MBRMap implements Serializable {
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
         System.out.println(lat+" "+lon);
-        runRscript(lat, lon);
-        valor = daoMap.getByCoordenate(lon, lat, "General", 1);
+        runRscript(lat, lon,50);
+        valor = daoMap.getByCoordenate(lon, lat, "General", 50);
 
         if (valor != null) {
-            valorbd = "Promedio General en Velocidad de Viento : " + valor[2].toString() + " m/seg";
+            valorbd = "Promedio Velocidad de Viento 50m. : " + valor[2].toString() + " m/seg";
         }
         //////////consultar valor por MES O AÑO
-        valormeses = daoMap.getHistoryMonths(lon, lat, 1);
+        valormeses = daoMap.getHistoryMonths(lon, lat, 50);
         if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
         {
             m1 = Double.parseDouble(valormeses[1].toString());
@@ -494,7 +501,7 @@ public class MBRMap implements Serializable {
             m11 = Double.parseDouble(valormeses[11].toString());
             m12 = Double.parseDouble(valormeses[12].toString());
         }
-        valorhoras = daoMap.getHistoryHours(lon, lat);
+        valorhoras = daoMap.getHistoryHours(lon, lat,50);
         System.out.println(valorhoras[3].toString());
         //System.out.println(valorhoras[26].toString());
         if (valorhoras != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
@@ -524,7 +531,182 @@ public class MBRMap implements Serializable {
             h22 = Double.parseDouble(valorhoras[25].toString());
             h23 = Double.parseDouble(valorhoras[26].toString());
         }//horas
-        valoranios = daoMap.getHistoryYears(lon, lat, 1);
+        valoranios = daoMap.getHistoryYears(lon, lat, 50);
+        if (valormeses == null)
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No hay estudios sobre la Zona", "¡¡"));
+            return;
+        }
+        y0 = Double.parseDouble(valoranios[1].toString());
+        y1 = Double.parseDouble(valoranios[2].toString());
+        y2 = Double.parseDouble(valoranios[3].toString());
+        y3 = Double.parseDouble(valoranios[4].toString());
+        y4 = Double.parseDouble(valoranios[5].toString());
+        y5 = Double.parseDouble(valoranios[6].toString());
+        y6 = Double.parseDouble(valoranios[7].toString());
+        y7 = Double.parseDouble(valoranios[8].toString());
+        y8 = Double.parseDouble(valoranios[9].toString());
+        y9 = Double.parseDouble(valoranios[10].toString());
+        y10 = Double.parseDouble(valoranios[11].toString());
+        y11 = Double.parseDouble(valoranios[12].toString());
+        y12 = Double.parseDouble(valoranios[13].toString());
+        y13 = Double.parseDouble(valoranios[14].toString());
+        y14 = Double.parseDouble(valoranios[15].toString());
+    }
+    
+    public void consultarViento20mCoordenada() throws IOException {
+        h0=0;h1=0;h2=0;h3=0;h4=0;h5=0;h6=0;h7=0;h8=0;h9=0;h10=0;
+        valorbd = "Promedio Velocidad de Viento 20m. : 0 m/seg";
+        mlat = 0;mlon = 0;
+        m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
+        y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
+        Object[] valor, valormeses, valoranios,valorhoras;
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        System.out.println(lat+" "+lon);
+        runRscript(lat, lon,20);
+        valor = daoMap.getByCoordenate(lon, lat, "General", 20);
+
+        if (valor != null) {
+            valorbd = "Promedio Velocidad de Viento 20m. : " + valor[2].toString() + " m/seg";
+        }
+        //////////consultar valor por MES O AÑO
+        valormeses = daoMap.getHistoryMonths(lon, lat, 20);
+        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            m1 = Double.parseDouble(valormeses[1].toString());
+            m2 = Double.parseDouble(valormeses[2].toString());
+            m3 = Double.parseDouble(valormeses[3].toString());
+            m4 = Double.parseDouble(valormeses[4].toString());
+            m5 = Double.parseDouble(valormeses[5].toString());
+            m6 = Double.parseDouble(valormeses[6].toString());
+            m7 = Double.parseDouble(valormeses[7].toString());
+            m8 = Double.parseDouble(valormeses[8].toString());
+            m9 = Double.parseDouble(valormeses[9].toString());
+            m10 = Double.parseDouble(valormeses[10].toString());
+            m11 = Double.parseDouble(valormeses[11].toString());
+            m12 = Double.parseDouble(valormeses[12].toString());
+        }
+        valorhoras = daoMap.getHistoryHours(lon, lat,20);
+        System.out.println(valorhoras[3].toString());
+        //System.out.println(valorhoras[26].toString());
+        if (valorhoras != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            h0 = Double.parseDouble(valorhoras[3].toString());
+            h1 = Double.parseDouble(valorhoras[4].toString());
+            h2 = Double.parseDouble(valorhoras[5].toString());
+            h3 = Double.parseDouble(valorhoras[6].toString());
+            h4 = Double.parseDouble(valorhoras[7].toString());
+            h5 = Double.parseDouble(valorhoras[8].toString());
+            h6 = Double.parseDouble(valorhoras[9].toString());
+            h7 = Double.parseDouble(valorhoras[10].toString());
+            h8 = Double.parseDouble(valorhoras[11].toString());
+            h9 = Double.parseDouble(valorhoras[12].toString());
+            h10 = Double.parseDouble(valorhoras[13].toString());
+            h11 = Double.parseDouble(valorhoras[14].toString());
+            h12 = Double.parseDouble(valorhoras[15].toString());
+            h13 = Double.parseDouble(valorhoras[16].toString());
+            h14 = Double.parseDouble(valorhoras[17].toString());
+            h15 = Double.parseDouble(valorhoras[18].toString());
+            h16 = Double.parseDouble(valorhoras[19].toString());
+            h17 = Double.parseDouble(valorhoras[20].toString());
+            h18 = Double.parseDouble(valorhoras[21].toString());
+            h19 = Double.parseDouble(valorhoras[22].toString());
+            h20 = Double.parseDouble(valorhoras[23].toString());
+            h21 = Double.parseDouble(valorhoras[24].toString());
+            h22 = Double.parseDouble(valorhoras[25].toString());
+            h23 = Double.parseDouble(valorhoras[26].toString());
+        }//horas
+        valoranios = daoMap.getHistoryYears(lon, lat, 20);
+        if (valormeses == null)
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No hay estudios sobre la Zona", "¡¡"));
+            return;
+        }
+        y0 = Double.parseDouble(valoranios[1].toString());
+        y1 = Double.parseDouble(valoranios[2].toString());
+        y2 = Double.parseDouble(valoranios[3].toString());
+        y3 = Double.parseDouble(valoranios[4].toString());
+        y4 = Double.parseDouble(valoranios[5].toString());
+        y5 = Double.parseDouble(valoranios[6].toString());
+        y6 = Double.parseDouble(valoranios[7].toString());
+        y7 = Double.parseDouble(valoranios[8].toString());
+        y8 = Double.parseDouble(valoranios[9].toString());
+        y9 = Double.parseDouble(valoranios[10].toString());
+        y10 = Double.parseDouble(valoranios[11].toString());
+        y11 = Double.parseDouble(valoranios[12].toString());
+        y12 = Double.parseDouble(valoranios[13].toString());
+        y13 = Double.parseDouble(valoranios[14].toString());
+        y14 = Double.parseDouble(valoranios[15].toString());
+    }
+    public void consultarViento120mCoordenada() throws IOException {
+        h0=0;h1=0;h2=0;h3=0;h4=0;h5=0;h6=0;h7=0;h8=0;h9=0;h10=0;
+        valorbd = "Promedio Velocidad de Viento 120m. : 0 m/seg";
+        mlat = 0;mlon = 0;
+        m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
+        y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
+        Object[] valor, valormeses, valoranios,valorhoras;
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        System.out.println(lat+" "+lon);
+        runRscript(lat, lon,120);
+        valor = daoMap.getByCoordenate(lon, lat, "General", 120);
+
+        if (valor != null) {
+            valorbd = "Promedio Velocidad de Viento 120m. : " + valor[2].toString() + " m/seg";
+        }
+        //////////consultar valor por MES O AÑO
+        valormeses = daoMap.getHistoryMonths(lon, lat, 120);
+        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            m1 = Double.parseDouble(valormeses[1].toString());
+            m2 = Double.parseDouble(valormeses[2].toString());
+            m3 = Double.parseDouble(valormeses[3].toString());
+            m4 = Double.parseDouble(valormeses[4].toString());
+            m5 = Double.parseDouble(valormeses[5].toString());
+            m6 = Double.parseDouble(valormeses[6].toString());
+            m7 = Double.parseDouble(valormeses[7].toString());
+            m8 = Double.parseDouble(valormeses[8].toString());
+            m9 = Double.parseDouble(valormeses[9].toString());
+            m10 = Double.parseDouble(valormeses[10].toString());
+            m11 = Double.parseDouble(valormeses[11].toString());
+            m12 = Double.parseDouble(valormeses[12].toString());
+        }
+        valorhoras = daoMap.getHistoryHours(lon, lat,120);
+        System.out.println(valorhoras[3].toString());
+        //System.out.println(valorhoras[26].toString());
+        if (valorhoras != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            h0 = Double.parseDouble(valorhoras[3].toString());
+            h1 = Double.parseDouble(valorhoras[4].toString());
+            h2 = Double.parseDouble(valorhoras[5].toString());
+            h3 = Double.parseDouble(valorhoras[6].toString());
+            h4 = Double.parseDouble(valorhoras[7].toString());
+            h5 = Double.parseDouble(valorhoras[8].toString());
+            h6 = Double.parseDouble(valorhoras[9].toString());
+            h7 = Double.parseDouble(valorhoras[10].toString());
+            h8 = Double.parseDouble(valorhoras[11].toString());
+            h9 = Double.parseDouble(valorhoras[12].toString());
+            h10 = Double.parseDouble(valorhoras[13].toString());
+            h11 = Double.parseDouble(valorhoras[14].toString());
+            h12 = Double.parseDouble(valorhoras[15].toString());
+            h13 = Double.parseDouble(valorhoras[16].toString());
+            h14 = Double.parseDouble(valorhoras[17].toString());
+            h15 = Double.parseDouble(valorhoras[18].toString());
+            h16 = Double.parseDouble(valorhoras[19].toString());
+            h17 = Double.parseDouble(valorhoras[20].toString());
+            h18 = Double.parseDouble(valorhoras[21].toString());
+            h19 = Double.parseDouble(valorhoras[22].toString());
+            h20 = Double.parseDouble(valorhoras[23].toString());
+            h21 = Double.parseDouble(valorhoras[24].toString());
+            h22 = Double.parseDouble(valorhoras[25].toString());
+            h23 = Double.parseDouble(valorhoras[26].toString());
+        }//horas
+        valoranios = daoMap.getHistoryYears(lon, lat, 120);
         if (valormeses == null)
         {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No hay estudios sobre la Zona", "¡¡"));
@@ -547,7 +729,7 @@ public class MBRMap implements Serializable {
         y14 = Double.parseDouble(valoranios[15].toString());
     }
 
-    public void runRscript(int lat, int lon) {
+    public void runRscript(int lat, int lon,int height) {
         String glat = Integer.toString(lat);
         String glon = Integer.toString(lon);
         Process p;
@@ -557,7 +739,18 @@ public class MBRMap implements Serializable {
 
         windImages wind = (windImages) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("windImages");
         try {
-            pb = new ProcessBuilder("Rscript", directory + "wind2plot.R", glon, glat);
+            if(height==20)
+            {
+                pb = new ProcessBuilder("Rscript", directory + "wind2plot20m.R", glon, glat);
+            }
+            if(height==50)
+            {
+                pb = new ProcessBuilder("Rscript", directory + "wind2plot.R", glon, glat);
+            }
+            if(height==120)
+            {
+                pb = new ProcessBuilder("Rscript", directory + "wind2plot120.R", glon, glat);
+            }
             p = pb.start();
             InputStream is = p.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
@@ -570,13 +763,28 @@ public class MBRMap implements Serializable {
             wind.iniciar();
             System.out.println("ERROr");
         }
-
-        String n1 = "wr_" + lat + "_" + lon + ".png";
-        String n2 = "wb_" + lat + "_" + lon + ".png";
-        System.out.println(n1);
-        wind.generar(n1, n2);
-
+        if (height == 20) {
+            String n1 = "wr20m_" + lat + "_" + lon + ".png";
+            String n2 = "wb20m_" + lat + "_" + lon + ".png";
+            System.out.println("ALTURA 20mts: " + n1);
+            wind.generar(n1, n2);
+        }
+        if (height == 50) {
+            String n1 = "wr_" + lat + "_" + lon + ".png";
+            String n2 = "wb_" + lat + "_" + lon + ".png";
+            System.out.println("ALTURA 50mts: " + n1);
+            wind.generar(n1, n2);
+        }
+        if (height == 120) {
+            String n1 = "wr120m_" + lat + "_" + lon + ".png";
+            String n2 = "wb120m_" + lat + "_" + lon + ".png";
+            System.out.println("ALTURA 120mts: " + n1);
+            wind.generar(n1, n2);
+        }
     }
+/////////////////////////////////////////////////////////////////////
+/////////////////BIOMASA/////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 
     public void consultarBiomasaCoordenada() {
         mlat = 0;mlon = 0;

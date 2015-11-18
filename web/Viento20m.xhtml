@@ -62,7 +62,7 @@
                     <h:inputText id="lat4326" size="15" />
                     <h:outputText value="Longitud:" style="font-size: 10px; margin-left: 10px;" />
                     <h:inputText id="lon4326" size="15" />
-                    <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarVientoCoordenada()}"
+                    <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarViento20mCoordenada()}"
                                      ajax="true" icon="ui-icon-search" update="frmlatlon:panel"
                                      id="viento" style="height: 15px; margin-left: 5px;" />
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
@@ -298,20 +298,20 @@
                                 });
                             </script>
                         </p:fieldset>
-                        <p:tabView>
+                        <p:tabView >
                             <p:tab title="Rosa de Vientos">
                                 <p:graphicImage value="#{windImages.filerose}" width="400" id="img"
                                                 cache="false"
                                                 rendered="#{windImages.filerose!=null}"></p:graphicImage>
                             </p:tab>
-                            <p:tab title="Variación de Vientos">
+                            <p:tab title="Distribución de Weibull">
                                 <p:graphicImage value="#{windImages.fileweibull}" width="400" id="img2"
                                                 cache="false"
                                                 rendered="#{windImages.fileweibull!=null}"></p:graphicImage>
                             </p:tab>
                         </p:tabView>
                     </p:panelGrid>
-                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarVientoCoordenada()}"
+                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarViento20mCoordenada()}"
                                      ajax="true" id="btAjax" style="visibility: hidden"  update="frmlatlon:panel"/>
                     <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
                     <f:facet name="complete">

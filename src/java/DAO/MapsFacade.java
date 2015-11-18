@@ -23,8 +23,14 @@ public class MapsFacade extends AbstractFacade<Maps> {
 
     public Object[] getByCoordenate(int latitude, int longitude, String map, int type) {
         String typemap = "";
-        if (type == 1) {
+        if (type == 50) {
             typemap = "maps_wind_50";
+        }
+        if (type == 20) {
+            typemap = "maps_wind_20";
+        }
+        if (type == 120) {
+            typemap = "maps_wind_120";
         }
         if (type == 2) {
             typemap = "maps_biomass";
@@ -45,8 +51,14 @@ public class MapsFacade extends AbstractFacade<Maps> {
 
     public Object[] getHistoryMonths(int latitude, int longitude, int type) {
         String typemap = "";
-        if (type == 1) {
+        if (type == 50) {
             typemap = "maps_wind_50";
+        }
+        if (type == 20) {
+            typemap = "maps_wind_20";
+        }
+        if (type == 120) {
+            typemap = "maps_wind_120";
         }
         if (type == 2) {
             typemap = "maps_biomass";
@@ -116,8 +128,14 @@ public class MapsFacade extends AbstractFacade<Maps> {
 
     public Object[] getHistoryYears(int latitude, int longitude, int type) {
         String typemap = "";
-        if (type == 1) {
+        if (type == 50) {
             typemap = "maps_wind_50";
+        }
+        if (type == 20) {
+            typemap = "maps_wind_20";
+        }
+        if (type == 120) {
+            typemap = "maps_wind_120";
         }
         if (type == 2) {
             typemap = "maps_biomass";
@@ -195,153 +213,163 @@ public class MapsFacade extends AbstractFacade<Maps> {
         }
     }
 
-    public Object[] getHistoryHours(int latitude, int longitude) {
+    public Object[] getHistoryHours(int latitude, int longitude,int height) {
+        String heigthmaphour = "";
+        if (height == 50) {
+            heigthmaphour = "avghourwindspeed";
+        }
+        if (height == 20) {
+            heigthmaphour = "avghourwindspeed20";
+        }
+        if (height == 120) {
+            heigthmaphour = "avghourwindspeed120";
+        }
         try {
             Query qyears = getEntityManager().createNativeQuery("SELECT m.* \n"
                     + "	FROM(	\n"
-                    + "		(SELECT 	\n"
-                    + "			latitude_3857,longitude_3857,grid450_id,windspeed  	\n"
-                    + "		FROM 		\n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='0') h0\n"
+                    + "	(SELECT 	\n"
+                    + "	latitude_3857,longitude_3857,grid450_id,windspeed  	\n"
+                    + "	FROM 		\n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='0') h0\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='1') h1\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='1') h1\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='2') h2\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='2') h2\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='3') h3\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='3') h3\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='4') h4\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='4') h4\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='5') h5\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='5') h5\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='6') h6\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='6') h6\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='7') h7\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='7') h7\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='8') h8\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='8') h8\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='9') h9\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='9') h9\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='10') h10\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='10') h10\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='11') h11\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='11') h11\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='12') h12\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='12') h12\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='13') h13\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='13') h13\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='14') h14\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='14') h14\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='15') h15\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='15') h15\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='16') h16\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='16') h16\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='17') h17\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='17') h17\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='18') h18\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='18') h18\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='19') h19\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='19') h19\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='20') h20\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='20') h20\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN	(SELECT grid450_id,windspeed  	\n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='21') h21\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='21') h21\n"
                     + "	using (grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='22') h22\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='22') h22\n"
                     + "	using	(grid450_id)\n"
                     + "	JOIN (SELECT grid450_id,windspeed \n"
-                    + "		FROM \n"
-                    + "			(grid_450 natural join avghourwindspeed) \n"
-                    + "		where \n"
-                    + "			latitude_3857=? and longitude_3857=? and hourday='23') h23\n"
+                    + "	FROM \n"
+                    + "	(grid_450 natural join "+heigthmaphour+") \n"
+                    + "	where \n"
+                    + "	latitude_3857=? and longitude_3857=? and hourday='23') h23\n"
                     + "	using	(grid450_id)\n"
                     + ") m"
             );
