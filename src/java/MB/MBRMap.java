@@ -462,7 +462,59 @@ public class MBRMap implements Serializable {
         y13 = Double.parseDouble(valoranios[14].toString());
         y14 = Double.parseDouble(valoranios[15].toString());
     }
-    
+/////////////////////////////////////////////////////////////////////
+////////////////////////SOLAR CON MODIS////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+    public void consultarSolarModisCoordenada() {
+        mlat = 0;mlon = 0;
+        m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
+        y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
+        Object[] valor, valormeses, valoranios;
+        valorbd = "Promedio General en Radiación Solar : 0 W/m²";
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        System.out.println(lat + " || " + lon);
+        valor = daoMap.getByCoordenate(lon, lat, "General", 4);
+        if (valor != null) {
+            valorbd = "Promedio General en Radiación Solar : " + valor[2].toString() + " W/m²";
+        }
+////////////////////consultar valor por MES O AÑO
+        valormeses = daoMap.getHistoryMonths(lon, lat, 4);
+        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+            m1 = Double.parseDouble(valormeses[1].toString());
+            m2 = Double.parseDouble(valormeses[2].toString());
+            m3 = Double.parseDouble(valormeses[3].toString());
+            m4 = Double.parseDouble(valormeses[4].toString());
+            m5 = Double.parseDouble(valormeses[5].toString());
+            m6 = Double.parseDouble(valormeses[6].toString());
+            m7 = Double.parseDouble(valormeses[7].toString());
+            m8 = Double.parseDouble(valormeses[8].toString());
+            m9 = Double.parseDouble(valormeses[9].toString());
+            m10 = Double.parseDouble(valormeses[10].toString());
+            m11 = Double.parseDouble(valormeses[11].toString());
+            m12 = Double.parseDouble(valormeses[12].toString());
+        }
+        valoranios = daoMap.getHistoryYearsModis(lon, lat, 4);
+        System.out.println(valoranios.length);
+        if (valormeses == null) {
+            return;
+        }
+        y4 = Double.parseDouble(valoranios[1].toString());
+        y5 = Double.parseDouble(valoranios[2].toString());
+        y6 = Double.parseDouble(valoranios[3].toString());
+        y7 = Double.parseDouble(valoranios[4].toString());
+        y8 = Double.parseDouble(valoranios[5].toString());
+        y9 = Double.parseDouble(valoranios[6].toString());
+        y10 = Double.parseDouble(valoranios[7].toString());
+        y11 = Double.parseDouble(valoranios[8].toString());
+        y12 = Double.parseDouble(valoranios[9].toString());
+        y13 = Double.parseDouble(valoranios[10].toString());
+        y14 = Double.parseDouble(valoranios[11].toString());
+    }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////VIENTO//////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

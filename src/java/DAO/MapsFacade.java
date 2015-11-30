@@ -38,11 +38,15 @@ public class MapsFacade extends AbstractFacade<Maps> {
         if (type == 3) {
             typemap = "maps_solar";
         }
+        if (type == 4) {
+            typemap = "maps_sun_modis";
+        }
         try {
             Query q = getEntityManager().createNativeQuery("Select m.latitude_3857, m.longitude_3857,m.value_point from (grid_450 natural join  " + typemap + ") m where m.latitude_3857=? and m.longitude_3857=? and m.tag_time=?");
             q.setParameter(1, latitude);
             q.setParameter(2, longitude);
             q.setParameter(3, map);
+            System.out.println("GENERAL OK");
             return (Object[]) q.getSingleResult();
         } catch (Exception e) {
             return null;
@@ -65,6 +69,9 @@ public class MapsFacade extends AbstractFacade<Maps> {
         }
         if (type == 3) {
             typemap = "maps_solar";
+        }
+        if (type == 4) {
+            typemap = "maps_sun_modis";
         }
         try {
 
@@ -119,6 +126,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qmonths.setParameter(22, longitude);
             qmonths.setParameter(23, latitude);
             qmonths.setParameter(24, longitude);
+            System.out.println("MONTHS OK");
             return (Object[]) qmonths.getSingleResult();
 
         } catch (Exception e) {
@@ -142,6 +150,9 @@ public class MapsFacade extends AbstractFacade<Maps> {
         }
         if (type == 3) {
             typemap = "maps_solar";
+        }
+        if (type == 4) {
+            typemap = "maps_sun_modis";
         }
         try {
             Query qyears = getEntityManager().createNativeQuery("SELECT m.* FROM("
@@ -167,7 +178,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
                     + "NATURAL  JOIN  "
                     + " (SELECT 	grid450_id,value_point AS a2010 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2010') a11  "
                     + "NATURAL  JOIN  "
-                    + "  (SELECT 	grid450_id,value_point AS a2011 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='December') a12 "
+                    + "  (SELECT 	grid450_id,value_point AS a2011 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2011') a12 "
                     + "  NATURAL  JOIN  "
                     + " (SELECT 	grid450_id,value_point AS a2012 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2012') a13  "
                     + " NATURAL  JOIN  "
@@ -422,6 +433,74 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qyears.setParameter(46, longitude);
             qyears.setParameter(47, latitude);
             qyears.setParameter(48, longitude);
+            return (Object[]) qyears.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    //MODIS AÑOS
+    public Object[] getHistoryYearsModis(int latitude, int longitude, int type) {
+        String typemap = "";
+        if (type == 4) {
+            typemap = "maps_sun_modis";
+        }
+        try {
+            Query qyears = getEntityManager().createNativeQuery("SELECT m.* FROM("
+                    + " (SELECT grid450_id,value_point AS a2000 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2005') a1 "
+                    + "NATURAL  JOIN "
+                    + " (SELECT 	grid450_id,value_point AS a2006 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2006') a7 "
+                    + "NATURAL  JOIN "
+                    + "(SELECT  	grid450_id,value_point AS a2007 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2007') a8 "
+                    + "NATURAL  JOIN "
+                    + " (SELECT 	grid450_id,value_point AS a2008 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2008') a9 "
+                    + "NATURAL  JOIN "
+                    + " (SELECT 	grid450_id,value_point AS a2009 FROM  	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2009') a10 "
+                    + "NATURAL  JOIN  "
+                    + " (SELECT 	grid450_id,value_point AS a2010 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2010') a11  "
+                    + "NATURAL  JOIN  "
+                    + "  (SELECT 	grid450_id,value_point AS a2011 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2011') a12 "
+                    + "  NATURAL  JOIN  "
+                    + " (SELECT 	grid450_id,value_point AS a2012 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2012') a13  "
+                    + " NATURAL  JOIN  "
+                    + " (SELECT 	grid450_id,value_point AS a2013 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2013') a14  "
+                    + " NATURAL  JOIN  "
+                    + " (SELECT 	grid450_id,value_point AS a2014 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2014') a15  "
+                    + " NATURAL  JOIN  "
+                    + " (SELECT 	grid450_id,value_point AS a2015 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2015') a16  "
+                    + ") as m"
+            );
+
+            qyears.setParameter(1, latitude);
+            qyears.setParameter(2, longitude);
+            qyears.setParameter(3, latitude);
+            qyears.setParameter(4, longitude);
+            qyears.setParameter(5, latitude);
+            qyears.setParameter(6, longitude);
+            qyears.setParameter(7, latitude);
+            qyears.setParameter(8, longitude);
+            qyears.setParameter(9, latitude);
+            qyears.setParameter(10, longitude);
+            qyears.setParameter(11, latitude);
+            qyears.setParameter(12, longitude);
+            qyears.setParameter(13, latitude);
+            qyears.setParameter(14, longitude);
+            qyears.setParameter(15, latitude);
+            qyears.setParameter(16, longitude);
+            qyears.setParameter(17, latitude);
+            qyears.setParameter(18, longitude);
+            qyears.setParameter(19, latitude);
+            qyears.setParameter(20, longitude);
+            qyears.setParameter(21, latitude);
+            qyears.setParameter(22, longitude);
+            qyears.setParameter(23, latitude);
+            qyears.setParameter(24, longitude);
+            qyears.setParameter(25, latitude);
+            qyears.setParameter(26, longitude);
+            qyears.setParameter(27, latitude);
+            qyears.setParameter(28, longitude);
+            qyears.setParameter(29, latitude);
+            qyears.setParameter(30, longitude);
             return (Object[]) qyears.getSingleResult();
         } catch (Exception e) {
             return null;

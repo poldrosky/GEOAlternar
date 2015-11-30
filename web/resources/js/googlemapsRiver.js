@@ -55,19 +55,19 @@ window.onload = function () {
           params: {'FORMAT': format,
                    'VERSION': '1.1.1',  
                 STYLES: '',
-                LAYERS: 'MapRiver:cuencas3857',
+                LAYERS: 'MapRiver:Cuencas450',
           }
         })
       });
       var cuenca2 = new ol.layer.Tile({
-        visible: false,
+        visible: true,
         source: new ol.source.TileWMS({
           url: 'http://geoalternar.udenar.edu.co:8080/geoserver/MapRiver/wms',
           params: {'FORMAT': format, 
                    'VERSION': '1.1.1',
                    tiled: true,
                 STYLES: '',
-                LAYERS: 'MapRiver:cuencas3857',
+                LAYERS: 'MapRiver:Cuencas450',
           }
         })
       });

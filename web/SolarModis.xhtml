@@ -17,10 +17,10 @@
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout style="height: 680px">
-                <p:layoutUnit position="west" size="18%"  header="Irradiación Promedio en Nariño"  collapsed="false" collapsible="true" id="left1">
+                <p:layoutUnit position="west" size="18%"  header="Radiación Promedio en Nariño"  collapsed="false" collapsible="true" id="left1">
                     <h:panelGrid >
-                        <p:fieldset legend="Mapa General de Irradiación" toggleable="true" toggleSpeed="300" collapsed="false" style=" width: 90%; font-size: 10px;">
-                            <h:outputText value="Irradiación (W/m²)" /><br></br>
+                        <p:fieldset legend="Mapa General de Radiación" toggleable="true" toggleSpeed="300" collapsed="false" style=" width: 90%; font-size: 10px;">
+                            <h:outputText value="Radiación (W/m²)" /><br></br>
                             <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
                             <p:commandButton value="Descargar Datos"  onclick="window.open('http://geoalternar.udenar.edu.co:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
@@ -31,7 +31,7 @@
                             <f:selectItems  value="#{mBRMap.capasSolarMesModis}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
                             <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
                         </p:selectOneMenu><br></br><br></br>
-                        <h:outputText value="Irradiación (W/m²)" /><br></br>
+                        <h:outputText value="Radiación (W/m²)" /><br></br>
                         <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
                         <p:commandButton value="Descargar Datos"  onclick="window.open('http://geoalternar.udenar.edu.co:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
@@ -41,7 +41,7 @@
                             <f:selectItems  value="#{mBRMap.capasSolarAnioModis}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
                             <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
                         </p:selectOneMenu><br></br><br></br>
-                        <h:outputText value="Irradiación (W/m²)" /><br></br>
+                        <h:outputText value="Radiación (W/m²)" /><br></br>
                         <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
                         <p:commandButton value="Descargar Datos"  onclick="window.open('http://localhost:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
@@ -59,7 +59,7 @@
                         <h:outputText value="GRACIAS POR ESPERAR" />
                     </p:dialog>
                 </p:layoutUnit>
-                <p:layoutUnit position="east" size="45%" collapsed="false" collapsible="false" header="Inf. Irradiación en Coordenada (EPSG:4326)"  id="rigth" style="text-align: center;">
+                <p:layoutUnit position="east" size="45%" collapsed="false" collapsible="false" header="Inf. Radiación en Coordenada (EPSG:4326)"  id="rigth" style="text-align: center;">
                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
                     </h:inputText>
@@ -70,7 +70,7 @@
                     <h:inputText id="lat4326" size="15" />
                     <h:outputText value="Longitud:" style="font-size: 10px; margin-left: 10px;" />
                     <h:inputText id="lon4326" size="15" />
-                    <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarSolarCoordenada()}"
+                    <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarSolarModisCoordenada()}"
                                      ajax="true" icon="ui-icon-search" update="frmlatlon:panel"
                                      id="solar" style="height: 15px; margin-left: 5px;" />
                     <br></br><br></br>
@@ -79,7 +79,7 @@
                             <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Elegir mapa para descargar</a></p:graphicImage>
                         </h:panelGroup> 
                         <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
-                        <p:fieldset legend="Gráfico Promedio Mensual de Irradiación" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 95%; font-size: 10px;">
+                        <p:fieldset legend="Gráfico Promedio Mensual de Radiación" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 95%; font-size: 10px;">
                             <div id="container" style="width: 600px; height: 400px; margin: 0 auto"></div>
                             <script>
                                 $(function () {
@@ -89,7 +89,7 @@
                                             spacingBottom: 5
                                         },
                                         title: {
-                                            text: 'Promedio Irradiación Mensual'
+                                            text: 'Promedio Radiación Mensual'
                                         },
                                         subtitle: {
                                             text: '',
@@ -115,7 +115,7 @@
                                                     }],
                                         yAxis: {
                                             title: {
-                                                text: 'Irradiación en Coordenada W/m²'
+                                                text: 'Radiación en Coordenada W/m²'
                                             },
                                             labels: {
                                                 formatter: function () {
@@ -143,7 +143,7 @@
                                         credits: {
                                             enabled: false
                                         },
-                                        series: [{name: 'Promedio Mensual Irradiación ', align: 'rigth',
+                                        series: [{name: 'Promedio Mensual Radiación ', align: 'rigth',
                                                 data: [#{mBRMap.m1}, #{mBRMap.m2},#{mBRMap.m3}, #{mBRMap.m4},#{mBRMap.m5}, #{mBRMap.m6},
                                 #{mBRMap.m7}, #{mBRMap.m8},#{mBRMap.m9}, #{mBRMap.m10},#{mBRMap.m11}, #{mBRMap.m12}]
                                             }]
@@ -151,7 +151,7 @@
                                 });
                             </script>
                         </p:fieldset>
-                        <p:fieldset legend="Gráfico Promedio Anual de Irradiación" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 95%; font-size: 10px;">
+                        <p:fieldset legend="Gráfico Promedio Anual de Radiación" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 95%; font-size: 10px;">
                             <div id="containeranios" style="width: 600px; height: 400px; margin: 0 auto"></div>
                             <script>
                             $(function () {
@@ -161,10 +161,10 @@
                                         spacingBottom: 5
                                     },
                                     title: {
-                                        text: 'Promedio Irradiación Anual'
+                                        text: 'Promedio Radiación Anual'
                                     },
                                     subtitle: {
-                                        text: 'Variacion de Irradiación en cordenada',
+                                        text: 'Variacion de Radiación en cordenada',
                                         floating: true,
                                         align: 'rigth',
                                         verticalAlign: 'bottom',
@@ -184,15 +184,14 @@
                                     // 
                                     ,
                                     xAxis:
-                                            [{categories: ['2000', '2001', '2002', '2003',
-                                                         '2004', '2005', '2006', '2007', '2008',
+                                            [{categories: ['2005', '2006', '2007', '2008',
                                                          '2009', '2010', '2011', '2012', '2013',
-                                                         '2014'],
+                                                         '2014', '2015'],
                                                         reversed: false
                                                     }],
                                     yAxis: {
                                         title: {
-                                            text: 'Irradiación en Coordenada W/m²'
+                                            text: 'Radiación en Coordenada W/m²'
                                         },
                                         labels: {
                                             formatter: function () {
@@ -220,8 +219,8 @@
                                         enabled: false
                                     },
                                     series: [{
-                                        name: 'Promedio Anual Irradiación',align: 'rigth',
-                                        data: [#{mBRMap.y0},#{mBRMap.y1}, #{mBRMap.y2},#{mBRMap.y3}, #{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
+                                        name: 'Promedio Anual Radiación',align: 'rigth',
+                                        data: [ #{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
                                             #{mBRMap.y9}, #{mBRMap.y10},#{mBRMap.y11}, #{mBRMap.y12},#{mBRMap.y13}, #{mBRMap.y14}]
                                     }]
                                 });
@@ -229,7 +228,7 @@
                             </script>
                         </p:fieldset>
                     </p:panelGrid>
-                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarSolarCoordenada()}"
+                    <p:commandButton value="prueba" actionListener="#{mBRMap.consultarSolarModisCoordenada()}"
                                      ajax="true" update="frmlatlon:panel"
                                      id="btAjax" style="visibility: hidden"/>
                     
