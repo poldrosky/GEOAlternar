@@ -15,53 +15,53 @@
     <h:body>
         <h:form id="frmlatlon"  style="font-size: 11px;">
             <p:layout style="height: 650px">
-                <p:layoutUnit position="west" size="30%"  header="Informacion Hidrológica"  collapsible="false" id="left1">
+                <p:layoutUnit position="west" size="15%"  header="Información Hídrica"  collapsible="false" id="left1">
                     <div >
                         <h4 style=";text-align: center;">
-                    </h4>
-                        <table style="width: 60%;margin-left: 20%; margin-bottom: 5%; border: 2px #E6E6FA dotted;">
-                            <tbody>
-                                <tr>
-                                    <td><p:graphicImage value="./img/hidro/cm.png"/></td>
-                                    <td><p:outputLabel value="Cabeceras Municipales"/></td>
-                                </tr>
-                                <tr>
-                                    <td><p:graphicImage value="./img/hidro/ei.png"/></td>
-                                    <td><p:outputLabel value="Estaciones IDEAM"/></td>
-                                </tr>
-                                <tr>
-                                    <td><p:graphicImage value="./img/hidro/r.png"/></td>
-                                    <td><p:outputLabel value="Drenaje Doble"/></td>
-                                </tr>
-                                <tr>
-                                    <td><p:graphicImage value="./img/hidro/cuencas.png"/></td>
-                                    <td><p:outputLabel value="Cuencas Hidrográficas"/></td>
-                                </tr>
-                            </tbody>
-                        </table >
-                        <table style="width: 60%;margin-left: 20%; margin-bottom: 5%; border: 2px #E6E6FA dotted;">
-                        <tbody>
-                            <tr>
-                                <td><h:outputText value="Longitud: " style="font-size: 12px;margin-left: 10px;" /></td>
-                                <td><h:inputText id="lon4326" size="12" disabled="true"/><br/></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputText value="Latitud:" style="font-size: 12px; margin-left: 10px;" /></td>
-                                <td><h:inputText id="lat4326" size="12" disabled="true"/></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        </h4>
+                        <center>
+                            <table style="margin-bottom: 5%; border: 2px #E6E6FA dotted;">
+                                <tbody>
+                                    <tr>
+                                        <td><p:graphicImage value="./img/hidro/cm.png"/></td>
+                                        <td><p:outputLabel value="Cabeceras Municipales"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:graphicImage value="./img/hidro/ei.png"/></td>
+                                        <td><p:outputLabel value="Estaciones IDEAM"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:graphicImage value="./img/hidro/r.png"/></td>
+                                        <td><p:outputLabel value="Drenaje Doble"/></td>
+                                    </tr>
+                                </tbody>
+                            </table >
+                            <hr/>
+                            <p:outputLabel value="Clasificación Cuencas Hídricas (l/s)"/><br/>
+                            <p:graphicImage value="./img/hidro/cuencas.png" style="width: 60px;height: 320px;"/>
+                            <br/><br/><hr/>
+                            <h:outputText value="Posición Geográfica " style="font-size: 15px;margin-left: 10px;" />
+                            <table style=" margin-bottom: 5%; border: 2px #E6E6FA dotted;">
+                                <tbody>
+                                    <tr>
+                                        <td><h:outputText value="Longitud: " style="font-size: 12px;margin-left: 10px;" /></td>
+                                        <td><h:inputText id="lon4326" size="12" disabled="true"/><br/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h:outputText value="Latitud:" style="font-size: 12px; margin-left: 10px;" /></td>
+                                        <td><h:inputText id="lat4326" size="12" disabled="true"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </center>
                     </div>
-                    
-                    
                 </p:layoutUnit>
-                <p:layoutUnit position="center" id="panelmap" header="Mapa de Informacion Hidrológica " size="60">
-                    <div id="map" style="height: 450px; width: 99%;" ></div>
+                <p:layoutUnit position="center" id="panelmap" header="Mapa de Informacion Hídrica " size="60">
+                    <div id="map" style="height: 400px; width: 99%;" ></div>
                     <div id="location"></div>
                     <div id="wrapper">
                         <div id="nodelist" ></div>
-                            
-                        </div>
+                    </div>
                 </p:layoutUnit>
             </p:layout>
         </h:form>
