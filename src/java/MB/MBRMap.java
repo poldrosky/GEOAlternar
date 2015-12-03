@@ -891,6 +891,23 @@ public class MBRMap implements Serializable {
         y13 = Double.parseDouble(valoranios[14].toString());
         y14 = Double.parseDouble(valoranios[15].toString());
     }
+    /////////////////////////////////////////////////////////////////////
+////////////////////////SOLAR////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+    public void consultarHidricoCoordenada() {
+        mlat = 0;mlon = 0;
+        Object[] valor;
+        valorbd = "Caudal : 0 litros/segundo";
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        System.out.println(lat + " || " + lon);
+        valor = daoMap.getByCoordenate( lat, lon,"Caudal", 5);
+        if (valor != null) {
+            valorbd = "Caudal: " + valor[2].toString() + " litros/segundo";
+        }
+    }
 
     public List<Capamap> getCapasBiomasaMes() {
         return capasBiomasaMes;

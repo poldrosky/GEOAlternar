@@ -13,9 +13,9 @@
         <script src="http://geoalternar.udenar.edu.co:8080/geoserver/openlayers3/ol.js" type="text/javascript"></script>
     </h:head>
     <h:body>
-        <h:form id="frmlatlon"  style="font-size: 11px;">
+        <h:form id="frmlatlon"  style="font-size: 13px;">
             <p:layout style="height: 650px">
-                <p:layoutUnit position="west" size="15%"  header="Información Hídrica"  collapsible="false" id="left1">
+                <p:layoutUnit position="west" size="30%"  header="Información Hídrica"  collapsible="false" id="left1">
                     <div >
                         <h4 style=";text-align: center;">
                         </h4>
@@ -34,30 +34,40 @@
                                         <td><p:graphicImage value="./img/hidro/r.png"/></td>
                                         <td><p:outputLabel value="Drenaje Doble"/></td>
                                     </tr>
+                                    <tr>
+                                        <td><h:outputText value="Coordenada" style="font-size: 10px;" /></td>
+                                        <td>
+                                            <h:inputText id="lon4326" size="10" disabled="true" style="font-size: 10px;" />,
+                                            <h:inputText id="lat4326" size="10" disabled="true" style="font-size: 10px;" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p:panel id="panel" >
+                                                <h:outputText value=" #{mBRMap.valorbd}" />
+                                            </p:panel>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table >
                             <hr/>
                             <p:outputLabel value="Clasificación Cuencas Hídricas (l/s)"/><br/>
-                            <p:graphicImage value="./img/hidro/cuencas.png" style="width: 60px;height: 320px;"/>
-                            <br/><br/><hr/>
-                            <h:outputText value="Posición Geográfica " style="font-size: 15px;margin-left: 10px;" />
-                            <table style=" margin-bottom: 5%; border: 2px #E6E6FA dotted;">
-                                <tbody>
-                                    <tr>
-                                        <td><h:outputText value="Longitud: " style="font-size: 12px;margin-left: 10px;" /></td>
-                                        <td><h:inputText id="lon4326" size="12" disabled="true"/><br/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputText value="Latitud:" style="font-size: 12px; margin-left: 10px;" /></td>
-                                        <td><h:inputText id="lat4326" size="12" disabled="true"/></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <p:graphicImage value="./img/hidro/cuencas.png" style="width: 55px;height: 270px;"/>
+                            <br/><br/>
+                            <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
+                                <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
+                            </h:inputText>
+                            <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" style="visibility: hidden;">
+                                <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
+                            </h:inputText><br></br>
                         </center>
+                        <p:commandButton value="prueba" actionListener="#{mBRMap.consultarHidricoCoordenada()}"
+                                         ajax="true" update="frmlatlon:panel" style="visibility: hidden;"
+                                         id="btAjax" />
                     </div>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Informacion Hídrica " size="60">
-                    <div id="map" style="height: 400px; width: 99%;" ></div>
+                    <div id="map" style="height: 500px; width: 99%;" ></div>
                     <div id="location"></div>
                     <div id="wrapper">
                         <div id="nodelist" ></div>

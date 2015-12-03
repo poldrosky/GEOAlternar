@@ -134,23 +134,28 @@ window.onload = function () {
         var viewResolution = view.getResolution();
         var source = untiled.get('visible') ? untiled.getSource() : tiled.getSource();
         var url = source.getGetFeatureInfoUrl(
-            evt.coordinate, viewResolution, view.getProjection(),
-            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+                evt.coordinate, viewResolution, view.getProjection(),
+                {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
         );
         //alert(evt.coordinate);
+        document.getElementById('frmlatlon:latitudeCap').value = evt.coordinate[0].toFixed(0);
+        document.getElementById('frmlatlon:longitudeCap').value = evt.coordinate[1].toFixed(0);
         var firstProjection = 'EPSG:3857';
-            var secondProjection = 'EPSG:4326';
-            var result=proj4(firstProjection,secondProjection,[evt.coordinate[0],evt.coordinate[1]]);
-            //document.getElementById('frmlatlon:lon4326').value = result[0].toFixed(5);
-            //document.getElementById('frmlatlon:lat4326').value = result[1].toFixed(5);
+        var secondProjection = 'EPSG:4326';
+        var result = proj4(firstProjection, secondProjection, [evt.coordinate[0], evt.coordinate[1]]);
+
         document.getElementById('frmlatlon:lat4326').value = result[0].toFixed(6);
         document.getElementById('frmlatlon:lon4326').value = result[1].toFixed(6);
-        
+
         if (url) {
-          //document.getElementById('nodelist').innerHTML = '<iframe seamless  style="width: 99%;" src="' + url + '"></iframe>';
-          document.getElementById('nodelist').innerHTML = '<iframe  src="' + url + '"></iframe>';
+            //document.getElementById('nodelist').innerHTML = '<iframe seamless  style="width: 99%;" src="' + url + '"></iframe>';
+            document.getElementById('nodelist').innerHTML = '<iframe  src="' + url + '"></iframe>';
         }
-      });
+        var fireOnThis = document.getElementById("frmlatlon:btAjax");
+        var evObj = document.createEvent('Event');
+        evObj.initEvent('click', true, true);
+        fireOnThis.dispatchEvent(evObj);
+    });
 }
 
 

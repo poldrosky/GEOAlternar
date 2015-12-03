@@ -41,12 +41,16 @@ public class MapsFacade extends AbstractFacade<Maps> {
         if (type == 4) {
             typemap = "maps_sun_modis";
         }
+        if (type == 5) {
+            typemap = "maps_cuencas";
+        }
         try {
             Query q = getEntityManager().createNativeQuery("Select m.latitude_3857, m.longitude_3857,m.value_point from (grid_450 natural join  " + typemap + ") m where m.latitude_3857=? and m.longitude_3857=? and m.tag_time=?");
             q.setParameter(1, latitude);
             q.setParameter(2, longitude);
             q.setParameter(3, map);
-            System.out.println("GENERAL OK");
+            System.out.println("GENERAL OK: ");
+            
             return (Object[]) q.getSingleResult();
         } catch (Exception e) {
             return null;

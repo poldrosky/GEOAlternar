@@ -17,6 +17,7 @@ import org.primefaces.model.StreamedContent;
      private StreamedContent filewindyear,filewindmonth;  
      private StreamedContent filebiomass,filewind,filesun,filesunModis;  
      private StreamedContent filerose,fileweibull;
+     private StreamedContent fileManual;
      
      public download() throws FileNotFoundException {  
          InputStream stream  = new FileInputStream("/opt/maps/MapsCSV/Biomass2000-2014.csv");   
@@ -43,6 +44,8 @@ import org.primefaces.model.StreamedContent;
          filesunmonthModis = new DefaultStreamedContent(stream11, "application/csv", "SunMODISJanuary-December.csv");
          InputStream stream12  = new FileInputStream("/opt/maps/MapsCSV/IrradiacionPromedioNarinoMODIS.csv");   
          filesunModis = new DefaultStreamedContent(stream12, "application/csv", "IrradiacionPromedioNarinoMODIS.csv");
+         InputStream stream13  = new FileInputStream("/opt/maps/MapsCSV/ManualUsuario_GEOAlternar.pdf");   
+         fileManual = new DefaultStreamedContent(stream13, "application/pdf", "ManualUsuario_GEOAlternar.pdf");
     }  
 
     public StreamedContent getFilesunyearModis() {
@@ -141,5 +144,14 @@ import org.primefaces.model.StreamedContent;
     public void setFilesun(StreamedContent filesun) {
         this.filesun = filesun;
     }
+
+    public StreamedContent getFileManual() {
+        return fileManual;
+    }
+
+    public void setFileManual(StreamedContent fileManual) {
+        this.fileManual = fileManual;
+    }
+
     
 }   
