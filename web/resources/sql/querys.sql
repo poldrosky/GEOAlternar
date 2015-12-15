@@ -156,3 +156,16 @@ SELECT m.*
 ) m
 
 --SELECT * from avghourwindspeed limit 10
+
+
+
+---
+update maps_cuencas C set name_watershed=(
+SELECT 
+	cuencas.name_watershed 
+from 
+	cuencas join maps_cuencas using(value_point)
+where 
+	value_point>0 and maps_cuencas.grid450_id=C.grid450_id
+order by 
+	grid450_id,value_point) 
