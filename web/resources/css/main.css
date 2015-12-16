@@ -405,9 +405,9 @@ li p, .art-postcontent li p, .art-blockcontent li p
     margin-left: -853px;
     position: absolute;
     top: -3px;
-    width: 1706px;
+    width: 2000px;
     height: 506px;
-    background-image: url('images/object0.png');
+    background-image: url('imgmain/header.png');
     background-position: 0 0;
     background-repeat: no-repeat;
     z-index: 0;
@@ -491,14 +491,14 @@ text-decoration: none;
    margin:30px auto 0;
    position:relative;
    height: 500px;
-   background-image: url('images/header.png');
+   background-image: url('immain/header.png');
    background-position: center top;
    background-repeat: no-repeat;
 }
 
 .responsive .art-header 
 {
-   background-image: url('images/header.png');
+   background-image: url('imgmain/header.png');
    background-position: center center;
 }
 
@@ -708,10 +708,9 @@ ul.art-hmenu>li:before
    display: block;
    content:' ';
    top:0;
-   left:  -1px;
    width:1px;
    height: 46px;
-   background: url('images/menuseparator.png') center center no-repeat;
+   background: url('imgmain/menuseparator.png') center center no-repeat;
 }
 ul.art-hmenu>li:first-child:before{
    display:none;
@@ -813,7 +812,7 @@ ul.art-hmenu ul
    z-index: 10;
    left: 0;
    top: 0;
-   background-image: url('images/spacer.gif');
+   background-image: url('imgmain/spacer.gif');
 }
 
 .desktop-nav ul.art-hmenu>li>ul
@@ -1234,8 +1233,8 @@ div.art-block img
 
 .art-blockheader
 {
-   background: #0E1720 url('images/blockheader.png') scroll;
-   background: transparent url('images/blockheader.png') scroll;
+   background: #0E1720 url('imgmain/blockheader.png') scroll;
+   background: transparent url('imgmain/blockheader.png') scroll;
    border:1px solid transparent;
    padding:12px 3px;
    margin:0 auto 2px;
@@ -1300,7 +1299,7 @@ div.art-block img
 }
 .art-block ul>li:before
 {
-   content:url('images/blockbullets.png');
+   content:url('imgmain/blockbullets.png');
    margin-right:6px;
    bottom: 2px;
    position:relative;
@@ -1542,7 +1541,7 @@ pre
 
 .art-postemailicon:before
 {
-   content:url('images/postemailicon.png');
+   content:url('imgmain/postemailicon.png');
    margin-right:6px;
    position:relative;
    display:inline-block;
@@ -1559,7 +1558,7 @@ pre
 
 .art-postcontent ul>li:before,  .art-post ul>li:before,  .art-textblock ul>li:before
 {
-   content:url('images/postbullets.png');
+   content:url('imgmain/postbullets.png');
    margin-right:6px;
    bottom: 2px;
    position:relative;
@@ -1625,34 +1624,7 @@ pre
    overflow-y: hidden;
 }
 
-blockquote
-{
-   background: #C2D4E5 url('images/postquote.png') no-repeat scroll;
-   padding:2px 2px 2px 25px;
-   margin:10px 10px 10px 50px;
-   color: #090F15;
-   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
-   font-weight: normal;
-   font-style: italic;
-   text-align: left;
-   /* makes block not to align behind the image if they are in the same line */
-  overflow: auto;
-   clear:both;
-}
-blockquote a, .art-postcontent blockquote a, .art-blockcontent blockquote a, .art-footer blockquote a,
-blockquote a:link, .art-postcontent blockquote a:link, .art-blockcontent blockquote a:link, .art-footer blockquote a:link,
-blockquote a:visited, .art-postcontent blockquote a:visited, .art-blockcontent blockquote a:visited, .art-footer blockquote a:visited,
-blockquote a:hover, .art-postcontent blockquote a:hover, .art-blockcontent blockquote a:hover, .art-footer blockquote a:hover
-{
-   color: #090F15;
-   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
-   font-weight: normal;
-   font-style: italic;
-   text-align: left;
-}
-
 /* Override native 'p' margins*/
-blockquote p,
 .art-postcontent blockquote p,
 .art-blockcontent blockquote p,
 .art-footer blockquote p
@@ -1856,7 +1828,7 @@ img.art-lightbox-image.active
 .loading
 {
    position: fixed;
-   background: #fff url('images/preloader-01.gif') center center no-repeat;
+   background: #fff url('imgmain/preloader-01.gif') center center no-repeat;
    width: 32px;
    height: 32px;
    z-index: 10100;
