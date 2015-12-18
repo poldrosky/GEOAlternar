@@ -653,11 +653,11 @@ ul.art-hmenu>li>a
    margin:0 auto;
    position: relative;
    display: block;
-   height: 46px;
+   height: 35px;
    cursor: pointer;
    text-decoration: none;
    color: #FFFFFF;
-   line-height: 46px;
+   line-height: 35px;
    text-align: center;
 }
 
@@ -710,7 +710,7 @@ ul.art-hmenu>li:before
    top:0;
    width:1px;
    height: 46px;
-   background: url('imgmain/menuseparator.png') center center no-repeat;
+   //background: url('imgmain/menuseparator.png') center center no-repeat;
 }
 ul.art-hmenu>li:first-child:before{
    display:none;
