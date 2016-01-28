@@ -8,12 +8,15 @@ import DAO.MapsFacade;
 import Entidad.Capamap;
 import clases.windImages;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -21,6 +24,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 
 /* @author giiee */
@@ -50,6 +62,7 @@ public class MBRMap implements Serializable {
     private SelectOneMenu selectCapa;
     private SelectOneMenu selectMesCapa;
     private String url, urlcsv;
+    private Object[] valor, valormeses, valoranios,valorhoras;
 
     public MBRMap() {
     }
@@ -412,7 +425,7 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        Object[] valor, valormeses, valoranios;
+  
         valorbd = "Promedio General en Irradiación Solar : 0 W/m²";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
@@ -469,13 +482,12 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        Object[] valor, valormeses, valoranios;
+        
         valorbd = "Promedio General en Radiación Solar : 0 W/m²";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
-        System.out.println(lat + " || " + lon);
         valor = daoMap.getByCoordenate(lon, lat, "General", 4);
         if (valor != null) {
             valorbd = "Promedio General en Radiación Solar : " + valor[2].toString() + " W/m²";
@@ -484,6 +496,7 @@ public class MBRMap implements Serializable {
         valormeses = daoMap.getHistoryMonths(lon, lat, 4);
         if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
         {
+            
             //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
             m1 = Double.parseDouble(valormeses[1].toString());
             m2 = Double.parseDouble(valormeses[2].toString());
@@ -514,6 +527,7 @@ public class MBRMap implements Serializable {
         y12 = Double.parseDouble(valoranios[9].toString());
         y13 = Double.parseDouble(valoranios[10].toString());
         y14 = Double.parseDouble(valoranios[11].toString());
+        System.out.println("DATO:"+valoranios[1].toString());
     }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////VIENTO//////////////////////////////////////////////////////
@@ -524,7 +538,7 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        Object[] valor, valormeses, valoranios,valorhoras;
+        
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
@@ -612,7 +626,7 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        Object[] valor, valormeses, valoranios,valorhoras;
+   
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
@@ -699,7 +713,7 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        Object[] valor, valormeses, valoranios,valorhoras;
+       
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
@@ -1548,6 +1562,45 @@ public class MBRMap implements Serializable {
         this.capasVientoAnio120 = capasVientoAnio120;
     }
 
-    
+    public void generarReporte() throws JRException{
+        System.out.println(valoranios.length);
+        ServletContext servContx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        String rutaJasper = (String) servContx.getRealPath("/");//ruta raiz proyecto
+        rutaJasper = rutaJasper + "resources/reportes/T1.jasper";
+        String rutaTit=(String) servContx.getRealPath("/")+"img/logo.png";
+        
+        Map parameters = new HashMap();
+        parameters.put("a2005", valoranios[1].toString());
+        parameters.put("a2006", valoranios[2].toString());
+        parameters.put("a2007", valoranios[3].toString());
+        parameters.put("a2008", valoranios[4].toString());
+        parameters.put("a2009", valoranios[5].toString());
+        parameters.put("ruta", rutaTit);
+      
+        
+        File fichero = new File(rutaJasper);
+        JasperReport jasperReport = (JasperReport) JRLoader
+                .loadObject(fichero);
+        
+ 
+        JasperPrint print = JasperFillManager.fillReport(jasperReport,
+                parameters, new JREmptyDataSource());
+  
+        byte[] bytes = JasperExportManager.exportReportToPdf(print);
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletResponse response = (HttpServletResponse) context
+                .getExternalContext().getResponse();
+
+        response.addHeader("Content-disposition",
+                "attachment;filename=reporte.pdf");
+        response.setContentLength(bytes.length);
+        try {
+            response.getOutputStream().write(bytes);
+            response.setContentType("application/pdf");
+            context.responseComplete();
+        } catch (Exception e) {
+             
+        }     
+    }
     
 }

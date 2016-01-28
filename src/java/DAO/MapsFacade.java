@@ -139,6 +139,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
     }
 
     public Object[] getHistoryYears(int latitude, int longitude, int type) {
+      
         String typemap = "";
         if (type == 50) {
             typemap = "maps_wind_50";
@@ -158,8 +159,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
         if (type == 4) {
             typemap = "maps_sun_modis";
         }
-        try {
-            Query qyears = getEntityManager().createNativeQuery("SELECT m.* FROM("
+        String s="SELECT m.* FROM("
                     + " (SELECT grid450_id,value_point AS a2000 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2000') a1 "
                     + "NATURAL  JOIN "
                     + " (SELECT 	grid450_id,value_point AS a2001 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2001') a2 "
@@ -189,7 +189,9 @@ public class MapsFacade extends AbstractFacade<Maps> {
                     + " (SELECT 	grid450_id,value_point AS a2013 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2013') a14  "
                     + " NATURAL  JOIN  "
                     + " (SELECT 	grid450_id,value_point AS a2014 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2014') a15  "
-                    + ") as m"
+                    + ") as m";
+        try {
+            Query qyears = getEntityManager().createNativeQuery(s
             );
 
             qyears.setParameter(1, latitude);
@@ -222,8 +224,12 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qyears.setParameter(28, longitude);
             qyears.setParameter(29, latitude);
             qyears.setParameter(30, longitude);
+            System.out.println("con:"+s);
+            System.out.println("lon:"+longitude);
+            System.out.println("lat:"+latitude);
             return (Object[]) qyears.getSingleResult();
         } catch (Exception e) {
+            System.out.println("error:"+e.toString());
             return null;
         }
     }
@@ -445,12 +451,12 @@ public class MapsFacade extends AbstractFacade<Maps> {
     
     //MODIS AÑOS
     public Object[] getHistoryYearsModis(int latitude, int longitude, int type) {
+        
         String typemap = "";
         if (type == 4) {
             typemap = "maps_sun_modis";
         }
-        try {
-            Query qyears = getEntityManager().createNativeQuery("SELECT m.* FROM("
+        String s="SELECT m.* FROM("
                     + " (SELECT grid450_id,value_point AS a2000 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2005') a1 "
                     + "NATURAL  JOIN "
                     + " (SELECT 	grid450_id,value_point AS a2006 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2006') a7 "
@@ -472,7 +478,9 @@ public class MapsFacade extends AbstractFacade<Maps> {
                     + " (SELECT 	grid450_id,value_point AS a2014 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2014') a15  "
                     + " NATURAL  JOIN  "
                     + " (SELECT 	grid450_id,value_point AS a2015 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2015') a16  "
-                    + ") as m"
+                    + ") as m";
+        try {
+            Query qyears = getEntityManager().createNativeQuery(s
             );
 
             qyears.setParameter(1, latitude);
@@ -505,6 +513,9 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qyears.setParameter(28, longitude);
             qyears.setParameter(29, latitude);
             qyears.setParameter(30, longitude);
+            System.out.println("con:"+s);
+            System.out.println("lon:"+longitude);
+            System.out.println("lat:"+latitude);
             return (Object[]) qyears.getSingleResult();
         } catch (Exception e) {
             return null;

@@ -231,6 +231,10 @@
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarSolarModisCoordenada()}"
                                      ajax="true" update="frmlatlon:panel"
                                      id="btAjax" style="visibility: hidden"/>
+                    <p:commandButton value="reporte" action="#{mBRMap.generarReporte}"
+                                     ajax="false"
+                                    />
+                    
                     
                 </p:layoutUnit>
             </p:layout>
