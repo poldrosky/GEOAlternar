@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rmodis" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92ec6028-063f-486d-98ba-9f75a979361e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="logogeoalternar" class="java.lang.String"/>
+	<parameter name="footer" class="java.lang.String"/>
+	<parameter name="wallpapergreen" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="88" splitType="Immediate">
+			<image>
+				<reportElement x="39" y="8" width="257" height="43" uuid="0f95ce87-3636-4c38-8f79-24b717c17b3b"/>
+				<imageExpression><![CDATA[$P{logogeoalternar}.toString()]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="39" y="54" width="348" height="33" uuid="e2dba4f9-09e9-44e3-a94f-26704fa62ec1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="22"/>
+				</textElement>
+				<text><![CDATA[Estimación de Radiación Solar]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="327" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="ca4bcc62-84f7-42af-8564-589fd25671c2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Title" x="3" y="16" width="208" height="21" forecolor="#088205" uuid="8f4d192f-5e1a-4c8f-9e33-3e93c38766f7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="14" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Promedio Mensual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="58" width="75" height="21" uuid="1c9882ac-c732-448c-a937-a858afe6e0b7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Enero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="79" width="75" height="21" uuid="a1faec24-6274-45c6-bc28-7cfbb6bd17d4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Febrero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="98" width="75" height="21" uuid="09325981-cd0d-46fd-bd85-a789af4b6653"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Marzo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="119" width="75" height="21" uuid="60219a6e-0c54-467d-b042-89587e63d114"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Abril]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="140" width="75" height="21" uuid="d8548fd0-ff52-4409-9ca5-05eee3aeed76"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Mayo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="201" width="75" height="21" uuid="7ce4cbca-884a-4439-94b0-c427e52361e4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Agosto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="161" width="75" height="21" uuid="929ac761-c2b8-4140-81ab-52bdcb2d4024"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Junio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="180" width="75" height="21" uuid="21c6eb5f-a8ac-49b0-8680-cbcf4d506dc3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Julio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="220" width="75" height="21" uuid="ce3d6945-f72b-4837-96a0-6fe089491510"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Septiembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="281" width="75" height="21" uuid="27e88e17-f4ec-4d7a-8e2e-c9ec817f0bc1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Diciembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="241" width="75" height="21" uuid="3f1485d1-ca2f-4bf6-886b-6341b2bb51cf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Octubre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="260" width="75" height="21" uuid="e0a2d149-37a4-4d9a-b6eb-c0cdb48c3372"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Noviembre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="127" y="39" width="75" height="21" uuid="72360d79-0cd1-4f79-baac-6708371fa1e9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[W/m2]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="74" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="21d12eac-45d7-47a8-821b-a5c2bf1c8cab"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="3" y="9" width="550" height="54" uuid="c3f83b2a-94bd-41af-94f5-06183a765db9"/>
+				<imageExpression><![CDATA[$P{footer}.toString()]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="8f5b13eb-4185-47ca-8dca-69a596748ead"/>
+				<textElement textAlignment="Right">
+					<font fontName="Ubuntu" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="76abd0b0-a2a4-4497-97dd-a9e7beb4e4ca"/>
+				<textElement>
+					<font fontName="Ubuntu" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="8bc1d453-0466-4660-827e-1f52b7e1ed75"/>
+				<textElement>
+					<font fontName="Ubuntu" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
