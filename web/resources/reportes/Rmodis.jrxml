@@ -10,13 +10,36 @@
 	<parameter name="logogeoalternar" class="java.lang.String"/>
 	<parameter name="footer" class="java.lang.String"/>
 	<parameter name="wallpapergreen" class="java.lang.String"/>
+	<parameter name="m1" class="java.lang.String"/>
+	<parameter name="m2" class="java.lang.String"/>
+	<parameter name="m3" class="java.lang.String"/>
+	<parameter name="m4" class="java.lang.String"/>
+	<parameter name="m5" class="java.lang.String"/>
+	<parameter name="m6" class="java.lang.String"/>
+	<parameter name="m7" class="java.lang.String"/>
+	<parameter name="m8" class="java.lang.String"/>
+	<parameter name="m9" class="java.lang.String"/>
+	<parameter name="m10" class="java.lang.String"/>
+	<parameter name="m11" class="java.lang.String"/>
+	<parameter name="m12" class="java.lang.String"/>
+	<parameter name="a2005" class="java.lang.String"/>
+	<parameter name="a2006" class="java.lang.String"/>
+	<parameter name="a2007" class="java.lang.String"/>
+	<parameter name="a2008" class="java.lang.String"/>
+	<parameter name="a2009" class="java.lang.String"/>
+	<parameter name="a2010" class="java.lang.String"/>
+	<parameter name="a2011" class="java.lang.String"/>
+	<parameter name="a2012" class="java.lang.String"/>
+	<parameter name="a2013" class="java.lang.String"/>
+	<parameter name="a2014" class="java.lang.String"/>
+	<parameter name="a2015" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="88" splitType="Immediate">
 			<image>
-				<reportElement x="39" y="8" width="257" height="43" uuid="0f95ce87-3636-4c38-8f79-24b717c17b3b"/>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="51" backcolor="#1C8309" uuid="0f95ce87-3636-4c38-8f79-24b717c17b3b"/>
 				<imageExpression><![CDATA[$P{logogeoalternar}.toString()]]></imageExpression>
 			</image>
 			<staticText>
@@ -35,7 +58,7 @@
 		<band height="31" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="327" splitType="Stretch">
+		<band height="584" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="ca4bcc62-84f7-42af-8564-589fd25671c2"/>
 				<graphicElement>
@@ -134,12 +157,195 @@
 				<text><![CDATA[Noviembre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="127" y="39" width="75" height="21" uuid="72360d79-0cd1-4f79-baac-6708371fa1e9"/>
+				<reportElement style="Title" x="122" y="39" width="75" height="21" uuid="72360d79-0cd1-4f79-baac-6708371fa1e9"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[W/m2]]></text>
 			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="387" width="75" height="21" uuid="2e26dfec-2f49-4685-ba5c-b73881c7f7cf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2007]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="429" width="75" height="21" uuid="23f7cfb0-1dee-4e82-bdd3-6a3752fea441"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2009]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="549" width="75" height="21" uuid="333361a0-86dd-435c-825e-f6204a176ab7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2015]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="490" width="75" height="21" uuid="e7584f52-4b0f-455a-bf35-c67230f1dce3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2012]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="530" width="75" height="21" uuid="c50edbeb-30b1-430f-826a-38fec9fc072c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2014]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="3" y="305" width="208" height="21" forecolor="#088205" uuid="b059faa3-1f3c-4f6b-9def-6325259d8db0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="14" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Promedio Anual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="368" width="75" height="21" uuid="93910d51-a33c-4a57-8feb-04834e245834"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2006]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="347" width="75" height="21" uuid="a2e0f1c2-c8cf-4c4a-a9cc-493788977578"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2005]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="408" width="75" height="21" uuid="6b39a74b-a0ea-4f9b-9ba4-53b18f614315"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2008]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="469" width="75" height="21" uuid="f82f3c7c-8c61-4780-99e7-dc79488190e3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2011]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="450" width="75" height="21" uuid="ef8d80d7-2c28-4a73-a8e6-4facc3e4c946"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2010]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="111" y="328" width="75" height="21" uuid="df5f6149-34f9-4dd2-88e5-e89572e67c27"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[W/m2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="14" y="509" width="75" height="21" uuid="19928ae3-82dd-4d27-80e0-19ccdf15ab94"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[2013]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="60" width="56" height="20" uuid="9b181adf-ea44-48e2-84a6-7efbc29773a3"/>
+				<textFieldExpression><![CDATA[$P{m1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="81" width="56" height="20" uuid="00a5b89d-5e61-4a28-9441-568f52cf6219"/>
+				<textFieldExpression><![CDATA[$P{m2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="100" width="56" height="20" uuid="40e27522-10f2-4f20-bf72-3df93430b3e8"/>
+				<textFieldExpression><![CDATA[$P{m3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="120" width="56" height="20" uuid="0fd256f9-a7f3-494e-a593-03f6a406e925"/>
+				<textFieldExpression><![CDATA[$P{m4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="142" width="56" height="20" uuid="2ca3c911-9898-4707-a706-f575d6bb6497"/>
+				<textFieldExpression><![CDATA[$P{m5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="163" width="56" height="20" uuid="ac9f45f0-bad6-4763-8cc0-b15c27294e2b"/>
+				<textFieldExpression><![CDATA[$P{m6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="184" width="56" height="20" uuid="6a866ed2-0afc-46b4-85bc-046e536f4af9"/>
+				<textFieldExpression><![CDATA[$P{m7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="202" width="56" height="20" uuid="731b6177-a49a-4fee-82f3-3907cdc275d8"/>
+				<textFieldExpression><![CDATA[$P{m8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="222" width="56" height="20" uuid="7800d471-360d-48e2-8738-01fcedcd9c6e"/>
+				<textFieldExpression><![CDATA[$P{m9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="243" width="56" height="20" uuid="9a9d3af2-051a-4139-9043-e4e45713a635"/>
+				<textFieldExpression><![CDATA[$P{m10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="262" width="56" height="20" uuid="b09d3983-a031-4740-96c8-f8e6b60cbf86"/>
+				<textFieldExpression><![CDATA[$P{m11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="287" width="56" height="20" uuid="19908cc7-e274-46ed-baa9-54fd88747a61"/>
+				<textFieldExpression><![CDATA[$P{m12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="350" width="75" height="20" uuid="1e9c5996-fb71-4924-8050-8de1e71ae6e8"/>
+				<textFieldExpression><![CDATA[$P{a2005}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="369" width="75" height="20" uuid="889673e4-7f45-4b82-9dd3-ae26e7323c49"/>
+				<textFieldExpression><![CDATA[$P{a2006}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="389" width="75" height="20" uuid="6f94ecfa-614b-4c75-8c09-4e86b534aaca"/>
+				<textFieldExpression><![CDATA[$P{a2007}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="409" width="75" height="20" uuid="f60c057c-f6d8-417e-b78d-88fc08fb2128"/>
+				<textFieldExpression><![CDATA[$P{a2008}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="432" width="75" height="20" uuid="449b1163-585a-4b98-87ad-df97f5553177"/>
+				<textFieldExpression><![CDATA[$P{a2009}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="453" width="75" height="20" uuid="6ba4ef64-5c47-44e9-960f-7e16dd92d7ab"/>
+				<textFieldExpression><![CDATA[$P{a2010}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="474" width="75" height="20" uuid="04990932-7890-4a17-b209-f45245d8a7de"/>
+				<textFieldExpression><![CDATA[$P{a2011}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="493" width="75" height="20" uuid="49b54ff0-bb9e-402c-88ef-c6e7b141e243"/>
+				<textFieldExpression><![CDATA[$P{a2012}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="512" width="75" height="20" uuid="ae9afb22-6ebb-4d23-b8bb-1f6318fd64a3"/>
+				<textFieldExpression><![CDATA[$P{a2013}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="533" width="75" height="20" uuid="666f31d3-54f0-4c31-8c00-4dd4398cac70"/>
+				<textFieldExpression><![CDATA[$P{a2014}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="552" width="75" height="20" uuid="a9226aff-9462-4dec-8c39-eb78c619f3a0"/>
+				<textFieldExpression><![CDATA[$P{a2015}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
