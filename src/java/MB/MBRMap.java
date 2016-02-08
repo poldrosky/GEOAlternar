@@ -1597,6 +1597,10 @@ public class MBRMap implements Serializable {
         parameters.put("a2013", valoranios[9].toString());
         parameters.put("a2014", valoranios[10].toString());
         parameters.put("a2015", valoranios[11].toString());
+        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        parameters.put("mdata", valoranios);
+        parameters.put("mname", meses);
+        
         
         File fichero = new File(rutaJasper);
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);

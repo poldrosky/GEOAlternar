@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rmodis" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92ec6028-063f-486d-98ba-9f75a979361e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -59,361 +59,362 @@
 	<detail>
 		<band height="584" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="ca4bcc62-84f7-42af-8564-589fd25671c2"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ca4bcc62-84f7-42af-8564-589fd25671c2"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Title" x="3" y="16" width="208" height="21" forecolor="#088205" uuid="8f4d192f-5e1a-4c8f-9e33-3e93c38766f7"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement style="Title" mode="Opaque" x="3" y="23" width="213" height="21" forecolor="#FFFFFF" backcolor="#088205" uuid="8f4d192f-5e1a-4c8f-9e33-3e93c38766f7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="14" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Promedio Mensual]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="58" width="75" height="21" uuid="1c9882ac-c732-448c-a937-a858afe6e0b7"/>
+				<reportElement style="Title" x="23" y="63" width="75" height="21" uuid="1c9882ac-c732-448c-a937-a858afe6e0b7"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Enero]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="79" width="75" height="21" uuid="a1faec24-6274-45c6-bc28-7cfbb6bd17d4"/>
+				<reportElement style="Title" x="23" y="84" width="75" height="21" uuid="a1faec24-6274-45c6-bc28-7cfbb6bd17d4"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Febrero]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="98" width="75" height="21" uuid="09325981-cd0d-46fd-bd85-a789af4b6653"/>
+				<reportElement style="Title" x="23" y="103" width="75" height="21" uuid="09325981-cd0d-46fd-bd85-a789af4b6653"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Marzo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="119" width="75" height="21" uuid="60219a6e-0c54-467d-b042-89587e63d114"/>
+				<reportElement style="Title" x="23" y="124" width="75" height="21" uuid="60219a6e-0c54-467d-b042-89587e63d114"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Abril]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="140" width="75" height="21" uuid="d8548fd0-ff52-4409-9ca5-05eee3aeed76"/>
+				<reportElement style="Title" x="23" y="145" width="75" height="21" uuid="d8548fd0-ff52-4409-9ca5-05eee3aeed76"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Mayo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="201" width="75" height="21" uuid="7ce4cbca-884a-4439-94b0-c427e52361e4"/>
+				<reportElement style="Title" x="23" y="206" width="75" height="21" uuid="7ce4cbca-884a-4439-94b0-c427e52361e4"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Agosto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="161" width="75" height="21" uuid="929ac761-c2b8-4140-81ab-52bdcb2d4024"/>
+				<reportElement style="Title" x="23" y="166" width="75" height="21" uuid="929ac761-c2b8-4140-81ab-52bdcb2d4024"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Junio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="180" width="75" height="21" uuid="21c6eb5f-a8ac-49b0-8680-cbcf4d506dc3"/>
+				<reportElement style="Title" x="23" y="185" width="75" height="21" uuid="21c6eb5f-a8ac-49b0-8680-cbcf4d506dc3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Julio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="220" width="75" height="21" uuid="ce3d6945-f72b-4837-96a0-6fe089491510"/>
+				<reportElement style="Title" x="23" y="225" width="75" height="21" uuid="ce3d6945-f72b-4837-96a0-6fe089491510"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Septiembre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="281" width="75" height="21" uuid="27e88e17-f4ec-4d7a-8e2e-c9ec817f0bc1"/>
+				<reportElement style="Title" x="23" y="286" width="75" height="21" uuid="27e88e17-f4ec-4d7a-8e2e-c9ec817f0bc1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Diciembre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="241" width="75" height="21" uuid="3f1485d1-ca2f-4bf6-886b-6341b2bb51cf"/>
+				<reportElement style="Title" x="23" y="246" width="75" height="21" uuid="3f1485d1-ca2f-4bf6-886b-6341b2bb51cf"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Octubre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="260" width="75" height="21" uuid="e0a2d149-37a4-4d9a-b6eb-c0cdb48c3372"/>
+				<reportElement style="Title" x="23" y="265" width="75" height="21" uuid="e0a2d149-37a4-4d9a-b6eb-c0cdb48c3372"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Noviembre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="122" y="39" width="75" height="21" uuid="72360d79-0cd1-4f79-baac-6708371fa1e9"/>
+				<reportElement style="Title" x="122" y="45" width="75" height="21" uuid="72360d79-0cd1-4f79-baac-6708371fa1e9"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[W/m2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="387" width="75" height="21" uuid="2e26dfec-2f49-4685-ba5c-b73881c7f7cf"/>
+				<reportElement style="Title" x="357" y="105" width="75" height="21" uuid="2e26dfec-2f49-4685-ba5c-b73881c7f7cf"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2007]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="429" width="75" height="21" uuid="23f7cfb0-1dee-4e82-bdd3-6a3752fea441"/>
+				<reportElement style="Title" x="357" y="147" width="75" height="21" uuid="23f7cfb0-1dee-4e82-bdd3-6a3752fea441"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2009]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="549" width="75" height="21" uuid="333361a0-86dd-435c-825e-f6204a176ab7"/>
+				<reportElement style="Title" x="357" y="267" width="75" height="21" uuid="333361a0-86dd-435c-825e-f6204a176ab7"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2015]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="490" width="75" height="21" uuid="e7584f52-4b0f-455a-bf35-c67230f1dce3"/>
+				<reportElement style="Title" x="357" y="208" width="75" height="21" uuid="e7584f52-4b0f-455a-bf35-c67230f1dce3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2012]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="530" width="75" height="21" uuid="c50edbeb-30b1-430f-826a-38fec9fc072c"/>
+				<reportElement style="Title" x="357" y="248" width="75" height="21" uuid="c50edbeb-30b1-430f-826a-38fec9fc072c"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2014]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="3" y="305" width="208" height="21" forecolor="#088205" uuid="b059faa3-1f3c-4f6b-9def-6325259d8db0"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement style="Title" mode="Opaque" x="316" y="23" width="237" height="21" forecolor="#FFFFFF" backcolor="#088205" uuid="b059faa3-1f3c-4f6b-9def-6325259d8db0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="14" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Promedio Anual]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="368" width="75" height="21" uuid="93910d51-a33c-4a57-8feb-04834e245834"/>
+				<reportElement style="Title" x="357" y="86" width="75" height="21" uuid="93910d51-a33c-4a57-8feb-04834e245834"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2006]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="347" width="75" height="21" uuid="a2e0f1c2-c8cf-4c4a-a9cc-493788977578"/>
+				<reportElement style="Title" x="357" y="65" width="75" height="21" uuid="a2e0f1c2-c8cf-4c4a-a9cc-493788977578"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2005]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="408" width="75" height="21" uuid="6b39a74b-a0ea-4f9b-9ba4-53b18f614315"/>
+				<reportElement style="Title" x="357" y="126" width="75" height="21" uuid="6b39a74b-a0ea-4f9b-9ba4-53b18f614315"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2008]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="469" width="75" height="21" uuid="f82f3c7c-8c61-4780-99e7-dc79488190e3"/>
+				<reportElement style="Title" x="357" y="187" width="75" height="21" uuid="f82f3c7c-8c61-4780-99e7-dc79488190e3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2011]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="450" width="75" height="21" uuid="ef8d80d7-2c28-4a73-a8e6-4facc3e4c946"/>
+				<reportElement style="Title" x="357" y="168" width="75" height="21" uuid="ef8d80d7-2c28-4a73-a8e6-4facc3e4c946"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2010]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="111" y="328" width="75" height="21" uuid="df5f6149-34f9-4dd2-88e5-e89572e67c27"/>
+				<reportElement style="Title" x="427" y="46" width="75" height="21" uuid="df5f6149-34f9-4dd2-88e5-e89572e67c27"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[W/m2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Title" x="14" y="509" width="75" height="21" uuid="19928ae3-82dd-4d27-80e0-19ccdf15ab94"/>
+				<reportElement style="Title" x="357" y="227" width="75" height="21" uuid="19928ae3-82dd-4d27-80e0-19ccdf15ab94"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[2013]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="122" y="60" width="56" height="20" uuid="9b181adf-ea44-48e2-84a6-7efbc29773a3"/>
+				<reportElement x="131" y="65" width="56" height="20" uuid="9b181adf-ea44-48e2-84a6-7efbc29773a3"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="81" width="56" height="20" uuid="00a5b89d-5e61-4a28-9441-568f52cf6219"/>
+				<reportElement x="131" y="86" width="56" height="20" uuid="00a5b89d-5e61-4a28-9441-568f52cf6219"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="100" width="56" height="20" uuid="40e27522-10f2-4f20-bf72-3df93430b3e8"/>
+				<reportElement x="131" y="105" width="56" height="20" uuid="40e27522-10f2-4f20-bf72-3df93430b3e8"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m3}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="120" width="56" height="20" uuid="0fd256f9-a7f3-494e-a593-03f6a406e925"/>
+				<reportElement x="131" y="125" width="56" height="20" uuid="0fd256f9-a7f3-494e-a593-03f6a406e925"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="142" width="56" height="20" uuid="2ca3c911-9898-4707-a706-f575d6bb6497"/>
+				<reportElement x="131" y="147" width="56" height="20" uuid="2ca3c911-9898-4707-a706-f575d6bb6497"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m5}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="163" width="56" height="20" uuid="ac9f45f0-bad6-4763-8cc0-b15c27294e2b"/>
+				<reportElement x="131" y="168" width="56" height="20" uuid="ac9f45f0-bad6-4763-8cc0-b15c27294e2b"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m6}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="184" width="56" height="20" uuid="6a866ed2-0afc-46b4-85bc-046e536f4af9"/>
+				<reportElement x="131" y="189" width="56" height="20" uuid="6a866ed2-0afc-46b4-85bc-046e536f4af9"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m7}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="202" width="56" height="20" uuid="731b6177-a49a-4fee-82f3-3907cdc275d8"/>
+				<reportElement x="131" y="207" width="56" height="20" uuid="731b6177-a49a-4fee-82f3-3907cdc275d8"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m8}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="222" width="56" height="20" uuid="7800d471-360d-48e2-8738-01fcedcd9c6e"/>
+				<reportElement x="131" y="227" width="56" height="20" uuid="7800d471-360d-48e2-8738-01fcedcd9c6e"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m9}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="243" width="56" height="20" uuid="9a9d3af2-051a-4139-9043-e4e45713a635"/>
+				<reportElement x="131" y="248" width="56" height="20" uuid="9a9d3af2-051a-4139-9043-e4e45713a635"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m10}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="262" width="56" height="20" uuid="b09d3983-a031-4740-96c8-f8e6b60cbf86"/>
+				<reportElement x="131" y="267" width="56" height="20" uuid="b09d3983-a031-4740-96c8-f8e6b60cbf86"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m11}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="287" width="56" height="20" uuid="19908cc7-e274-46ed-baa9-54fd88747a61"/>
+				<reportElement x="131" y="292" width="56" height="20" uuid="19908cc7-e274-46ed-baa9-54fd88747a61"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{m12}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="350" width="75" height="20" uuid="1e9c5996-fb71-4924-8050-8de1e71ae6e8"/>
+				<reportElement x="435" y="68" width="75" height="20" uuid="1e9c5996-fb71-4924-8050-8de1e71ae6e8"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2005}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="369" width="75" height="20" uuid="889673e4-7f45-4b82-9dd3-ae26e7323c49"/>
+				<reportElement x="435" y="87" width="75" height="20" uuid="889673e4-7f45-4b82-9dd3-ae26e7323c49"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2006}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="389" width="75" height="20" uuid="6f94ecfa-614b-4c75-8c09-4e86b534aaca"/>
+				<reportElement x="435" y="107" width="75" height="20" uuid="6f94ecfa-614b-4c75-8c09-4e86b534aaca"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2007}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="409" width="75" height="20" uuid="f60c057c-f6d8-417e-b78d-88fc08fb2128"/>
+				<reportElement x="435" y="127" width="75" height="20" uuid="f60c057c-f6d8-417e-b78d-88fc08fb2128"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2008}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="432" width="75" height="20" uuid="449b1163-585a-4b98-87ad-df97f5553177"/>
+				<reportElement x="435" y="150" width="75" height="20" uuid="449b1163-585a-4b98-87ad-df97f5553177"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2009}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="453" width="75" height="20" uuid="6ba4ef64-5c47-44e9-960f-7e16dd92d7ab"/>
+				<reportElement x="435" y="171" width="75" height="20" uuid="6ba4ef64-5c47-44e9-960f-7e16dd92d7ab"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2010}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="474" width="75" height="20" uuid="04990932-7890-4a17-b209-f45245d8a7de"/>
+				<reportElement x="435" y="192" width="75" height="20" uuid="04990932-7890-4a17-b209-f45245d8a7de"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2011}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="493" width="75" height="20" uuid="49b54ff0-bb9e-402c-88ef-c6e7b141e243"/>
+				<reportElement x="435" y="211" width="75" height="20" uuid="49b54ff0-bb9e-402c-88ef-c6e7b141e243"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2012}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="512" width="75" height="20" uuid="ae9afb22-6ebb-4d23-b8bb-1f6318fd64a3"/>
+				<reportElement x="435" y="230" width="75" height="20" uuid="ae9afb22-6ebb-4d23-b8bb-1f6318fd64a3"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2013}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="533" width="75" height="20" uuid="666f31d3-54f0-4c31-8c00-4dd4398cac70"/>
+				<reportElement x="435" y="251" width="75" height="20" uuid="666f31d3-54f0-4c31-8c00-4dd4398cac70"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2014}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="92" y="552" width="75" height="20" uuid="a9226aff-9462-4dec-8c39-eb78c619f3a0"/>
+				<reportElement x="435" y="270" width="75" height="20" uuid="a9226aff-9462-4dec-8c39-eb78c619f3a0"/>
 				<textElement>
 					<font fontName="Ubuntu"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{a2015}]]></textFieldExpression>
 			</textField>
+			<elementGroup/>
 		</band>
 	</detail>
 	<columnFooter>
