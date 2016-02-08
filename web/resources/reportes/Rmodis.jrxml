@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rmodis" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92ec6028-063f-486d-98ba-9f75a979361e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rmodis" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92ec6028-063f-486d-98ba-9f75a979361e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -9,7 +9,6 @@
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<parameter name="logogeoalternar" class="java.lang.String"/>
 	<parameter name="footer" class="java.lang.String"/>
-	<parameter name="wallpapergreen" class="java.lang.String"/>
 	<parameter name="m1" class="java.lang.String"/>
 	<parameter name="m2" class="java.lang.String"/>
 	<parameter name="m3" class="java.lang.String"/>
@@ -39,11 +38,11 @@
 	<title>
 		<band height="88" splitType="Immediate">
 			<image>
-				<reportElement mode="Opaque" x="0" y="0" width="555" height="51" backcolor="#1C8309" uuid="0f95ce87-3636-4c38-8f79-24b717c17b3b"/>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="35" backcolor="#1C8309" uuid="0f95ce87-3636-4c38-8f79-24b717c17b3b"/>
 				<imageExpression><![CDATA[$P{logogeoalternar}.toString()]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="Title" x="39" y="54" width="348" height="33" uuid="e2dba4f9-09e9-44e3-a94f-26704fa62ec1"/>
+				<reportElement style="Title" x="40" y="54" width="348" height="33" uuid="e2dba4f9-09e9-44e3-a94f-26704fa62ec1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Ubuntu" size="22"/>
 				</textElement>
@@ -256,94 +255,163 @@
 			</staticText>
 			<textField>
 				<reportElement x="122" y="60" width="56" height="20" uuid="9b181adf-ea44-48e2-84a6-7efbc29773a3"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m1}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="81" width="56" height="20" uuid="00a5b89d-5e61-4a28-9441-568f52cf6219"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m2}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="100" width="56" height="20" uuid="40e27522-10f2-4f20-bf72-3df93430b3e8"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m3}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="120" width="56" height="20" uuid="0fd256f9-a7f3-494e-a593-03f6a406e925"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m4}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="142" width="56" height="20" uuid="2ca3c911-9898-4707-a706-f575d6bb6497"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m5}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="163" width="56" height="20" uuid="ac9f45f0-bad6-4763-8cc0-b15c27294e2b"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m6}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="184" width="56" height="20" uuid="6a866ed2-0afc-46b4-85bc-046e536f4af9"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m7}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="202" width="56" height="20" uuid="731b6177-a49a-4fee-82f3-3907cdc275d8"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m8}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="222" width="56" height="20" uuid="7800d471-360d-48e2-8738-01fcedcd9c6e"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m9}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="243" width="56" height="20" uuid="9a9d3af2-051a-4139-9043-e4e45713a635"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m10}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="262" width="56" height="20" uuid="b09d3983-a031-4740-96c8-f8e6b60cbf86"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m11}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="287" width="56" height="20" uuid="19908cc7-e274-46ed-baa9-54fd88747a61"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{m12}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="350" width="75" height="20" uuid="1e9c5996-fb71-4924-8050-8de1e71ae6e8"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2005}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="369" width="75" height="20" uuid="889673e4-7f45-4b82-9dd3-ae26e7323c49"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2006}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="389" width="75" height="20" uuid="6f94ecfa-614b-4c75-8c09-4e86b534aaca"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2007}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="409" width="75" height="20" uuid="f60c057c-f6d8-417e-b78d-88fc08fb2128"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2008}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="432" width="75" height="20" uuid="449b1163-585a-4b98-87ad-df97f5553177"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2009}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="453" width="75" height="20" uuid="6ba4ef64-5c47-44e9-960f-7e16dd92d7ab"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2010}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="474" width="75" height="20" uuid="04990932-7890-4a17-b209-f45245d8a7de"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2011}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="493" width="75" height="20" uuid="49b54ff0-bb9e-402c-88ef-c6e7b141e243"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2012}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="512" width="75" height="20" uuid="ae9afb22-6ebb-4d23-b8bb-1f6318fd64a3"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2013}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="533" width="75" height="20" uuid="666f31d3-54f0-4c31-8c00-4dd4398cac70"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2014}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="552" width="75" height="20" uuid="a9226aff-9462-4dec-8c39-eb78c619f3a0"/>
+				<textElement>
+					<font fontName="Ubuntu"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{a2015}]]></textFieldExpression>
 			</textField>
 		</band>

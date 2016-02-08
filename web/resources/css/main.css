@@ -4,7 +4,7 @@
 .ie7 .post .layout-cell {border:none !important; padding:0 !important; }
 .ie6 .post .layout-cell {border:none !important; padding:0 !important; }
 
-//style.css
+
 /* Created by Artisteer v4.0.0.58475 */
 
 #art-main
@@ -560,7 +560,6 @@ ul.art-hmenu li:hover
 {
    z-index: 10000;
    white-space: normal;
-   //background-color: #0B610B;
 }
 
 ul.art-hmenu:after, ul.art-hmenu ul:after
@@ -710,7 +709,6 @@ ul.art-hmenu>li:before
    top:0;
    width:1px;
    height: 46px;
-   //background: url('imgmain/menuseparator.png') center center no-repeat;
 }
 ul.art-hmenu>li:first-child:before{
    display:none;

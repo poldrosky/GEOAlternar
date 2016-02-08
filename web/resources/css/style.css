@@ -31,7 +31,6 @@
     
 }*/
 
-///login
 #root { 
      position:absolute;
      top:5%;/*eje y*/
@@ -54,7 +53,6 @@
      border:0px solid #0b3e6f;color:#0b3e6f;font-weight:bold;
 }
 
-/////////lista menu
 .listmenu{
  width: 100px;text-align: center;   
 }
@@ -74,7 +72,6 @@
     top: 0;
 }
 
-////PARTE HIDRAULICA
 .ol-zoom {
           top: 52px;
         }

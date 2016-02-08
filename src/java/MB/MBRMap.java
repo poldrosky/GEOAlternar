@@ -31,7 +31,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 
@@ -527,7 +526,6 @@ public class MBRMap implements Serializable {
         y12 = Double.parseDouble(valoranios[9].toString());
         y13 = Double.parseDouble(valoranios[10].toString());
         y14 = Double.parseDouble(valoranios[11].toString());
-        System.out.println("DATO:"+valoranios[1].toString());
     }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////VIENTO//////////////////////////////////////////////////////
@@ -1562,34 +1560,53 @@ public class MBRMap implements Serializable {
         this.capasVientoAnio120 = capasVientoAnio120;
     }
 
-    public void generarReporte() throws JRException{
-        System.out.println(valoranios.length);
+    public void generarReporteSolarModis() throws JRException{
+        
         ServletContext servContx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String rutaJasper = (String) servContx.getRealPath("/");//ruta raiz proyecto
-        rutaJasper = rutaJasper + "resources/reportes/T1.jasper";
-        String rutaTit=(String) servContx.getRealPath("/")+"img/logo.png";
+        rutaJasper = rutaJasper + "resources/reportes/Rmodis.jasper";
+        String rlgeoalternar=(String) servContx.getRealPath("/")+"img/geoalternar/p6.png";
+        String rlfooter=(String) servContx.getRealPath("/")+"img/geoalternar/p7.png";
+        System.out.println("oooooo");
+        System.out.println(rutaJasper);
+        
         
         Map parameters = new HashMap();
+        parameters.put("logogeoalternar", rlgeoalternar);
+        parameters.put("footer", rlfooter);
+        parameters.put("m1",valormeses[1].toString());
+        parameters.put("m2", valormeses[2].toString());
+        parameters.put("m3", valormeses[3].toString());
+        parameters.put("m4", valormeses[4].toString());
+        parameters.put("m5", valormeses[5].toString());
+        parameters.put("m6", valormeses[6].toString());
+        parameters.put("m7", valormeses[7].toString());
+        parameters.put("m8", valormeses[8].toString());
+        parameters.put("m9", valormeses[9].toString());
+        parameters.put("m10", valormeses[10].toString());
+        parameters.put("m11", valormeses[11].toString());
+        parameters.put("m12", valormeses[12].toString());
         parameters.put("a2005", valoranios[1].toString());
         parameters.put("a2006", valoranios[2].toString());
         parameters.put("a2007", valoranios[3].toString());
         parameters.put("a2008", valoranios[4].toString());
         parameters.put("a2009", valoranios[5].toString());
-        parameters.put("ruta", rutaTit);
-      
+        parameters.put("a2010", valoranios[6].toString());
+        parameters.put("a2011", valoranios[7].toString());
+        parameters.put("a2012", valoranios[8].toString());
+        parameters.put("a2013", valoranios[9].toString());
+        parameters.put("a2014", valoranios[10].toString());
+        parameters.put("a2015", valoranios[11].toString());
         
         File fichero = new File(rutaJasper);
-        JasperReport jasperReport = (JasperReport) JRLoader
-                .loadObject(fichero);
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
         
  
-        JasperPrint print = JasperFillManager.fillReport(jasperReport,
-                parameters, new JREmptyDataSource());
+        JasperPrint print = JasperFillManager.fillReport(jasperReport,parameters, new JREmptyDataSource());
   
         byte[] bytes = JasperExportManager.exportReportToPdf(print);
         FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletResponse response = (HttpServletResponse) context
-                .getExternalContext().getResponse();
+        HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
 
         response.addHeader("Content-disposition",
                 "attachment;filename=reporte.pdf");
