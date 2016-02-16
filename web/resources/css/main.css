@@ -402,15 +402,13 @@ li p, .art-postcontent li p, .art-blockcontent li p
 {
     display: block;
     left: 50%;
-    margin-left: -853px;
+    margin-left: -800px;
     position: absolute;
     top: -3px;
-    width: 2000px;
-    height: 506px;
-    background-image: url('imgmain/header.png');
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    z-index: 0;
+    width: 2300px;
+    height: 500px;
+    background: url('imgmain/header.png');
+    
 }
 .art-headline
 {
@@ -491,14 +489,12 @@ text-decoration: none;
    margin:30px auto 0;
    position:relative;
    height: 500px;
-   background-image: url('immain/header.png');
    background-position: center top;
    background-repeat: no-repeat;
 }
 
 .responsive .art-header 
 {
-   background-image: url('imgmain/header.png');
    background-position: center center;
 }
 
@@ -560,6 +556,7 @@ ul.art-hmenu li:hover
 {
    z-index: 10000;
    white-space: normal;
+   border: 1px white outset;
 }
 
 ul.art-hmenu:after, ul.art-hmenu ul:after

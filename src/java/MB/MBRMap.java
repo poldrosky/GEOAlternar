@@ -50,6 +50,8 @@ public class MBRMap implements Serializable {
     private List<Capamap> capasSolarAnio;
     private List<Capamap>capasSolarAnioModis;
     private List<Capamap>capasSolarMesModis;
+    private List<Capamap>capasNubeAnioModis;
+    private List<Capamap>capasNubeMesModis;
 
     private String latitude, longitude;
     private int typeenergy;//1 w,2 b,3 s
@@ -385,7 +387,7 @@ public class MBRMap implements Serializable {
         this.capasSolarMesModis.add(capa10sm);
         this.capasSolarMesModis.add(capa11sm);
         this.capasSolarMesModis.add(capa12sm);
-        //Solar Anio
+        //Solar AnioMODIS
         this.capasSolarAnioModis = new ArrayList<Capamap>();
         Capamap capa2005sm = new Capamap("2005", "MapSunMODIS:2005");
         Capamap capa2006sm = new Capamap("2006", "MapSunMODIS:2006");
@@ -409,6 +411,56 @@ public class MBRMap implements Serializable {
         this.capasSolarAnioModis.add(capa2013sm);
         this.capasSolarAnioModis.add(capa2014sm);
         this.capasSolarAnioModis.add(capa2015sm);
+        //NUBES MODIS
+        this.capasNubeMesModis = new ArrayList<Capamap>();
+        Capamap capa1cm = new Capamap("Enero", "mapcloud:January");
+        Capamap capa2cm = new Capamap("Febrero", "mapcloud:February");
+        Capamap capa3cm = new Capamap("Marzo", "mapcloud:March");
+        Capamap capa4cm = new Capamap("Abril", "mapcloud:April");
+        Capamap capa5cm = new Capamap("Mayo", "mapcloud:May");
+        Capamap capa6cm = new Capamap("Junio", "mapcloud:June");
+        Capamap capa7cm = new Capamap("Julio", "mapcloud:July");
+        Capamap capa8cm = new Capamap("Agosto", "mapcloud:August");
+        Capamap capa9cm = new Capamap("septiembre", "mapcloud:September");
+        Capamap capa10cm = new Capamap("Octubre", "mapcloud:October");
+        Capamap capa11cm = new Capamap("Noviembre", "mapcloud:November");
+        Capamap capa12cm = new Capamap("Diciembre", "mapcloud:December");
+        this.capasNubeMesModis.add(capa1cm);
+        this.capasNubeMesModis.add(capa2cm);
+        this.capasNubeMesModis.add(capa3cm);
+        this.capasNubeMesModis.add(capa4cm);
+        this.capasNubeMesModis.add(capa5cm);
+        this.capasNubeMesModis.add(capa6cm);
+        this.capasNubeMesModis.add(capa7cm);
+        this.capasNubeMesModis.add(capa8cm);
+        this.capasNubeMesModis.add(capa9cm);
+        this.capasNubeMesModis.add(capa10cm);
+        this.capasNubeMesModis.add(capa11cm);
+        this.capasNubeMesModis.add(capa12cm);
+        //Solar Anio
+        this.capasNubeAnioModis = new ArrayList<Capamap>();
+        Capamap capa2005cm = new Capamap("2005", "mapcloud:2005");
+        Capamap capa2006cm = new Capamap("2006", "mapcloud:2006");
+        Capamap capa2007cm = new Capamap("2007", "mapcloud:2007");
+        Capamap capa2008cm = new Capamap("2008", "mapcloud:2008");
+        Capamap capa2009cm = new Capamap("2009", "mapcloud:2009");
+        Capamap capa2010cm = new Capamap("2010", "mapcloud:2010");
+        Capamap capa2011cm = new Capamap("2011", "mapcloud:2011");
+        Capamap capa2012cm = new Capamap("2012", "mapcloud:2012");
+        Capamap capa2013cm = new Capamap("2013", "mapcloud:2013");
+        Capamap capa2014cm = new Capamap("2014", "mapcloud:2014");
+        Capamap capa2015cm = new Capamap("2015", "mapcloud:2015");
+        this.capasNubeAnioModis.add(capa2005cm);
+        this.capasNubeAnioModis.add(capa2006cm);
+        this.capasNubeAnioModis.add(capa2007cm);
+        this.capasNubeAnioModis.add(capa2008cm);
+        this.capasNubeAnioModis.add(capa2009cm);
+        this.capasNubeAnioModis.add(capa2010cm);
+        this.capasNubeAnioModis.add(capa2011cm);
+        this.capasNubeAnioModis.add(capa2012cm);
+        this.capasNubeAnioModis.add(capa2013cm);
+        this.capasNubeAnioModis.add(capa2014cm);
+        this.capasNubeAnioModis.add(capa2015cm);
     }
     private double valuelat, valuelon;
     private int lat, lon;
@@ -511,6 +563,59 @@ public class MBRMap implements Serializable {
             m12 = Double.parseDouble(valormeses[12].toString());
         }
         valoranios = daoMap.getHistoryYearsModis(lon, lat, 4);
+        System.out.println(valoranios.length);
+        if (valormeses == null) {
+            return;
+        }
+        y4 = Double.parseDouble(valoranios[1].toString());
+        y5 = Double.parseDouble(valoranios[2].toString());
+        y6 = Double.parseDouble(valoranios[3].toString());
+        y7 = Double.parseDouble(valoranios[4].toString());
+        y8 = Double.parseDouble(valoranios[5].toString());
+        y9 = Double.parseDouble(valoranios[6].toString());
+        y10 = Double.parseDouble(valoranios[7].toString());
+        y11 = Double.parseDouble(valoranios[8].toString());
+        y12 = Double.parseDouble(valoranios[9].toString());
+        y13 = Double.parseDouble(valoranios[10].toString());
+        y14 = Double.parseDouble(valoranios[11].toString());
+    }
+    /////////////////////////////////////////////////////////////////////
+////////////////////////NUBES CON MODIS////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+    public void consultarNubesModisCoordenada() {
+        mlat = 0;mlon = 0;
+        m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
+        y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
+        
+        valorbd = "Probabilidad de Nubosidad : 0 %";
+        valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
+        lat = (int) (valuelat - (valuelat % 450));
+        valuelon = Double.parseDouble(this.longitude);
+        lon = (int) (valuelon - (valuelon % 450));
+        valor = daoMap.getByCoordenate(lon, lat, "General", 6);
+        if (valor != null) {
+            valorbd = "Probabilidad de Nubosidad : " + valor[2].toString() + " %";
+        }
+////////////////////consultar valor por MES O AÑO
+        valormeses = daoMap.getHistoryMonths(lon, lat, 6);
+        if (valormeses != null) //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+        {
+            
+            //datos resultantes de la consulta lat,lon,enero,febrero,.....,diciembre
+            m1 = Double.parseDouble(valormeses[1].toString());
+            m2 = Double.parseDouble(valormeses[2].toString());
+            m3 = Double.parseDouble(valormeses[3].toString());
+            m4 = Double.parseDouble(valormeses[4].toString());
+            m5 = Double.parseDouble(valormeses[5].toString());
+            m6 = Double.parseDouble(valormeses[6].toString());
+            m7 = Double.parseDouble(valormeses[7].toString());
+            m8 = Double.parseDouble(valormeses[8].toString());
+            m9 = Double.parseDouble(valormeses[9].toString());
+            m10 = Double.parseDouble(valormeses[10].toString());
+            m11 = Double.parseDouble(valormeses[11].toString());
+            m12 = Double.parseDouble(valormeses[12].toString());
+        }
+        valoranios = daoMap.getHistoryYearsModis(lon, lat, 6);
         System.out.println(valoranios.length);
         if (valormeses == null) {
             return;
@@ -904,7 +1009,7 @@ public class MBRMap implements Serializable {
         y14 = Double.parseDouble(valoranios[15].toString());
     }
     /////////////////////////////////////////////////////////////////////
-////////////////////////SOLAR////////////////////////////////////////
+////////////////////////HIDRICO////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
     public void consultarHidricoCoordenada() {
         mlat = 0;mlon = 0;
@@ -983,6 +1088,22 @@ public class MBRMap implements Serializable {
 
     public void setCapasSolarMesModis(List<Capamap> capasSolarMesModis) {
         this.capasSolarMesModis = capasSolarMesModis;
+    }
+
+    public List<Capamap> getCapasNubeAnioModis() {
+        return capasNubeAnioModis;
+    }
+
+    public void setCapasNubeAnioModis(List<Capamap> capasNubeAnioModis) {
+        this.capasNubeAnioModis = capasNubeAnioModis;
+    }
+
+    public List<Capamap> getCapasNubeMesModis() {
+        return capasNubeMesModis;
+    }
+
+    public void setCapasNubeMesModis(List<Capamap> capasNubeMesModis) {
+        this.capasNubeMesModis = capasNubeMesModis;
     }
     
     

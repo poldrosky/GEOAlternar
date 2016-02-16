@@ -44,12 +44,14 @@ public class MapsFacade extends AbstractFacade<Maps> {
         if (type == 5) {
             typemap = "maps_cuencas";
         }
+        if (type == 6) {
+            typemap = "maps_cloud";
+        }
         try {
             Query q = getEntityManager().createNativeQuery("Select m.latitude_3857, m.longitude_3857,m.value_point from (grid_450 natural join  " + typemap + ") m where m.latitude_3857=? and m.longitude_3857=? and m.tag_time=?");
             q.setParameter(1, latitude);
             q.setParameter(2, longitude);
             q.setParameter(3, map);
-            System.out.println("GENERAL OK: ");
             
             return (Object[]) q.getSingleResult();
         } catch (Exception e) {
@@ -76,6 +78,9 @@ public class MapsFacade extends AbstractFacade<Maps> {
         }
         if (type == 4) {
             typemap = "maps_sun_modis";
+        }
+        if (type == 6) {
+            typemap = "maps_cloud";
         }
         try {
 
@@ -456,6 +461,9 @@ public class MapsFacade extends AbstractFacade<Maps> {
         if (type == 4) {
             typemap = "maps_sun_modis";
         }
+        if (type == 6) {
+            typemap = "maps_cloud";
+        }
         String s="SELECT m.* FROM("
                     + " (SELECT grid450_id,value_point AS a2000 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2005') a1 "
                     + "NATURAL  JOIN "
@@ -480,8 +488,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
                     + " (SELECT 	grid450_id,value_point AS a2015 FROM 	grid_450 natural join " + typemap + " where latitude_3857=? and longitude_3857=? and tag_time='2015') a16  "
                     + ") as m";
         try {
-            Query qyears = getEntityManager().createNativeQuery(s
-            );
+            Query qyears = getEntityManager().createNativeQuery(s);
 
             qyears.setParameter(1, latitude);
             qyears.setParameter(2, longitude);
@@ -513,9 +520,6 @@ public class MapsFacade extends AbstractFacade<Maps> {
             qyears.setParameter(28, longitude);
             qyears.setParameter(29, latitude);
             qyears.setParameter(30, longitude);
-            System.out.println("con:"+s);
-            System.out.println("lon:"+longitude);
-            System.out.println("lat:"+latitude);
             return (Object[]) qyears.getSingleResult();
         } catch (Exception e) {
             return null;

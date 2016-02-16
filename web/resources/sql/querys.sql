@@ -169,3 +169,7 @@ where
 	value_point>0 and maps_cuencas.grid450_id=C.grid450_id
 order by 
 	grid450_id,value_point) 
+
+
+---
+UPDATE maps_cloud Q set tag_time =(select 'General' from maps_cloud P where tag_time ='Caudal' and Q.grid450_id=P.grid450_id)
