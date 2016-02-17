@@ -67,9 +67,9 @@
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                     </h:inputText><br></br>
                     <h:outputText value="Latitud: " style="font-size: 10px;"/>
-                    <h:inputText id="lat4326" size="15" />
+                    <h:inputText id="lat4326" size="15" value="#{mBRMap.lat4326}" />
                     <h:outputText value="Longitud:" style="font-size: 10px; margin-left: 10px;" />
-                    <h:inputText id="lon4326" size="15" />
+                    <h:inputText id="lon4326" size="15" value="#{mBRMap.lon4326}" />
                     <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarSolarModisCoordenada()}"
                                      ajax="true" icon="ui-icon-search" update="frmlatlon:panel"
                                      id="solar" style="height: 15px; margin-left: 5px;" />

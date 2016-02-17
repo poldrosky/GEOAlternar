@@ -53,7 +53,7 @@ public class MBRMap implements Serializable {
     private List<Capamap>capasNubeAnioModis;
     private List<Capamap>capasNubeMesModis;
 
-    private String latitude, longitude;
+    private String latitude, longitude,lat4326,lon4326;
     private int typeenergy;//1 w,2 b,3 s
     private String typetime;//month-year
 
@@ -587,14 +587,14 @@ public class MBRMap implements Serializable {
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
         
-        valorbd = "Probabilidad de Nubosidad : 0 %";
+        valorbd = "Presencia de Nubosidad : 0 %";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
-        valor = daoMap.getByCoordenate(lon, lat, "General", 6);
+        valor = daoMap.getByCoordenate(lon, lat, "Caudal", 6);
         if (valor != null) {
-            valorbd = "Probabilidad de Nubosidad : " + valor[2].toString() + " %";
+            valorbd = "Presencia de Nubosidad : " + valor[2].toString() + " %";
         }
 ////////////////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 6);
@@ -1681,68 +1681,108 @@ public class MBRMap implements Serializable {
         this.capasVientoAnio120 = capasVientoAnio120;
     }
 
-    public void generarReporteSolarModis() throws JRException{
-        
-        ServletContext servContx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String rutaJasper = (String) servContx.getRealPath("/");//ruta raiz proyecto
-        rutaJasper = rutaJasper + "resources/reportes/Rmodis.jasper";
-        String rlgeoalternar=(String) servContx.getRealPath("/")+"img/geoalternar/p6.png";
-        String rlfooter=(String) servContx.getRealPath("/")+"img/geoalternar/p7.png";
-        System.out.println("oooooo");
-        System.out.println(rutaJasper);
-        
-        
-        Map parameters = new HashMap();
-        parameters.put("logogeoalternar", rlgeoalternar);
-        parameters.put("footer", rlfooter);
-        parameters.put("m1",valormeses[1].toString());
-        parameters.put("m2", valormeses[2].toString());
-        parameters.put("m3", valormeses[3].toString());
-        parameters.put("m4", valormeses[4].toString());
-        parameters.put("m5", valormeses[5].toString());
-        parameters.put("m6", valormeses[6].toString());
-        parameters.put("m7", valormeses[7].toString());
-        parameters.put("m8", valormeses[8].toString());
-        parameters.put("m9", valormeses[9].toString());
-        parameters.put("m10", valormeses[10].toString());
-        parameters.put("m11", valormeses[11].toString());
-        parameters.put("m12", valormeses[12].toString());
-        parameters.put("a2005", valoranios[1].toString());
-        parameters.put("a2006", valoranios[2].toString());
-        parameters.put("a2007", valoranios[3].toString());
-        parameters.put("a2008", valoranios[4].toString());
-        parameters.put("a2009", valoranios[5].toString());
-        parameters.put("a2010", valoranios[6].toString());
-        parameters.put("a2011", valoranios[7].toString());
-        parameters.put("a2012", valoranios[8].toString());
-        parameters.put("a2013", valoranios[9].toString());
-        parameters.put("a2014", valoranios[10].toString());
-        parameters.put("a2015", valoranios[11].toString());
-        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        parameters.put("mdata", valoranios);
-        parameters.put("mname", meses);
-        
-        
-        File fichero = new File(rutaJasper);
-        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
-        
- 
-        JasperPrint print = JasperFillManager.fillReport(jasperReport,parameters, new JREmptyDataSource());
-  
-        byte[] bytes = JasperExportManager.exportReportToPdf(print);
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+    public String getLat4326() {
+        return lat4326;
+    }
 
-        response.addHeader("Content-disposition",
-                "attachment;filename=reporte.pdf");
-        response.setContentLength(bytes.length);
-        try {
-            response.getOutputStream().write(bytes);
-            response.setContentType("application/pdf");
-            context.responseComplete();
-        } catch (Exception e) {
-             
-        }     
+    public void setLat4326(String lat4326) {
+        this.lat4326 = lat4326;
+    }
+
+    public String getLon4326() {
+        return lon4326;
+    }
+
+    public void setLon4326(String lon4326) {
+        this.lon4326 = lon4326;
+    }
+    
+
+    public void generarReporteSolarModis() throws JRException{
+        if (valor != null) {
+            ServletContext servContx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+            String rutaJasper = (String) servContx.getRealPath("/");//ruta raiz proyecto
+            rutaJasper = rutaJasper + "resources/reportes/Rmodis.jasper";
+            String rlgeoalternar = (String) servContx.getRealPath("/") + "img/geoalternar/p6.png";
+            String rlfooter = (String) servContx.getRealPath("/") + "img/geoalternar/p7.png";
+            System.out.println("oooooo");
+            System.out.println(rutaJasper);
+
+            System.out.println(lat4326 + "||" + lon4326);
+            Map parameters = new HashMap();
+            parameters.put("logogeoalternar", rlgeoalternar);
+            parameters.put("footer", rlfooter);
+            parameters.put("m1", valormeses[1].toString());
+            parameters.put("m2", valormeses[2].toString());
+            parameters.put("m3", valormeses[3].toString());
+            parameters.put("m4", valormeses[4].toString());
+            parameters.put("m5", valormeses[5].toString());
+            parameters.put("m6", valormeses[6].toString());
+            parameters.put("m7", valormeses[7].toString());
+            parameters.put("m8", valormeses[8].toString());
+            parameters.put("m9", valormeses[9].toString());
+            parameters.put("m10", valormeses[10].toString());
+            parameters.put("m11", valormeses[11].toString());
+            parameters.put("m12", valormeses[12].toString());
+            parameters.put("a2005", valoranios[1].toString());
+            parameters.put("a2006", valoranios[2].toString());
+            parameters.put("a2007", valoranios[3].toString());
+            parameters.put("a2008", valoranios[4].toString());
+            parameters.put("a2009", valoranios[5].toString());
+            parameters.put("a2010", valoranios[6].toString());
+            parameters.put("a2011", valoranios[7].toString());
+            parameters.put("a2012", valoranios[8].toString());
+            parameters.put("a2013", valoranios[9].toString());
+            parameters.put("a2014", valoranios[10].toString());
+            parameters.put("a2015", valoranios[11].toString());
+            consultarNubesModisCoordenada();
+            parameters.put("cm1", valormeses[1].toString());
+            parameters.put("cm2", valormeses[2].toString());
+            parameters.put("cm3", valormeses[3].toString());
+            parameters.put("cm4", valormeses[4].toString());
+            parameters.put("cm5", valormeses[5].toString());
+            parameters.put("cm6", valormeses[6].toString());
+            parameters.put("cm7", valormeses[7].toString());
+            parameters.put("cm8", valormeses[8].toString());
+            parameters.put("cm9", valormeses[9].toString());
+            parameters.put("cm10", valormeses[10].toString());
+            parameters.put("cm11", valormeses[11].toString());
+            parameters.put("cm12", valormeses[12].toString());
+            parameters.put("ca2005", valoranios[1].toString());
+            parameters.put("ca2006", valoranios[2].toString());
+            parameters.put("ca2007", valoranios[3].toString());
+            parameters.put("ca2008", valoranios[4].toString());
+            parameters.put("ca2009", valoranios[5].toString());
+            parameters.put("ca2010", valoranios[6].toString());
+            parameters.put("ca2011", valoranios[7].toString());
+            parameters.put("ca2012", valoranios[8].toString());
+            parameters.put("ca2013", valoranios[9].toString());
+            parameters.put("ca2014", valoranios[10].toString());
+            parameters.put("ca2015", valoranios[11].toString());
+            parameters.put("coor4326", "Coordenada: (" + lat4326 + " , " + lon4326 + ")");
+
+            File fichero = new File(rutaJasper);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+
+            JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+
+            byte[] bytes = JasperExportManager.exportReportToPdf(print);
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+
+            response.addHeader("Content-disposition",
+                    "attachment;filename=reporte.pdf");
+            response.setContentLength(bytes.length);
+            try {
+                response.getOutputStream().write(bytes);
+                response.setContentType("application/pdf");
+                context.responseComplete();
+            } catch (Exception e) {
+
+            }
+        }
+        
+        
     }
     
 }
