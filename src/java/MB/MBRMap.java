@@ -1705,10 +1705,6 @@ public class MBRMap implements Serializable {
             rutaJasper = rutaJasper + "resources/reportes/Rmodis.jasper";
             String rlgeoalternar = (String) servContx.getRealPath("/") + "img/geoalternar/p6.png";
             String rlfooter = (String) servContx.getRealPath("/") + "img/geoalternar/p7.png";
-            System.out.println("oooooo");
-            System.out.println(rutaJasper);
-
-            System.out.println(lat4326 + "||" + lon4326);
             Map parameters = new HashMap();
             parameters.put("logogeoalternar", rlgeoalternar);
             parameters.put("footer", rlfooter);

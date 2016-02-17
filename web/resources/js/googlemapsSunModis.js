@@ -44,7 +44,7 @@ window.onload = function () {
             map.addLayer(markers);
             marker = new OpenLayers.Marker(lonlat);
             markers.addMarker(marker);
-
+            document.getElementById('frmlatlon:btnreport').style.visibility = 'visible';
         }
 
     });
