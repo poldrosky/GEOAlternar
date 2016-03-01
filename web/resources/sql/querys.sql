@@ -173,3 +173,5 @@ order by
 
 ---
 UPDATE maps_cloud Q set tag_time =(select 'General' from maps_cloud P where tag_time ='Caudal' and Q.grid450_id=P.grid450_id)
+
+UPDATE maps_cuencas Q set grid450_id =(select grid450_id from grid_450 P where Q.latitude_3857=P.latitude_3857 and Q.longitude_3857=P.longitude_3857)
