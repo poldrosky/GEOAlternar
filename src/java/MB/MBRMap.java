@@ -1698,7 +1698,7 @@ public class MBRMap implements Serializable {
     }
     
 
-    public void generarReporteSolarModis() throws JRException{
+    public void generarReporteSolarModis() throws JRException, IOException{
         if (valor != null) {
             ServletContext servContx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
             String rutaJasper = (String) servContx.getRealPath("/");//ruta raiz proyecto
@@ -1764,18 +1764,19 @@ public class MBRMap implements Serializable {
 
             byte[] bytes = JasperExportManager.exportReportToPdf(print);
             FacesContext context = FacesContext.getCurrentInstance();
+            System.out.println("0");
             HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-
-            response.addHeader("Content-disposition",
-                    "attachment;filename=reporte.pdf");
+            System.out.println("1"); 
+            response.addHeader("Content-disposition","attachment;filename=reporte.pdf");
+            System.out.println("2");
             response.setContentLength(bytes.length);
-            try {
+            System.out.println("3");
                 response.getOutputStream().write(bytes);
+                System.out.println("4");
                 response.setContentType("application/pdf");
+                System.out.println("5");
                 context.responseComplete();
-            } catch (Exception e) {
-
-            }
+            System.out.println("6");
         }
         
         

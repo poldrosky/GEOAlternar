@@ -231,8 +231,8 @@
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarSolarModisCoordenada()}"
                                      ajax="true" update="frmlatlon:panel"
                                      id="btAjax" style="visibility: hidden"/>
-                    <p:commandButton value="REPORTE" id="btnreport" actionListener="#{mBRMap.generarReporteSolarModis()}" 
-                                     ajax="true" style="visibility: hidden;" />
+                    <p:commandButton value="REPORTE" id="btnreport" action="#{mBRMap.generarReporteSolarModis()}" 
+                                     ajax="false" style="visibility: hidden;" />
                     
                 </p:layoutUnit>
             </p:layout>
