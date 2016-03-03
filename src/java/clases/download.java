@@ -14,7 +14,7 @@ import org.primefaces.model.StreamedContent;
      private StreamedContent filebiomassyear,filebiomassmonth;
      private StreamedContent filesunyear,filesunmonth;
      private StreamedContent filesunyearModis,filesunmonthModis;
-     private StreamedContent filewindyear,filewindmonth;  
+     private StreamedContent filewindyear,filewindmonth,fileideam,filehidrico;
      private StreamedContent filebiomass,filewind,filesun,filesunModis;  
      private StreamedContent filerose,fileweibull;
      private StreamedContent fileManual;
@@ -46,6 +46,10 @@ import org.primefaces.model.StreamedContent;
          filesunModis = new DefaultStreamedContent(stream12, "application/csv", "IrradiacionPromedioNarinoMODIS.csv");
          InputStream stream13  = new FileInputStream("/opt/maps/MapsCSV/ManualUsuario_GEOAlternar.pdf");   
          fileManual = new DefaultStreamedContent(stream13, "application/pdf", "ManualUsuario_GEOAlternar.pdf");
+         InputStream stream14  = new FileInputStream("/opt/maps/MapsCSV/InformacionReportesVariablesPromediosMensualesPorEstacion.csv");   
+         fileideam = new DefaultStreamedContent(stream14, "application/csv", "InformacionReportesVariablesPromediosMensualesPorEstacion.csv");
+         InputStream stream15  = new FileInputStream("/opt/maps/MapsCSV/InformacionHidrico.csv");   
+         filehidrico = new DefaultStreamedContent(stream15, "application/csv", "InformacionHidrico.csv");
     }  
 
     public StreamedContent getFilesunyearModis() {
@@ -151,6 +155,22 @@ import org.primefaces.model.StreamedContent;
 
     public void setFileManual(StreamedContent fileManual) {
         this.fileManual = fileManual;
+    }
+
+    public StreamedContent getFileideam() {
+        return fileideam;
+    }
+
+    public void setFileideam(StreamedContent fileideam) {
+        this.fileideam = fileideam;
+    }
+
+    public StreamedContent getFilehidrico() {
+        return filehidrico;
+    }
+
+    public void setFilehidrico(StreamedContent filehidrico) {
+        this.filehidrico = filehidrico;
     }
 
     

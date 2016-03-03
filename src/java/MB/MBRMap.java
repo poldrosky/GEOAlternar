@@ -1759,24 +1759,15 @@ public class MBRMap implements Serializable {
 
             File fichero = new File(rutaJasper);
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
-
             JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
-
             byte[] bytes = JasperExportManager.exportReportToPdf(print);
             FacesContext context = FacesContext.getCurrentInstance();
-            System.out.println("0");
             HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-            System.out.println("1"); 
-            response.addHeader("Content-disposition","attachment;filename=reporte.pdf");
-            System.out.println("2");
+            response.addHeader("Content-disposition","attachment;filename=ReporteRadiaciooSolarNubes.pdf");
             response.setContentLength(bytes.length);
-            System.out.println("3");
                 response.getOutputStream().write(bytes);
-                System.out.println("4");
                 response.setContentType("application/pdf");
-                System.out.println("5");
                 context.responseComplete();
-            System.out.println("6");
         }
         
         

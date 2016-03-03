@@ -26,32 +26,34 @@
                         </p:fieldset>
                         <p:fieldset legend="Mapa de Promedio Mensual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
                             Seleccione el mapa que desea visualizar<br></br><br></br>
-                        <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
-                                          binding="#{mBRMap.selectMesCapa}">
-                            <f:selectItems  value="#{mBRMap.capasSolarMesModis}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
-                            <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
-                        </p:selectOneMenu><br></br><br></br>
-                        <h:outputText value="Radiación (W/m²)" /><br></br>
-                        <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
-                        <p:commandButton value="Descargar Datos"  onclick="window.open('http://geoalternar.udenar.edu.co:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
+                            <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas" onchange="seleccionCapa(this)" style="width: 60%;" immediate="true"
+                                              binding="#{mBRMap.selectMesCapa}">
+                                <f:selectItems  value="#{mBRMap.capasSolarMesModis}" var="capames" itemLabel="#{capames.nombreCapa}" itemValue="#{capames.valorCapa}"/>
+                                <p:ajax event="change"  update="frmlatlon:panel" immediate="true" listener="#{mBRMap.actualizarCapaMes()}"/>
+                            </p:selectOneMenu><br></br><br></br>
+                            <h:outputText value="Radiación (W/m²)" /><br></br>
+                            <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
+                            <p:commandButton value="Descargar Datos"  onclick="window.open('http://geoalternar.udenar.edu.co:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
                         <p:fieldset legend="Mapa de Promedio Anual" toggleable="true" toggleSpeed="300" collapsed="true" style=" width: 90%; font-size: 10px;">
-                        <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
-                                          binding="#{mBRMap.selectCapa}">
-                            <f:selectItems  value="#{mBRMap.capasSolarAnioModis}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
-                            <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
-                        </p:selectOneMenu><br></br><br></br>
-                        <h:outputText value="Radiación (W/m²)" /><br></br>
-                        <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
-                        <p:commandButton value="Descargar Datos"  onclick="window.open('http://localhost:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
+                            <p:selectOneMenu  value="#{mBRMap.capaSelecionada}" id="comboCapas2" onchange="seleccionCapa(this)" style="width: 70%;" immediate="true"
+                                              binding="#{mBRMap.selectCapa}">
+                                <f:selectItems  value="#{mBRMap.capasSolarAnioModis}" var="capaanio" itemLabel="#{capaanio.nombreCapa}" itemValue="#{capaanio.valorCapa}"/>
+                                <p:ajax event="change" listener="#{mBRMap.actualizarCapa()}" update="frmlatlon:panel" immediate="true"/>
+                            </p:selectOneMenu><br></br><br></br>
+                            <h:outputText value="Radiación (W/m²)" /><br></br>
+                            <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
+                            <p:commandButton value="Descargar Datos"  onclick="window.open('http://localhost:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
+                        <p:commandButton value="Generar Reporte" id="btnreport" action="#{mBRMap.generarReporteSolarModis()}" 
+                                         ajax="false" style="visibility: hidden; background: white url('img/r.jpg'); height: 150px;width: 150px;" />
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Radiación " >
                     <div id="map" style="height: 550px; width: 99%;" ></div>
                     <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
-                    <f:facet name="complete">
-                    </f:facet>
+                        <f:facet name="complete">
+                        </f:facet>
                     </p:ajaxStatus>
                     <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                     <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
@@ -60,7 +62,7 @@
                     </p:dialog>
                 </p:layoutUnit>
                 <p:layoutUnit position="east" size="45%" collapsed="false" collapsible="false" header="Inf. Radiación en Coordenada (EPSG:4326)"  id="rigth" style="text-align: center;">
-                   <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
+                    <h:inputText id="latitudeCap" value="#{mBRMap.latitude}"  immediate="true" style="visibility: hidden;">
                         <p:ajax event="change"  update="frmlatlon:panel" immediate="true"/>
                     </h:inputText>
                     <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" style="visibility: hidden;">
@@ -126,16 +128,16 @@
                                         tooltip: {
                                             formatter: function () {
                                                 return '<b>' + this.series.name + '</b><br/>' +
-                                                    this.x + ': ' + this.y+' W/m² ';
+                                                        this.x + ': ' + this.y + ' W/m² ';
                                             }
                                         },
                                         plotOptions: {
                                             area: {
                                                 fillOpacity: 0.2,
                                                 dataLabels: {
-                                                    enabled: true,rotation: -35,align: 'lefth',
+                                                    enabled: true, rotation: -35, align: 'lefth',
                                                     style: {
-                                                        fontSize: '10px',fontFamily: 'Times'
+                                                        fontSize: '10px', fontFamily: 'Times'
                                                     }
                                                 }
                                             }
@@ -154,24 +156,24 @@
                         <p:fieldset legend="Gráfico Promedio Anual de Radiación" toggleable="true" toggleSpeed="1000" collapsed="true" style=" width: 95%; font-size: 10px;">
                             <div id="containeranios" style="width: 600px; height: 400px; margin: 0 auto"></div>
                             <script>
-                            $(function () {
-                                $('#containeranios').highcharts({
-                                    chart: {
-                                        type: 'area',
-                                        spacingBottom: 5
-                                    },
-                                    title: {
-                                        text: 'Promedio Radiación Anual'
-                                    },
-                                    subtitle: {
-                                        text: 'Variacion de Radiación en cordenada',
-                                        floating: true,
-                                        align: 'rigth',
-                                        verticalAlign: 'bottom',
-                                        y: 15
-                                    },
-                                    ///
-                                    legend: {
+                                $(function () {
+                                    $('#containeranios').highcharts({
+                                        chart: {
+                                            type: 'area',
+                                            spacingBottom: 5
+                                        },
+                                        title: {
+                                            text: 'Promedio Radiación Anual'
+                                        },
+                                        subtitle: {
+                                            text: 'Variacion de Radiación en cordenada',
+                                            floating: true,
+                                            align: 'rigth',
+                                            verticalAlign: 'bottom',
+                                            y: 15
+                                        },
+                                        ///
+                                        legend: {
                                             layout: 'vertical',
                                             align: 'left',
                                             verticalAlign: 'top',
@@ -181,59 +183,56 @@
                                             borderWidth: 1,
                                             backgroundColor: '#FFFFFF'
                                         }
-                                    // 
-                                    ,
-                                    xAxis:
-                                            [{categories: ['2005', '2006', '2007', '2008',
-                                                         '2009', '2010', '2011', '2012', '2013',
-                                                         '2014', '2015'],
+                                        // 
+                                        ,
+                                        xAxis:
+                                                [{categories: ['2005', '2006', '2007', '2008',
+                                                            '2009', '2010', '2011', '2012', '2013',
+                                                            '2014', '2015'],
                                                         reversed: false
                                                     }],
-                                    yAxis: {
-                                        title: {
-                                            text: 'Radiación en Coordenada W/m²'
-                                        },
-                                        labels: {
-                                            formatter: function () {
-                                                return this.value;
+                                        yAxis: {
+                                            title: {
+                                                text: 'Radiación en Coordenada W/m²'
+                                            },
+                                            labels: {
+                                                formatter: function () {
+                                                    return this.value;
+                                                }
                                             }
-                                        }
-                                    },
-                                    tooltip: {
-                                        formatter: function () {
-                                            return '<b>' + this.series.name + '</b><br/>' + this.y+' W/m² ';
-                                        }
-                                    },
-                                    plotOptions: {
-                                        area: {
+                                        },
+                                        tooltip: {
+                                            formatter: function () {
+                                                return '<b>' + this.series.name + '</b><br/>' + this.y + ' W/m² ';
+                                            }
+                                        },
+                                        plotOptions: {
+                                            area: {
                                                 fillOpacity: 0.2,
                                                 dataLabels: {
-                                                    enabled: true,rotation: -35,align: 'lefth',
+                                                    enabled: true, rotation: -35, align: 'lefth',
                                                     style: {
-                                                        fontSize: '10px',fontFamily: 'Times'
+                                                        fontSize: '10px', fontFamily: 'Times'
                                                     }
                                                 }
                                             }
-                                    },
-                                    credits: {
-                                        enabled: false
-                                    },
-                                    series: [{
-                                        name: 'Promedio Anual Radiación',align: 'rigth',
-                                        data: [ #{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
-                                            #{mBRMap.y9}, #{mBRMap.y10},#{mBRMap.y11}, #{mBRMap.y12},#{mBRMap.y13}, #{mBRMap.y14}]
-                                    }]
+                                        },
+                                        credits: {
+                                            enabled: false
+                                        },
+                                        series: [{
+                                                name: 'Promedio Anual Radiación', align: 'rigth',
+                                                data: [#{mBRMap.y4},#{mBRMap.y5}, #{mBRMap.y6},#{mBRMap.y7}, #{mBRMap.y8},
+                                #{mBRMap.y9}, #{mBRMap.y10},#{mBRMap.y11}, #{mBRMap.y12},#{mBRMap.y13}, #{mBRMap.y14}]
+                                            }]
+                                    });
                                 });
-                            });
                             </script>
                         </p:fieldset>
                     </p:panelGrid>
                     <p:commandButton value="prueba" actionListener="#{mBRMap.consultarSolarModisCoordenada()}"
                                      ajax="true" update="frmlatlon:panel"
                                      id="btAjax" style="visibility: hidden"/>
-                    <p:commandButton value="REPORTE" id="btnreport" action="#{mBRMap.generarReporteSolarModis()}" 
-                                     ajax="false" style="visibility: hidden;" />
-                    
                 </p:layoutUnit>
             </p:layout>
         </h:form>
