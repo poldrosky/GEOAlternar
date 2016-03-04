@@ -1014,15 +1014,14 @@ public class MBRMap implements Serializable {
     public void consultarHidricoCoordenada() {
         mlat = 0;mlon = 0;
         Object[] valor;
-        valorbd = "Caudal : 0 litros/segundo";
+        valorbd = "Caudal : 0 l/s";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
-        System.out.println(lat + " || " + lon);
         valor = daoMap.getByCoordenate( lat, lon,"Caudal", 5);
         if (valor != null) {
-            valorbd = "Caudal: " + valor[2].toString() + " litros/segundo";
+            valorbd = "Caudal: " + valor[2].toString() + " l/s";
         }
     }
 

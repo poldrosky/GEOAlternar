@@ -3,14 +3,16 @@ window.onload = function () {
       // if this is just a coverage or a group of them, disable a few items,
       // and default to jpeg format
       var format = 'image/png';
-      var bounds = [-8794075.922434451, 39620.69453972373,
-                    -8580222.120367331, 298660.09436226566];
+      var bounds = [-8794075, 39620,
+                    -8580222, 298660];
       var mousePositionControl = new ol.control.MousePosition({
         className: 'custom-mouse-position',
         target: document.getElementById('location'),
         coordinateFormat: ol.coordinate.createStringXY(5),
         undefinedHTML: '&nbsp;'
       });
+      ////Division
+      
       ////Cabeceras municipales
       var cabeceras = new ol.layer.Image({
         source: new ol.source.ImageWMS({
@@ -23,15 +25,15 @@ window.onload = function () {
           }
         })
       });
-      //Limites municipales 
-      var limitesminicipales = new ol.layer.Image({
+      //Limites cuencas
+      var limitescuenca = new ol.layer.Image({
         source: new ol.source.ImageWMS({
           ratio: 1,
           url: 'http://geoalternar.udenar.edu.co:8080/geoserver/MapRiver/wms',
           params: {'FORMAT': format,
                    'VERSION': '1.1.1',  
                 STYLES: '',
-                LAYERS: 'MapRiver:limitesNarino',
+                LAYERS: 'MapRiver:cuencas3857',
           }
         })
       });
@@ -106,8 +108,8 @@ window.onload = function () {
         }).extend([mousePositionControl]),
         target: 'map',
         layers: [new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                    }),cuenca,drenajedoble,untiled,tiled,cabeceras],
+                     source: new ol.source.MapQuest({layer: 'osm'})
+                    }),cuenca,untiled,tiled,cabeceras,limitescuenca],
         view: new ol.View({
            projection: projection
         })
