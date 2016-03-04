@@ -45,8 +45,12 @@
                             <p:graphicImage value="./img/scale/scaleSun.png" styleClass="content" height="260px" width="55x" style="margin-left: 20px;"/><br></br>
                             <p:commandButton value="Descargar Datos"  onclick="window.open('http://localhost:8080/GEOAlternar/faces/IniciarSesion.xhtml')" icon="ui-icon-arrowthickstop-1-s"></p:commandButton>
                         </p:fieldset>
-                        <p:commandButton value="Generar Reporte" id="btnreport" action="#{mBRMap.generarReporteSolarModis()}" 
-                                         ajax="false" style="visibility: hidden; background: white url('img/r.jpg'); height: 150px;width: 150px;" />
+                        <center>
+                            <p:commandButton value=" " id="btnreport" action="#{mBRMap.generarReporteSolarModis()}" 
+                            ajax="false" style="visibility: hidden; background-image: url('img/rf.png'); 
+                            height: 40px; width: 120px;" />
+                        </center>
+                        
                     </h:panelGrid>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" id="panelmap" header="Mapa de Radiación " >
