@@ -467,7 +467,7 @@ public class MBRMap implements Serializable {
     private double m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, mlat, mlon;
     private double y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14;
     private double h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23;
-    private String valorbd;
+    private String valorbd,altura;
     
 /////////////////////////////////////////////////////////////////////
 ////////////////////////SOLAR////////////////////////////////////////
@@ -476,7 +476,7 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-  
+        altura = " ";
         valorbd = "Promedio General en Irradiación Solar : 0 W/m²";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
@@ -486,6 +486,7 @@ public class MBRMap implements Serializable {
         valor = daoMap.getByCoordenate(lon, lat, "General", 3);
         if (valor != null) {
             valorbd = "Promedio General en Irradiación Solar : " + valor[2].toString() + " W/m²";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
 ////////////////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 3);
@@ -533,7 +534,7 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        
+        altura = " ";
         valorbd = "Promedio General en Radiación Solar : 0 W/m²";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
@@ -542,6 +543,7 @@ public class MBRMap implements Serializable {
         valor = daoMap.getByCoordenate(lon, lat, "General", 4);
         if (valor != null) {
             valorbd = "Promedio General en Radiación Solar : " + valor[2].toString() + " W/m²";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
 ////////////////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 4);
@@ -586,7 +588,7 @@ public class MBRMap implements Serializable {
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
-        
+        altura = " ";
         valorbd = "Presencia de Nubosidad : 0 %";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
@@ -595,6 +597,7 @@ public class MBRMap implements Serializable {
         valor = daoMap.getByCoordenate(lon, lat, "Caudal", 6);
         if (valor != null) {
             valorbd = "Presencia de Nubosidad : " + valor[2].toString() + " %";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
 ////////////////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 6);
@@ -637,6 +640,7 @@ public class MBRMap implements Serializable {
 ////////////////////////////////////////////////////////////////////////////////
     public void consultarVientoCoordenada() throws IOException {
         h0=0;h1=0;h2=0;h3=0;h4=0;h5=0;h6=0;h7=0;h8=0;h9=0;h10=0;
+        altura = " ";
         valorbd = "Promedio Velocidad de Viento 50m. : 0 m/seg";
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
@@ -652,6 +656,7 @@ public class MBRMap implements Serializable {
 
         if (valor != null) {
             valorbd = "Promedio Velocidad de Viento 50m. : " + valor[2].toString() + " m/seg";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
         //////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 50);
@@ -725,6 +730,7 @@ public class MBRMap implements Serializable {
     
     public void consultarViento20mCoordenada() throws IOException {
         h0=0;h1=0;h2=0;h3=0;h4=0;h5=0;h6=0;h7=0;h8=0;h9=0;h10=0;
+        altura = " ";
         valorbd = "Promedio Velocidad de Viento 20m. : 0 m/seg";
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
@@ -740,6 +746,7 @@ public class MBRMap implements Serializable {
 
         if (valor != null) {
             valorbd = "Promedio Velocidad de Viento 20m. : " + valor[2].toString() + " m/seg";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
         //////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 20);
@@ -812,6 +819,7 @@ public class MBRMap implements Serializable {
     }
     public void consultarViento120mCoordenada() throws IOException {
         h0=0;h1=0;h2=0;h3=0;h4=0;h5=0;h6=0;h7=0;h8=0;h9=0;h10=0;
+        altura = " ";
         valorbd = "Promedio Velocidad de Viento 120m. : 0 m/seg";
         mlat = 0;mlon = 0;
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
@@ -827,6 +835,7 @@ public class MBRMap implements Serializable {
 
         if (valor != null) {
             valorbd = "Promedio Velocidad de Viento 120m. : " + valor[2].toString() + " m/seg";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
         //////////consultar valor por MES O AÑO
         valormeses = daoMap.getHistoryMonths(lon, lat, 120);
@@ -960,6 +969,7 @@ public class MBRMap implements Serializable {
         m1 = 0;m2 = 0;m3 = 0;m4 = 0;m5 = 0;m6 = 0;m7 = 0;m8 = 0;m9 = 0;m10 = 0;m11 = 0;m12 = 0;
         y0 = 0;y1 = 0;y2 = 0;y3 = 0;y4 = 0;y5 = 0;y6 = 0;y7 = 0;y8 = 0;y9 = 0;y10 = 0;y11 = 0;y12 = 0;y13 = 0;y14 = 0;
         Object[] valor, valormeses, valoranios;
+        altura = " ";
         valorbd = "Promedio General en Biomasa : 0 Mg/Ha";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 900));
@@ -968,6 +978,7 @@ public class MBRMap implements Serializable {
         valor = daoMap.getByCoordenate(lon, lat, "General", 2);
         if (valor != null) {
             valorbd = "Promedio General en Biomasa : " + valor[2].toString() + " Mg/Ha";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
         valormeses = daoMap.getHistoryMonths(lon, lat, 2);
         System.out.println(valormeses.length);
@@ -1014,14 +1025,17 @@ public class MBRMap implements Serializable {
     public void consultarHidricoCoordenada() {
         mlat = 0;mlon = 0;
         Object[] valor;
+        altura = " ";
         valorbd = "Caudal : 0 l/s";
         valuelat = Double.parseDouble(this.latitude);//CONVERTIR CORDENADAS A ENTEROS PARA CONSULTAR BD
         lat = (int) (valuelat - (valuelat % 450));
         valuelon = Double.parseDouble(this.longitude);
         lon = (int) (valuelon - (valuelon % 450));
         valor = daoMap.getByCoordenate( lat, lon,"Caudal", 5);
+        System.out.print( valor[3].toString());
         if (valor != null) {
             valorbd = "Caudal: " + valor[2].toString() + " l/s";
+            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
         }
     }
 
@@ -1695,6 +1709,15 @@ public class MBRMap implements Serializable {
     public void setLon4326(String lon4326) {
         this.lon4326 = lon4326;
     }
+
+    public String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(String altura) {
+        this.altura = altura;
+    }
+    
     
 
     public void generarReporteSolarModis() throws JRException, IOException{

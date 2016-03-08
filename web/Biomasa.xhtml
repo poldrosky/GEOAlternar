@@ -73,12 +73,10 @@
                     <p:commandButton onclick="reproject3857();" actionListener="#{mBRMap.consultarBiomasaCoordenada()}"
                                      ajax="true" icon="ui-icon-search" update="frmlatlon:panel"
                                      id="biomasa" style="height: 18px; margin-left: 5px;" />
-                    <br></br><br></br>
+                    <br></br>
                     <p:panelGrid id="panel" columns="1" style="font-size: 10px; width: 100%; text-align: center;" >
-                        <h:panelGroup style="visibility: hidden;">
-                            <p:graphicImage value="./img/mapa.png" style="height: 20px;width: 20px;" ><a href="#{mBRMap.url}">Elegir mapa para descargar</a></p:graphicImage>
-                        </h:panelGroup> 
-                        <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 15px;"/>
+                        <h:outputText value=" #{mBRMap.altura}" style="font-size: 12px;"/>
+                        <h:outputText value=" #{mBRMap.valorbd}" style="font-size: 12px;"/>
                         <p:fieldset legend="Gráfico Promedio Mensual de Biomasa" toggleable="true" toggleSpeed="1000" collapsed="false" style=" width: 95%; font-size: 10px;">
                             <div id="container" style="width: 600px; height: 400px; margin: 0 auto"></div>
                             <script>

@@ -48,7 +48,7 @@ public class MapsFacade extends AbstractFacade<Maps> {
             typemap = "maps_cloud";
         }
         try {
-            Query q = getEntityManager().createNativeQuery("Select m.latitude_3857, m.longitude_3857,m.value_point from (grid_450 natural join  " + typemap + ") m where m.latitude_3857=? and m.longitude_3857=? and m.tag_time=?");
+            Query q = getEntityManager().createNativeQuery("Select m.latitude_3857, m.longitude_3857,m.value_point,m.height from (grid_450 natural join  " + typemap + ") m where m.latitude_3857=? and m.longitude_3857=? and m.tag_time=?");
             q.setParameter(1, latitude);
             q.setParameter(2, longitude);
             q.setParameter(3, map);
