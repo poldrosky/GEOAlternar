@@ -102,7 +102,7 @@ window.onload = function () {
           units: 'm',
           axisOrientation: 'neu'
       });
-      var map = new ol.Map({
+      /*var map = new ol.Map({
         controls: ol.control.defaults({
           attribution: false
         }).extend([mousePositionControl]),
@@ -113,7 +113,26 @@ window.onload = function () {
         view: new ol.View({
            projection: projection
         })
+      });*/
+      
+      ///***
+        var map = new ol.Map({
+        controls: ol.control.defaults({
+          attribution: false
+        }).extend([mousePositionControl]),
+        target: 'map',
+        layers: [new ol.layer.Tile({
+                source: new ol.source.Stamen({
+                    layer: 'terrain'
+                }),
+                name: 'Terrain'
+            }),cuenca,untiled,tiled,cabeceras,limitescuenca],
+        view: new ol.View({
+           projection: projection
+        })
       });
+      ///***
+      
       map.getView().on('change:resolution', function(evt) {
         var resolution = evt.target.get('resolution');
         var units = map.getView().getProjection().getUnits();

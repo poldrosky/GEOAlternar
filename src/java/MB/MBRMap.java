@@ -1035,7 +1035,7 @@ public class MBRMap implements Serializable {
         System.out.print( valor[3].toString());
         if (valor != null) {
             valorbd = "Caudal: " + valor[2].toString() + " l/s";
-            altura = "Altura respecto a nivel del mar : " + valor[3].toString() + " m.";
+            altura = "m.s.n.m. : " + valor[3].toString();
         }
     }
 

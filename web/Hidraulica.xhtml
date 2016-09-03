@@ -20,7 +20,7 @@
                         <h4 style=";text-align: center;">
                         </h4>
                         <center>
-                            <table style="margin-bottom: 5%; border: 2px #E6E6FA dotted;">
+                            <table style="margin-bottom: 2%; border: 2px #E6E6FA dotted;">
                                 <tbody>
                                     <tr>
                                         <td><p:graphicImage value="./img/hidro/cm.png"/></td>
@@ -54,7 +54,7 @@
                                     </tr>
                                 </tbody>
                             </table >
-                            <hr style="width: 80%"/>
+                            <hr style="width: 80%; color: hsla" color="green" size="1"/>
                             <p:outputLabel value="Microcuencas Hídricas (l/s)"/><br/>
                             <p:graphicImage value="./img/hidro/cuencas.png" style="width: 55px;height: 270px;"/>
                             <br/><br/>
@@ -64,6 +64,13 @@
                             <h:inputText id="longitudeCap" value="#{mBRMap.longitude}"  immediate="true" style="visibility: hidden;">
                                 <p:ajax event="change"  update="frmlatlon:panel" immediate="true" />
                             </h:inputText><br></br>
+                            <div style="text-align: justify; width: 90%;">
+                                <p:outputLabel >
+                                    Las microcuencas se encuentran representadas por un color específico, que indica el limite de afluentes hidricos que 
+                                    pertenecen a una microcuenca.
+                                </p:outputLabel>
+
+                            </div>
                         </center>
                         <p:commandButton value="prueba" actionListener="#{mBRMap.consultarHidricoCoordenada()}"
                                          ajax="true" update="frmlatlon:panel" style="visibility: hidden;"
